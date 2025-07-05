@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { PageSection, School } from '@/types';
-import { sectionStyles } from '@/data/sectionStyles';
+import { getStyleById } from '@/data/sectionStyles';
 
 interface SectionRendererProps {
   section: PageSection;
@@ -9,7 +9,7 @@ interface SectionRendererProps {
 }
 
 const SectionRenderer: React.FC<SectionRendererProps> = ({ section, school }) => {
-  const sectionStyle = sectionStyles.find(style => style.id === section.styleId);
+  const sectionStyle = getStyleById(section.styleId);
   
   if (!sectionStyle) {
     return (
