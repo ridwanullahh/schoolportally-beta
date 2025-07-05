@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useSchool } from '@/hooks/useSchool';
@@ -61,7 +60,16 @@ const Onboarding = () => {
   const handleFinish = async () => {
     setLoading(true);
     try {
-      const newSchool = await createSchool(schoolData);
+      // Include all required properties for School
+      const completeSchoolData = {
+        ...schoolData,
+        ownerId: user?.id || '',
+        status: 'active',
+        subscriptionPlan: 'standard',
+        subscriptionStatus: 'trial',
+      };
+      
+      const newSchool = await createSchool(completeSchoolData);
       toast({
         title: 'Success!',
         description: 'Your school has been created successfully.',

@@ -86,8 +86,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setLoading(true);
     try {
       const newUser = await sdk.register(email, password, profile);
-      // Auto-login after registration if no OTP required
-      if (!sdk.getConfig('auth').otpTriggers?.includes('register')) {
+      // Check if OTP is required for registration
+      const authConfig = sdk.getConfig('authConfig');
+      if (!authConfig?.otpTriggers?.includes('register')) {
         const loginToken = await sdk.login(email, password);
         if (typeof loginToken === 'string') {
           localStorage.setItem('auth_token', loginToken);
