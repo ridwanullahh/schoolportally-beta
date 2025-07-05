@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Button from '../ui/Button';
+import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 
 const Header = () => {
@@ -53,7 +53,7 @@ const Header = () => {
               <Button variant="ghost">Sign In</Button>
             </Link>
             <Link to="/signup">
-              <Button variant="primary">Get Started</Button>
+              <Button>Get Started</Button>
             </Link>
           </div>
 
@@ -94,7 +94,7 @@ const Header = () => {
                   <Button variant="ghost" className="w-full">Sign In</Button>
                 </Link>
                 <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="primary" className="w-full">Get Started</Button>
+                  <Button className="w-full">Get Started</Button>
                 </Link>
               </div>
             </nav>

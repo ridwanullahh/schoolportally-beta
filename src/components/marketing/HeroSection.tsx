@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../ui/Button';
+import { Button } from '../ui/button';
 
 const HeroSection = () => {
   return (
@@ -39,7 +39,7 @@ const HeroSection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Link to="/signup">
-              <Button size="xl" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto px-10 py-5 text-xl">
                 Start Free Trial
                 <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -47,7 +47,7 @@ const HeroSection = () => {
               </Button>
             </Link>
             <Link to="/demo">
-              <Button variant="outline" size="xl" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto px-10 py-5 text-xl">
                 Watch Demo
                 <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-9 4h10a1 1 0 001-1V7a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1z" />
