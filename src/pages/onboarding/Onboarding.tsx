@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { School } from '@/types';
+import { School, Page } from '@/types';
 import OnboardingStep from './OnboardingStep';
 import OnboardingComplete from './OnboardingComplete';
 import sdk from '@/lib/sdk-config';
@@ -104,13 +103,13 @@ const Onboarding = () => {
   };
 
   const createDefaultPages = async (schoolId: string) => {
-    const defaultPages = [
+    const defaultPages: Omit<Page, 'id' | 'uid'>[] = [
       {
         schoolId,
         title: 'Home',
         slug: 'home',
-        type: 'homepage' as const,
-        status: 'published' as const,
+        type: 'homepage',
+        status: 'published',
         sections: [
           {
             id: '1',
@@ -135,45 +134,48 @@ const Onboarding = () => {
         schoolId,
         title: 'About Us',
         slug: 'about',
-        type: 'about' as const,
-        status: 'published' as const,
+        type: 'about',
+        status: 'published',
         sections: []
       },
       {
         schoolId,
         title: 'Programs',
         slug: 'programs',
-        type: 'programs' as const,
-        status: 'published' as const,
+        type: 'programs',
+        status: 'published',
         sections: []
       },
       {
         schoolId,
         title: 'Classes',
         slug: 'classes',
-        type: 'classes' as const,
-        status: 'published' as const,
+        type: 'classes',
+        status: 'published',
         sections: []
       },
       {
         schoolId,
         title: 'Admissions',
         slug: 'admissions',
-        type: 'admissions' as const,
-        status: 'published' as const,
+        type: 'admissions',
+        status: 'published',
         sections: []
       },
       {
         schoolId,
         title: 'Contact',
         slug: 'contact',
-        type: 'contact' as const,
-        status: 'published' as const,
+        type: 'contact',
+        status: 'published',
         sections: []
       }
     ];
 
-    await sdk.bulkInsert('pages', defaultPages);
+    // Create pages individually to avoid type conflicts
+    for (const pageData of defaultPages) {
+      await sdk.insert<Page>('pages', pageData);
+    }
   };
 
   const handleCloseComplete = () => {

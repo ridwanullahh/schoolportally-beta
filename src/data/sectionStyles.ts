@@ -10,14 +10,14 @@ export const heroStyles: SectionStyle[] = [
     preview: '/previews/hero-1.jpg',
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
-      { id: 'secondaryButton', name: 'secondaryButton', type: 'text', label: 'Secondary Button Text' },
-      { id: 'secondaryLink', name: 'secondaryLink', type: 'link', label: 'Secondary Button Link' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image', label: 'Background Image' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
+      { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' },
+      { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' },
+      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
     ]
   },
   {
@@ -27,12 +27,12 @@ export const heroStyles: SectionStyle[] = [
     preview: '/previews/hero-2.jpg',
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
-      { id: 'image', name: 'image', type: 'image', label: 'Hero Image', required: true },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
+      { id: 'image', name: 'image', type: 'image' as const, label: 'Hero Image', required: true },
     ]
   },
   {
@@ -42,12 +42,12 @@ export const heroStyles: SectionStyle[] = [
     preview: '/previews/hero-3.jpg',
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
-      { id: 'videoUrl', name: 'videoUrl', type: 'video', label: 'Background Video', required: true },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
+      { id: 'videoUrl', name: 'videoUrl', type: 'video' as const, label: 'Background Video', required: true },
     ]
   },
   {
@@ -57,10 +57,10 @@ export const heroStyles: SectionStyle[] = [
     preview: '/previews/hero-4.jpg',
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
     ]
   },
   {
@@ -70,12 +70,12 @@ export const heroStyles: SectionStyle[] = [
     preview: '/previews/hero-5.jpg',
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image', label: 'Background Image' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
+      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
     ]
   },
   // Continue with more hero styles...
@@ -86,12 +86,12 @@ export const heroStyles: SectionStyle[] = [
     preview: '/previews/hero-6.jpg',
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
-      { id: 'image', name: 'image', type: 'image', label: 'Hero Image', required: true },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
+      { id: 'image', name: 'image', type: 'image' as const, label: 'Hero Image', required: true },
     ]
   },
   // Adding more styles to reach 15...
@@ -102,12 +102,12 @@ export const heroStyles: SectionStyle[] = [
     preview: `/previews/hero-${i + 7}.jpg`,
     category: 'hero',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text', label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link', label: 'Primary Button Link' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image', label: 'Background Image' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
+      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
+      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
+      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
     ]
   }))
 ];
@@ -121,9 +121,9 @@ export const featuresStyles: SectionStyle[] = [
     preview: '/previews/features-1.jpg',
     category: 'features',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Section Subtitle' },
-      { id: 'features', name: 'features', type: 'repeater', label: 'Features' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Section Subtitle' },
+      { id: 'features', name: 'features', type: 'repeater' as const, label: 'Features' },
     ]
   },
   {
@@ -133,9 +133,9 @@ export const featuresStyles: SectionStyle[] = [
     preview: '/previews/features-2.jpg',
     category: 'features',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Section Subtitle' },
-      { id: 'features', name: 'features', type: 'repeater', label: 'Features' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Section Subtitle' },
+      { id: 'features', name: 'features', type: 'repeater' as const, label: 'Features' },
     ]
   },
   // Continue with more feature styles to reach 15...
@@ -146,9 +146,9 @@ export const featuresStyles: SectionStyle[] = [
     preview: `/previews/features-${i + 3}.jpg`,
     category: 'features',
     fields: [
-      { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-      { id: 'subtitle', name: 'subtitle', type: 'text', label: 'Section Subtitle' },
-      { id: 'features', name: 'features', type: 'repeater', label: 'Features' },
+      { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Section Subtitle' },
+      { id: 'features', name: 'features', type: 'repeater' as const, label: 'Features' },
     ]
   }))
 ];
@@ -161,9 +161,9 @@ export const aboutStyles: SectionStyle[] = Array.from({ length: 15 }, (_, i) => 
   preview: `/previews/about-${i + 1}.jpg`,
   category: 'about',
   fields: [
-    { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-    { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-    { id: 'image', name: 'image', type: 'image', label: 'Image' },
+    { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+    { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+    { id: 'image', name: 'image', type: 'image' as const, label: 'Image' },
   ]
 }));
 
@@ -174,8 +174,8 @@ export const testimonialsStyles: SectionStyle[] = Array.from({ length: 15 }, (_,
   preview: `/previews/testimonials-${i + 1}.jpg`,
   category: 'testimonials',
   fields: [
-    { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-    { id: 'testimonials', name: 'testimonials', type: 'repeater', label: 'Testimonials' },
+    { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+    { id: 'testimonials', name: 'testimonials', type: 'repeater' as const, label: 'Testimonials' },
   ]
 }));
 
@@ -186,10 +186,10 @@ export const ctaStyles: SectionStyle[] = Array.from({ length: 15 }, (_, i) => ({
   preview: `/previews/cta-${i + 1}.jpg`,
   category: 'cta',
   fields: [
-    { id: 'title', name: 'title', type: 'text', label: 'CTA Title' },
-    { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
-    { id: 'buttonText', name: 'buttonText', type: 'text', label: 'Button Text' },
-    { id: 'buttonLink', name: 'buttonLink', type: 'link', label: 'Button Link' },
+    { id: 'title', name: 'title', type: 'text' as const, label: 'CTA Title' },
+    { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
+    { id: 'buttonText', name: 'buttonText', type: 'text' as const, label: 'Button Text' },
+    { id: 'buttonLink', name: 'buttonLink', type: 'link' as const, label: 'Button Link' },
   ]
 }));
 
@@ -200,8 +200,8 @@ export const galleryStyles: SectionStyle[] = Array.from({ length: 15 }, (_, i) =
   preview: `/previews/gallery-${i + 1}.jpg`,
   category: 'gallery',
   fields: [
-    { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-    { id: 'images', name: 'images', type: 'repeater', label: 'Images' },
+    { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+    { id: 'images', name: 'images', type: 'repeater' as const, label: 'Images' },
   ]
 }));
 
@@ -212,8 +212,8 @@ export const contactStyles: SectionStyle[] = Array.from({ length: 15 }, (_, i) =
   preview: `/previews/contact-${i + 1}.jpg`,
   category: 'contact',
   fields: [
-    { id: 'title', name: 'title', type: 'text', label: 'Section Title' },
-    { id: 'description', name: 'description', type: 'textarea', label: 'Description' },
+    { id: 'title', name: 'title', type: 'text' as const, label: 'Section Title' },
+    { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
   ]
 }));
 

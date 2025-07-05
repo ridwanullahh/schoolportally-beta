@@ -1,4 +1,3 @@
-
 // Core types for the SchoolPortal platform
 export interface User {
   id?: string;
@@ -44,14 +43,14 @@ export interface School {
 }
 
 export interface SchoolBranding {
-  primaryColor: string;
-  secondaryColor: string;
-  accentColor: string;
-  fontFamily: string;
-  logo: string;
-  favicon: string;
-  headerStyle: string;
-  footerStyle: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  accentColor?: string;
+  fontFamily?: string;
+  logo?: string;
+  favicon?: string;
+  headerStyle?: string;
+  footerStyle?: string;
 }
 
 export interface Page {
