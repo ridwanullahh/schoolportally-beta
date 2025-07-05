@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '@/lib/sdk';
 import sdk from '@/lib/sdk-config';
@@ -86,8 +85,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setLoading(true);
     try {
       const newUser = await sdk.register(email, password, profile);
-      // Check if OTP is required for registration
-      const authConfig = sdk.getConfig('authConfig');
+      // Check if OTP is required for registration by accessing the authConfig directly
+      const authConfig = (sdk as any).authConfig;
       if (!authConfig?.otpTriggers?.includes('register')) {
         const loginToken = await sdk.login(email, password);
         if (typeof loginToken === 'string') {
