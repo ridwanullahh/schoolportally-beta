@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,14 @@ import {
   HelpCircle, 
   Megaphone,
   Edit,
-  Book
+  Book,
+  Calendar,
+  Library,
+  Award,
+  MessageSquare,
+  DollarSign,
+  Camera,
+  Briefcase
 } from 'lucide-react';
 
 // Import all modules including the new ones
@@ -31,6 +39,10 @@ import EventsModule from '@/components/admin/EventsModule';
 import GalleryModule from '@/components/admin/GalleryModule';
 import JobsModule from '@/components/admin/JobsModule';
 import SupportModule from '@/components/admin/SupportModule';
+import CalendarModule from '@/components/admin/CalendarModule';
+import ELibraryModule from '@/components/admin/ELibraryModule';
+import ResultsModule from '@/components/admin/ResultsModule';
+import MessagesModule from '@/components/admin/MessagesModule';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -181,16 +193,20 @@ const SchoolAdminDashboard = () => {
     { id: 'admissions', label: 'Admissions', icon: Users },
     { id: 'programs', label: 'Programs', icon: BookOpen },
     { id: 'classes', label: 'Classes', icon: Users },
+    { id: 'calendar', label: 'Academic Calendar', icon: Calendar },
+    { id: 'results', label: 'Results', icon: Award },
+    { id: 'fees', label: 'Fees', icon: DollarSign },
+    { id: 'messages', label: 'Messages', icon: MessageSquare },
     { id: 'blog', label: 'Blog', icon: FileText },
-    { id: 'faq', label: 'FAQ', icon: HelpCircle },
     { id: 'announcements', label: 'Announcements', icon: Megaphone },
+    { id: 'events', label: 'Events', icon: Calendar },
+    { id: 'gallery', label: 'Gallery', icon: Camera },
+    { id: 'elibrary', label: 'E-Library', icon: Library },
     { id: 'lms', label: 'LMS', icon: BookOpen },
     { id: 'forms', label: 'Forms', icon: FileText },
     { id: 'wiki', label: 'Knowledge Base', icon: Book },
-    { id: 'fees', label: 'Fees', icon: BookOpen },
-    { id: 'events', label: 'Events', icon: BookOpen },
-    { id: 'gallery', label: 'Gallery', icon: BookOpen },
-    { id: 'jobs', label: 'Jobs', icon: BookOpen },
+    { id: 'jobs', label: 'Jobs', icon: Briefcase },
+    { id: 'faq', label: 'FAQ', icon: HelpCircle },
     { id: 'support', label: 'Support', icon: BookOpen },
     { id: 'students', label: 'Students', icon: Users },
     { id: 'teachers', label: 'Teachers', icon: Users },
@@ -210,6 +226,14 @@ const SchoolAdminDashboard = () => {
         return <ProgramsModule />;
       case 'classes':
         return <ClassesModule />;
+      case 'calendar':
+        return <CalendarModule />;
+      case 'results':
+        return <ResultsModule />;
+      case 'fees':
+        return <FeesModule />;
+      case 'messages':
+        return <MessagesModule />;
       case 'blog':
         return <BlogModule />;
       case 'faq':
@@ -222,12 +246,12 @@ const SchoolAdminDashboard = () => {
         return <FormsModule />;
       case 'wiki':
         return <WikiModule />;
-      case 'fees':
-        return <FeesModule />;
       case 'events':
         return <EventsModule />;
       case 'gallery':
         return <GalleryModule />;
+      case 'elibrary':
+        return <ELibraryModule />;
       case 'jobs':
         return <JobsModule />;
       case 'support':
@@ -248,12 +272,12 @@ const SchoolAdminDashboard = () => {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
-      <div className="w-64 border-r border-gray-200 py-4">
+      <div className="w-64 bg-white border-r border-gray-200 py-4 overflow-y-auto">
         <div className="px-6 mb-8">
           <CardTitle className="text-lg font-semibold">{school?.name} Admin</CardTitle>
-          <CardContent className="text-sm text-gray-500">Manage your school</CardContent>
+          <CardContent className="text-sm text-gray-500 p-0">Manage your school</CardContent>
         </div>
-        <div className="space-y-1">
+        <div className="space-y-1 px-3">
           {sidebarItems.map((item) => (
             <Button
               key={item.id}
@@ -269,7 +293,7 @@ const SchoolAdminDashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 overflow-y-auto">
         {renderContent()}
       </div>
     </div>
