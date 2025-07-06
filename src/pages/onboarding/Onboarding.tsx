@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useSchool } from '@/contexts/SchoolContext';
@@ -50,6 +51,17 @@ const Onboarding = () => {
     }
   }, [isAuthenticated, user, school, authLoading, schoolLoading]);
 
+  const generateUniqueId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  };
+
+  const createSlugFromName = (name: string) => {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
+
   const handleNext = () => {
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
@@ -65,20 +77,30 @@ const Onboarding = () => {
   const handleComplete = async () => {
     setLoading(true);
     try {
+      // Generate unique ID and slug if not provided
+      const schoolId = generateUniqueId();
+      const schoolSlug = schoolData.slug || createSlugFromName(schoolData.name);
+      
       const completeSchoolData = {
+        id: schoolId,
         ...schoolData,
+        slug: schoolSlug,
         ownerId: user?.id || '',
         status: 'active',
         subscriptionPlan: 'standard',
         subscriptionStatus: 'trial',
         onboardingCompleted: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       };
+      
+      console.log('Creating school with data:', completeSchoolData);
       
       const newSchool = await sdk.insert<School>('schools', completeSchoolData);
       
       // Update user with schoolId
-      if (user) {
-        await sdk.update('users', user.id!, { schoolId: newSchool.id });
+      if (user && user.id) {
+        await sdk.update('users', user.id, { schoolId: newSchool.id });
       }
 
       // Create default pages for the school
@@ -92,6 +114,7 @@ const Onboarding = () => {
         description: 'Your school has been created successfully.',
       });
     } catch (error: any) {
+      console.error('School creation error:', error);
       toast({
         title: 'Error',
         description: error.message || 'Failed to create school',
@@ -103,8 +126,9 @@ const Onboarding = () => {
   };
 
   const createDefaultPages = async (schoolId: string) => {
-    const defaultPages: Omit<Page, 'id' | 'uid'>[] = [
+    const defaultPages = [
       {
+        id: generateUniqueId(),
         schoolId,
         title: 'Home',
         slug: 'home',
@@ -128,53 +152,75 @@ const Onboarding = () => {
             order: 1,
             visible: true
           }
-        ]
+        ],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
       {
+        id: generateUniqueId(),
         schoolId,
         title: 'About Us',
         slug: 'about',
         type: 'about',
         status: 'published',
-        sections: []
+        sections: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
       {
+        id: generateUniqueId(),
         schoolId,
         title: 'Programs',
         slug: 'programs',
         type: 'programs',
         status: 'published',
-        sections: []
+        sections: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
       {
+        id: generateUniqueId(),
         schoolId,
         title: 'Classes',
         slug: 'classes',
         type: 'classes',
         status: 'published',
-        sections: []
+        sections: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
       {
+        id: generateUniqueId(),
         schoolId,
         title: 'Admissions',
         slug: 'admissions',
         type: 'admissions',
         status: 'published',
-        sections: []
+        sections: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
       {
+        id: generateUniqueId(),
         schoolId,
         title: 'Contact',
         slug: 'contact',
         type: 'contact',
         status: 'published',
-        sections: []
+        sections: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       }
     ];
 
-    // Create pages individually to avoid type conflicts
+    // Create pages individually
     for (const pageData of defaultPages) {
-      await sdk.insert<Page>('pages', pageData);
+      try {
+        await sdk.insert<Page>('pages', pageData);
+        console.log(`Created page: ${pageData.title}`);
+      } catch (error) {
+        console.error(`Failed to create page ${pageData.title}:`, error);
+      }
     }
   };
 
@@ -251,6 +297,7 @@ const Onboarding = () => {
                 onComplete={handleComplete}
                 schoolData={schoolData}
                 setSchoolData={setSchoolData}
+                loading={loading}
               />
             </CardContent>
           </Card>

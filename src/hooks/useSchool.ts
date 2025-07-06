@@ -5,7 +5,6 @@ import sdk from '@/lib/sdk-config';
 
 interface School {
   id: string;
-  uid: string;
   name: string;
   slug: string;
   ownerId: string;
@@ -19,6 +18,8 @@ interface School {
   status: string;
   subscriptionPlan: string;
   subscriptionStatus: string;
+  onboardingCompleted?: boolean;
+  branding?: any;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -40,8 +41,17 @@ export const useSchool = () => {
       setError(null);
 
       try {
-        const schoolData = await sdk.getItem<School>('schools', user.schoolId);
-        setSchool(schoolData);
+        console.log('Fetching school for user:', user.schoolId);
+        const schools = await sdk.get<School>('schools');
+        const schoolData = schools.find(s => s.id === user.schoolId);
+        
+        if (schoolData) {
+          setSchool(schoolData);
+          console.log('School found:', schoolData);
+        } else {
+          console.log('No school found for user');
+          setSchool(null);
+        }
       } catch (err) {
         console.error('Failed to fetch school:', err);
         setError('Failed to load school data');
@@ -57,7 +67,10 @@ export const useSchool = () => {
     if (!school) return null;
 
     try {
-      const updatedSchool = await sdk.update<School>('schools', school.id, updates);
+      const updatedSchool = await sdk.update<School>('schools', school.id, {
+        ...updates,
+        updatedAt: new Date().toISOString()
+      });
       setSchool(updatedSchool);
       return updatedSchool;
     } catch (err) {
@@ -66,16 +79,23 @@ export const useSchool = () => {
     }
   };
 
-  const createSchool = async (schoolData: Omit<School, 'id' | 'uid'>) => {
+  const createSchool = async (schoolData: Omit<School, 'id'>) => {
     try {
+      const generateUniqueId = () => {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+      };
+
       const newSchool = await sdk.insert<School>('schools', {
+        id: generateUniqueId(),
         ...schoolData,
         ownerId: user?.id || '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       });
       
       // Update user with schoolId
-      if (user) {
-        await sdk.update('users', user.id!, { schoolId: newSchool.id });
+      if (user && user.id) {
+        await sdk.update('users', user.id, { schoolId: newSchool.id });
       }
       
       setSchool(newSchool);

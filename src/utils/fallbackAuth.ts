@@ -6,6 +6,8 @@ interface LocalUser {
   firstName: string;
   lastName: string;
   roles: string[];
+  userType: string;
+  status: string;
   createdAt: string;
 }
 
@@ -13,6 +15,10 @@ const USERS_KEY = 'schoolportal_users';
 const CURRENT_USER_KEY = 'schoolportal_current_user';
 
 export class FallbackAuth {
+  private generateUniqueId(): string {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  }
+
   private getUsers(): LocalUser[] {
     const users = localStorage.getItem(USERS_KEY);
     return users ? JSON.parse(users) : [];
@@ -39,12 +45,14 @@ export class FallbackAuth {
     }
 
     const newUser: LocalUser = {
-      id: crypto.randomUUID(),
+      id: profile.id || this.generateUniqueId(),
       email,
       password: this.hashPassword(password),
       firstName: profile.firstName || '',
       lastName: profile.lastName || '',
       roles: profile.roles || ['school_owner'],
+      userType: 'school_owner',
+      status: 'active',
       createdAt: new Date().toISOString(),
     };
 

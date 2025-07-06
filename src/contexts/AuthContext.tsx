@@ -38,6 +38,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem('auth_token'));
   const [loading, setLoading] = useState(true);
 
+  const generateUniqueId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  };
+
   useEffect(() => {
     const initAuth = async () => {
       if (token) {
@@ -46,12 +50,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           const users = await sdk.get<User>('users');
           const currentUser = users.find(u => u.id === token || u.email === token);
           if (currentUser) {
+            console.log('User found in SDK:', currentUser);
             setUser(currentUser);
           } else {
+            console.log('User not found in SDK, clearing token');
             localStorage.removeItem('auth_token');
             setToken(null);
           }
         } catch (error) {
+          console.log('SDK not available, trying fallback auth');
           // Fallback to local storage
           const localUser = fallbackAuth.getCurrentUser();
           if (localUser && localUser.id === token) {
@@ -81,15 +88,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           localStorage.setItem('auth_token', userToken);
           setToken(userToken);
           setUser(foundUser);
+          console.log('Login successful with SDK:', foundUser);
           return;
         }
       } catch (error) {
+        console.log('SDK login failed, trying fallback');
         // GitHub not available, use fallback
         const localUser = fallbackAuth.login(email, password);
         const userToken = localUser.id;
         localStorage.setItem('auth_token', userToken);
         setToken(userToken);
         setUser(localUser as User);
+        console.log('Login successful with fallback:', localUser);
         return;
       }
       
@@ -105,16 +115,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const register = async (email: string, password: string, profile: Partial<User> = {}) => {
     setLoading(true);
     try {
+      const userId = generateUniqueId();
+      
       try {
         // Try GitHub SDK first
         const hashedPassword = sdk.hashPassword(password);
         const newUser = await sdk.insert<User>('users', {
+          id: userId,
           email,
           password: hashedPassword,
           firstName: profile.firstName || '',
           lastName: profile.lastName || '',
           roles: profile.roles || ['school_owner'],
+          permissions: profile.permissions || [],
           verified: false,
+          userType: 'school_owner',
+          status: 'active',
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
           ...profile
@@ -124,13 +140,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem('auth_token', userToken);
         setToken(userToken);
         setUser(newUser);
+        console.log('Registration successful with SDK:', newUser);
       } catch (error) {
+        console.log('SDK registration failed, trying fallback');
         // GitHub not available, use fallback
-        const localUser = fallbackAuth.register(email, password, profile);
+        const localUser = fallbackAuth.register(email, password, {
+          id: userId,
+          ...profile
+        });
         const userToken = localUser.id;
         localStorage.setItem('auth_token', userToken);
         setToken(userToken);
         setUser(localUser as User);
+        console.log('Registration successful with fallback:', localUser);
       }
     } catch (error) {
       console.error('Registration failed:', error);

@@ -8,7 +8,7 @@ const githubToken = import.meta.env.VITE_GITHUB_TOKEN || 'ghp_47mUOjTZr55QWoZLVQ
 // Database schema configuration
 const dbSchema = {
   users: {
-    required: ['id', 'email', 'password'],
+    required: ['email', 'password'],
     types: {
       id: 'string',
       email: 'string',
@@ -19,12 +19,14 @@ const dbSchema = {
       permissions: 'array',
       schoolId: 'string',
       verified: 'boolean',
+      userType: 'string',
+      status: 'string',
       createdAt: 'string',
       updatedAt: 'string'
     }
   },
   schools: {
-    required: ['id', 'name'],
+    required: ['name', 'slug'],
     types: {
       id: 'string',
       name: 'string',
@@ -46,7 +48,7 @@ const dbSchema = {
     }
   },
   pages: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -60,7 +62,7 @@ const dbSchema = {
     }
   },
   admissions: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'studentName'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -74,7 +76,7 @@ const dbSchema = {
     }
   },
   programs: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'name'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -87,7 +89,7 @@ const dbSchema = {
     }
   },
   classes: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'name'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -102,7 +104,7 @@ const dbSchema = {
     }
   },
   blog: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -117,7 +119,7 @@ const dbSchema = {
     }
   },
   faq: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'question'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -130,7 +132,7 @@ const dbSchema = {
     }
   },
   announcements: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -144,7 +146,7 @@ const dbSchema = {
     }
   },
   lms_courses: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -156,7 +158,7 @@ const dbSchema = {
     }
   },
   lms_enrollments: {
-    required: ['id', 'courseId', 'studentId'],
+    required: ['courseId', 'studentId'],
     types: {
       id: 'string',
       courseId: 'string',
@@ -167,7 +169,7 @@ const dbSchema = {
     }
   },
   lms_assignments: {
-    required: ['id', 'courseId'],
+    required: ['courseId', 'title'],
     types: {
       id: 'string',
       courseId: 'string',
@@ -179,7 +181,7 @@ const dbSchema = {
     }
   },
   forms: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -192,7 +194,7 @@ const dbSchema = {
     }
   },
   form_submissions: {
-    required: ['id', 'formId'],
+    required: ['formId'],
     types: {
       id: 'string',
       formId: 'string',
@@ -201,7 +203,7 @@ const dbSchema = {
     }
   },
   wiki_articles: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -214,7 +216,7 @@ const dbSchema = {
     }
   },
   wiki_categories: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'name'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -225,7 +227,7 @@ const dbSchema = {
     }
   },
   fees: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -240,22 +242,29 @@ const dbSchema = {
     }
   },
   events: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
       title: 'string',
       description: 'string',
-      startDate: 'string',
-      endDate: 'string',
+      date: 'string',
+      time: 'string',
       location: 'string',
-      type: 'string',
+      category: 'string',
+      image: 'string',
+      organizer: 'string',
+      capacity: 'number',
+      registrations: 'array',
       status: 'string',
+      tags: 'array',
+      recurring: 'boolean',
+      recurringPattern: 'object',
       createdAt: 'string'
     }
   },
   gallery: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -267,7 +276,7 @@ const dbSchema = {
     }
   },
   jobs: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'title'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -281,7 +290,7 @@ const dbSchema = {
     }
   },
   job_applications: {
-    required: ['id', 'jobId'],
+    required: ['jobId', 'applicantName'],
     types: {
       id: 'string',
       jobId: 'string',
@@ -295,7 +304,7 @@ const dbSchema = {
     }
   },
   support_tickets: {
-    required: ['id', 'schoolId'],
+    required: ['schoolId', 'subject'],
     types: {
       id: 'string',
       schoolId: 'string',
@@ -305,6 +314,67 @@ const dbSchema = {
       priority: 'string',
       status: 'string',
       assignedTo: 'string',
+      createdAt: 'string'
+    }
+  },
+  calendar_events: {
+    required: ['schoolId', 'title'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      title: 'string',
+      description: 'string',
+      startDate: 'string',
+      endDate: 'string',
+      type: 'string',
+      status: 'string',
+      createdAt: 'string'
+    }
+  },
+  elibrary: {
+    required: ['schoolId', 'title'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      title: 'string',
+      author: 'string',
+      description: 'string',
+      fileUrl: 'string',
+      fileType: 'string',
+      category: 'string',
+      status: 'string',
+      createdAt: 'string'
+    }
+  },
+  results: {
+    required: ['schoolId', 'studentId'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      studentId: 'string',
+      classId: 'string',
+      term: 'string',
+      session: 'string',
+      subjects: 'array',
+      totalScore: 'number',
+      grade: 'string',
+      position: 'number',
+      remarks: 'string',
+      createdAt: 'string'
+    }
+  },
+  messages: {
+    required: ['schoolId', 'senderId'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      senderId: 'string',
+      receiverId: 'string',
+      subject: 'string',
+      content: 'string',
+      type: 'string',
+      status: 'string',
+      readAt: 'string',
       createdAt: 'string'
     }
   }
