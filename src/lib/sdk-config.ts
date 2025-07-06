@@ -9,239 +9,283 @@ const githubToken = import.meta.env.VITE_GITHUB_TOKEN || '';
 // Database schema configuration
 const dbSchema = {
   users: {
-    id: 'string',
-    email: 'string',
-    password: 'string',
-    firstName: 'string',
-    lastName: 'string',
-    roles: 'array',
-    permissions: 'array',
-    schoolId: 'string',
-    verified: 'boolean',
-    createdAt: 'string',
-    updatedAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      email: { type: 'string', required: true },
+      password: { type: 'string', required: true },
+      firstName: { type: 'string' },
+      lastName: { type: 'string' },
+      roles: { type: 'array' },
+      permissions: { type: 'array' },
+      schoolId: { type: 'string' },
+      verified: { type: 'boolean' },
+      createdAt: { type: 'string' },
+      updatedAt: { type: 'string' }
+    }
   },
   schools: {
-    id: 'string',
-    name: 'string',
-    slug: 'string',
-    ownerId: 'string',
-    address: 'string',
-    phone: 'string',
-    email: 'string',
-    website: 'string',
-    timezone: 'string',
-    currency: 'string',
-    status: 'string',
-    subscriptionPlan: 'string',
-    subscriptionStatus: 'string',
-    onboardingCompleted: 'boolean',
-    branding: 'object',
-    createdAt: 'string',
-    updatedAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      name: { type: 'string', required: true },
+      slug: { type: 'string' },
+      ownerId: { type: 'string' },
+      address: { type: 'string' },
+      phone: { type: 'string' },
+      email: { type: 'string' },
+      website: { type: 'string' },
+      timezone: { type: 'string' },
+      currency: { type: 'string' },
+      status: { type: 'string' },
+      subscriptionPlan: { type: 'string' },
+      subscriptionStatus: { type: 'string' },
+      onboardingCompleted: { type: 'boolean' },
+      branding: { type: 'object' },
+      createdAt: { type: 'string' },
+      updatedAt: { type: 'string' }
+    }
   },
   pages: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    slug: 'string',
-    type: 'string',
-    status: 'string',
-    sections: 'array',
-    createdAt: 'string',
-    updatedAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      slug: { type: 'string' },
+      type: { type: 'string' },
+      status: { type: 'string' },
+      sections: { type: 'array' },
+      createdAt: { type: 'string' },
+      updatedAt: { type: 'string' }
+    }
   },
   admissions: {
-    id: 'string',
-    schoolId: 'string',
-    studentName: 'string',
-    email: 'string',
-    phone: 'string',
-    program: 'string',
-    status: 'string',
-    documents: 'array',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      studentName: { type: 'string' },
+      email: { type: 'string' },
+      phone: { type: 'string' },
+      program: { type: 'string' },
+      status: { type: 'string' },
+      documents: { type: 'array' },
+      createdAt: { type: 'string' }
+    }
   },
   programs: {
-    id: 'string',
-    schoolId: 'string',
-    name: 'string',
-    description: 'string',
-    duration: 'string',
-    price: 'number',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      name: { type: 'string' },
+      description: { type: 'string' },
+      duration: { type: 'string' },
+      price: { type: 'number' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   classes: {
-    id: 'string',
-    schoolId: 'string',
-    name: 'string',
-    programId: 'string',
-    teacherId: 'string',
-    schedule: 'string',
-    capacity: 'number',
-    enrolled: 'number',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      name: { type: 'string' },
+      programId: { type: 'string' },
+      teacherId: { type: 'string' },
+      schedule: { type: 'string' },
+      capacity: { type: 'number' },
+      enrolled: { type: 'number' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   blog: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    slug: 'string',
-    content: 'string',
-    excerpt: 'string',
-    authorId: 'string',
-    status: 'string',
-    publishedAt: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      slug: { type: 'string' },
+      content: { type: 'string' },
+      excerpt: { type: 'string' },
+      authorId: { type: 'string' },
+      status: { type: 'string' },
+      publishedAt: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   faq: {
-    id: 'string',
-    schoolId: 'string',
-    question: 'string',
-    answer: 'string',
-    category: 'string',
-    order: 'number',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      question: { type: 'string' },
+      answer: { type: 'string' },
+      category: { type: 'string' },
+      order: { type: 'number' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   announcements: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    content: 'string',
-    priority: 'string',
-    targetAudience: 'array',
-    status: 'string',
-    publishedAt: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      content: { type: 'string' },
+      priority: { type: 'string' },
+      targetAudience: { type: 'array' },
+      status: { type: 'string' },
+      publishedAt: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   lms_courses: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    description: 'string',
-    instructorId: 'string',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      instructorId: { type: 'string' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   lms_enrollments: {
-    id: 'string',
-    courseId: 'string',
-    studentId: 'string',
-    status: 'string',
-    progress: 'number',
-    enrolledAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      courseId: { type: 'string', required: true },
+      studentId: { type: 'string', required: true },
+      status: { type: 'string' },
+      progress: { type: 'number' },
+      enrolledAt: { type: 'string' }
+    }
   },
   lms_assignments: {
-    id: 'string',
-    courseId: 'string',
-    title: 'string',
-    description: 'string',
-    dueDate: 'string',
-    maxScore: 'number',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      courseId: { type: 'string', required: true },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      dueDate: { type: 'string' },
+      maxScore: { type: 'number' },
+      createdAt: { type: 'string' }
+    }
   },
   forms: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    description: 'string',
-    fields: 'array',
-    embedCode: 'string',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      fields: { type: 'array' },
+      embedCode: { type: 'string' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   form_submissions: {
-    id: 'string',
-    formId: 'string',
-    data: 'object',
-    submittedAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      formId: { type: 'string', required: true },
+      data: { type: 'object' },
+      submittedAt: { type: 'string' }
+    }
   },
   wiki_articles: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    content: 'string',
-    categoryId: 'string',
-    authorId: 'string',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      content: { type: 'string' },
+      categoryId: { type: 'string' },
+      authorId: { type: 'string' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   wiki_categories: {
-    id: 'string',
-    schoolId: 'string',
-    name: 'string',
-    description: 'string',
-    order: 'number',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      name: { type: 'string' },
+      description: { type: 'string' },
+      order: { type: 'number' },
+      createdAt: { type: 'string' }
+    }
   },
   fees: {
-    id: 'string',
-    schoolId: 'string',
-    studentId: 'string',
-    type: 'string',
-    amount: 'number',
-    description: 'string',
-    dueDate: 'string',
-    status: 'string',
-    paymentMethod: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      studentId: { type: 'string' },
+      type: { type: 'string' },
+      amount: { type: 'number' },
+      description: { type: 'string' },
+      dueDate: { type: 'string' },
+      status: { type: 'string' },
+      paymentMethod: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   events: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    description: 'string',
-    startDate: 'string',
-    endDate: 'string',
-    location: 'string',
-    type: 'string',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      startDate: { type: 'string' },
+      endDate: { type: 'string' },
+      location: { type: 'string' },
+      type: { type: 'string' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   gallery: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    description: 'string',
-    imageUrl: 'string',
-    category: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      imageUrl: { type: 'string' },
+      category: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   jobs: {
-    id: 'string',
-    schoolId: 'string',
-    title: 'string',
-    description: 'string',
-    requirements: 'string',
-    location: 'string',
-    type: 'string',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      requirements: { type: 'string' },
+      location: { type: 'string' },
+      type: { type: 'string' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   job_applications: {
-    id: 'string',
-    jobId: 'string',
-    applicantName: 'string',
-    email: 'string',
-    phone: 'string',
-    resume: 'string',
-    coverLetter: 'string',
-    status: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      jobId: { type: 'string', required: true },
+      applicantName: { type: 'string' },
+      email: { type: 'string' },
+      phone: { type: 'string' },
+      resume: { type: 'string' },
+      coverLetter: { type: 'string' },
+      status: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   },
   support_tickets: {
-    id: 'string',
-    schoolId: 'string',
-    userId: 'string',
-    subject: 'string',
-    description: 'string',
-    priority: 'string',
-    status: 'string',
-    assignedTo: 'string',
-    createdAt: 'string'
+    fields: {
+      id: { type: 'string', required: true },
+      schoolId: { type: 'string', required: true },
+      userId: { type: 'string' },
+      subject: { type: 'string' },
+      description: { type: 'string' },
+      priority: { type: 'string' },
+      status: { type: 'string' },
+      assignedTo: { type: 'string' },
+      createdAt: { type: 'string' }
+    }
   }
 };
 
