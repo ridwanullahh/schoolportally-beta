@@ -1,26 +1,21 @@
-
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSchool } from '@/contexts/SchoolContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { 
+  LayoutDashboard, 
   Users, 
-  BookOpen, 
-  GraduationCap, 
-  FileText, 
   Settings, 
-  Calendar,
-  MessageCircle,
-  BarChart3,
-  Layout,
-  User,
-  Mail,
-  HelpCircle
+  BookOpen, 
+  FileText, 
+  HelpCircle, 
+  Megaphone,
+  Edit,
+  Wiki
 } from 'lucide-react';
 
-// Import admin modules
+// Import all modules
 import SiteEditor from '@/components/admin/SiteEditor';
 import AdmissionsModule from '@/components/admin/AdmissionsModule';
 import ProgramsModule from '@/components/admin/ProgramsModule';
@@ -28,286 +23,234 @@ import ClassesModule from '@/components/admin/ClassesModule';
 import BlogModule from '@/components/admin/BlogModule';
 import FAQModule from '@/components/admin/FAQModule';
 import AnnouncementsModule from '@/components/admin/AnnouncementsModule';
+import LMSModule from '@/components/admin/LMSModule';
+import FormsModule from '@/components/admin/FormsModule';
+import WikiModule from '@/components/admin/WikiModule';
 
-const SchoolAdminDashboard = () => {
-  const { school, loading } = useSchool();
-  const [activeTab, setActiveTab] = useState('overview');
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!school) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
-          <p className="text-gray-600">You don't have permission to access this school's admin dashboard.</p>
-        </div>
-      </div>
-    );
-  }
-
-  const stats = [
-    { name: 'Total Students', value: '2,543', icon: Users, change: '+12%' },
-    { name: 'Active Programs', value: '24', icon: BookOpen, change: '+3%' },
-    { name: 'Faculty Members', value: '186', icon: GraduationCap, change: '+5%' },
-    { name: 'Pending Applications', value: '42', icon: FileText, change: '+8%' },
-  ];
+// Overview Module Component
+const OverviewModule = () => {
+  const { school } = useSchool();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b">
-        <div className="px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="text-gray-600">{school.name}</p>
-            </div>
-            <div className="flex space-x-4">
-              <Button variant="outline">
-                <Calendar className="w-4 h-4 mr-2" />
-                Schedule
-              </Button>
-              <Button>
-                <Settings className="w-4 h-4 mr-2" />
-                Settings
-              </Button>
-            </div>
-          </div>
-        </div>
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Dashboard Overview</h2>
       </div>
 
-      {/* Navigation Tabs */}
-      <div className="bg-white border-b px-6">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-9 h-auto p-1">
-            <TabsTrigger value="overview" className="flex items-center space-x-2 py-3">
-              <BarChart3 className="w-4 h-4" />
-              <span className="hidden sm:inline">Overview</span>
-            </TabsTrigger>
-            <TabsTrigger value="site-editor" className="flex items-center space-x-2 py-3">
-              <Layout className="w-4 h-4" />
-              <span className="hidden sm:inline">Site Editor</span>
-            </TabsTrigger>
-            <TabsTrigger value="admissions" className="flex items-center space-x-2 py-3">
-              <User className="w-4 h-4" />
-              <span className="hidden sm:inline">Admissions</span>
-            </TabsTrigger>
-            <TabsTrigger value="programs" className="flex items-center space-x-2 py-3">
-              <BookOpen className="w-4 h-4" />
-              <span className="hidden sm:inline">Programs</span>
-            </TabsTrigger>
-            <TabsTrigger value="classes" className="flex items-center space-x-2 py-3">
-              <GraduationCap className="w-4 h-4" />
-              <span className="hidden sm:inline">Classes</span>
-            </TabsTrigger>
-            <TabsTrigger value="blog" className="flex items-center space-x-2 py-3">
-              <FileText className="w-4 h-4" />
-              <span className="hidden sm:inline">Blog</span>
-            </TabsTrigger>
-            <TabsTrigger value="announcements" className="flex items-center space-x-2 py-3">
-              <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">Announcements</span>
-            </TabsTrigger>
-            <TabsTrigger value="faq" className="flex items-center space-x-2 py-3">
-              <HelpCircle className="w-4 h-4" />
-              <span className="hidden sm:inline">FAQ</span>
-            </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center space-x-2 py-3">
-              <Settings className="w-4 h-4" />
-              <span className="hidden sm:inline">Settings</span>
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">No students enrolled yet</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Active Programs</CardTitle>
+            <BookOpen className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">Create your first program</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Classes</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">Set up your first class</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Staff Members</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">1</div>
+            <p className="text-xs text-muted-foreground">Admin account active</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-center py-4 text-gray-500">
+              No recent activity to display.
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Quick Actions</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <Button className="w-full justify-start" variant="outline">
+              <Users className="w-4 h-4 mr-2" />
+              Add New Student
+            </Button>
+            <Button className="w-full justify-start" variant="outline">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Create Program
+            </Button>
+            <Button className="w-full justify-start" variant="outline">
+              <FileText className="w-4 h-4 mr-2" />
+              Write Blog Post
+            </Button>
+            <Button className="w-full justify-start" variant="outline">
+              <Megaphone className="w-4 h-4 mr-2" />
+              Make Announcement
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+// Placeholder modules for features not yet implemented
+const StudentsModule = () => (
+  <div className="space-y-6">
+    <h2 className="text-2xl font-bold">Student Management</h2>
+    <div className="text-center py-8 text-gray-500">
+      Student management interface will be implemented here.
+    </div>
+  </div>
+);
+
+const TeachersModule = () => (
+  <div className="space-y-6">
+    <h2 className="text-2xl font-bold">Teacher Management</h2>
+    <div className="text-center py-8 text-gray-500">
+      Teacher management interface will be implemented here.
+    </div>
+  </div>
+);
+
+const StaffModule = () => (
+  <div className="space-y-6">
+    <h2 className="text-2xl font-bold">Staff Management</h2>
+    <div className="text-center py-8 text-gray-500">
+      Staff management interface will be implemented here.
+    </div>
+  </div>
+);
+
+const SettingsModule = () => (
+  <div className="space-y-6">
+    <h2 className="text-2xl font-bold">School Settings</h2>
+    <div className="text-center py-8 text-gray-500">
+      School settings and configuration will be available here.
+    </div>
+  </div>
+);
+
+interface SidebarItem {
+  id: string;
+  label: string;
+  icon: any;
+}
+
+const SchoolAdminDashboard = () => {
+  const { school } = useSchool();
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const sidebarItems: SidebarItem[] = [
+    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'site-editor', label: 'Site Editor', icon: Edit },
+    { id: 'admissions', label: 'Admissions', icon: Users },
+    { id: 'programs', label: 'Programs', icon: BookOpen },
+    { id: 'classes', label: 'Classes', icon: Users },
+    { id: 'blog', label: 'Blog', icon: FileText },
+    { id: 'faq', label: 'FAQ', icon: HelpCircle },
+    { id: 'announcements', label: 'Announcements', icon: Megaphone },
+    { id: 'lms', label: 'LMS', icon: BookOpen },
+    { id: 'forms', label: 'Forms', icon: FileText },
+    { id: 'wiki', label: 'Knowledge Base', icon: Wiki },
+    { id: 'students', label: 'Students', icon: Users },
+    { id: 'teachers', label: 'Teachers', icon: Users },
+    { id: 'staff', label: 'Staff', icon: Users },
+    { id: 'settings', label: 'Settings', icon: Settings },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return <OverviewModule />;
+      case 'site-editor':
+        return <SiteEditor />;
+      case 'admissions':
+        return <AdmissionsModule />;
+      case 'programs':
+        return <ProgramsModule />;
+      case 'classes':
+        return <ClassesModule />;
+      case 'blog':
+        return <BlogModule />;
+      case 'faq':
+        return <FAQModule />;
+      case 'announcements':
+        return <AnnouncementsModule />;
+      case 'lms':
+        return <LMSModule />;
+      case 'forms':
+        return <FormsModule />;
+      case 'wiki':
+        return <WikiModule />;
+      case 'students':
+        return <StudentsModule />;
+      case 'teachers':
+        return <TeachersModule />;
+      case 'staff':
+        return <StaffModule />;
+      case 'settings':
+        return <SettingsModule />;
+      default:
+        return <OverviewModule />;
+    }
+  };
+
+  return (
+    <div className="flex h-screen bg-gray-50">
+      {/* Sidebar */}
+      <div className="w-64 border-r border-gray-200 py-4">
+        <div className="px-6 mb-8">
+          <CardTitle className="text-lg font-semibold">{school?.name} Admin</CardTitle>
+          <CardContent className="text-sm text-gray-500">Manage your school</CardContent>
+        </div>
+        <div className="space-y-1">
+          {sidebarItems.map((item) => (
+            <Button
+              key={item.id}
+              variant="ghost"
+              className={`w-full justify-start ${activeTab === item.id ? 'bg-gray-100' : ''}`}
+              onClick={() => setActiveTab(item.id)}
+            >
+              <item.icon className="w-4 h-4 mr-2" />
+              {item.label}
+            </Button>
+          ))}
+        </div>
       </div>
 
       {/* Main Content */}
-      <div className="p-6">
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsContent value="overview" className="space-y-6">
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {stats.map((stat) => (
-                <Card key={stat.name}>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-gray-600">{stat.name}</p>
-                        <p className="text-3xl font-bold">{stat.value}</p>
-                        <p className="text-sm text-green-600">{stat.change} from last month</p>
-                      </div>
-                      <stat.icon className="h-8 w-8 text-gray-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <Button variant="outline" className="h-20 flex flex-col space-y-2" onClick={() => setActiveTab('admissions')}>
-                    <User className="w-6 h-6" />
-                    <span>Review Applications</span>
-                  </Button>
-                  <Button variant="outline" className="h-20 flex flex-col space-y-2" onClick={() => setActiveTab('site-editor')}>
-                    <Layout className="w-6 h-6" />
-                    <span>Edit Website</span>
-                  </Button>
-                  <Button variant="outline" className="h-20 flex flex-col space-y-2" onClick={() => setActiveTab('announcements')}>
-                    <Mail className="w-6 h-6" />
-                    <span>Send Announcement</span>
-                  </Button>
-                  <Button variant="outline" className="h-20 flex flex-col space-y-2" onClick={() => setActiveTab('blog')}>
-                    <FileText className="w-6 h-6" />
-                    <span>Write Blog Post</span>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Recent Activity */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Recent Applications</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div>
-                          <p className="font-medium">Student Name {i}</p>
-                          <p className="text-sm text-gray-600">Applied for Grade 9</p>
-                        </div>
-                        <Button size="sm" variant="outline">Review</Button>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Upcoming Events</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <Calendar className="w-5 h-5 text-blue-600" />
-                        <div>
-                          <p className="font-medium">Event Name {i}</p>
-                          <p className="text-sm text-gray-600">Tomorrow at 10:00 AM</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="site-editor">
-            <SiteEditor />
-          </TabsContent>
-
-          <TabsContent value="admissions">
-            <AdmissionsModule />
-          </TabsContent>
-
-          <TabsContent value="programs">
-            <ProgramsModule />
-          </TabsContent>
-
-          <TabsContent value="classes">
-            <ClassesModule />
-          </TabsContent>
-
-          <TabsContent value="blog">
-            <BlogModule />
-          </TabsContent>
-
-          <TabsContent value="announcements">
-            <AnnouncementsModule />
-          </TabsContent>
-
-          <TabsContent value="faq">
-            <FAQModule />
-          </TabsContent>
-
-          <TabsContent value="settings">
-            <Card>
-              <CardHeader>
-                <CardTitle>School Settings</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-medium mb-4">General Information</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium mb-2">School Name</label>
-                        <input 
-                          type="text" 
-                          value={school.name} 
-                          className="w-full px-3 py-2 border rounded-lg"
-                          readOnly
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-2">Email</label>
-                        <input 
-                          type="email" 
-                          value={school.email || ''} 
-                          className="w-full px-3 py-2 border rounded-lg"
-                          readOnly
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg font-medium mb-4">Branding</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium mb-2">Primary Color</label>
-                        <input 
-                          type="color" 
-                          value={school.branding?.primaryColor || '#4f46e5'} 
-                          className="w-full h-10 rounded-lg"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-2">Secondary Color</label>
-                        <input 
-                          type="color" 
-                          value={school.branding?.secondaryColor || '#06b6d4'} 
-                          className="w-full h-10 rounded-lg"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <Button>Save Settings</Button>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+      <div className="flex-1 p-8">
+        {renderContent()}
       </div>
     </div>
   );
