@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { usePages } from '@/hooks/usePages';
 import { useSchool } from '@/contexts/SchoolContext';
@@ -24,7 +23,7 @@ const SiteEditor: React.FC = () => {
   const [pageForm, setPageForm] = useState({
     title: '',
     slug: '',
-    type: 'page' as Page['type'],
+    type: 'custom' as Page['type'],
   });
 
   const [sectionForm, setSectionForm] = useState({
@@ -34,13 +33,16 @@ const SiteEditor: React.FC = () => {
   });
 
   const handleCreatePage = async () => {
+    if (!school) return;
+    
     try {
       await createPage({
         ...pageForm,
+        schoolId: school.id,
         sections: [],
         status: 'published',
       });
-      setPageForm({ title: '', slug: '', type: 'page' });
+      setPageForm({ title: '', slug: '', type: 'custom' });
       setIsPageDialogOpen(false);
     } catch (error) {
       console.error('Error creating page:', error);
@@ -141,12 +143,18 @@ const SiteEditor: React.FC = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="page">Regular Page</SelectItem>
+                    <SelectItem value="custom">Custom Page</SelectItem>
                     <SelectItem value="homepage">Homepage</SelectItem>
                     <SelectItem value="about">About</SelectItem>
                     <SelectItem value="contact">Contact</SelectItem>
                     <SelectItem value="blog">Blog</SelectItem>
                     <SelectItem value="events">Events</SelectItem>
+                    <SelectItem value="programs">Programs</SelectItem>
+                    <SelectItem value="classes">Classes</SelectItem>
+                    <SelectItem value="admissions">Admissions</SelectItem>
+                    <SelectItem value="gallery">Gallery</SelectItem>
+                    <SelectItem value="calendar">Calendar</SelectItem>
+                    <SelectItem value="faq">FAQ</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
