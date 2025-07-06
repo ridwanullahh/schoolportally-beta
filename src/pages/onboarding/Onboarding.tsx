@@ -83,6 +83,7 @@ const Onboarding = () => {
       
       const completeSchoolData = {
         id: schoolId,
+        uid: schoolId,
         ...schoolData,
         slug: schoolSlug,
         ownerId: user?.id || '',
@@ -129,11 +130,12 @@ const Onboarding = () => {
     const defaultPages = [
       {
         id: generateUniqueId(),
+        uid: generateUniqueId(),
         schoolId,
         title: 'Home',
         slug: 'home',
-        type: 'homepage',
-        status: 'published',
+        type: 'homepage' as const,
+        status: 'published' as const,
         sections: [
           {
             id: '1',
@@ -158,55 +160,60 @@ const Onboarding = () => {
       },
       {
         id: generateUniqueId(),
+        uid: generateUniqueId(),
         schoolId,
         title: 'About Us',
         slug: 'about',
-        type: 'about',
-        status: 'published',
+        type: 'about' as const,
+        status: 'published' as const,
         sections: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       },
       {
         id: generateUniqueId(),
+        uid: generateUniqueId(),
         schoolId,
         title: 'Programs',
         slug: 'programs',
-        type: 'programs',
-        status: 'published',
+        type: 'programs' as const,
+        status: 'published' as const,
         sections: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       },
       {
         id: generateUniqueId(),
+        uid: generateUniqueId(),
         schoolId,
         title: 'Classes',
         slug: 'classes',
-        type: 'classes',
-        status: 'published',
+        type: 'classes' as const,
+        status: 'published' as const,
         sections: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       },
       {
         id: generateUniqueId(),
+        uid: generateUniqueId(),
         schoolId,
         title: 'Admissions',
         slug: 'admissions',
-        type: 'admissions',
-        status: 'published',
+        type: 'admissions' as const,
+        status: 'published' as const,
         sections: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       },
       {
         id: generateUniqueId(),
+        uid: generateUniqueId(),
         schoolId,
         title: 'Contact',
         slug: 'contact',
-        type: 'contact',
-        status: 'published',
+        type: 'contact' as const,
+        status: 'published' as const,
         sections: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
