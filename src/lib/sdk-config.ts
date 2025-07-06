@@ -1,9 +1,9 @@
 
 import UniversalSDK from './sdk';
 
-const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || 'demo';
+const githubUsername = import.meta.env.VITE_GITHUB_OWNER || 'ridwanullahh';
 const githubRepo = import.meta.env.VITE_GITHUB_REPO || 'schoolportalbetadb';
-const githubToken = import.meta.env.VITE_GITHUB_TOKEN || '';
+const githubToken = import.meta.env.VITE_GITHUB_TOKEN || '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';
 
 // Database schema configuration
 const dbSchema = {
