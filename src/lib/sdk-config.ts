@@ -246,7 +246,7 @@ const dbSchema = {
 
 // Initialize SDK with configuration
 const sdk = new UniversalSDK({
-  username: githubUsername,
+  owner: githubUsername,
   repo: githubRepo,
   token: githubToken,
   schema: dbSchema
