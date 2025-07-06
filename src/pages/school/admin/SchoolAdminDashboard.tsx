@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Button } from '@/components/ui/button';
@@ -16,7 +15,7 @@ import {
   Book
 } from 'lucide-react';
 
-// Import all modules
+// Import all modules including the new ones
 import SiteEditor from '@/components/admin/SiteEditor';
 import AdmissionsModule from '@/components/admin/AdmissionsModule';
 import ProgramsModule from '@/components/admin/ProgramsModule';
@@ -27,6 +26,11 @@ import AnnouncementsModule from '@/components/admin/AnnouncementsModule';
 import LMSModule from '@/components/admin/LMSModule';
 import FormsModule from '@/components/admin/FormsModule';
 import WikiModule from '@/components/admin/WikiModule';
+import FeesModule from '@/components/admin/FeesModule';
+import EventsModule from '@/components/admin/EventsModule';
+import GalleryModule from '@/components/admin/GalleryModule';
+import JobsModule from '@/components/admin/JobsModule';
+import SupportModule from '@/components/admin/SupportModule';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -183,6 +187,11 @@ const SchoolAdminDashboard = () => {
     { id: 'lms', label: 'LMS', icon: BookOpen },
     { id: 'forms', label: 'Forms', icon: FileText },
     { id: 'wiki', label: 'Knowledge Base', icon: Book },
+    { id: 'fees', label: 'Fees', icon: BookOpen },
+    { id: 'events', label: 'Events', icon: BookOpen },
+    { id: 'gallery', label: 'Gallery', icon: BookOpen },
+    { id: 'jobs', label: 'Jobs', icon: BookOpen },
+    { id: 'support', label: 'Support', icon: BookOpen },
     { id: 'students', label: 'Students', icon: Users },
     { id: 'teachers', label: 'Teachers', icon: Users },
     { id: 'staff', label: 'Staff', icon: Users },
@@ -213,6 +222,16 @@ const SchoolAdminDashboard = () => {
         return <FormsModule />;
       case 'wiki':
         return <WikiModule />;
+      case 'fees':
+        return <FeesModule />;
+      case 'events':
+        return <EventsModule />;
+      case 'gallery':
+        return <GalleryModule />;
+      case 'jobs':
+        return <JobsModule />;
+      case 'support':
+        return <SupportModule />;
       case 'students':
         return <StudentsModule />;
       case 'teachers':
