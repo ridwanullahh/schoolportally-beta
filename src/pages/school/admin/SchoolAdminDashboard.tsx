@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ import {
   HelpCircle, 
   Megaphone,
   Edit,
-  Wiki
+  Book
 } from 'lucide-react';
 
 // Import all modules
@@ -181,7 +182,7 @@ const SchoolAdminDashboard = () => {
     { id: 'announcements', label: 'Announcements', icon: Megaphone },
     { id: 'lms', label: 'LMS', icon: BookOpen },
     { id: 'forms', label: 'Forms', icon: FileText },
-    { id: 'wiki', label: 'Knowledge Base', icon: Wiki },
+    { id: 'wiki', label: 'Knowledge Base', icon: Book },
     { id: 'students', label: 'Students', icon: Users },
     { id: 'teachers', label: 'Teachers', icon: Users },
     { id: 'staff', label: 'Staff', icon: Users },
