@@ -1,4 +1,5 @@
 
+
 import UniversalSDK from './sdk';
 
 const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || 'demo';
@@ -249,7 +250,8 @@ const sdk = new UniversalSDK({
   owner: githubUsername,
   repo: githubRepo,
   token: githubToken,
-  schema: dbSchema
+  schemas: dbSchema
 });
 
 export default sdk;
+
