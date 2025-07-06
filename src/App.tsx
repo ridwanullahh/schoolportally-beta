@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SchoolProvider } from "./contexts/SchoolContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import SchoolLogin from "./pages/school/auth/SchoolLogin";
+import SchoolRegister from "./pages/school/auth/SchoolRegister";
 
 // Marketing Pages
 import Home from "./pages/marketing/Home";
@@ -53,11 +55,34 @@ const App = () => {
                 {/* Platform Admin Routes */}
                 <Route path="/platform-admin/*" element={<PlatformAdminDashboard />} />
                 
+                {/* School Authentication Routes */}
+                <Route path="/:schoolSlug/login" element={<SchoolLogin />} />
+                <Route path="/:schoolSlug/register" element={<SchoolRegister />} />
+                
                 {/* School Routes */}
                 <Route path="/:schoolSlug" element={<SchoolWebsite />} />
                 <Route path="/:schoolSlug/:pageSlug" element={<SchoolWebsite />} />
-                <Route path="/:schoolSlug/admin/*" element={<SchoolAdminDashboard />} />
-                <Route path="/:schoolSlug/dashboard/*" element={<StudentDashboard />} />
+                
+                {/* Protected School Admin Routes */}
+                <Route path="/:schoolSlug/admin/*" element={
+                  <ProtectedRoute 
+                    requiredRoles={['school_owner', 'school_admin']} 
+                    requireSchoolOwnership={true}
+                    fallbackPath="/:schoolSlug/login"
+                  >
+                    <SchoolAdminDashboard />
+                  </ProtectedRoute>
+                } />
+                
+                {/* Protected School Dashboard Routes */}
+                <Route path="/:schoolSlug/dashboard/*" element={
+                  <ProtectedRoute 
+                    requiredRoles={['student', 'teacher', 'parent', 'staff']}
+                    fallbackPath="/:schoolSlug/login"
+                  >
+                    <StudentDashboard />
+                  </ProtectedRoute>
+                } />
                 
                 {/* Catch-all route */}
                 <Route path="*" element={<NotFound />} />

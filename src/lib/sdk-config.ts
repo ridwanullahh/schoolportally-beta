@@ -1,16 +1,16 @@
-
 import UniversalSDK from './sdk';
 
 const githubUsername = import.meta.env.VITE_GITHUB_OWNER || 'ridwanullahh';
 const githubRepo = import.meta.env.VITE_GITHUB_REPO || 'schoolportalbetadb';
 const githubToken = import.meta.env.VITE_GITHUB_TOKEN || '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';
 
-// Database schema configuration
+// Database schema configuration with updated user and authentication fields
 const dbSchema = {
   users: {
-    required: ['email', 'password'],
+    required: ['email'],
     types: {
       id: 'string',
+      uid: 'string',
       email: 'string',
       password: 'string',
       firstName: 'string',
@@ -18,9 +18,10 @@ const dbSchema = {
       roles: 'array',
       permissions: 'array',
       schoolId: 'string',
-      verified: 'boolean',
       userType: 'string',
+      verified: 'boolean',
       status: 'string',
+      approvalStatus: 'string',
       createdAt: 'string',
       updatedAt: 'string'
     }
@@ -29,6 +30,7 @@ const dbSchema = {
     required: ['name', 'slug'],
     types: {
       id: 'string',
+      uid: 'string',
       name: 'string',
       slug: 'string',
       ownerId: 'string',
@@ -51,12 +53,31 @@ const dbSchema = {
     required: ['schoolId', 'title'],
     types: {
       id: 'string',
+      uid: 'string',
       schoolId: 'string',
       title: 'string',
       slug: 'string',
       type: 'string',
       status: 'string',
       sections: 'array',
+      seoTitle: 'string',
+      seoDescription: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  lms_courses: {
+    required: ['schoolId', 'title'],
+    types: {
+      id: 'string',
+      uid: 'string',
+      schoolId: 'string',
+      title: 'string',
+      description: 'string',
+      instructorId: 'string',
+      status: 'string',
+      publishStatus: 'string',
+      scheduledDate: 'string',
       createdAt: 'string',
       updatedAt: 'string'
     }
@@ -142,18 +163,6 @@ const dbSchema = {
       targetAudience: 'array',
       status: 'string',
       publishedAt: 'string',
-      createdAt: 'string'
-    }
-  },
-  lms_courses: {
-    required: ['schoolId', 'title'],
-    types: {
-      id: 'string',
-      schoolId: 'string',
-      title: 'string',
-      description: 'string',
-      instructorId: 'string',
-      status: 'string',
       createdAt: 'string'
     }
   },

@@ -1,18 +1,38 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { School, SchoolBranding } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { getSchoolSlug } from '@/utils/routing';
+
+interface School {
+  id: string;
+  uid?: string;
+  name: string;
+  slug: string;
+  ownerId: string;
+  logo?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  website?: string;
+  timezone: string;
+  currency: string;
+  status: string;
+  subscriptionPlan: string;
+  subscriptionStatus: string;
+  onboardingCompleted?: boolean;
+  branding?: any;
+  createdAt?: string;
+  updatedAt?: string;
+}
 
 interface SchoolContextType {
   school: School | null;
   loading: boolean;
   error: string | null;
-  updateSchool: (updates: Partial<School>) => Promise<void>;
-  updateBranding: (branding: Partial<SchoolBranding>) => Promise<void>;
-  checkSlugAvailability: (slug: string) => Promise<boolean>;
-  refreshSchool: () => Promise<void>;
+  updateSchool: (updates: Partial<School>) => Promise<School | null>;
+  createSchool: (schoolData: Omit<School, 'id'>) => Promise<School | null>;
+  hasSchool: boolean;
 }
 
 const SchoolContext = createContext<SchoolContextType | undefined>(undefined);
@@ -35,96 +55,103 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchSchool = async () => {
-    if (!isAuthenticated) {
-      setLoading(false);
-      return;
-    }
+  useEffect(() => {
+    const fetchSchool = async () => {
+      setLoading(true);
+      setError(null);
 
-    const schoolSlug = getSchoolSlug();
-    if (!schoolSlug && !user?.schoolId) {
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      let schoolData: School | null = null;
-      
-      if (schoolSlug) {
-        // Fetch by slug for public access
-        const schools = await sdk.get<School>('schools');
-        schoolData = schools.find(s => s.slug === schoolSlug) || null;
-      } else if (user?.schoolId) {
-        // Fetch by ID for authenticated users
-        schoolData = await sdk.getItem<School>('schools', user.schoolId);
+      try {
+        const schoolSlug = getSchoolSlug();
+        
+        if (schoolSlug) {
+          console.log('Fetching school by slug:', schoolSlug);
+          const schools = await sdk.get<School>('schools');
+          const schoolData = schools.find(s => s.slug === schoolSlug);
+          
+          if (schoolData) {
+            setSchool(schoolData);
+            console.log('School found by slug:', schoolData);
+          } else {
+            console.log('No school found with slug:', schoolSlug);
+            setSchool(null);
+          }
+        } else if (isAuthenticated && user?.schoolId) {
+          console.log('Fetching school by user schoolId:', user.schoolId);
+          const schools = await sdk.get<School>('schools');
+          const schoolData = schools.find(s => s.id === user.schoolId);
+          
+          if (schoolData) {
+            setSchool(schoolData);
+            console.log('School found by user:', schoolData);
+          } else {
+            console.log('No school found for user');
+            setSchool(null);
+          }
+        } else {
+          setSchool(null);
+        }
+      } catch (err) {
+        console.error('Failed to fetch school:', err);
+        setError('Failed to load school data');
+      } finally {
+        setLoading(false);
       }
+    };
 
-      setSchool(schoolData);
-    } catch (err) {
-      console.error('Failed to fetch school:', err);
-      setError('Failed to load school data');
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchSchool();
+  }, [isAuthenticated, user?.schoolId, window.location.pathname]);
 
   const updateSchool = async (updates: Partial<School>) => {
-    if (!school) return;
+    if (!school) return null;
 
     try {
-      const updatedSchool = await sdk.update<School>('schools', school.id, updates);
+      const updatedSchool = await sdk.update<School>('schools', school.id, {
+        ...updates,
+        updatedAt: new Date().toISOString()
+      });
       setSchool(updatedSchool);
+      return updatedSchool;
     } catch (err) {
       console.error('Failed to update school:', err);
       throw err;
     }
   };
 
-  const updateBranding = async (branding: Partial<SchoolBranding>) => {
-    if (!school) return;
-
+  const createSchool = async (schoolData: Omit<School, 'id'>) => {
     try {
-      const currentBranding = school.branding || {};
-      const updatedBranding = { ...currentBranding, ...branding };
-      const updatedSchool = await sdk.update<School>('schools', school.id, {
-        branding: updatedBranding
+      const generateUniqueId = () => {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+      };
+
+      const newSchool = await sdk.insert<School>('schools', {
+        id: generateUniqueId(),
+        uid: generateUniqueId(),
+        ...schoolData,
+        ownerId: user?.id || '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       });
-      setSchool(updatedSchool);
+      
+      // Update user with schoolId
+      if (user && user.id) {
+        await sdk.update('users', user.id, { schoolId: newSchool.id });
+      }
+      
+      setSchool(newSchool);
+      return newSchool;
     } catch (err) {
-      console.error('Failed to update branding:', err);
+      console.error('Failed to create school:', err);
       throw err;
     }
   };
-
-  const checkSlugAvailability = async (slug: string): Promise<boolean> => {
-    try {
-      const schools = await sdk.get<School>('schools');
-      return !schools.some(s => s.slug.toLowerCase() === slug.toLowerCase());
-    } catch (err) {
-      console.error('Failed to check slug availability:', err);
-      return false;
-    }
-  };
-
-  const refreshSchool = async () => {
-    await fetchSchool();
-  };
-
-  useEffect(() => {
-    fetchSchool();
-  }, [isAuthenticated, user?.schoolId]);
 
   const value: SchoolContextType = {
     school,
     loading,
     error,
     updateSchool,
-    updateBranding,
-    checkSlugAvailability,
-    refreshSchool,
+    createSchool,
+    hasSchool: !!school,
   };
 
   return <SchoolContext.Provider value={value}>{children}</SchoolContext.Provider>;
