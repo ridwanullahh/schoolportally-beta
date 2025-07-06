@@ -1,384 +1,442 @@
-import React, { useState } from 'react';
-import { usePages } from '@/hooks/usePages';
-import { useSchool } from '@/contexts/SchoolContext';
-import { Page, PageSection } from '@/types';
-import { getStylesByCategory, allSectionStyles } from '@/data/sectionStyles';
-import { Button } from '@/components/ui/button';
+
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Edit, Trash2, Eye, Move, Settings } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
+import { useSchool } from '@/contexts/SchoolContext';
+import { Plus, Edit, Trash2, Save, Eye, Settings, ArrowUp, ArrowDown } from 'lucide-react';
+import sdk from '@/lib/sdk-config';
 
-const SiteEditor: React.FC = () => {
+interface Page {
+  id: string;
+  uid?: string;
+  schoolId: string;
+  title: string;
+  slug: string;
+  type: string;
+  status: string;
+  sections: Section[];
+  seoTitle?: string;
+  seoDescription?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+interface Section {
+  id: string;
+  type: string;
+  styleId: string;
+  content: any;
+  settings: any;
+  order: number;
+  visible: boolean;
+}
+
+const SiteEditor = () => {
   const { school } = useSchool();
-  const { pages, createPage, updatePage, deletePage, updatePageSections } = usePages();
+  const { toast } = useToast();
+  const [pages, setPages] = useState<Page[]>([]);
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
-  const [editingSection, setEditingSection] = useState<PageSection | null>(null);
-  const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
-  const [isSectionDialogOpen, setIsSectionDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [editingSection, setEditingSection] = useState<Section | null>(null);
+  const [showSectionForm, setShowSectionForm] = useState(false);
 
-  const [pageForm, setPageForm] = useState({
-    title: '',
-    slug: '',
-    type: 'custom' as Page['type'],
-  });
+  const sectionTypes = [
+    { value: 'hero', label: 'Hero Section' },
+    { value: 'features', label: 'Features' },
+    { value: 'testimonials', label: 'Testimonials' },
+    { value: 'gallery', label: 'Gallery' },
+    { value: 'blog', label: 'Latest Blog Posts' },
+    { value: 'events', label: 'Upcoming Events' },
+    { value: 'cta', label: 'Call to Action' },
+    { value: 'text', label: 'Text Content' },
+  ];
 
-  const [sectionForm, setSectionForm] = useState({
-    type: 'hero',
-    styleId: '',
-    content: {} as any,
-  });
+  const heroStyles = [
+    { id: 'hero-1', name: 'Centered with Image' },
+    { id: 'hero-2', name: 'Split Layout' },
+    { id: 'hero-3', name: 'Video Background' },
+    { id: 'hero-4', name: 'Minimal Text' },
+    { id: 'hero-5', name: 'Cards Layout' },
+  ];
 
-  const handleCreatePage = async () => {
-    if (!school) return;
-    
+  useEffect(() => {
+    if (school) {
+      fetchPages();
+    }
+  }, [school]);
+
+  const fetchPages = async () => {
     try {
-      await createPage({
-        ...pageForm,
-        schoolId: school.id,
-        sections: [],
-        status: 'published',
-      });
-      setPageForm({ title: '', slug: '', type: 'custom' });
-      setIsPageDialogOpen(false);
+      const allPages = await sdk.get<Page>('pages');
+      const schoolPages = allPages.filter(page => page.schoolId === school?.id);
+      setPages(schoolPages);
+      if (schoolPages.length > 0 && !selectedPage) {
+        setSelectedPage(schoolPages[0]);
+      }
     } catch (error) {
-      console.error('Error creating page:', error);
+      console.error('Failed to fetch pages:', error);
     }
   };
 
-  const handleAddSection = async () => {
+  const savePage = async (pageData: Partial<Page>) => {
+    if (!selectedPage || !school) return;
+
+    setLoading(true);
+    try {
+      const updatedPage = await sdk.update('pages', selectedPage.id, {
+        ...pageData,
+        updatedAt: new Date().toISOString()
+      });
+      
+      setSelectedPage(updatedPage);
+      await fetchPages();
+      
+      toast({
+        title: 'Success',
+        description: 'Page saved successfully',
+      });
+    } catch (error: any) {
+      toast({
+        title: 'Error',
+        description: error.message || 'Failed to save page',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addSection = async (sectionType: string) => {
     if (!selectedPage) return;
 
-    const newSection: PageSection = {
-      id: `section-${Date.now()}`,
-      type: sectionForm.type as any,
-      styleId: sectionForm.styleId,
-      content: sectionForm.content,
+    const newSection: Section = {
+      id: Date.now().toString(),
+      type: sectionType,
+      styleId: `${sectionType}-1`,
+      content: getDefaultContent(sectionType),
       settings: {},
-      order: selectedPage.sections?.length || 0,
-      visible: true,
+      order: selectedPage.sections.length + 1,
+      visible: true
     };
 
-    const updatedSections = [...(selectedPage.sections || []), newSection];
-    await updatePageSections(selectedPage.id, updatedSections);
-    setSelectedPage({ ...selectedPage, sections: updatedSections });
-    setSectionForm({ type: 'hero', styleId: '', content: {} });
-    setIsSectionDialogOpen(false);
+    const updatedSections = [...selectedPage.sections, newSection];
+    await savePage({ sections: updatedSections });
   };
 
-  const handleUpdateSection = async () => {
-    if (!selectedPage || !editingSection) return;
-
-    const updatedSections = selectedPage.sections?.map(section =>
-      section.id === editingSection.id
-        ? { ...section, content: sectionForm.content }
-        : section
-    ) || [];
-
-    await updatePageSections(selectedPage.id, updatedSections);
-    setSelectedPage({ ...selectedPage, sections: updatedSections });
-    setEditingSection(null);
-    setIsSectionDialogOpen(false);
-  };
-
-  const handleDeleteSection = async (sectionId: string) => {
+  const updateSection = async (sectionId: string, updates: Partial<Section>) => {
     if (!selectedPage) return;
 
-    const updatedSections = selectedPage.sections?.filter(section => section.id !== sectionId) || [];
-    await updatePageSections(selectedPage.id, updatedSections);
-    setSelectedPage({ ...selectedPage, sections: updatedSections });
+    const updatedSections = selectedPage.sections.map(section =>
+      section.id === sectionId ? { ...section, ...updates } : section
+    );
+
+    await savePage({ sections: updatedSections });
   };
 
-  const openSectionEditor = (section: PageSection) => {
-    setEditingSection(section);
-    setSectionForm({
-      type: section.type,
-      styleId: section.styleId,
-      content: section.content,
-    });
-    setIsSectionDialogOpen(true);
+  const deleteSection = async (sectionId: string) => {
+    if (!selectedPage) return;
+    if (!window.confirm('Are you sure you want to delete this section?')) return;
+
+    const updatedSections = selectedPage.sections.filter(section => section.id !== sectionId);
+    await savePage({ sections: updatedSections });
   };
 
-  const sectionTypeOptions = Object.keys(allSectionStyles);
+  const moveSection = async (sectionId: string, direction: 'up' | 'down') => {
+    if (!selectedPage) return;
+
+    const sections = [...selectedPage.sections];
+    const index = sections.findIndex(s => s.id === sectionId);
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+
+    if (newIndex >= 0 && newIndex < sections.length) {
+      [sections[index], sections[newIndex]] = [sections[newIndex], sections[index]];
+      sections.forEach((section, i) => {
+        section.order = i + 1;
+      });
+      await savePage({ sections });
+    }
+  };
+
+  const getDefaultContent = (sectionType: string) => {
+    switch (sectionType) {
+      case 'hero':
+        return {
+          title: 'Welcome to Our School',
+          subtitle: 'Excellence in Education',
+          description: 'We provide quality education in a nurturing environment.',
+          primaryButton: 'Learn More',
+          primaryLink: '/about',
+          secondaryButton: 'Apply Now',
+          secondaryLink: '/admissions',
+          backgroundImage: ''
+        };
+      case 'features':
+        return {
+          title: 'Why Choose Us',
+          subtitle: 'Our Unique Advantages',
+          features: [
+            { title: 'Quality Education', description: 'Top-notch curriculum and teaching', icon: 'book' },
+            { title: 'Experienced Teachers', description: 'Qualified and dedicated staff', icon: 'users' },
+            { title: 'Modern Facilities', description: 'State-of-the-art infrastructure', icon: 'building' }
+          ]
+        };
+      case 'cta':
+        return {
+          title: 'Ready to Join Us?',
+          description: 'Take the first step towards your educational journey.',
+          buttonText: 'Apply Now',
+          buttonLink: '/admissions',
+          backgroundColor: '#4f46e5'
+        };
+      default:
+        return {
+          title: 'Section Title',
+          content: 'Section content goes here.'
+        };
+    }
+  };
+
+  const renderSectionEditor = (section: Section) => {
+    return (
+      <Card key={section.id} className="mb-4">
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CardTitle className="text-sm capitalize">{section.type} Section</CardTitle>
+              <Badge variant={section.visible ? 'default' : 'secondary'}>
+                {section.visible ? 'Visible' : 'Hidden'}
+              </Badge>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => moveSection(section.id, 'up')}
+                disabled={section.order === 1}
+              >
+                <ArrowUp className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => moveSection(section.id, 'down')}
+                disabled={section.order === selectedPage?.sections.length}
+              >
+                <ArrowDown className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setEditingSection(section);
+                  setShowSectionForm(true);
+                }}
+              >
+                <Edit className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => updateSection(section.id, { visible: !section.visible })}
+              >
+                <Eye className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => deleteSection(section.id)}
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <div>
+              <Label>Style</Label>
+              <Select 
+                value={section.styleId} 
+                onValueChange={(value) => updateSection(section.id, { styleId: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {heroStyles.map((style) => (
+                    <SelectItem key={style.id} value={style.id}>
+                      {style.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
+            {section.type === 'hero' && (
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label>Title</Label>
+                  <Input
+                    value={section.content.title || ''}
+                    onChange={(e) => updateSection(section.id, {
+                      content: { ...section.content, title: e.target.value }
+                    })}
+                  />
+                </div>
+                <div>
+                  <Label>Subtitle</Label>
+                  <Input
+                    value={section.content.subtitle || ''}
+                    onChange={(e) => updateSection(section.id, {
+                      content: { ...section.content, subtitle: e.target.value }
+                    })}
+                  />
+                </div>
+                <div className="col-span-2">
+                  <Label>Description</Label>
+                  <Textarea
+                    value={section.content.description || ''}
+                    onChange={(e) => updateSection(section.id, {
+                      content: { ...section.content, description: e.target.value }
+                    })}
+                  />
+                </div>
+                <div>
+                  <Label>Primary Button Text</Label>
+                  <Input
+                    value={section.content.primaryButton || ''}
+                    onChange={(e) => updateSection(section.id, {
+                      content: { ...section.content, primaryButton: e.target.value }
+                    })}
+                  />
+                </div>
+                <div>
+                  <Label>Primary Button Link</Label>
+                  <Input
+                    value={section.content.primaryLink || ''}
+                    onChange={(e) => updateSection(section.id, {
+                      content: { ...section.content, primaryLink: e.target.value }
+                    })}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Site Editor</h2>
-        <Dialog open={isPageDialogOpen} onOpenChange={setIsPageDialogOpen}>
-          <DialogTrigger asChild>
-            <Button>
-              <Plus className="w-4 h-4 mr-2" />
-              New Page
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Create New Page</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Page Title</label>
-                <Input
-                  value={pageForm.title}
-                  onChange={(e) => setPageForm({ ...pageForm, title: e.target.value })}
-                  placeholder="Enter page title"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Page Slug</label>
-                <Input
-                  value={pageForm.slug}
-                  onChange={(e) => setPageForm({ ...pageForm, slug: e.target.value })}
-                  placeholder="enter-page-slug"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Page Type</label>
-                <Select value={pageForm.type} onValueChange={(value) => setPageForm({ ...pageForm, type: value as Page['type'] })}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="custom">Custom Page</SelectItem>
-                    <SelectItem value="homepage">Homepage</SelectItem>
-                    <SelectItem value="about">About</SelectItem>
-                    <SelectItem value="contact">Contact</SelectItem>
-                    <SelectItem value="blog">Blog</SelectItem>
-                    <SelectItem value="events">Events</SelectItem>
-                    <SelectItem value="programs">Programs</SelectItem>
-                    <SelectItem value="classes">Classes</SelectItem>
-                    <SelectItem value="admissions">Admissions</SelectItem>
-                    <SelectItem value="gallery">Gallery</SelectItem>
-                    <SelectItem value="calendar">Calendar</SelectItem>
-                    <SelectItem value="faq">FAQ</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button onClick={handleCreatePage}>Create Page</Button>
-            </div>
-          </DialogContent>
-        </Dialog>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            onClick={() => window.open(`/${school?.slug}`, '_blank')}
+          >
+            <Eye className="w-4 h-4 mr-2" />
+            Preview Site
+          </Button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Pages List */}
-        <Card>
+        <Card className="lg:col-span-1">
           <CardHeader>
             <CardTitle>Pages</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
               {pages.map((page) => (
-                <div
+                <Button
                   key={page.id}
-                  className={`p-3 rounded-lg cursor-pointer transition-colors ${
-                    selectedPage?.id === page.id ? 'bg-blue-100' : 'hover:bg-gray-100'
-                  }`}
+                  variant={selectedPage?.id === page.id ? "default" : "ghost"}
+                  className="w-full justify-start"
                   onClick={() => setSelectedPage(page)}
                 >
-                  <div className="font-medium">{page.title}</div>
-                  <div className="text-sm text-gray-500">/{page.slug}</div>
-                </div>
+                  {page.title}
+                </Button>
               ))}
             </div>
           </CardContent>
         </Card>
 
         {/* Page Editor */}
-        {selectedPage && (
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <div className="flex justify-between items-center">
-                <CardTitle>Editing: {selectedPage.title}</CardTitle>
-                <div className="flex space-x-2">
-                  <Button variant="outline" size="sm">
-                    <Eye className="w-4 h-4 mr-2" />
-                    Preview
-                  </Button>
-                  <Dialog open={isSectionDialogOpen} onOpenChange={setIsSectionDialogOpen}>
-                    <DialogTrigger asChild>
-                      <Button size="sm">
+        <div className="lg:col-span-3">
+          {selectedPage ? (
+            <div className="space-y-6">
+              {/* Page Settings */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Page Settings: {selectedPage.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label>SEO Title</Label>
+                      <Input
+                        value={selectedPage.seoTitle || selectedPage.title}
+                        onChange={(e) => savePage({ seoTitle: e.target.value })}
+                      />
+                    </div>
+                    <div>
+                      <Label>SEO Description</Label>
+                      <Textarea
+                        value={selectedPage.seoDescription || ''}
+                        onChange={(e) => savePage({ seoDescription: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Add Section */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Add New Section</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex gap-2 flex-wrap">
+                    {sectionTypes.map((type) => (
+                      <Button
+                        key={type.value}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => addSection(type.value)}
+                      >
                         <Plus className="w-4 h-4 mr-2" />
-                        Add Section
+                        {type.label}
                       </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-2xl">
-                      <DialogHeader>
-                        <DialogTitle>
-                          {editingSection ? 'Edit Section' : 'Add New Section'}
-                        </DialogTitle>
-                      </DialogHeader>
-                      <Tabs defaultValue="type" className="w-full">
-                        <TabsList className="grid w-full grid-cols-3">
-                          <TabsTrigger value="type">Type & Style</TabsTrigger>
-                          <TabsTrigger value="content">Content</TabsTrigger>
-                          <TabsTrigger value="settings">Settings</TabsTrigger>
-                        </TabsList>
-                        
-                        <TabsContent value="type" className="space-y-4">
-                          <div>
-                            <label className="block text-sm font-medium mb-2">Section Type</label>
-                            <Select 
-                              value={sectionForm.type} 
-                              onValueChange={(value) => setSectionForm({ ...sectionForm, type: value, styleId: '' })}
-                            >
-                              <SelectTrigger>
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {sectionTypeOptions.map((type) => (
-                                  <SelectItem key={type} value={type}>
-                                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          
-                          {sectionForm.type && (
-                            <div>
-                              <label className="block text-sm font-medium mb-2">Style</label>
-                              <Select 
-                                value={sectionForm.styleId} 
-                                onValueChange={(value) => setSectionForm({ ...sectionForm, styleId: value })}
-                              >
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Choose a style" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {getStylesByCategory(sectionForm.type).map((style) => (
-                                    <SelectItem key={style.id} value={style.id}>
-                                      {style.name}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                            </div>
-                          )}
-                        </TabsContent>
-                        
-                        <TabsContent value="content" className="space-y-4">
-                          <div>
-                            <label className="block text-sm font-medium mb-2">Title</label>
-                            <Input
-                              value={sectionForm.content.title || ''}
-                              onChange={(e) => setSectionForm({
-                                ...sectionForm,
-                                content: { ...sectionForm.content, title: e.target.value }
-                              })}
-                              placeholder="Section title"
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-medium mb-2">Subtitle</label>
-                            <Input
-                              value={sectionForm.content.subtitle || ''}
-                              onChange={(e) => setSectionForm({
-                                ...sectionForm,
-                                content: { ...sectionForm.content, subtitle: e.target.value }
-                              })}
-                              placeholder="Section subtitle"
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-medium mb-2">Description</label>
-                            <Textarea
-                              value={sectionForm.content.description || ''}
-                              onChange={(e) => setSectionForm({
-                                ...sectionForm,
-                                content: { ...sectionForm.content, description: e.target.value }
-                              })}
-                              placeholder="Section description"
-                              rows={4}
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-medium mb-2">Primary Button Text</label>
-                            <Input
-                              value={sectionForm.content.primaryButton || ''}
-                              onChange={(e) => setSectionForm({
-                                ...sectionForm,
-                                content: { ...sectionForm.content, primaryButton: e.target.value }
-                              })}
-                              placeholder="Button text"
-                            />
-                          </div>
-                        </TabsContent>
-                        
-                        <TabsContent value="settings">
-                          <div className="text-sm text-gray-500">
-                            Additional settings will be available here.
-                          </div>
-                        </TabsContent>
-                      </Tabs>
-                      
-                      <div className="flex justify-end space-x-2">
-                        <Button variant="outline" onClick={() => setIsSectionDialogOpen(false)}>
-                          Cancel
-                        </Button>
-                        <Button onClick={editingSection ? handleUpdateSection : handleAddSection}>
-                          {editingSection ? 'Update Section' : 'Add Section'}
-                        </Button>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {selectedPage.sections?.map((section, index) => (
-                  <div key={section.id} className="border rounded-lg p-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <div>
-                        <div className="font-medium">
-                          {section.type.charAt(0).toUpperCase() + section.type.slice(1)} Section
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          Style: {section.styleId}
-                        </div>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button variant="outline" size="sm" onClick={() => openSectionEditor(section)}>
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Move className="w-4 h-4" />
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          onClick={() => handleDeleteSection(section.id)}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {section.content.title && <div>Title: {section.content.title}</div>}
-                      {section.content.description && (
-                        <div className="truncate">Description: {section.content.description}</div>
-                      )}
-                    </div>
+                    ))}
                   </div>
-                ))}
-                
-                {(!selectedPage.sections || selectedPage.sections.length === 0) && (
-                  <div className="text-center py-8 text-gray-500">
-                    No sections added yet. Click "Add Section" to get started.
-                  </div>
-                )}
+                </CardContent>
+              </Card>
+
+              {/* Sections */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Page Sections</h3>
+                {selectedPage.sections
+                  .sort((a, b) => a.order - b.order)
+                  .map(renderSectionEditor)}
               </div>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          ) : (
+            <Card>
+              <CardContent className="text-center py-8">
+                <p className="text-gray-500">Select a page to start editing</p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
       </div>
     </div>
   );
