@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '@/lib/sdk';
 import sdk from '@/lib/sdk-config';
+import { fallbackAuth } from '@/utils/fallbackAuth';
 
 interface AuthContextType {
   user: User | null;
@@ -41,7 +42,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const initAuth = async () => {
       if (token) {
         try {
-          // Get all users and find current user by token
+          // Try GitHub SDK first
           const users = await sdk.get<User>('users');
           const currentUser = users.find(u => u.id === token || u.email === token);
           if (currentUser) {
@@ -51,9 +52,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             setToken(null);
           }
         } catch (error) {
-          console.error('Failed to verify token:', error);
-          localStorage.removeItem('auth_token');
-          setToken(null);
+          // Fallback to local storage
+          const localUser = fallbackAuth.getCurrentUser();
+          if (localUser && localUser.id === token) {
+            setUser(localUser as User);
+          } else {
+            localStorage.removeItem('auth_token');
+            setToken(null);
+          }
         }
       }
       setLoading(false);
@@ -65,17 +71,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      const users = await sdk.get<User>('users');
-      const foundUser = users.find(u => u.email === email && u.password === password);
-      
-      if (foundUser) {
-        const userToken = foundUser.id || foundUser.email;
+      try {
+        // Try GitHub SDK first
+        const users = await sdk.get<User>('users');
+        const foundUser = users.find(u => u.email === email);
+        
+        if (foundUser && foundUser.password && sdk.verifyPassword(password, foundUser.password)) {
+          const userToken = foundUser.id || foundUser.email;
+          localStorage.setItem('auth_token', userToken);
+          setToken(userToken);
+          setUser(foundUser);
+          return;
+        }
+      } catch (error) {
+        // GitHub not available, use fallback
+        const localUser = fallbackAuth.login(email, password);
+        const userToken = localUser.id;
         localStorage.setItem('auth_token', userToken);
         setToken(userToken);
-        setUser(foundUser);
-      } else {
-        throw new Error('Invalid credentials');
+        setUser(localUser as User);
+        return;
       }
+      
+      throw new Error('Invalid credentials');
     } catch (error) {
       console.error('Login failed:', error);
       throw error;
@@ -87,22 +105,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const register = async (email: string, password: string, profile: Partial<User> = {}) => {
     setLoading(true);
     try {
-      const newUser = await sdk.insert<User>('users', {
-        email,
-        password,
-        firstName: profile.firstName || '',
-        lastName: profile.lastName || '',
-        roles: profile.roles || ['school_owner'],
-        verified: false,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        ...profile
-      });
-      
-      const userToken = newUser.id || newUser.email;
-      localStorage.setItem('auth_token', userToken);
-      setToken(userToken);
-      setUser(newUser);
+      try {
+        // Try GitHub SDK first
+        const hashedPassword = sdk.hashPassword(password);
+        const newUser = await sdk.insert<User>('users', {
+          email,
+          password: hashedPassword,
+          firstName: profile.firstName || '',
+          lastName: profile.lastName || '',
+          roles: profile.roles || ['school_owner'],
+          verified: false,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          ...profile
+        });
+        
+        const userToken = newUser.id || newUser.email;
+        localStorage.setItem('auth_token', userToken);
+        setToken(userToken);
+        setUser(newUser);
+      } catch (error) {
+        // GitHub not available, use fallback
+        const localUser = fallbackAuth.register(email, password, profile);
+        const userToken = localUser.id;
+        localStorage.setItem('auth_token', userToken);
+        setToken(userToken);
+        setUser(localUser as User);
+      }
     } catch (error) {
       console.error('Registration failed:', error);
       throw error;
@@ -114,16 +143,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const verifyOTP = async (email: string, otp: string) => {
     setLoading(true);
     try {
-      const users = await sdk.get<User>('users');
-      const foundUser = users.find(u => u.email === email);
-      
-      if (foundUser) {
-        const userToken = foundUser.id || foundUser.email;
-        localStorage.setItem('auth_token', userToken);
-        setToken(userToken);
-        setUser(foundUser);
-      } else {
-        throw new Error('Invalid OTP');
+      try {
+        const users = await sdk.get<User>('users');
+        const foundUser = users.find(u => u.email === email);
+        
+        if (foundUser) {
+          const userToken = foundUser.id || foundUser.email;
+          localStorage.setItem('auth_token', userToken);
+          setToken(userToken);
+          setUser(foundUser);
+        } else {
+          throw new Error('Invalid OTP');
+        }
+      } catch (error) {
+        // Fallback for OTP
+        throw new Error('OTP verification not available in demo mode');
       }
     } catch (error) {
       console.error('OTP verification failed:', error);
@@ -135,6 +169,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('auth_token');
+    fallbackAuth.logout();
     setToken(null);
     setUser(null);
   };
@@ -150,11 +185,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const resetPassword = async (email: string, otp: string, newPassword: string) => {
     try {
-      const users = await sdk.get<User>('users');
-      const foundUser = users.find(u => u.email === email);
-      
-      if (foundUser && foundUser.id) {
-        await sdk.update('users', foundUser.id, { password: newPassword });
+      try {
+        const users = await sdk.get<User>('users');
+        const foundUser = users.find(u => u.email === email);
+        
+        if (foundUser && foundUser.id) {
+          const hashedPassword = sdk.hashPassword(newPassword);
+          await sdk.update('users', foundUser.id, { password: hashedPassword });
+        }
+      } catch (error) {
+        throw new Error('Password reset not available in demo mode');
       }
     } catch (error) {
       console.error('Password reset failed:', error);
