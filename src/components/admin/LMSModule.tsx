@@ -178,14 +178,15 @@ const LMSModule = () => {
   };
 
   const getStatusBadge = (publishStatus: string) => {
-    const variants = {
-      draft: 'secondary',
-      published: 'success',
-      scheduled: 'warning'
-    } as const;
+    const statusConfig: { [key: string]: { variant: "default" | "destructive" | "outline" | "secondary", className?: string } } = {
+      draft: { variant: 'secondary' },
+      published: { variant: 'default', className: 'bg-green-100 text-green-800 hover:bg-green-200' },
+      scheduled: { variant: 'outline', className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200' }
+    };
     
+    const config = statusConfig[publishStatus] || statusConfig.draft;
     return (
-      <Badge variant={variants[publishStatus as keyof typeof variants] || 'secondary'}>
+      <Badge variant={config.variant} className={config.className}>
         {publishStatus.charAt(0).toUpperCase() + publishStatus.slice(1)}
       </Badge>
     );
