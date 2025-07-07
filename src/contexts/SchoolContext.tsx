@@ -6,7 +6,7 @@ import { getSchoolSlug } from '@/utils/routing';
 
 interface School {
   id: string;
-  uid?: string;
+  uid: string;
   name: string;
   slug: string;
   ownerId: string;
