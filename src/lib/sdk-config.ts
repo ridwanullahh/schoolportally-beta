@@ -45,7 +45,6 @@ const dbSchema = {
       subscriptionStatus: 'string',
       onboardingCompleted: 'boolean',
       branding: 'object',
-      selectedTheme: 'string',
       createdAt: 'string',
       updatedAt: 'string'
     }
@@ -63,33 +62,6 @@ const dbSchema = {
       sections: 'array',
       seoTitle: 'string',
       seoDescription: 'string',
-      themeId: 'string',
-      createdAt: 'string',
-      updatedAt: 'string'
-    }
-  },
-  themes: {
-    required: ['name', 'id'],
-    types: {
-      id: 'string',
-      name: 'string',
-      description: 'string',
-      previewImage: 'string',
-      styles: 'object',
-      layouts: 'object',
-      createdAt: 'string'
-    }
-  },
-  site_content: {
-    required: ['schoolId', 'pageType'],
-    types: {
-      id: 'string',
-      schoolId: 'string',
-      pageType: 'string',
-      sectionType: 'string',
-      content: 'object',
-      order: 'number',
-      visible: 'boolean',
       createdAt: 'string',
       updatedAt: 'string'
     }
