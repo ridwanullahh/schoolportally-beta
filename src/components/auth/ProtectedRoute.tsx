@@ -51,9 +51,35 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     );
   }
 
+  // Check if user's status is approved and verified
+  if (user?.status !== 'approved' || user?.approvalStatus !== 'approved' || !user?.verified) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-6">
+            <h1 className="text-2xl font-bold mb-4">Account Pending Approval</h1>
+            <p className="text-gray-600 mb-6">
+              Your account is pending approval from the school administrator. 
+              Please wait for approval or contact the school office.
+            </p>
+            <Button 
+              onClick={() => window.history.back()}
+              className="w-full"
+            >
+              Go Back
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   // Check role requirements
   if (requiredRoles.length > 0) {
-    const hasRequiredRole = requiredRoles.some(role => user?.roles?.includes(role));
+    const hasRequiredRole = requiredRoles.some(role => {
+      return user?.roles?.includes(role) || user?.userType === role;
+    });
+    
     if (!hasRequiredRole) {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
