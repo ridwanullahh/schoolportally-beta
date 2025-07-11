@@ -137,17 +137,20 @@ const MessagesModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Messages</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setActiveTab('compose'); resetForm(); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              New Message
-            </Button>
-          </DialogTrigger>
+          {isAdmin && (
+            <DialogTrigger asChild>
+              <Button onClick={() => { setActiveTab('compose'); resetForm(); }}>
+                <Plus className="w-4 h-4 mr-2" />
+                New Message
+              </Button>
+            </DialogTrigger>
+          )}
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle>Compose Message</DialogTitle>

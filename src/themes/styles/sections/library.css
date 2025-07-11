@@ -1,0 +1,170 @@
+/* Library Section Styles */
+
+/* Style 1: Book Grid */
+.library-book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.library-book-grid .book-card {
+    text-align: center;
+}
+.library-book-grid .book-cover {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.library-book-grid .book-title {
+    font-weight: bold;
+}
+
+/* Style 2: List View */
+.library-list-view {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+.library-list-view .book-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.library-list-view .book-cover-small {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+/* Style 3: Accordion Shelf */
+.library-accordion-shelf {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.library-accordion-shelf details {
+    margin-bottom: 1rem;
+}
+.library-accordion-shelf summary {
+    padding: 1.25rem;
+    background-color: #f7fafc;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+.library-accordion-shelf .book-list {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+/* Style 4: Tab by Genre */
+.library-tab-by-genre {
+    padding: 2rem 1rem;
+}
+.library-tab-by-genre .tabs {
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+}
+
+/* Style 5: Searchable Grid */
+.library-searchable-grid {
+    padding: 2rem 1rem;
+}
+.library-searchable-grid .search-bar {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style 6: Compact Tiles */
+.library-compact-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+}
+.library-compact-tiles .book-tile {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Style 7: Popup Detail View */
+/* Requires JS for popup functionality */
+.library-popup-detail-view .book-card {
+    cursor: pointer;
+}
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.popup-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    max-width: 600px;
+}
+
+/* Style 8: Expandable Cards */
+.library-expandable-cards .book-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+.library-expandable-cards .book-card:hover {
+    max-height: 400px;
+}
+
+/* Style 9: Shadow Frame */
+.library-shadow-frame .book-cover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Style 10: Row Strip Layout */
+.library-row-strip-layout .genre-row {
+    margin-bottom: 3rem;
+}
+.library-row-strip-layout .genre-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.library-row-strip-layout .book-strip {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+/* Style 11: Inline Bookmark */
+.library-inline-bookmark .book-item {
+    position: relative;
+}
+.library-inline-bookmark .bookmark-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+}
+.library-inline-bookmark .bookmark-icon.bookmarked {
+    color: var(--brand-primary);
+}

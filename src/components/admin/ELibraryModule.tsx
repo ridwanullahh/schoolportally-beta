@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -26,6 +27,7 @@ interface ELibraryItem {
 
 const ELibraryModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [items, setItems] = useState<ELibraryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState<ELibraryItem | null>(null);
@@ -167,17 +169,20 @@ const ELibraryModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">E-Library Management</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setIsEditing(false); resetForm(); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              Add Item
-            </Button>
-          </DialogTrigger>
+          {(isAdmin || user?.userType === 'teacher') && (
+            <DialogTrigger asChild>
+              <Button onClick={() => { setIsEditing(false); resetForm(); }}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add Item
+              </Button>
+            </DialogTrigger>
+          )}
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle>{isEditing ? 'Edit Library Item' : 'Add New Library Item'}</DialogTitle>
@@ -333,12 +338,16 @@ const ELibraryModule: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex space-x-1">
-                  <Button variant="outline" size="sm" onClick={() => openEditDialog(item)}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => handleDeleteItem(item.id)}>
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  {(user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner') || user?.userType === 'teacher') && (
+                    <>
+                      <Button variant="outline" size="sm" onClick={() => openEditDialog(item)}>
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => handleDeleteItem(item.id)}>
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </CardHeader>

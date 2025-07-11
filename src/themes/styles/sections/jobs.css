@@ -1,0 +1,162 @@
+/* Jobs Section Styles */
+
+/* Style 1: Card Postings */
+.jobs-card-postings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.jobs-card-postings .job-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.jobs-card-postings .job-card .job-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+.jobs-card-postings .job-card .job-location {
+    color: #718096;
+    margin-bottom: 1rem;
+}
+.jobs-card-postings .job-card .apply-button {
+    margin-top: auto;
+}
+
+/* Style 2: Accordion Listings */
+.jobs-accordion-listings {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+.jobs-accordion-listings details {
+    border-bottom: 1px solid #e2e8f0;
+}
+.jobs-accordion-listings summary {
+    padding: 1.25rem 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.jobs-accordion-listings .job-description {
+    padding: 1.5rem;
+}
+
+/* Style 3: Timeline View */
+.jobs-timeline-view {
+    position: relative;
+    padding: 3rem 1rem;
+}
+.jobs-timeline-view::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+.jobs-timeline-view .job-item {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+}
+.jobs-timeline-view .post-date {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Style 4: Side Filter Panel */
+.jobs-side-filter-panel {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+.jobs-side-filter-panel .filter-panel {
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+}
+
+/* Style 5: List with Tags */
+.jobs-list-with-tags .job-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.jobs-list-with-tags .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+/* Style 6: Popup Apply */
+/* JS needed for popup */
+.jobs-popup-apply .job-card {
+    cursor: pointer;
+}
+
+/* Style 7: Row Table View */
+.jobs-row-table-view {
+    padding: 2rem 1rem;
+}
+.jobs-row-table-view table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.jobs-row-table-view th, .jobs-row-table-view td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Style 8: Sticky Header */
+.jobs-sticky-header .header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Style 9: Icon + Title Grid */
+.jobs-icon-title-grid .job-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.jobs-icon-title-grid .icon {
+    color: var(--brand-primary);
+}
+
+/* Style 10: Grouped by Status */
+.jobs-grouped-by-status .status-group {
+    margin-bottom: 3rem;
+}
+.jobs-grouped-by-status .status-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* Style 11: Flip Application Panel */
+.jobs-flip-application-panel {
+    perspective: 1200px;
+}
+.jobs-flip-application-panel .flip-card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.jobs-flip-application-panel .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.jobs-flip-application-panel .flip-card-back {
+    transform: rotateY(180deg);
+    /* Application form would be here */
+}

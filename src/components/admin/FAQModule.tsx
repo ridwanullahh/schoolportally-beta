@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,6 +31,7 @@ interface FAQ {
 
 const FAQModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedFaq, setSelectedFaq] = useState<FAQ | null>(null);
@@ -177,18 +179,21 @@ const FAQModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">FAQ Management</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setIsEditing(false); resetForm(); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              New FAQ
-            </Button>
-          </DialogTrigger>
+          {isAdmin && (
+            <DialogTrigger asChild>
+              <Button onClick={() => { setIsEditing(false); resetForm(); }}>
+                <Plus className="w-4 h-4 mr-2" />
+                New FAQ
+              </Button>
+            </DialogTrigger>
+          )}
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle>{isEditing ? 'Edit FAQ' : 'Create New FAQ'}</DialogTitle>
@@ -350,12 +355,16 @@ const FAQModule: React.FC = () => {
                         </div>
                       </div>
                       <div className="flex space-x-1">
-                        <Button variant="outline" size="sm" onClick={() => openEditDialog(faq)}>
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleDeleteFaq(faq.id)}>
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
+                        {isAdmin && (
+                          <>
+                            <Button variant="outline" size="sm" onClick={() => openEditDialog(faq)}>
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => handleDeleteFaq(faq.id)}>
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </AccordionTrigger>

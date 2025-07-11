@@ -1,0 +1,242 @@
+/* Events Snapshot Section Styles */
+
+/* Style 1: Vertical Timeline */
+.events_snapshot-vertical-timeline {
+    position: relative;
+    padding: 3rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.events_snapshot-vertical-timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+.events_snapshot-vertical-timeline .event-item {
+    position: relative;
+    padding-left: 3.5rem;
+    margin-bottom: 2rem;
+}
+.events_snapshot-vertical-timeline .event-dot {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--brand-primary);
+    border: 3px solid white;
+}
+
+/* Style 2: Grid Cards */
+.events_snapshot-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.events_snapshot-grid-cards .event-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.events_snapshot-grid-cards .event-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.events_snapshot-grid-cards .card-content {
+    padding: 1.5rem;
+}
+
+/* Style 3: Tabbed Views */
+.events_snapshot-tabbed-views {
+    padding: 2rem 0;
+}
+.events_snapshot-tabbed-views .tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+}
+.events_snapshot-tabbed-views .tab {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+.events_snapshot-tabbed-views .tab.active {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+/* Style 4: Accordion */
+.events_snapshot-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.events_snapshot-accordion details {
+    border-bottom: 1px solid #e2e8f0;
+}
+.events_snapshot-accordion summary {
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.events_snapshot-accordion .event-details {
+    padding: 1rem;
+}
+
+/* Style 5: Scroll Strip */
+.events_snapshot-scroll-strip {
+    padding: 2rem 0;
+}
+.events_snapshot-scroll-strip .scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.events_snapshot-scroll-strip .scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+.events_snapshot-scroll-strip .event-item {
+    flex: 0 0 300px;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+/* Style 6: Countdown Boxes */
+.events_snapshot-countdown-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.events_snapshot-countdown-boxes .event-box {
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+.events_snapshot-countdown-boxes .countdown {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--brand-primary);
+}
+
+/* Style 7: Zigzag List */
+.events_snapshot-zigzag-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.events_snapshot-zigzag-list .event-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    align-items: center;
+}
+.events_snapshot-zigzag-list .event-row:nth-child(even) {
+    grid-template-columns: 2fr 1fr;
+}
+.events_snapshot-zigzag-list .event-row:nth-child(even) .date-box {
+    order: 2;
+}
+.events_snapshot-zigzag-list .date-box {
+    padding: 1rem;
+    background-color: #f7fafc;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+/* Style 8: Stacked Schedule */
+.events_snapshot-stacked-schedule {
+    padding: 3rem 1rem;
+}
+.events_snapshot-stacked-schedule .event-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.events_snapshot-stacked-schedule .event-time {
+    font-weight: bold;
+    color: var(--brand-primary);
+    flex-shrink: 0;
+}
+
+/* Style 9: Pill Tags */
+.events_snapshot-pill-tags {
+    padding: 2rem 1rem;
+}
+.events_snapshot-pill-tags .tag-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+.events_snapshot-pill-tags .pill {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    background-color: #edf2f7;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.events_snapshot-pill-tags .pill.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+/* Style 10: Layer Cards */
+.events_snapshot-layer-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 3rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.events_snapshot-layer-cards .event-card {
+    padding: 2rem;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s;
+}
+.events_snapshot-layer-cards .event-card:not(:first-child) {
+    margin-top: -50px;
+}
+.events_snapshot-layer-cards:hover .event-card {
+    transform: translateY(0);
+    margin-top: 1rem;
+}
+
+/* Style 11: Sticky Panel */
+.events_snapshot-sticky-panel {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 3rem 1rem;
+    align-items: flex-start;
+}
+.events_snapshot-sticky-panel .panel-title {
+    position: sticky;
+    top: 2rem;
+}
+.events_snapshot-sticky-panel .event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}

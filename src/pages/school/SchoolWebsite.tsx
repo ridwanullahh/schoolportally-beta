@@ -7,8 +7,9 @@ import { Page } from '@/types';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
 import PageRenderer from '@/components/school/PageRenderer';
+import ThemeSwitcher from '@/components/school/ThemeSwitcher';
 
-const SchoolWebsite = () => {
+const SchoolWebsite: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const { schoolSlug, pageSlug } = useParams();
   const { school, loading: schoolLoading } = useSchool();
   const { pages, loading: pagesLoading } = usePages();
@@ -45,23 +46,19 @@ const SchoolWebsite = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{
-      '--primary-color': school.branding?.primaryColor || '#4f46e5',
-      '--secondary-color': school.branding?.secondaryColor || '#06b6d4',
-      '--accent-color': school.branding?.accentColor || '#f59e0b',
-      '--font-family': school.branding?.fontFamily || 'Inter',
-    } as React.CSSProperties}>
+    <div className="min-h-screen flex flex-col">
+      <ThemeSwitcher themeName={school.branding?.theme || 'default'} />
       <SchoolHeader school={school} pages={pages} />
       
       <main className="flex-1">
-        {currentPage ? (
+        {children || (currentPage ? (
           <PageRenderer page={currentPage} school={school} />
         ) : (
           <div className="container mx-auto px-4 py-16 text-center">
             <h1 className="text-4xl font-bold mb-4">Welcome to {school.name}</h1>
             <p className="text-xl text-gray-600">Your educational journey starts here.</p>
           </div>
-        )}
+        ))}
       </main>
 
       <SchoolFooter school={school} />

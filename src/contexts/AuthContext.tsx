@@ -75,6 +75,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     initAuth();
   }, [token]);
 
+  useEffect(() => {
+    const pollUserData = async () => {
+        if (!user?.id) return;
+        try {
+            const freshUser = await sdk.getItem<User>('users', user.id);
+            if (JSON.stringify(freshUser) !== JSON.stringify(user)) {
+                setUser(freshUser);
+            }
+        } catch (error) {
+            console.error('Polling failed to fetch user data:', error);
+        }
+    };
+
+    const intervalId = setInterval(pollUserData, 30000); // Poll every 30 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [user]);
+
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {

@@ -1,0 +1,196 @@
+/* Blog Posts Section Styles */
+
+/* Style 1: Post Grid */
+.blog_posts-post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.blog_posts-post-grid .post-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.blog_posts-post-grid .post-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.blog_posts-post-grid .post-content {
+    padding: 1.5rem;
+}
+
+/* Style 2: Vertical Feed */
+.blog_posts-vertical-feed {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+.blog_posts-vertical-feed .post-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+.blog_posts-vertical-feed .post-item:last-child {
+    border-bottom: none;
+}
+.blog_posts-vertical-feed .post-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* Style 3: Slider Cards */
+.blog_posts-slider-cards {
+    padding: 2rem 0;
+    overflow: hidden;
+}
+.blog_posts-slider-cards .slider-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+}
+.blog_posts-slider-cards .post-slide {
+    flex: 0 0 80%;
+    max-width: 350px;
+    scroll-snap-align: center;
+}
+
+/* Style 4: Post Accordions */
+.blog_posts-post-accordions {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.blog_posts-post-accordions details {
+    border-bottom: 1px solid #e2e8f0;
+}
+.blog_posts-post-accordions summary {
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.blog_posts-post-accordions .post-summary {
+    padding: 1rem;
+}
+
+/* Style 5: Tag Tabs */
+.blog_posts-tag-tabs {
+    padding: 2rem 1rem;
+}
+.blog_posts-tag-tabs .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.blog_posts-tag-tabs .tab.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+/* Style 6: Hover Preview */
+.blog_posts-hover-preview .post-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+}
+.blog_posts-hover-preview .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.blog_posts-hover-preview .post-item:hover .overlay {
+    opacity: 1;
+}
+
+/* Style 7: Card Flip */
+.blog_posts-card-flip {
+    perspective: 1000px;
+}
+.blog_posts-card-flip .flip-card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.blog_posts-card-flip .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.blog_posts-card-flip .flip-card-front, .blog_posts-card-flip .flip-card-back {
+    backface-visibility: hidden;
+}
+.blog_posts-card-flip .flip-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Style 8: Pinned Post */
+.blog_posts-pinned-post .pinned {
+    padding: 2rem;
+    background-color: var(--brand-primary-light);
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+}
+.blog_posts-pinned-post .other-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Style 9: Icon Highlight */
+.blog_posts-icon-highlight .post-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.blog_posts-icon-highlight .icon {
+    color: var(--brand-primary);
+    margin-top: 5px;
+}
+
+/* Style 10: Expand Snippet */
+.blog_posts-expand-snippet .post-item {
+    margin-bottom: 1rem;
+}
+.blog_posts-expand-snippet .snippet {
+    max-height: 60px; /* 3 lines approx */
+    overflow: hidden;
+    position: relative;
+}
+.blog_posts-expand-snippet .snippet::after {
+    content: '...';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white;
+    padding-left: 5px;
+}
+.blog_posts-expand-snippet .read-more {
+    color: var(--brand-primary);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style 11: Rounded Cards */
+.blog_posts-rounded-cards .post-card {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background-color: #f7fafc;
+}
+.blog_posts-rounded-cards .post-content {
+    padding: 1.5rem;
+}

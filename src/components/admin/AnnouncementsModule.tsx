@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -34,6 +35,7 @@ interface Announcement {
 
 const AnnouncementsModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Announcement | null>(null);
@@ -85,12 +87,19 @@ const AnnouncementsModule: React.FC = () => {
   }, [school]);
 
   const fetchAnnouncements = async () => {
-    if (!school) return;
+    if (!school || !user) return;
 
     setLoading(true);
     try {
       const allAnnouncements = await sdk.get<Announcement>('announcements');
-      const schoolAnnouncements = allAnnouncements.filter(announcement => announcement.schoolId === school.id);
+      let schoolAnnouncements = allAnnouncements.filter(announcement => announcement.schoolId === school.id);
+
+      const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
+      if (!isAdmin) {
+        schoolAnnouncements = schoolAnnouncements.filter(announcement =>
+          announcement.targetAudience.includes('all') || announcement.targetAudience.includes(user.userType)
+        );
+      }
       // Sort by pinned first, then by published date
       schoolAnnouncements.sort((a, b) => {
         if (a.pinned && !b.pinned) return -1;

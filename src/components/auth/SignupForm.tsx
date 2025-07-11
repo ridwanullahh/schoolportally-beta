@@ -60,7 +60,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onSuccess, redirectPath 
       await register(formData.email, formData.password, {
         firstName: formData.firstName,
         lastName: formData.lastName,
-        roles: ['school_owner'], // Default role for new signups
+        roles: ['school_owner', 'school_admin'], // Default roles for new signups
       });
       
       toast({

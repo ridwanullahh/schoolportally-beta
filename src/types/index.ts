@@ -1,260 +1,162 @@
-// Core types for the SchoolPortal platform
+export interface Section {
+  id: string;
+  type: string;
+  styleId: string;
+  content: any;
+  settings: any;
+  order: number;
+  visible: boolean;
+}
+
+export interface Page {
+  id: string;
+  uid?: string;
+  schoolId: string;
+  title: string;
+  slug: string;
+  type: 'homepage' | 'about' | 'classes_archive' | 'class_single' | 'programs_archive' | 'program_single' | 'gallery_archive' | 'gallery_single' | 'calendar_archive' | 'calendar_single' | 'contact' | 'admissions_archive' | 'admission_single' | 'apply_now' | 'blog_archive' | 'blog_single' | 'news_archive' | 'news_single' | 'elibrary_archive' | 'elibrary_single' | 'faq' | 'events_archive' | 'event_single' | 'ecourses_archive' | 'ecourse_single' | 'careers_archive' | 'career_single' | 'custom';
+  status: 'published' | 'draft' | 'archived';
+  sections: Section[];
+  seoTitle?: string;
+  seoDescription?: string;
+  showOnHeader?: boolean;
+  showOnFooter?: boolean;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface SectionProps {
+  content: any;
+  settings: any;
+}
+
+export interface FormField {
+  id: string;
+  type: string;
+  label: string;
+  placeholder?: string;
+  required: boolean;
+  options?: string[];
+  validation?: any;
+}
+
+export interface Form {
+  id: string;
+  schoolId: string;
+  title: string;
+  slug: string;
+  description: string;
+  fields: FormField[];
+  settings: {
+    allowMultipleSubmissions: boolean;
+    requireLogin: boolean;
+    showProgressBar: boolean;
+    customTheme: any;
+    notifications: {
+      email: boolean;
+      sms: boolean;
+      webhook: string;
+    };
+  };
+  status: string;
+  submissions: any[];
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  shareUrl: string;
+  analytics: {
+    views: number;
+    submissions: number;
+    conversionRate: number;
+  };
+}
+
 export interface User {
-  id?: string;
+  id: string;
   uid?: string;
   email: string;
   password?: string;
   firstName?: string;
   lastName?: string;
-  phone?: string;
-  avatar?: string;
-  verified?: boolean;
-  roles?: string[];
+  roles: string[];
   permissions?: string[];
   schoolId?: string;
-  userType?: 'admin' | 'teacher' | 'student' | 'parent';
-  status?: 'pending' | 'approved' | 'suspended';
-  createdAt?: string;
+  userType: 'platform_admin' | 'school_owner' | 'school_admin' | 'teacher' | 'student' | 'parent' | 'staff';
+  verified: boolean;
+  status: 'pending' | 'approved' | 'denied' | 'active' | 'suspended';
+  approvalStatus?: string;
+  createdAt: string;
   updatedAt?: string;
+}
+
+export interface Product {
+  id: string;
+  schoolId: string;
+  name: string;
+  slug: string;
+  description: string;
+  price: number;
+  currency: string;
+  images: string[];
+  stock: number;
+  sku?: string;
+  tags?: string[];
+  status: 'published' | 'draft' | 'archived';
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface Order {
+  id: string;
+  schoolId: string;
+  customerId: string;
+  items: { productId: string; quantity: number; price: number }[];
+  total: number;
+  status: 'pending' | 'paid' | 'shipped' | 'delivered' | 'cancelled';
+  shippingAddress: any;
+  billingAddress: any;
+  paymentMethod: string;
+  paymentStatus: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface Customer {
+  id: string;
+  schoolId: string;
+  userId?: string; 
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  addresses: any[];
+  createdAt: string;
 }
 
 export interface School {
   id: string;
-  uid: string;
+  uid?: string;
   name: string;
   slug: string;
   ownerId: string;
-  logo?: string;
-  favicon?: string;
   address?: string;
   phone?: string;
   email?: string;
   website?: string;
-  timezone: string;
-  currency: string;
-  status: string;
-  subscriptionPlan: string;
-  subscriptionStatus: string;
-  onboardingCompleted?: boolean;
-  customDomain?: string;
-  branding?: SchoolBranding;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface SchoolBranding {
-  primaryColor?: string;
-  secondaryColor?: string;
-  accentColor?: string;
-  fontFamily?: string;
-  logo?: string;
-  favicon?: string;
-  headerStyle?: string;
-  footerStyle?: string;
-}
-
-export interface Page {
-  id: string;
-  uid: string;
-  schoolId: string;
-  title: string;
-  slug: string;
-  type: 'homepage' | 'about' | 'programs' | 'classes' | 'admissions' | 'blog' | 'events' | 'contact' | 'gallery' | 'calendar' | 'faq' | 'custom';
-  status: 'draft' | 'published' | 'scheduled';
-  sections: PageSection[];
-  seoTitle?: string;
-  seoDescription?: string;
-  featuredImage?: string;
-  publishedAt?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface PageSection {
-  id: string;
-  type: string;
-  styleId: string;
-  content: Record<string, any>;
-  settings: Record<string, any>;
-  order: number;
-  visible: boolean;
-}
-
-export interface SectionStyle {
-  id: string;
-  name: string;
-  description: string;
-  preview: string;
-  category: string;
-  fields: SectionField[];
-}
-
-export interface SectionField {
-  id: string;
-  name: string;
-  type: 'text' | 'textarea' | 'image' | 'video' | 'link' | 'repeater' | 'select';
-  label: string;
-  placeholder?: string;
-  required?: boolean;
-  options?: string[];
-}
-
-export interface Program {
-  id: string;
-  uid: string;
-  schoolId: string;
-  name: string;
-  slug: string;
-  description: string;
-  type: 'academic' | 'extracurricular' | 'sports' | 'arts';
-  duration: string;
-  fee: number;
-  capacity?: number;
-  enrolled?: number;
-  status: 'active' | 'inactive';
-  featuredImage?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface Class {
-  id: string;
-  uid: string;
-  schoolId: string;
-  name: string;
-  slug: string;
-  description: string;
-  teacherId?: string;
-  programId?: string;
-  schedule: {
-    days: string[];
-    startTime: string;
-    endTime: string;
+  timezone?: string;
+  currency?: string;
+  status: 'active' | 'inactive' | 'suspended';
+  subscriptionPlan?: string;
+  subscriptionStatus?: string;
+  onboardingCompleted: boolean;
+  branding: {
+    theme?: string;
+    primaryColor?: string;
+    secondaryColor?: string;
+    accentColor?: string;
+    fontFamily?: string;
+    logoUrl?: string;
   };
-  capacity: number;
-  enrolled: number;
-  fee?: number;
-  status: 'active' | 'inactive';
-  createdAt?: string;
+  createdAt: string;
   updatedAt?: string;
-}
-
-export interface BlogPost {
-  id: string;
-  uid: string;
-  schoolId: string;
-  title: string;
-  slug: string;
-  content: string;
-  excerpt?: string;
-  authorId: string;
-  status: 'draft' | 'published';
-  featuredImage?: string;
-  tags: string[];
-  categories: string[];
-  publishedAt?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface Event {
-  id: string;
-  uid: string;
-  schoolId: string;
-  title: string;
-  slug: string;
-  description: string;
-  date: string;
-  startTime: string;
-  endTime?: string;
-  location?: string;
-  type: 'academic' | 'sports' | 'cultural' | 'general';
-  rsvpRequired: boolean;
-  maxAttendees?: number;
-  currentAttendees: number;
-  featuredImage?: string;
-  status: 'draft' | 'published';
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface Gallery {
-  id: string;
-  uid: string;
-  schoolId: string;
-  title: string;
-  slug: string;
-  description?: string;
-  images: GalleryImage[];
-  category: string;
-  featured: boolean;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface GalleryImage {
-  id: string;
-  url: string;
-  alt: string;
-  caption?: string;
-}
-
-export interface FAQ {
-  id: string;
-  uid: string;
-  schoolId: string;
-  question: string;
-  answer: string;
-  category: string;
-  order: number;
-  status: 'published' | 'draft';
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface Announcement {
-  id: string;
-  uid: string;
-  schoolId: string;
-  title: string;
-  content: string;
-  authorId: string;
-  priority: 'low' | 'normal' | 'high' | 'urgent';
-  targetAudience: string[];
-  status: 'draft' | 'published';
-  publishedAt?: string;
-  expiresAt?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface AdmissionApplication {
-  id: string;
-  uid: string;
-  schoolId: string;
-  studentName: string;
-  email: string;
-  phone?: string;
-  parentName?: string;
-  parentEmail?: string;
-  parentPhone?: string;
-  programId?: string;
-  grade?: string;
-  previousSchool?: string;
-  documents: ApplicationDocument[];
-  status: 'pending' | 'approved' | 'rejected' | 'waitlisted';
-  notes?: string;
-  submittedAt: string;
-  reviewedAt?: string;
-  reviewedBy?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export interface ApplicationDocument {
-  id: string;
-  name: string;
-  url: string;
-  type: string;
-  size: number;
 }

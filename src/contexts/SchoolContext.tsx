@@ -3,35 +3,15 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { getSchoolSlug } from '@/utils/routing';
-
-interface School {
-  id: string;
-  uid: string;
-  name: string;
-  slug: string;
-  ownerId: string;
-  logo?: string;
-  address?: string;
-  phone?: string;
-  email?: string;
-  website?: string;
-  timezone: string;
-  currency: string;
-  status: string;
-  subscriptionPlan: string;
-  subscriptionStatus: string;
-  onboardingCompleted?: boolean;
-  branding?: any;
-  createdAt?: string;
-  updatedAt?: string;
-}
+import { School } from '@/types';
 
 interface SchoolContextType {
   school: School | null;
+  setSchool: React.Dispatch<React.SetStateAction<School | null>>;
   loading: boolean;
   error: string | null;
   updateSchool: (updates: Partial<School>) => Promise<School | null>;
-  createSchool: (schoolData: Omit<School, 'id'>) => Promise<School | null>;
+  createSchool: (schoolData: Omit<School, 'id' | 'createdAt' | 'updatedAt'>) => Promise<School | null>;
   hasSchool: boolean;
 }
 
@@ -101,6 +81,24 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
     fetchSchool();
   }, [isAuthenticated, user?.schoolId, window.location.pathname]);
 
+  useEffect(() => {
+    const fetchSchoolData = async () => {
+        if (!school?.id) return;
+        try {
+            const schoolData = await sdk.getItem<School>('schools', school.id);
+            if (JSON.stringify(schoolData) !== JSON.stringify(school)) {
+                setSchool(schoolData);
+            }
+        } catch (err) {
+            console.error('Polling failed to fetch school:', err);
+        }
+    };
+    
+    const intervalId = setInterval(fetchSchoolData, 30000); // Poll every 30 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [school]);
+
   const updateSchool = async (updates: Partial<School>) => {
     if (!school) return null;
 
@@ -117,7 +115,7 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
     }
   };
 
-  const createSchool = async (schoolData: Omit<School, 'id'>) => {
+  const createSchool = async (schoolData: Omit<School, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
       const generateUniqueId = () => {
         return Date.now().toString(36) + Math.random().toString(36).substr(2);
@@ -147,6 +145,7 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
 
   const value: SchoolContextType = {
     school,
+    setSchool,
     loading,
     error,
     updateSchool,

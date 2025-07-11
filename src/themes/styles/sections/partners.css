@@ -1,0 +1,207 @@
+/* Partners Section Styles */
+
+/* Style 1: Logo Carousel */
+.partners-logo-carousel {
+    padding: 2rem 0;
+    overflow: hidden;
+    position: relative;
+}
+.partners-logo-carousel::before,
+.partners-logo-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+}
+.partners-logo-carousel::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+}
+.partners-logo-carousel::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+}
+.partners-logo-carousel .logo-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-logos 30s linear infinite;
+}
+.partners-logo-carousel .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    margin: 0 2rem;
+}
+.partners-logo-carousel img {
+    max-height: 60px;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+.partners-logo-carousel img:hover {
+    filter: grayscale(0%);
+}
+
+@keyframes scroll-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Style 2: Logo Grid */
+.partners-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Style 3: Stacked Partner Cards */
+.partners-stacked-partner-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.partners-stacked-partner-cards .partner-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+.partners-stacked-partner-cards .logo-container {
+    flex-shrink: 0;
+    width: 100px;
+}
+
+/* Style 4: Hover Badge */
+.partners-hover-badge {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.partners-hover-badge .logo-item {
+    position: relative;
+}
+.partners-hover-badge .tooltip {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.partners-hover-badge .logo-item:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style 5: Accordion Blocks */
+.partners-accordion-blocks {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.partners-accordion-blocks details {
+    border-bottom: 1px solid #e2e8f0;
+}
+.partners-accordion-blocks summary {
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.partners-accordion-blocks .partner-details {
+    padding: 1.5rem;
+}
+
+/* Style 6: Minimal Strip */
+.partners-minimal-strip {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 1rem;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Style 7: Center Focus */
+.partners-center-focus {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+.partners-center-focus .main-logo {
+    margin-bottom: 2rem;
+}
+.partners-center-focus .other-logos {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    filter: opacity(0.6);
+}
+
+/* Style 8: List with Text */
+.partners-list-with-text {
+    padding: 2rem 1rem;
+}
+.partners-list-with-text .partner-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Style 9: Scrolling List */
+/* Same as carousel, but with a different name for semantic distinction */
+.partners-scrolling-list {
+    /* Uses .partners-logo-carousel styles */
+}
+
+/* Style 10: Rotating Ring */
+/* This style requires complex CSS or JS for a true circular path.
+   This is a simplified representation. */
+.partners-rotating-ring {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 4rem auto;
+    border: 2px dashed #e2e8f0;
+    border-radius: 50%;
+}
+.partners-rotating-ring .logo-item {
+    position: absolute;
+    /* JS would be needed to calculate positions properly */
+}
+
+/* Style 11: Slide Reveal */
+.partners-slide-reveal {
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem 1rem;
+    gap: 1rem;
+}
+.partners-slide-reveal .logo-item {
+    opacity: 0;
+    animation: slide-up 0.5s forwards;
+}
+
+@keyframes slide-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

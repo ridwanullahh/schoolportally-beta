@@ -1,0 +1,31 @@
+/* Creative Theme */
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #f9f871;
+  --background-color: #fafafa;
+  --text-color: #4a4a4a;
+  --border-radius: 1rem;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.section {
+  padding: 3.5rem 1rem;
+}
+
+.card {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transform: rotate(-1deg);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: rotate(1deg);
+}

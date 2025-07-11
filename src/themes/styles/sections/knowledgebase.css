@@ -1,0 +1,168 @@
+/* Knowledgebase Section Styles */
+
+/* Style 1: Category Tabs */
+.knowledgebase-category-tabs {
+    padding: 2rem 1rem;
+}
+.knowledgebase-category-tabs .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.knowledgebase-category-tabs .tab.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+.knowledgebase-category-tabs .article-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+/* Style 2: Accordion Q&A */
+.knowledgebase-accordion-q-a {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.knowledgebase-accordion-q-a details {
+    border-bottom: 1px solid #e2e8f0;
+}
+.knowledgebase-accordion-q-a summary {
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.knowledgebase-accordion-q-a .answer {
+    padding: 1rem;
+}
+
+/* Style 3: List View */
+.knowledgebase-list-view {
+    padding: 2rem 1rem;
+}
+.knowledgebase-list-view .category-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.knowledgebase-list-view .article-link {
+    display: block;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Style 4: Sidebar Tree */
+.knowledgebase-sidebar-tree {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+.knowledgebase-sidebar-tree .sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+}
+.knowledgebase-sidebar-tree .sidebar ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+/* Style 5: Tag Cloud */
+.knowledgebase-tag-cloud {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+.knowledgebase-tag-cloud .tag-cloud-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.knowledgebase-tag-cloud .tag {
+    /* Font size can be varied with JS based on popularity */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #f7fafc;
+}
+
+/* Style 6: Card Search Grid */
+.knowledgebase-card-search-grid {
+    padding: 2rem 1rem;
+}
+.knowledgebase-card-search-grid .search-bar {
+    margin-bottom: 2rem;
+}
+.knowledgebase-card-search-grid .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.knowledgebase-card-search-grid .article-card {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+}
+
+/* Style 7: Minimalist FAQ */
+.knowledgebase-minimalist-faq {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.knowledgebase-minimalist-faq .faq-item {
+    margin-bottom: 1.5rem;
+}
+.knowledgebase-minimalist-faq .question {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Style 8: Expandable Rows */
+.knowledgebase-expandable-rows details {
+    border-bottom: 1px solid #e2e8f0;
+}
+.knowledgebase-expandable-rows summary {
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+/* Style 9: Sticky Search */
+.knowledgebase-sticky-search .search-container {
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background-color: white;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Style 10: Hover Info Cards */
+.knowledgebase-hover-info-cards .article-card {
+    position: relative;
+    overflow: hidden;
+}
+.knowledgebase-hover-info-cards .info-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.knowledgebase-hover-info-cards .article-card:hover .info-overlay {
+    opacity: 1;
+}
+
+/* Style 11: Nested Accordion */
+.knowledgebase-nested-accordion .parent-accordion > summary {
+    font-size: 1.25rem;
+    background-color: #f0f0f0;
+}
+.knowledgebase-nested-accordion .child-accordion {
+    padding-left: 1.5rem;
+}

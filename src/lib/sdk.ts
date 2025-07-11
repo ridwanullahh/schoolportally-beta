@@ -118,7 +118,6 @@ class UniversalSDK {
   private auditLog: Record<string, AuditLogEntry[]>;
 
   constructor(config: UniversalSDKConfig) {
-    // 0.1 Initialization
     this.owner = config.owner;
     this.repo = config.repo;
     this.token = config.token;
@@ -135,9 +134,6 @@ class UniversalSDK {
     this.auditLog = {};
   }
 
-  // 📁 1. DATA / STORAGE
-
-  // 1.1 headers
   private headers(): Record<string, string> {
     return {
       Authorization: `token ${this.token}`,
@@ -145,7 +141,6 @@ class UniversalSDK {
     };
   }
 
-  // 1.2 request
   private async request(path: string, method: string = "GET", body: any = null): Promise<any> {
     const url = `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${path}` +
                 (method === "GET" ? `?ref=${this.branch}` : "");
@@ -158,7 +153,6 @@ class UniversalSDK {
     return res.json();
   }
 
-  // 1.3 get
   async get<T = any>(collection: string): Promise<T[]> {
     try {
       const res = await this.request(`${this.basePath}/${collection}.json`);
@@ -168,28 +162,30 @@ class UniversalSDK {
     }
   }
 
-  // 1.4 getItem
   async getItem<T = any>(collection: string, key: string): Promise<T | null> {
     const arr = await this.get<T>(collection);
     return arr.find((x: any) => x.id === key || x.uid === key) || null;
   }
 
-  // 1.5 save
   private async save<T = any>(collection: string, data: T[]): Promise<void> {
     let sha: string | undefined;
     try {
       const head = await this.request(`${this.basePath}/${collection}.json`);
       sha = head.sha;
-    } catch {}
+    } catch (error: any) {
+      if (!error.message.includes("Not Found")) {
+        throw error;
+      }
+    }
+
     await this.request(`${this.basePath}/${collection}.json`, "PUT", {
-      message: `Update ${collection}`,
+      message: `Update ${collection} - ${new Date().toISOString()}`,
       content: btoa(JSON.stringify(data, null, 2)),
       branch: this.branch,
       ...(sha ? { sha } : {}),
     });
   }
 
-  // 1.6 insert
   async insert<T = any>(collection: string, item: Partial<T>): Promise<T & { id: string; uid: string }> {
     const arr = await this.get<T>(collection);
     const schema = this.schemas[collection];
@@ -203,7 +199,6 @@ class UniversalSDK {
     return newItem;
   }
 
-  // 1.7 bulkInsert
   async bulkInsert<T = any>(collection: string, items: Partial<T>[]): Promise<(T & { id: string; uid: string })[]> {
     const arr = await this.get<T>(collection);
     const schema = this.schemas[collection];
@@ -219,20 +214,54 @@ class UniversalSDK {
     return newItems;
   }
 
-  // 1.8 update
   async update<T = any>(collection: string, key: string, updates: Partial<T>): Promise<T> {
-    const arr = await this.get<T>(collection);
-    const i = arr.findIndex((x: any) => x.id === key || x.uid === key);
-    if (i < 0) throw new Error("Not found");
-    const upd = { ...arr[i], ...updates };
-    this.validateSchema(collection, upd);
-    arr[i] = upd;
-    await this.save(collection, arr);
-    this._audit(collection, upd, "update");
-    return upd;
+    const MAX_RETRIES = 3;
+    let lastError: Error | null = null;
+
+    for (let i = 0; i < MAX_RETRIES; i++) {
+      let file;
+      try {
+        file = await this.request(`${this.basePath}/${collection}.json`);
+      } catch (e: any) {
+        if (e.message.includes("Not Found")) {
+          throw new Error("Collection not found, cannot update.");
+        }
+        throw e;
+      }
+
+      const arr = JSON.parse(atob(file.content));
+      const sha = file.sha;
+
+      const itemIndex = arr.findIndex((x: any) => x.id === key || x.uid === key);
+      if (itemIndex === -1) {
+        throw new Error(`Item with key "${key}" not found in collection "${collection}".`);
+      }
+
+      const updatedItem = { ...arr[itemIndex], ...updates };
+      this.validateSchema(collection, updatedItem);
+      arr[itemIndex] = updatedItem;
+
+      try {
+        await this.request(`${this.basePath}/${collection}.json`, "PUT", {
+          message: `Update ${collection} - ${new Date().toISOString()}`,
+          content: btoa(JSON.stringify(arr, null, 2)),
+          branch: this.branch,
+          sha,
+        });
+        this._audit(collection, updatedItem, "update");
+        return updatedItem;
+      } catch (error: any) {
+        lastError = error;
+        if (error.message.includes("409") && i < MAX_RETRIES - 1) {
+          await new Promise(res => setTimeout(res, 200 + Math.random() * 800));
+          continue;
+        }
+        throw error;
+      }
+    }
+    throw new Error(`Update failed after ${MAX_RETRIES} retries. Last error: ${lastError?.message}`);
   }
 
-  // 1.9 bulkUpdate
   async bulkUpdate<T = any>(collection: string, updates: (Partial<T> & { id?: string; uid?: string })[]): Promise<T[]> {
     const arr = await this.get<T>(collection);
     const updatedItems = updates.map(u => {
@@ -248,7 +277,6 @@ class UniversalSDK {
     return updatedItems;
   }
 
-  // 1.10 delete
   async delete<T = any>(collection: string, key: string): Promise<void> {
     const arr = await this.get<T>(collection);
     const filtered = arr.filter((x: any) => x.id !== key && x.uid !== key);
@@ -257,7 +285,6 @@ class UniversalSDK {
     deleted.forEach(d => this._audit(collection, d, "delete"));
   }
 
-  // 1.11 bulkDelete
   async bulkDelete<T = any>(collection: string, keys: string[]): Promise<T[]> {
     const arr = await this.get<T>(collection);
     const filtered = arr.filter((x: any) => !keys.includes(x.id) && !keys.includes(x.uid));
@@ -267,7 +294,6 @@ class UniversalSDK {
     return deleted;
   }
 
-  // 1.12 cloneItem
   async cloneItem<T = any>(collection: string, key: string): Promise<T & { id: string; uid: string }> {
     const arr = await this.get<T>(collection);
     const orig = arr.find((x: any) => x.id === key || x.uid === key);
@@ -276,10 +302,9 @@ class UniversalSDK {
     return this.insert(collection, core);
   }
 
-  // 1.13 validateSchema
   private validateSchema(collection: string, item: any): void {
     const schema = this.schemas[collection];
-    if (!schema) return; // Skip validation if no schema defined
+    if (!schema) return;
     (schema.required || []).forEach(r => {
       if (!(r in item)) throw new Error(`Missing required: ${r}`);
     });
@@ -299,12 +324,10 @@ class UniversalSDK {
     });
   }
 
-  // 1.14 validateAll
   validateAll<T = any>(collection: string, items: T[]): void {
     items.forEach(item => this.validateSchema(collection, item));
   }
 
-  // 1.15 sanitize
   sanitize<T = any>(item: T, allowedFields: string[]): Partial<T> {
     const out: any = {};
     allowedFields.forEach(f => {
@@ -313,23 +336,19 @@ class UniversalSDK {
     return out;
   }
 
-  // 1.16 setSchema
   setSchema(collection: string, schema: SchemaDefinition): void {
     this.schemas[collection] = schema;
   }
 
-  // 1.17 getSchema
   getSchema(collection: string): SchemaDefinition | null {
     return this.schemas[collection] || null;
   }
 
-  // 1.18 collectionExists
   async collectionExists(collection: string): Promise<boolean> {
     const arr = await this.get(collection);
     return Array.isArray(arr);
   }
 
-  // 1.19 listCollections
   async listCollections(): Promise<string[]> {
     try {
       const res = await this.request(this.basePath);
@@ -339,12 +358,10 @@ class UniversalSDK {
     }
   }
 
-  // 1.20 exportCollection
   async exportCollection(collection: string): Promise<string> {
     return JSON.stringify(await this.get(collection), null, 2);
   }
 
-  // 1.21 importCollection
   async importCollection<T = any>(collection: string, json: string, overwrite: boolean = false): Promise<T[]> {
     const arr = JSON.parse(json);
     this.validateAll(collection, arr);
@@ -355,7 +372,6 @@ class UniversalSDK {
     return processed;
   }
 
-  // 1.22 mergeCollections
   async mergeCollections<T = any>(collection: string, json: string, overwrite: boolean = false): Promise<T[]> {
     const imported = await this.importCollection<T>(collection, json, overwrite);
     const existing = await this.get<T>(collection);
@@ -364,7 +380,6 @@ class UniversalSDK {
     return merged;
   }
 
-  // 1.23 backupCollection
   async backupCollection(collection: string): Promise<string> {
     const data = await this.exportCollection(collection);
     const ts = new Date().toISOString().replace(/[:.]/g, "-");
@@ -377,12 +392,10 @@ class UniversalSDK {
     return filename;
   }
 
-  // 1.24 syncWithRemote
   async syncWithRemote<T = any>(collection: string): Promise<T[]> {
     return this.get<T>(collection);
   }
 
-  // 1.25 queryBuilder
   queryBuilder<T = any>(collection: string): QueryBuilder<T> {
     let chain = Promise.resolve().then(() => this.get<T>(collection));
     const qb: QueryBuilder<T> = {
@@ -411,9 +424,6 @@ class UniversalSDK {
     return qb;
   }
 
-  // 📬 2. EMAIL / OTP / SMTP
-
-  // 2.1 sendEmail
   async sendEmail(to: string, subject: string, html: string, smtpOverride: SMTPConfig | null = null): Promise<boolean> {
     const endpoint = smtpOverride?.endpoint || this.smtp.endpoint;
     const sender = smtpOverride?.from || this.smtp.from || "no-reply@example.com";
@@ -433,7 +443,6 @@ class UniversalSDK {
     return true;
   }
 
-  // 2.2 sendOTP
   async sendOTP(email: string, reason: string = "verify"): Promise<string> {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     this.otpMemory[email] = { otp, created: Date.now(), reason };
@@ -442,7 +451,6 @@ class UniversalSDK {
     return otp;
   }
 
-  // 2.3 verifyOTP
   verifyOTP(email: string, otp: string): boolean {
     const rec = this.otpMemory[email];
     if (!rec || rec.otp !== otp) throw new Error("Invalid OTP");
@@ -451,34 +459,27 @@ class UniversalSDK {
     return true;
   }
 
-  // 2.4 validateEmailFormat
   validateEmailFormat(email: string): boolean {
     return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   }
 
-  // 2.5 testSMTPConnection
   async testSMTPConnection(): Promise<boolean> {
     if (!this.smtp.test) throw new Error("SMTP test not available");
     return this.smtp.test();
   }
 
-  // 🔐 3. AUTHENTICATION
-
-  // 3.1 hashPassword
   hashPassword(password: string): string {
     const salt = crypto.randomUUID();
     const hash = btoa([...password + salt].map(c => c.charCodeAt(0).toString(16)).join(""));
     return `${salt}$${hash}`;
   }
 
-  // 3.2 verifyPassword
   verifyPassword(password: string, hashString: string): boolean {
     const [salt, hash] = hashString.split("$");
     const testHash = btoa([...password + salt].map(c => c.charCodeAt(0).toString(16)).join(""));
     return testHash === hash;
   }
 
-  // 3.3 register
   async register(email: string, password: string, profile: Partial<User> = {}): Promise<User> {
     if (!this.validateEmailFormat(email)) throw new Error("Invalid email format");
     const users = await this.get<User>("users");
@@ -489,7 +490,6 @@ class UniversalSDK {
     return user;
   }
 
-  // 3.4 login
   async login(email: string, password: string): Promise<string | { otpRequired: boolean }> {
     const user = (await this.get<User>("users")).find(u => u.email === email);
     if (!user || !this.verifyPassword(password, user.password!)) throw new Error("Invalid credentials");
@@ -500,21 +500,18 @@ class UniversalSDK {
     return this.createSession(user);
   }
 
-  // 3.5 verifyLoginOTP
   async verifyLoginOTP(email: string, otp: string): Promise<string> {
     this.verifyOTP(email, otp);
     const user = (await this.get<User>("users")).find(u => u.email === email);
     return this.createSession(user!);
   }
 
-  // 3.6 requestPasswordReset
   async requestPasswordReset(email: string): Promise<void> {
     const user = (await this.get<User>("users")).find(u => u.email === email);
     if (!user) throw new Error("Email not found");
     await this.sendOTP(email, "reset");
   }
 
-  // 3.7 resetPassword
   async resetPassword(email: string, otp: string, newPassword: string): Promise<boolean> {
     this.verifyOTP(email, otp);
     const users = await this.get<User>("users");
@@ -525,7 +522,6 @@ class UniversalSDK {
     return true;
   }
 
-  // 3.8 googleAuth - Authenticate or register via Google ID token
   async googleAuth(idToken: string): Promise<string> {
     const info = await fetch(
       `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${idToken}`
@@ -540,12 +536,10 @@ class UniversalSDK {
 
     if (user) {
       if (!user.googleId) {
-        // Link Google account if not already linked
         user.googleId = info.sub;
         await this.save("users", users);
       }
     } else {
-      // Register a new user via Google
       user = await this.insert<User>("users", {
         email: info.email,
         googleId: info.sub,
@@ -556,12 +550,10 @@ class UniversalSDK {
     return this.createSession(user);
   }
 
-  // 3.9 hasPermission
   hasPermission(user: User | null, permission: string): boolean {
     return (user?.permissions || []).includes(permission);
   }
 
-  // 3.10 assignRole
   async assignRole(userId: string, role: string): Promise<User> {
     const users = await this.get<User>("users");
     const user = users.find(u => u.id === userId || u.uid === userId);
@@ -571,7 +563,6 @@ class UniversalSDK {
     return user;
   }
 
-  // 3.11 removeRole
   async removeRole(userId: string, role: string): Promise<User> {
     const users = await this.get<User>("users");
     const user = users.find(u => u.id === userId || u.uid === userId);
@@ -581,31 +572,24 @@ class UniversalSDK {
     return user;
   }
 
-  // 3.12 getUserRoles
   getUserRoles(user: User | null): string[] {
     return user?.roles || [];
   }
 
-  // 3.13 listPermissions
   listPermissions(user: User | null): string[] {
     return user?.permissions || [];
   }
 
-  // 🔑 4. SESSION MANAGEMENT
-
-  // 4.1 createSession
   createSession(user: User): string {
     const token = crypto.randomUUID();
     this.sessionStore[token] = { token, user, created: Date.now() };
     return token;
   }
 
-  // 4.2 getSession
   getSession(token: string): Session | null {
     return this.sessionStore[token] || null;
   }
 
-  // 4.3 refreshSession
   refreshSession(token: string): Session {
     const session = this.getSession(token);
     if (!session) throw new Error("Invalid session");
@@ -613,53 +597,44 @@ class UniversalSDK {
     return session;
   }
 
-  // 4.4 destroySession
   destroySession(token: string): boolean {
     delete this.sessionStore[token];
     return true;
   }
 
-  // 4.5 getCurrentUser
   getCurrentUser(token: string): User | null {
     const session = this.getSession(token);
     return session?.user || null;
   }
 
-  // 5.1 renderTemplate
   renderTemplate(name: string, data: Record<string, any> = {}): string {
     let tpl = this.templates[name];
     if (!tpl) throw new Error(`Template not found: ${name}`);
     return tpl.replace(/\{\{(.*?)\}\}/g, (_, key) => data[key.trim()] ?? "");
   }
 
-  // 5.2 prettyPrint
   prettyPrint(data: any): string {
     return JSON.stringify(data, null, 2);
   }
 
-  // 5.3 log
   log(label: string, data: any): void {
     console.log(`[${label}]`, data);
   }
 
-  // 5.4 getAuditLog
   getAuditLog(): Record<string, AuditLogEntry[]> {
     return this.auditLog;
   }
 
-  // 5.5 resetAuditLog
   resetAuditLog(): void {
     this.auditLog = {};
   }
 
-  // 5.6 _audit
   private _audit(collection: string, data: any, action: string): void {
     const logs = this.auditLog[collection] || [];
     logs.push({ action, data, timestamp: Date.now() });
-    this.auditLog[collection] = logs.slice(-100); // keep last 100
+    this.auditLog[collection] = logs.slice(-100);
   }
 
-  // 5.7 status
   status(): Record<string, any> {
     return {
       owner: this.owner,
@@ -671,12 +646,10 @@ class UniversalSDK {
     };
   }
 
-  // 5.8 version
   version(): string {
     return "1.0.0";
   }
 
-  // 5.9 diagnose
   async diagnose(): Promise<Record<string, boolean>> {
     const checks = {
       githubAccess: !!(await this.listCollections().catch(() => false)),
@@ -686,7 +659,6 @@ class UniversalSDK {
     return checks;
   }
 
-  // 5.10 throttle
   throttle<T extends (...args: any[]) => any>(fn: T, wait: number = 1000): (...args: Parameters<T>) => ReturnType<T> | undefined {
     let last = 0;
     return (...args: Parameters<T>) => {
@@ -698,17 +670,14 @@ class UniversalSDK {
     };
   }
 
-  // 5.11 setConfig
   setConfig(key: keyof this, value: any): void {
     (this as any)[key] = value;
   }
 
-  // 5.12 getConfig
   getConfig(key: keyof this): any {
     return (this as any)[key];
   }
 
-  // 5.13 getSystemInfo
   getSystemInfo(): Record<string, string> {
     return {
       platform: (globalThis as any).navigator?.platform || "server",
@@ -717,7 +686,6 @@ class UniversalSDK {
     };
   }
 
-  // 5.14 catchErrors
   catchErrors<T>(fn: () => T): T | null {
     try {
       return fn();
@@ -727,7 +695,6 @@ class UniversalSDK {
     }
   }
 
-  // 6.1 uploadToCloudinary
   async uploadToCloudinary(file: File, folder: string = ""): Promise<CloudinaryUploadResult> {
     if (!this.cloudinary.uploadPreset || !this.cloudinary.cloudName) {
       throw new Error("Cloudinary configuration is incomplete.");
@@ -748,12 +715,10 @@ class UniversalSDK {
     return json;
   }
 
-  // 6.2 uploadMediaFile (alias)
   async uploadMediaFile(file: File, folder: string = this.mediaPath): Promise<CloudinaryUploadResult> {
     return this.uploadToCloudinary(file, folder);
   }
 
-  // 6.3 getMediaFile
   getMediaFile(publicId: string, options: string = ""): string {
     if (!this.cloudinary.cloudName) {
       throw new Error("Cloudinary cloudName not set.");
@@ -761,7 +726,6 @@ class UniversalSDK {
     return `https://res.cloudinary.com/${this.cloudinary.cloudName}/image/upload/${options}/${publicId}`;
   }
 
-  // 6.4 deleteMediaFile
   async deleteMediaFile(publicId: string, apiKey: string = this.cloudinary.apiKey!, apiSecret: string = this.cloudinary.apiSecret!): Promise<any> {
     if (!apiKey || !apiSecret || !this.cloudinary.cloudName) {
       throw new Error("Delete requires apiKey, apiSecret and cloudName (use from secure backend).");
@@ -792,7 +756,6 @@ class UniversalSDK {
     return json;
   }
 
-  // 6.5 listMediaFiles (fallback: tag-based)
   async listMediaFiles(tag: string = "", max: number = 30): Promise<any[]> {
     if (!this.cloudinary.apiKey || !this.cloudinary.apiSecret || !this.cloudinary.cloudName) {
       throw new Error("List requires apiKey, apiSecret, and cloudName.");
@@ -824,7 +787,6 @@ class UniversalSDK {
     return json.resources;
   }
 
-  // 6.6 renameMediaFile
   async renameMediaFile(fromPublicId: string, toPublicId: string): Promise<any> {
     if (!this.cloudinary.apiKey || !this.cloudinary.apiSecret || !this.cloudinary.cloudName) {
       throw new Error("Rename requires apiKey, apiSecret, and cloudName.");
@@ -856,7 +818,6 @@ class UniversalSDK {
     return json;
   }
 
-  // 6.7 getMediaMetadata
   async getMediaMetadata(publicId: string): Promise<any> {
     if (!this.cloudinary.apiKey || !this.cloudinary.apiSecret || !this.cloudinary.cloudName) {
       throw new Error("Metadata fetch requires apiKey, apiSecret, and cloudName.");
@@ -882,7 +843,6 @@ class UniversalSDK {
     return json;
   }
 
-  // 6.8 transformMedia
   transformMedia(publicId: string, options: string = "w_600,c_fill"): string {
     if (!this.cloudinary.cloudName) {
       throw new Error("Cloudinary cloudName is missing.");
@@ -890,12 +850,10 @@ class UniversalSDK {
     return `https://res.cloudinary.com/${this.cloudinary.cloudName}/image/upload/${options}/${publicId}`;
   }
 
-  // 6.9 generateSignedURL (client-side support limited)
   async generateSignedURL(publicId: string, options: Record<string, any> = {}): Promise<never> {
     throw new Error("Signed URL generation must be done securely on backend.");
   }
 
-  // 🔐 Internal SHA1 helper (browser-compatible)
   private async _sha1(str: string): Promise<string> {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
@@ -905,30 +863,25 @@ class UniversalSDK {
       .join("");
   }
 
-  // 7.1 init
   async init(): Promise<UniversalSDK> {
-    await this.listCollections(); // Test GitHub connection
+    await this.listCollections();
     return this;
   }
 
-  // 7.2 destroyInstance
   destroyInstance(): void {
     Object.keys(this).forEach(k => delete (this as any)[k]);
   }
 
-  // 7.3 reset
   reset(): void {
     this.sessionStore = {};
     this.otpMemory = {};
     this.auditLog = {};
   }
 
-  // 7.4 isReady
   isReady(): boolean {
     return !!(this.owner && this.repo && this.token);
   }
 
-  // 7.5 waitForReady
   async waitForReady(maxWait: number = 5000): Promise<boolean> {
     const start = Date.now();
     while (!this.isReady()) {

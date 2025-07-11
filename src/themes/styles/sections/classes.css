@@ -1,0 +1,185 @@
+/* Classes Section Styles */
+
+/* Style 1: Grade Grid */
+.classes-grade-grid {
+    padding: 3rem 1rem;
+}
+.classes-grade-grid .grade-group {
+    margin-bottom: 3rem;
+}
+.classes-grade-grid .grade-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--brand-primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+.classes-grade-grid .classes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.classes-grade-grid .class-card {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+
+/* Style 2: Accordion Subjects */
+.classes-accordion-subjects {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.classes-accordion-subjects details {
+    margin-bottom: 1rem;
+}
+.classes-accordion-subjects summary {
+    padding: 1.25rem;
+    background-color: #f7fafc;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.classes-accordion-subjects .class-list {
+    padding: 1rem;
+}
+
+/* Style 3: Stacked Cards */
+.classes-stacked-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.classes-stacked-cards .class-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+}
+
+/* Style 4: Timetable Style */
+.classes-timetable-style {
+    padding: 2rem 1rem;
+}
+.classes-timetable-style .timetable {
+    width: 100%;
+    border-collapse: collapse;
+}
+.classes-timetable-style th, .classes-timetable-style td {
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    text-align: left;
+}
+.classes-timetable-style th {
+    background-color: #f7fafc;
+}
+
+/* Style 5: Side-by-Side Panels */
+.classes-side-by-side-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.classes-side-by-side-panels .panel {
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+
+/* Style 6: Chip Filters */
+.classes-chip-filters {
+    padding: 2rem 1rem;
+}
+.classes-chip-filters .filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+.classes-chip-filters .chip.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+/* Style 7: Minimal Rows */
+.classes-minimal-rows {
+    padding: 2rem 1rem;
+}
+.classes-minimal-rows .class-row {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Style 8: Reveal on Hover */
+.classes-reveal-on-hover .class-card {
+    position: relative;
+    overflow: hidden;
+}
+.classes-reveal-on-hover .details {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s;
+}
+.classes-reveal-on-hover .class-card:hover .details {
+    transform: translateY(0);
+}
+
+/* Style 9: Vertical Tags */
+.classes-vertical-tags .class-item {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+.classes-vertical-tags .grade-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--brand-primary);
+    color: white;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+.classes-vertical-tags .class-info {
+    padding: 1.5rem;
+}
+
+/* Style 10: Bordered Cards */
+.classes-bordered-cards .class-card {
+    border: 2px solid var(--brand-primary-light);
+    transition: border-color 0.3s;
+}
+.classes-bordered-cards .class-card:hover {
+    border-color: var(--brand-primary);
+}
+
+/* Style 11: Inline Expanders */
+.classes-inline-expanders details {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.classes-inline-expanders summary {
+    cursor: pointer;
+    font-weight: bold;
+}
+.classes-inline-expanders .class-details {
+    padding-top: 1rem;
+}

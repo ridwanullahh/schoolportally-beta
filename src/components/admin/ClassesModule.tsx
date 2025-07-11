@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -36,6 +37,7 @@ interface Class {
 
 const ClassesModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [classes, setClasses] = useState<Class[]>([]);
   const [programs, setPrograms] = useState<any[]>([]);
   const [teachers, setTeachers] = useState<any[]>([]);
@@ -68,7 +70,7 @@ const ClassesModule: React.FC = () => {
   }, [school]);
 
   const fetchData = async () => {
-    if (!school) return;
+    if (!school || !user) return;
 
     setLoading(true);
     try {
@@ -78,7 +80,13 @@ const ClassesModule: React.FC = () => {
         sdk.get('staff')
       ]);
 
-      const schoolClasses = allClasses.filter(cls => cls.schoolId === school.id);
+      let schoolClasses = allClasses.filter(cls => cls.schoolId === school.id);
+
+      if (user.userType === 'teacher') {
+        schoolClasses = schoolClasses.filter(cls => cls.teacherId === user.id);
+      } else if (user.userType === 'student') {
+        schoolClasses = schoolClasses.filter(cls => cls.students.includes(user.id));
+      }
       const schoolPrograms = allPrograms.filter(prog => prog.schoolId === school.id);
       const schoolTeachers = allStaff.filter(staff => staff.schoolId === school.id && staff.position === 'teacher');
 

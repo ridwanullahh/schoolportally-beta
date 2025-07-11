@@ -1,6 +1,8 @@
-
 import React, { useState } from 'react';
+import { Sidebar } from '@/components/ui/sidebar';
+import { Route, Link, useLocation, Outlet } from 'react-router-dom';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -20,10 +22,12 @@ import {
   MessageSquare,
   DollarSign,
   Camera,
-  Briefcase
+  Briefcase,
+  ShoppingCart
 } from 'lucide-react';
 
 // Import all modules including the new ones
+import UsersModule from '@/components/admin/UsersModule';
 import SiteEditor from '@/components/admin/SiteEditor';
 import AdmissionsModule from '@/components/admin/AdmissionsModule';
 import ProgramsModule from '@/components/admin/ProgramsModule';
@@ -43,6 +47,7 @@ import CalendarModule from '@/components/admin/CalendarModule';
 import ELibraryModule from '@/components/admin/ELibraryModule';
 import ResultsModule from '@/components/admin/ResultsModule';
 import MessagesModule from '@/components/admin/MessagesModule';
+import EcommerceModule from '@/components/admin/EcommerceModule';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -140,34 +145,6 @@ const OverviewModule = () => {
   );
 };
 
-// Placeholder modules for features not yet implemented
-const StudentsModule = () => (
-  <div className="space-y-6">
-    <h2 className="text-2xl font-bold">Student Management</h2>
-    <div className="text-center py-8 text-gray-500">
-      Student management interface will be implemented here.
-    </div>
-  </div>
-);
-
-const TeachersModule = () => (
-  <div className="space-y-6">
-    <h2 className="text-2xl font-bold">Teacher Management</h2>
-    <div className="text-center py-8 text-gray-500">
-      Teacher management interface will be implemented here.
-    </div>
-  </div>
-);
-
-const StaffModule = () => (
-  <div className="space-y-6">
-    <h2 className="text-2xl font-bold">Staff Management</h2>
-    <div className="text-center py-8 text-gray-500">
-      Staff management interface will be implemented here.
-    </div>
-  </div>
-);
-
 const SettingsModule = () => (
   <div className="space-y-6">
     <h2 className="text-2xl font-bold">School Settings</h2>
@@ -183,121 +160,118 @@ interface SidebarItem {
   icon: any;
 }
 
+const sidebarItems: SidebarItem[] = [
+  { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+  { id: 'site-editor', label: 'Site Editor', icon: Edit },
+  { id: 'ecommerce', label: 'Store', icon: ShoppingCart },
+  { id: 'admissions', label: 'Admissions', icon: Users },
+  { id: 'users', label: 'Users', icon: Users },
+  { id: 'programs', label: 'Programs', icon: BookOpen },
+  { id: 'classes', label: 'Classes', icon: Users },
+  { id: 'calendar', label: 'Academic Calendar', icon: Calendar },
+  { id: 'results', label: 'Results', icon: Award },
+  { id: 'fees', label: 'Fees', icon: DollarSign },
+  { id: 'messages', label: 'Messages', icon: MessageSquare },
+  { id: 'blog', label: 'Blog', icon: FileText },
+  { id: 'announcements', label: 'Announcements', icon: Megaphone },
+  { id: 'events', label: 'Events', icon: Calendar },
+  { id: 'gallery', label: 'Gallery', icon: Camera },
+  { id: 'elibrary', label: 'E-Library', icon: Library },
+  { id: 'lms', label: 'LMS', icon: BookOpen },
+  { id: 'forms', label: 'Forms', icon: FileText },
+  { id: 'wiki', label: 'Knowledge Base', icon: Book },
+  { id: 'jobs', label: 'Jobs', icon: Briefcase },
+  { id: 'faq', label: 'FAQ', icon: HelpCircle },
+  { id: 'support', label: 'Support', icon: BookOpen },
+  { id: 'settings', label: 'Settings', icon: Settings },
+];
+
+export const adminRoutes = (
+  <>
+    <Route index element={<OverviewModule />} />
+    <Route path="overview" element={<OverviewModule />} />
+    <Route path="site-editor" element={<SiteEditor />} />
+    <Route path="ecommerce" element={<EcommerceModule />} />
+    <Route path="admissions" element={<AdmissionsModule />} />
+    <Route path="users" element={<UsersModule />} />
+    <Route path="programs" element={<ProgramsModule />} />
+    <Route path="classes" element={<ClassesModule />} />
+    <Route path="calendar" element={<CalendarModule />} />
+    <Route path="results" element={<ResultsModule />} />
+    <Route path="fees" element={<FeesModule />} />
+    <Route path="messages" element={<MessagesModule />} />
+    <Route path="blog" element={<BlogModule />} />
+    <Route path="faq" element={<FAQModule />} />
+    <Route path="announcements" element={<AnnouncementsModule />} />
+    <Route path="lms" element={<LMSModule />} />
+    <Route path="forms" element={<FormsModule />} />
+    <Route path="wiki" element={<WikiModule />} />
+    <Route path="events" element={<EventsModule />} />
+    <Route path="gallery" element={<GalleryModule />} />
+    <Route path="elibrary" element={<ELibraryModule />} />
+    <Route path="jobs" element={<JobsModule />} />
+    <Route path="support" element={<SupportModule />} />
+    <Route path="settings" element={<SettingsModule />} />
+  </>
+);
+
 const SchoolAdminDashboard = () => {
-  const { school } = useSchool();
-  const [activeTab, setActiveTab] = useState('overview');
+    const { school } = useSchool();
+    const { user, loading } = useAuth();
+    const location = useLocation();
+    const activePath = location.pathname.split('/').pop() || 'overview';
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  const sidebarItems: SidebarItem[] = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'site-editor', label: 'Site Editor', icon: Edit },
-    { id: 'admissions', label: 'Admissions', icon: Users },
-    { id: 'programs', label: 'Programs', icon: BookOpen },
-    { id: 'classes', label: 'Classes', icon: Users },
-    { id: 'calendar', label: 'Academic Calendar', icon: Calendar },
-    { id: 'results', label: 'Results', icon: Award },
-    { id: 'fees', label: 'Fees', icon: DollarSign },
-    { id: 'messages', label: 'Messages', icon: MessageSquare },
-    { id: 'blog', label: 'Blog', icon: FileText },
-    { id: 'announcements', label: 'Announcements', icon: Megaphone },
-    { id: 'events', label: 'Events', icon: Calendar },
-    { id: 'gallery', label: 'Gallery', icon: Camera },
-    { id: 'elibrary', label: 'E-Library', icon: Library },
-    { id: 'lms', label: 'LMS', icon: BookOpen },
-    { id: 'forms', label: 'Forms', icon: FileText },
-    { id: 'wiki', label: 'Knowledge Base', icon: Book },
-    { id: 'jobs', label: 'Jobs', icon: Briefcase },
-    { id: 'faq', label: 'FAQ', icon: HelpCircle },
-    { id: 'support', label: 'Support', icon: BookOpen },
-    { id: 'students', label: 'Students', icon: Users },
-    { id: 'teachers', label: 'Teachers', icon: Users },
-    { id: 'staff', label: 'Staff', icon: Users },
-    { id: 'settings', label: 'Settings', icon: Settings },
-  ];
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'overview':
-        return <OverviewModule />;
-      case 'site-editor':
-        return <SiteEditor />;
-      case 'admissions':
-        return <AdmissionsModule />;
-      case 'programs':
-        return <ProgramsModule />;
-      case 'classes':
-        return <ClassesModule />;
-      case 'calendar':
-        return <CalendarModule />;
-      case 'results':
-        return <ResultsModule />;
-      case 'fees':
-        return <FeesModule />;
-      case 'messages':
-        return <MessagesModule />;
-      case 'blog':
-        return <BlogModule />;
-      case 'faq':
-        return <FAQModule />;
-      case 'announcements':
-        return <AnnouncementsModule />;
-      case 'lms':
-        return <LMSModule />;
-      case 'forms':
-        return <FormsModule />;
-      case 'wiki':
-        return <WikiModule />;
-      case 'events':
-        return <EventsModule />;
-      case 'gallery':
-        return <GalleryModule />;
-      case 'elibrary':
-        return <ELibraryModule />;
-      case 'jobs':
-        return <JobsModule />;
-      case 'support':
-        return <SupportModule />;
-      case 'students':
-        return <StudentsModule />;
-      case 'teachers':
-        return <TeachersModule />;
-      case 'staff':
-        return <StaffModule />;
-      case 'settings':
-        return <SettingsModule />;
-      default:
-        return <OverviewModule />;
+    if (loading) {
+        return (
+            <div className="flex h-screen items-center justify-center">
+                <div>Loading...</div>
+            </div>
+        );
     }
-  };
 
-  return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200 py-4 overflow-y-auto">
-        <div className="px-6 mb-8">
-          <CardTitle className="text-lg font-semibold">{school?.name} Admin</CardTitle>
-          <CardContent className="text-sm text-gray-500 p-0">Manage your school</CardContent>
-        </div>
-        <div className="space-y-1 px-3">
-          {sidebarItems.map((item) => (
-            <Button
-              key={item.id}
-              variant="ghost"
-              className={`w-full justify-start ${activeTab === item.id ? 'bg-gray-100' : ''}`}
-              onClick={() => setActiveTab(item.id)}
-            >
-              <item.icon className="w-4 h-4 mr-2" />
-              {item.label}
-            </Button>
-          ))}
-        </div>
-      </div>
+    const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
 
-      {/* Main Content */}
-      <div className="flex-1 p-8 overflow-y-auto">
-        {renderContent()}
-      </div>
-    </div>
-  );
+    if (!isAdmin) {
+        return (
+            <div className="flex h-screen items-center justify-center">
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold">Access Denied</h1>
+                    <p>You do not have permission to view this page.</p>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex h-screen bg-gray-50">
+            <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen}>
+                <div className="px-6 mb-8">
+                    <CardTitle className="text-lg font-semibold">{school?.name} Admin</CardTitle>
+                    <CardContent className="text-sm text-gray-500 p-0">Manage your school</CardContent>
+                </div>
+                <div className="space-y-1 px-3">
+                    {sidebarItems.map((item) => (
+                        <Button
+                            key={item.id}
+                            variant="ghost"
+                            className={`w-full justify-start ${activePath === item.id ? 'bg-gray-100' : ''}`}
+                            asChild
+                        >
+                            <Link to={item.id}>
+                                <item.icon className="w-4 h-4 mr-2" />
+                                {isSidebarOpen && item.label}
+                            </Link>
+                        </Button>
+                    ))}
+                </div>
+            </Sidebar>
+
+            <div className="flex-1 p-8 overflow-y-auto">
+                <Outlet />
+            </div>
+        </div>
+    );
 };
 
 export default SchoolAdminDashboard;

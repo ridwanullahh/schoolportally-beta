@@ -1,0 +1,137 @@
+/* Call to Action (CTA) Section Styles */
+
+/* Style 1: Banner Strip */
+.cta-banner-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    background-color: var(--brand-primary);
+    color: white;
+    border-radius: 0.75rem;
+}
+
+/* Style 2: Split Layout */
+.cta-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem;
+    background-color: #f7fafc;
+    border-radius: 0.75rem;
+}
+
+/* Style 3: Box CTA */
+.cta-box-cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+
+/* Style 4: Sticky Bottom */
+.cta-sticky-bottom {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+/* Style 5: Line CTA */
+.cta-line-cta {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+.cta-line-cta a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: bold;
+    color: var(--brand-primary);
+}
+
+/* Style 6: Rising Panel */
+.cta-rising-panel {
+    padding: 3rem 2rem;
+    border-radius: 0.75rem;
+    background-color: #edf2f7;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+.cta-rising-panel.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Style 7: Corner Anchor */
+.cta-corner-anchor {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+/* Style 8: Block Fade */
+.cta-block-fade {
+    padding: 3rem 2rem;
+    border-radius: 0.75rem;
+    background-color: var(--brand-primary-light);
+    transition: background-color 0.4s, color 0.4s;
+}
+.cta-block-fade:hover {
+    background-color: var(--brand-primary);
+    color: white;
+}
+.cta-block-fade:hover .btn-secondary {
+    background-color: white;
+    color: var(--brand-primary);
+}
+
+/* Style 9: Curved Panel */
+.cta-curved-panel {
+    padding: 4rem 2rem;
+    background-color: #f7fafc;
+    border-radius: 50px;
+    text-align: center;
+}
+
+/* Style 10: Toggle Display */
+.cta-toggle-display summary {
+    padding: 1rem 1.5rem;
+    background-color: var(--brand-primary);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+.cta-toggle-display .cta-content {
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* Style 11: Layered CTA */
+.cta-layered-cta {
+    position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 0.75rem;
+    background-color: var(--brand-primary-light);
+}
+.cta-layered-cta::before {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 2px dashed var(--brand-primary);
+    border-radius: 0.5rem;
+    transform: rotate(-2deg);
+}

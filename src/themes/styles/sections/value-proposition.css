@@ -1,0 +1,215 @@
+/* Value Proposition Section Styles */
+
+/* Style 1: Tri Blocks */
+.value_prop-tri-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.value_prop-tri-blocks .prop-block {
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.value_prop-tri-blocks .prop-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Style 2: Flowchart */
+.value_prop-flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+}
+.value_prop-flowchart .prop-item {
+    position: relative;
+    padding: 1.5rem;
+    width: 80%;
+    max-width: 500px;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+}
+.value_prop-flowchart .prop-item:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--brand-primary);
+}
+
+/* Style 3: Comparison Table */
+.value_prop-comparison-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.value_prop-comparison-table .prop-column {
+    padding: 1.5rem;
+}
+.value_prop-comparison-table .prop-column:first-child {
+    background-color: #f7fafc;
+    border-right: 1px solid #e2e8f0;
+}
+
+/* Style 4: Feature/Benefit Stack */
+.value_prop-feature-benefit-stack {
+    padding: 3rem 1rem;
+}
+.value_prop-feature-benefit-stack .prop-pair {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+.value_prop-feature-benefit-stack .prop-pair:last-child {
+    border-bottom: none;
+}
+
+/* Style 5: Walled Frame */
+.value_prop-walled-frame {
+    padding: 3rem;
+    border: 2px solid var(--brand-primary);
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+}
+
+/* Style 6: Emphasis Steps */
+.value_prop-emphasis-steps {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 1rem;
+    gap: 1rem;
+}
+.value_prop-emphasis-steps .step {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #f7fafc;
+    border-bottom: 4px solid transparent;
+    transition: border-color 0.3s;
+}
+.value_prop-emphasis-steps .step:hover {
+    border-color: var(--brand-primary);
+}
+
+/* Style 7: Timeline Line */
+.value_prop-timeline-line {
+    position: relative;
+    padding: 3rem 1rem;
+}
+.value_prop-timeline-line::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+.value_prop-timeline-line .prop-node {
+    position: relative;
+    width: 50%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+.value_prop-timeline-line .prop-node:nth-child(odd) {
+    left: 0;
+    padding-right: 2rem;
+    text-align: right;
+}
+.value_prop-timeline-line .prop-node:nth-child(even) {
+    left: 50%;
+    padding-left: 2rem;
+}
+
+/* Style 8: Icon Punch */
+.value_prop-icon-punch {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.value_prop-icon-punch .prop-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.value_prop-icon-punch .icon {
+    flex-shrink: 0;
+    color: var(--brand-primary);
+}
+
+/* Style 9: Rising Cards */
+.value_prop-rising-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 1rem;
+}
+.value_prop-rising-cards .prop-card {
+    padding: 2rem;
+    border-radius: 0.75rem;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.value_prop-rising-cards .prop-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Style 10: Tab Switch */
+.value_prop-tab-switch {
+    padding: 2rem 0;
+}
+/* Basic tab structure, requires JS for full functionality */
+.value_prop-tab-switch .tabs {
+    display: flex;
+    border-bottom: 1px solid #e2e8f0;
+}
+.value_prop-tab-switch .tab {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+.value_prop-tab-switch .tab.active {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+.value_prop-tab-switch .tab-content {
+    padding: 2rem;
+}
+
+/* Style 11: Dynamic Slide Block */
+.value_prop-dynamic-slide-block {
+    overflow: hidden;
+    position: relative;
+    padding: 3rem 1rem;
+}
+.value_prop-dynamic-slide-block .prop-slide {
+    animation: slide-in-right 0.8s forwards;
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

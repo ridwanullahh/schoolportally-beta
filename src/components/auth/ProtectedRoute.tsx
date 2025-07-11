@@ -51,6 +51,28 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     );
   }
 
+  // Check for user verification and approval status
+  if (user && (!user.verified || user.status !== 'approved')) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-6">
+            <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+            <p className="text-gray-600 mb-6">
+              Your account is not yet verified or approved. Please contact an administrator.
+            </p>
+            <Button
+              onClick={() => window.history.back()}
+              className="w-full"
+            >
+              Go Back
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   // Check role requirements
   if (requiredRoles.length > 0) {
     const hasRequiredRole = requiredRoles.some(role => user?.roles?.includes(role));
@@ -61,7 +83,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
             <CardContent className="text-center p-6">
               <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
               <p className="text-gray-600 mb-6">You don't have permission to access this area.</p>
-              <Button 
+              <Button
                 onClick={() => window.history.back()}
                 className="w-full"
               >

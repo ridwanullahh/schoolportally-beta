@@ -1,0 +1,197 @@
+/* Faculty Section Styles */
+
+/* Style 1: Grouped by Department */
+.faculty-grouped-by-department {
+    padding: 3rem 1rem;
+}
+.faculty-grouped-by-department .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.faculty-grouped-by-department .tab.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+.faculty-grouped-by-department .faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Style 2: Card Collection */
+.faculty-card-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.faculty-card-collection .faculty-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+.faculty-card-collection .faculty-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+}
+
+/* Style 3: Masonry Layout */
+.faculty-masonry-layout {
+    column-count: 4; /* Adjust count for responsiveness */
+    column-gap: 1.5rem;
+    padding: 3rem 1rem;
+}
+.faculty-masonry-layout .faculty-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Style 4: Compact List */
+.faculty-compact-list {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+.faculty-compact-list .faculty-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.faculty-compact-list .faculty-name {
+    font-weight: bold;
+}
+
+/* Style 5: Flippable Cards */
+.faculty-flippable-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+    perspective: 1200px;
+}
+.faculty-flippable-cards .flip-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 250px;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+.faculty-flippable-cards .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.faculty-flippable-cards .flip-card-front,
+.faculty-flippable-cards .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+.faculty-flippable-cards .flip-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Style 6: Show/Hide Bio */
+.faculty-show-hide-bio details {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.faculty-show-hide-bio summary {
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+.faculty-show-hide-bio .bio-content {
+    padding: 0 1rem 1rem;
+}
+
+/* Style 7: Expanding Tiles */
+.faculty-expanding-tiles .faculty-tile {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.3s;
+}
+.faculty-expanding-tiles .faculty-tile:hover {
+    background-color: #f7fafc;
+}
+
+/* Style 8: Sidebar Filter */
+.faculty-sidebar-filter {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+.faculty-sidebar-filter .filter-sidebar {
+    position: sticky;
+    top: 2rem;
+}
+
+/* Style 9: Tag Badges */
+.faculty-tag-badges .faculty-card {
+    position: relative;
+    padding-top: 2.5rem;
+}
+.faculty-tag-badges .tag-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+/* Style 10: Block Detail Reveal */
+.faculty-block-detail-reveal .faculty-block {
+    position: relative;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+.faculty-block-detail-reveal .details {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s;
+}
+.faculty-block-detail-reveal .faculty-block:hover .details {
+    transform: translateY(0);
+}
+
+/* Style 11: Scroll Linked Directory */
+.faculty-scroll-linked-directory {
+    display: flex;
+    gap: 2rem;
+}
+.faculty-scroll-linked-directory .directory-nav {
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+}
+.faculty-scroll-linked-directory .directory-nav a {
+    display: block;
+    text-align: center;
+    padding: 0.25rem;
+}
+.faculty-scroll-linked-directory .faculty-list .letter-group {
+    margin-bottom: 2rem;
+}

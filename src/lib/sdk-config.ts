@@ -385,7 +385,29 @@ const dbSchema = {
       status: 'string',
       readAt: 'string',
       createdAt: 'string'
-    }
+    },
+    products: {
+      required: ['name', 'price', 'status'],
+      types: {
+        name: 'string',
+        price: 'number',
+        status: 'string',
+        stock: 'number',
+      },
+    },
+    orders: {
+      required: ['customerId', 'items', 'total', 'status'],
+      types: {
+        total: 'number',
+        status: 'string',
+      },
+    },
+    customers: {
+      required: ['firstName', 'lastName', 'email'],
+      types: {
+        email: 'string',
+      },
+    },
   }
 };
 

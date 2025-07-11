@@ -1,0 +1,177 @@
+/* FAQ Section Styles */
+
+/* Style 1: Accordion FAQ */
+.faq-accordion-faq {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+.faq-accordion-faq details {
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+.faq-accordion-faq summary {
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.faq-accordion-faq .answer {
+    padding: 1rem;
+    color: #4a5568;
+}
+
+/* Style 2: Grid QA Cards */
+.faq-grid-qa-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.faq-grid-qa-cards .qa-card {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    background-color: #f7fafc;
+}
+.faq-grid-qa-cards .question-text {
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+/* Style 3: Tabbed FAQs */
+.faq-tabbed-faqs {
+    padding: 2rem 1rem;
+}
+.faq-tabbed-faqs .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.faq-tabbed-faqs .tab {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    background-color: #edf2f7;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+.faq-tabbed-faqs .tab.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+/* Style 4: Searchable List */
+.faq-searchable-list {
+    padding: 2rem 1rem;
+}
+.faq-searchable-list .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.faq-searchable-list .faq-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Style 5: Floating Answers */
+.faq-floating-answers .faq-item {
+    position: relative;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+.faq-floating-answers .answer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.faq-floating-answers .faq-item:hover .answer {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style 6: Minimal Line Items */
+.faq-minimal-line-items {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.faq-minimal-line-items .faq-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.faq-minimal-line-items .question {
+    font-weight: 500;
+}
+
+/* Style 7: Grouped Accordions */
+.faq-grouped-accordions .category-group {
+    margin-bottom: 2rem;
+}
+.faq-grouped-accordions .category-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--brand-primary);
+    padding-bottom: 0.5rem;
+}
+
+/* Style 8: Expandable Rows */
+.faq-expandable-rows .faq-item {
+    border-bottom: 1px solid #e2e8f0;
+}
+.faq-expandable-rows .faq-item summary {
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+/* Style 9: Sidebar Filter */
+.faq-sidebar-filter {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+.faq-sidebar-filter .filter-sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+}
+
+/* Style 10: Pop Answer */
+.faq-pop-answer .faq-item {
+    cursor: pointer;
+}
+.faq-pop-answer .answer {
+    animation: slide-in-bottom 0.4s forwards;
+}
+@keyframes slide-in-bottom {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Style 11: Nested Q&A */
+.faq-nested-q-a .parent-question {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.faq-nested-q-a .child-question {
+    padding-left: 1.5rem;
+    border-left: 2px solid #e2e8f0;
+}
