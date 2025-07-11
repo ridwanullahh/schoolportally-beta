@@ -1,0 +1,240 @@
+/* History Section Styles */
+
+/* Style 1: Timeline Vertical */
+.history-timeline-vertical {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+.history-timeline-vertical::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+.history-timeline-vertical .milestone {
+    position: relative;
+    width: 50%;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+.history-timeline-vertical .milestone:nth-child(odd) {
+    align-self: flex-start;
+    padding-right: 2rem;
+    text-align: right;
+}
+.history-timeline-vertical .milestone:nth-child(even) {
+    align-self: flex-end;
+    margin-left: 50%;
+    padding-left: 2rem;
+}
+.history-timeline-vertical .milestone-dot {
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--brand-primary);
+    border: 3px solid white;
+}
+.history-timeline-vertical .milestone:nth-child(odd) .milestone-dot {
+    right: -10px;
+}
+.history-timeline-vertical .milestone:nth-child(even) .milestone-dot {
+    left: -10px;
+}
+
+/* Style 2: Timeline Horizontal */
+.history-timeline-horizontal {
+    display: flex;
+    overflow-x: auto;
+    padding: 3rem 1rem;
+    position: relative;
+}
+.history-timeline-horizontal::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e2e8f0;
+}
+.history-timeline-horizontal .milestone {
+    position: relative;
+    padding-top: 2rem;
+    min-width: 200px;
+}
+.history-timeline-horizontal .milestone-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--brand-primary);
+}
+
+/* Style 3: Accordion Eras */
+.history-accordion-eras {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.history-accordion-eras details {
+    margin-bottom: 1rem;
+}
+.history-accordion-eras summary {
+    padding: 1.5rem;
+    background-color: #f7fafc;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style 4: Stepped Blocks */
+.history-stepped-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 1rem;
+}
+.history-stepped-blocks .milestone {
+    padding: 2rem;
+    background-color: #f7fafc;
+    border-left: 5px solid var(--brand-primary);
+}
+
+/* Style 5: Zigzag Storyline */
+.history-zigzag-storyline {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 1rem;
+}
+.history-zigzag-storyline .milestone {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.history-zigzag-storyline .milestone:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.history-zigzag-storyline .year-badge {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-primary);
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Style 6: Minimal Date Pillars */
+.history-minimal-date-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.history-minimal-date-pillars .milestone {
+    padding: 1.5rem;
+    border-top: 3px solid var(--brand-primary);
+}
+.history-minimal-date-pillars .year {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style 7: Hover Reveal Timeline */
+/* Similar to vertical but with hover effect */
+.history-hover-reveal-timeline .milestone .details {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.history-hover-reveal-timeline .milestone:hover .details {
+    opacity: 1;
+}
+
+/* Style 8: Skewed Years */
+.history-skewed-years {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 3rem 0;
+}
+.history-skewed-years .milestone {
+    padding: 3rem 2rem;
+    transform: skewY(-3deg);
+}
+.history-skewed-years .milestone:nth-child(odd) {
+    background-color: #f7fafc;
+}
+.history-skewed-years .milestone-content {
+    transform: skewY(3deg);
+}
+
+/* Style 9: Sticky Milestones */
+.history-sticky-milestones {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 3rem 1rem;
+}
+.history-sticky-milestones .year-nav {
+    position: sticky;
+    top: 2rem;
+}
+.history-sticky-milestones .year-link {
+    display: block;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+.history-sticky-milestones .year-link.active {
+    color: var(--brand-primary);
+}
+
+/* Style 10: Grid by Decade */
+.history-grid-by-decade {
+    padding: 3rem 1rem;
+}
+.history-grid-by-decade .decade {
+    margin-bottom: 3rem;
+}
+.history-grid-by-decade .decade-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+.history-grid-by-decade .milestone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Style 11: Scroll Fade Story */
+.history-scroll-fade-story .milestone {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+.history-scroll-fade-story .milestone.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}

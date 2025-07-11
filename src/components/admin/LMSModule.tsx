@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Plus, Edit, Trash2, Users, BookOpen, Calendar } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 
@@ -36,6 +37,7 @@ interface Teacher {
 
 const LMSModule = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const { toast } = useToast();
   const [courses, setCourses] = useState<Course[]>([]);
   const [teachers, setTeachers] = useState<Teacher[]>([]);
@@ -52,7 +54,7 @@ const LMSModule = () => {
   });
 
   useEffect(() => {
-    if (school) {
+    if (school && user) {
       fetchCourses();
       fetchTeachers();
     }
@@ -61,7 +63,17 @@ const LMSModule = () => {
   const fetchCourses = async () => {
     try {
       const allCourses = await sdk.get<Course>('lms_courses');
-      const schoolCourses = allCourses.filter(course => course.schoolId === school?.id);
+      let schoolCourses = allCourses.filter(course => course.schoolId === school?.id);
+
+      if (user.userType === 'teacher') {
+        schoolCourses = schoolCourses.filter(course => course.instructorId === user.id);
+      } else if (user.userType === 'student') {
+        // This assumes that a student has a list of their enrolled course IDs
+        // You may need to fetch this list first
+        // For now, we'll assume the user object has a `enrolledCourses` array
+        const enrolledCourses = user.enrolledCourses || [];
+        schoolCourses = schoolCourses.filter(course => enrolledCourses.includes(course.id));
+      }
       
       // Fetch teacher names for courses
       const teachers = await sdk.get<Teacher>('users');

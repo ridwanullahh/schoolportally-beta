@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -45,6 +46,7 @@ interface Admission {
 
 const AdmissionsModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [admissions, setAdmissions] = useState<Admission[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedAdmission, setSelectedAdmission] = useState<Admission | null>(null);
@@ -166,6 +168,20 @@ const AdmissionsModule: React.FC = () => {
 
   if (loading) {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
+  }
+
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
+  if (!isAdmin) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Admissions</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>You do not have permission to view this page.</p>
+        </CardContent>
+      </Card>
+    );
   }
 
   return (

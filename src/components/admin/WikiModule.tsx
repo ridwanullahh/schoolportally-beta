@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -51,6 +51,7 @@ interface WikiCategory {
 
 const WikiModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [articles, setArticles] = useState<WikiArticle[]>([]);
   const [categories, setCategories] = useState<WikiCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -260,215 +261,220 @@ const WikiModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Knowledge Base</h2>
         <div className="flex space-x-2">
-          <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" onClick={() => resetCategoryForm()}>
-                <Folder className="w-4 h-4 mr-2" />
-                New Category
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Create New Category</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Category Name *</label>
-                  <Input
-                    value={categoryForm.name}
-                    onChange={(e) => setCategoryForm({ ...categoryForm, name: e.target.value })}
-                    placeholder="Enter category name"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Description</label>
-                  <Textarea
-                    value={categoryForm.description}
-                    onChange={(e) => setCategoryForm({ ...categoryForm, description: e.target.value })}
-                    placeholder="Category description"
-                    rows={3}
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Parent Category</label>
-                  <Select value={categoryForm.parentId} onValueChange={(value) => setCategoryForm({ ...categoryForm, parentId: value })}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select parent category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="">None (Root Category)</SelectItem>
-                      {categories.map((category) => (
-                        <SelectItem key={category.id} value={category.id}>
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Icon</label>
-                    <Input
-                      value={categoryForm.icon}
-                      onChange={(e) => setCategoryForm({ ...categoryForm, icon: e.target.value })}
-                      placeholder="folder"
-                    />
+          {(user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner') || user?.userType === 'teacher') && (
+            <>
+              <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" onClick={() => resetCategoryForm()}>
+                    <Folder className="w-4 h-4 mr-2" />
+                    New Category
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Create New Category</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Category Name *</label>
+                      <Input
+                        value={categoryForm.name}
+                        onChange={(e) => setCategoryForm({ ...categoryForm, name: e.target.value })}
+                        placeholder="Enter category name"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Description</label>
+                      <Textarea
+                        value={categoryForm.description}
+                        onChange={(e) => setCategoryForm({ ...categoryForm, description: e.target.value })}
+                        placeholder="Category description"
+                        rows={3}
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Parent Category</label>
+                      <Select value={categoryForm.parentId} onValueChange={(value) => setCategoryForm({ ...categoryForm, parentId: value })}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select parent category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="">None (Root Category)</SelectItem>
+                          {categories.map((category) => (
+                            <SelectItem key={category.id} value={category.id}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Icon</label>
+                        <Input
+                          value={categoryForm.icon}
+                          onChange={(e) => setCategoryForm({ ...categoryForm, icon: e.target.value })}
+                          placeholder="folder"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Color</label>
+                        <Input
+                          type="color"
+                          value={categoryForm.color}
+                          onChange={(e) => setCategoryForm({ ...categoryForm, color: e.target.value })}
+                        />
+                      </div>
+                    </div>
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Color</label>
-                    <Input
-                      type="color"
-                      value={categoryForm.color}
-                      onChange={(e) => setCategoryForm({ ...categoryForm, color: e.target.value })}
-                    />
+                  <div className="flex justify-end space-x-2 mt-4">
+                    <Button variant="outline" onClick={() => setIsCategoryDialogOpen(false)}>
+                      Cancel
+                    </Button>
+                    <Button onClick={handleCreateCategory}>
+                      Create Category
+                    </Button>
                   </div>
-                </div>
-              </div>
-              
-              <div className="flex justify-end space-x-2 mt-4">
-                <Button variant="outline" onClick={() => setIsCategoryDialogOpen(false)}>
-                  Cancel
-                </Button>
-                <Button onClick={handleCreateCategory}>
-                  Create Category
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
+                </DialogContent>
+              </Dialog>
           
-          <Dialog open={isArticleDialogOpen} onOpenChange={setIsArticleDialogOpen}>
-            <DialogTrigger asChild>
-              <Button onClick={() => { setIsEditing(false); resetArticleForm(); }}>
-                <Plus className="w-4 h-4 mr-2" />
-                New Article
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle>{isEditing ? 'Edit Article' : 'Create New Article'}</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Article Title *</label>
-                  <Input
-                    value={articleForm.title}
-                    onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })}
-                    placeholder="Enter article title"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Category</label>
-                    <Select value={articleForm.category} onValueChange={(value) => setArticleForm({ ...articleForm, category: value })}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {categories.map((category) => (
-                          <SelectItem key={category.id} value={category.id}>
-                            {category.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+              <Dialog open={isArticleDialogOpen} onOpenChange={setIsArticleDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button onClick={() => { setIsEditing(false); resetArticleForm(); }}>
+                    <Plus className="w-4 h-4 mr-2" />
+                    New Article
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>{isEditing ? 'Edit Article' : 'Create New Article'}</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Article Title *</label>
+                      <Input
+                        value={articleForm.title}
+                        onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })}
+                        placeholder="Enter article title"
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Category</label>
+                        <Select value={articleForm.category} onValueChange={(value) => setArticleForm({ ...articleForm, category: value })}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories.map((category) => (
+                              <SelectItem key={category.id} value={category.id}>
+                                {category.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Status</label>
+                        <Select value={articleForm.status} onValueChange={(value) => setArticleForm({ ...articleForm, status: value })}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="draft">Draft</SelectItem>
+                            <SelectItem value="published">Published</SelectItem>
+                            <SelectItem value="archived">Archived</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Visibility</label>
+                        <Select value={articleForm.visibility} onValueChange={(value) => setArticleForm({ ...articleForm, visibility: value })}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="public">Public</SelectItem>
+                            <SelectItem value="private">Private</SelectItem>
+                            <SelectItem value="restricted">Restricted</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Parent Article</label>
+                        <Select value={articleForm.parentId} onValueChange={(value) => setArticleForm({ ...articleForm, parentId: value })}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select parent article" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="">None</SelectItem>
+                            {articles.map((article) => (
+                              <SelectItem key={article.id} value={article.id}>
+                                {article.title}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Tags (comma separated)</label>
+                      <Input
+                        value={articleForm.tags}
+                        onChange={(e) => setArticleForm({ ...articleForm, tags: e.target.value })}
+                        placeholder="help, tutorial, guide"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Summary</label>
+                      <Textarea
+                        value={articleForm.summary}
+                        onChange={(e) => setArticleForm({ ...articleForm, summary: e.target.value })}
+                        placeholder="Brief summary of the article"
+                        rows={2}
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Content *</label>
+                      <Textarea
+                        value={articleForm.content}
+                        onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })}
+                        placeholder="Write your article content here..."
+                        rows={12}
+                      />
+                    </div>
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Status</label>
-                    <Select value={articleForm.status} onValueChange={(value) => setArticleForm({ ...articleForm, status: value })}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="draft">Draft</SelectItem>
-                        <SelectItem value="published">Published</SelectItem>
-                        <SelectItem value="archived">Archived</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <div className="flex justify-end space-x-2 mt-4">
+                    <Button variant="outline" onClick={() => setIsArticleDialogOpen(false)}>
+                      Cancel
+                    </Button>
+                    <Button onClick={isEditing ? handleUpdateArticle : handleCreateArticle}>
+                      {isEditing ? 'Update Article' : 'Create Article'}
+                    </Button>
                   </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Visibility</label>
-                    <Select value={articleForm.visibility} onValueChange={(value) => setArticleForm({ ...articleForm, visibility: value })}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="public">Public</SelectItem>
-                        <SelectItem value="private">Private</SelectItem>
-                        <SelectItem value="restricted">Restricted</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Parent Article</label>
-                    <Select value={articleForm.parentId} onValueChange={(value) => setArticleForm({ ...articleForm, parentId: value })}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select parent article" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="">None</SelectItem>
-                        {articles.map((article) => (
-                          <SelectItem key={article.id} value={article.id}>
-                            {article.title}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Tags (comma separated)</label>
-                  <Input
-                    value={articleForm.tags}
-                    onChange={(e) => setArticleForm({ ...articleForm, tags: e.target.value })}
-                    placeholder="help, tutorial, guide"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Summary</label>
-                  <Textarea
-                    value={articleForm.summary}
-                    onChange={(e) => setArticleForm({ ...articleForm, summary: e.target.value })}
-                    placeholder="Brief summary of the article"
-                    rows={2}
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Content *</label>
-                  <Textarea
-                    value={articleForm.content}
-                    onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })}
-                    placeholder="Write your article content here..."
-                    rows={12}
-                  />
-                </div>
-              </div>
-              
-              <div className="flex justify-end space-x-2 mt-4">
-                <Button variant="outline" onClick={() => setIsArticleDialogOpen(false)}>
-                  Cancel
-                </Button>
-                <Button onClick={isEditing ? handleUpdateArticle : handleCreateArticle}>
-                  {isEditing ? 'Update Article' : 'Create Article'}
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
+                </DialogContent>
+              </Dialog>
+            </>
+          )}
         </div>
       </div>
 
@@ -563,12 +569,16 @@ const WikiModule: React.FC = () => {
                         <Button variant="outline" size="sm">
                           <Eye className="w-4 h-4" />
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => openEditDialog(article)}>
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleDeleteArticle(article.id)}>
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
+                        {(user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner') || user?.userType === 'teacher') && (
+                          <>
+                            <Button variant="outline" size="sm" onClick={() => openEditDialog(article)}>
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => handleDeleteArticle(article.id)}>
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -597,9 +607,11 @@ const WikiModule: React.FC = () => {
                       ></div>
                       <CardTitle className="text-lg">{category.name}</CardTitle>
                     </div>
-                    <Button variant="outline" size="sm" onClick={() => handleDeleteCategory(category.id)}>
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
+                    {(user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner') || user?.userType === 'teacher') && (
+                      <Button variant="outline" size="sm" onClick={() => handleDeleteCategory(category.id)}>
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    )}
                   </div>
                 </CardHeader>
                 <CardContent>

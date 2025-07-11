@@ -1,0 +1,71 @@
+import { Page } from '@/types';
+
+export const defaultPages: Omit<Page, 'id' | 'schoolId' | 'createdAt' | 'updatedAt'>[] = [
+  {
+    title: 'Home',
+    slug: 'home',
+    type: 'homepage',
+    status: 'published',
+    sections: [
+      { id: 'hero', type: 'hero', styleId: 'hero-1', content: { title: 'Empowering Students to Excel', subtitle: 'A nurturing environment fostering lifelong learning.' }, settings: {}, order: 1, visible: true },
+      { id: 'quick-facts', type: 'quick_facts', styleId: 'facts-1', content: {}, settings: {}, order: 2, visible: true },
+      { id: 'value-prop', type: 'value_prop', styleId: 'value-1', content: {}, settings: {}, order: 3, visible: true },
+      { id: 'programs-teaser', type: 'teaser', styleId: 'teaser-1', content: { title: 'Explore Our Programs', link: '/programs' }, settings: {}, order: 4, visible: true },
+      { id: 'classes-teaser', type: 'teaser', styleId: 'teaser-1', content: { title: 'View Our Classes', link: '/classes' }, settings: {}, order: 5, visible: true },
+      { id: 'why-us', type: 'features', styleId: 'features-1', content: {}, settings: {}, order: 6, visible: true },
+      { id: 'testimonials', type: 'testimonials', styleId: 'testimonials-1', content: {}, settings: {}, order: 7, visible: true },
+      { id: 'events-snapshot', type: 'events_snapshot', styleId: 'events-1', content: {}, settings: {}, order: 8, visible: true },
+      { id: 'gallery-preview', type: 'gallery_preview', styleId: 'gallery-1', content: {}, settings: {}, order: 9, visible: true },
+      { id: 'news', type: 'blog_posts', styleId: 'blog-1', content: {}, settings: {}, order: 10, visible: true },
+      { id: 'cta-banner', type: 'cta', styleId: 'cta-1', content: { title: 'Ready to join us?', buttonText: 'Apply Now', buttonLink: '/apply' }, settings: {}, order: 11, visible: true },
+      { id: 'partners', type: 'partners', styleId: 'partners-1', content: {}, settings: {}, order: 12, visible: true },
+    ],
+  },
+  {
+    title: 'About Us',
+    slug: 'about',
+    type: 'about',
+    status: 'published',
+    sections: [
+        { id: 'mission-vision', type: 'mission_vision', styleId: 'mv-1', content: {}, settings: {}, order: 1, visible: true },
+        { id: 'history', type: 'history', styleId: 'history-1', content: {}, settings: {}, order: 2, visible: true },
+        { id: 'leadership', type: 'leadership', styleId: 'leadership-1', content: {}, settings: {}, order: 3, visible: true },
+        { id: 'faculty', type: 'faculty', styleId: 'faculty-1', content: {}, settings: {}, order: 4, visible: true },
+    ],
+  },
+  {
+    title: 'Programs',
+    slug: 'programs',
+    type: 'programs_archive',
+    status: 'published',
+    sections: [],
+  },
+    {
+    title: 'Classes',
+    slug: 'classes',
+    type: 'classes_archive',
+    status: 'published',
+    sections: [],
+  },
+  {
+    title: 'Admissions',
+    slug: 'admissions',
+    type: 'admissions_archive',
+    status: 'published',
+    sections: [],
+  },
+  {
+    title: 'Contact Us',
+    slug: 'contact',
+    type: 'contact',
+    status: 'published',
+    sections: [],
+  },
+    {
+    title: 'Blog',
+    slug: 'blog',
+    type: 'blog_archive',
+    status: 'published',
+    sections: [],
+  },
+];

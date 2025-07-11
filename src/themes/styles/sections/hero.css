@@ -1,0 +1,138 @@
+/* Hero Section Styles */
+
+/* Style 1: Center Stage */
+.hero-center-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 1rem;
+    min-height: 60vh;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Style 2: Split Columns */
+.hero-split-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 4rem 1rem;
+}
+
+/* Style 3: Full Card Hero */
+.hero-full-card-hero {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 3rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Style 4: Overlay Frame */
+.hero-overlay-frame {
+    position: relative;
+    padding: 6rem 2rem;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+.hero-overlay-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.hero-overlay-frame > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Style 5: Grid Power */
+.hero-grid-power {
+    display: grid;
+    grid-template-areas:
+        "title title"
+        "subtitle buttons";
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 4rem 1rem;
+}
+.hero-grid-power h1 { grid-area: title; }
+.hero-grid-power h2 { grid-area: subtitle; }
+.hero-grid-power .buttons { grid-area: buttons; }
+
+/* Style 6: Minimal Punch */
+.hero-minimal-punch {
+    padding: 2rem 1rem;
+    border-bottom: 2px solid var(--brand-primary);
+    text-align: center;
+}
+
+/* Style 7: Dynamic Fold */
+.hero-dynamic-fold {
+    padding: 4rem 1rem;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    background-color: #f7fafc;
+}
+
+/* Style 8: Sticky Topline */
+.hero-sticky-topline {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: padding 0.3s;
+}
+
+/* Style 9: Block Statement */
+.hero-block-statement {
+    display: flex;
+    align-items: center;
+    padding: 4rem 1rem;
+}
+.hero-block-statement h1 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-right: 2rem;
+    font-size: 3rem;
+}
+
+/* Style 10: Slide Reveal */
+.hero-slide-reveal {
+    padding: 4rem 1rem;
+    overflow: hidden;
+}
+.hero-slide-reveal > * {
+    animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+
+/* Style 11: Skew Panel */
+.hero-skew-panel {
+    transform: skewY(-5deg);
+    margin: 4rem 0;
+    padding: 4rem 1rem;
+    background: #edf2f7;
+}
+.hero-skew-panel > * {
+    transform: skewY(5deg);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

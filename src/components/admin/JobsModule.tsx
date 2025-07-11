@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -37,6 +38,7 @@ interface Job {
 
 const JobsModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
@@ -220,17 +222,20 @@ const JobsModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Jobs & Careers</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setIsEditing(false); resetForm(); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              Post Job
-            </Button>
-          </DialogTrigger>
+          {isAdmin && (
+            <DialogTrigger asChild>
+              <Button onClick={() => { setIsEditing(false); resetForm(); }}>
+                <Plus className="w-4 h-4 mr-2" />
+                Post Job
+              </Button>
+            </DialogTrigger>
+          )}
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{isEditing ? 'Edit Job' : 'Post New Job'}</DialogTitle>
@@ -478,12 +483,16 @@ const JobsModule: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex space-x-1">
-                  <Button variant="outline" size="sm" onClick={() => openEditDialog(job)}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => handleDeleteJob(job.id)}>
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  {isAdmin && (
+                    <>
+                      <Button variant="outline" size="sm" onClick={() => openEditDialog(job)}>
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => handleDeleteJob(job.id)}>
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </CardHeader>

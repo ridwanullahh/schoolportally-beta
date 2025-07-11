@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -31,6 +32,7 @@ interface Result {
 
 const ResultsModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedResult, setSelectedResult] = useState<Result | null>(null);
@@ -61,12 +63,22 @@ const ResultsModule: React.FC = () => {
   };
 
   const fetchResults = async () => {
-    if (!school) return;
+    if (!school || !user) return;
 
     setLoading(true);
     try {
       const allResults = await sdk.get<Result>('results');
-      const schoolResults = allResults.filter(result => result.schoolId === school.id);
+      let schoolResults = allResults.filter(result => result.schoolId === school.id);
+
+      if (user.userType === 'student') {
+        schoolResults = schoolResults.filter(result => result.studentId === user.id);
+      } else if (user.userType === 'parent') {
+        // This assumes that a parent has a list of their children's IDs
+        // You may need to fetch this list first
+        // For now, we'll assume the user object has a `children` array
+        const childrenIds = user.children || [];
+        schoolResults = schoolResults.filter(result => childrenIds.includes(result.studentId));
+      }
       setResults(schoolResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
     } catch (error) {
       console.error('Error fetching results:', error);

@@ -1,0 +1,223 @@
+/* Gallery Preview Section Styles */
+
+/* Style 1: Grid Display */
+.gallery_preview-grid-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 3rem 1rem;
+}
+.gallery_preview-grid-display .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+}
+.gallery_preview-grid-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+.gallery_preview-grid-display .gallery-item:hover img {
+    transform: scale(1.1);
+}
+.gallery_preview-grid-display .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.gallery_preview-grid-display .gallery-item:hover .caption {
+    opacity: 1;
+}
+
+/* Style 2: Stack Tiles */
+.gallery_preview-stack-tiles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 1rem;
+}
+.gallery_preview-stack-tiles .gallery-item {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Style 3: Scroll Snap */
+.gallery_preview-scroll-snap {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 2rem 1rem;
+}
+.gallery_preview-scroll-snap .gallery-item {
+    flex: 0 0 80%;
+    max-width: 400px;
+    scroll-snap-align: center;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Style 4: Cards with Frames */
+.gallery_preview-cards-with-frames {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+.gallery_preview-cards-with-frames .gallery-item {
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background-color: white;
+}
+.gallery_preview-cards-with-frames img {
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Style 5: Toggle Layouts */
+.gallery_preview-toggle-layouts {
+    padding: 2rem 1rem;
+}
+/* JS needed for toggle functionality */
+.gallery_preview-toggle-layouts .toggle-buttons {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Style 6: Accordion Gallery */
+.gallery_preview-accordion-gallery {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.gallery_preview-accordion-gallery details {
+    margin-bottom: 1rem;
+}
+.gallery_preview-accordion-gallery summary {
+    padding: 1rem;
+    background-color: #f7fafc;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+.gallery_preview-accordion-gallery .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+/* Style 7: Dot-Nav Carousel */
+.gallery_preview-dot-nav-carousel {
+    padding: 2rem 0;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.gallery_preview-dot-nav-carousel .carousel-container {
+    overflow: hidden;
+}
+.gallery_preview-dot-nav-carousel .carousel-track {
+    display: flex;
+}
+.gallery_preview-dot-nav-carousel .dots {
+    text-align: center;
+    margin-top: 1rem;
+}
+.gallery_preview-dot-nav-carousel .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.gallery_preview-dot-nav-carousel .dot.active {
+    background-color: var(--brand-primary);
+}
+
+/* Style 8: Tabbed Sets */
+.gallery_preview-tabbed-sets {
+    padding: 2rem 0;
+}
+.gallery_preview-tabbed-sets .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.gallery_preview-tabbed-sets .tab.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+/* Style 9: Slide Layout */
+.gallery_preview-slide-layout {
+    overflow: hidden;
+    padding: 2rem 0;
+}
+.gallery_preview-slide-layout .image-row {
+    display: flex;
+    width: 200%; /* Example for two rows */
+    animation: slide-horizontal 30s linear infinite;
+}
+.gallery_preview-slide-layout .image-item {
+    width: 200px;
+    height: 150px;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+@keyframes slide-horizontal {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-50%); }
+}
+
+/* Style 10: Cluster Blocks */
+.gallery_preview-cluster-blocks {
+    padding: 3rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1rem;
+    max-height: 600px;
+}
+.gallery_preview-cluster-blocks .gallery-item:nth-child(1) { grid-area: 1 / 1 / 3 / 3; }
+.gallery_preview-cluster-blocks .gallery-item:nth-child(2) { grid-area: 1 / 3 / 2 / 4; }
+.gallery_preview-cluster-blocks .gallery-item:nth-child(3) { grid-area: 1 / 4 / 2 / 6; }
+.gallery_preview-cluster-blocks .gallery-item:nth-child(4) { grid-area: 3 / 1 / 5 / 2; }
+.gallery_preview-cluster-blocks .gallery-item:nth-child(5) { grid-area: 2 / 3 / 4 / 5; }
+.gallery_preview-cluster-blocks .gallery-item:nth-child(6) { grid-area: 2 / 5 / 4 / 6; }
+.gallery_preview-cluster-blocks .gallery-item:nth-child(7) { grid-area: 4 / 2 / 5 / 5; }
+
+/* Style 11: Show/Hide Box */
+.gallery_preview-show-hide-box {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+.gallery_preview-show-hide-box .hidden-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+.gallery_preview-show-hide-box.expanded .hidden-gallery {
+    max-height: 1000px; /* Adjust as needed */
+}

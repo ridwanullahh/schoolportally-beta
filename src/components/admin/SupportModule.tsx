@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -38,6 +39,7 @@ interface TicketResponse {
 
 const SupportModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [tickets, setTickets] = useState<SupportTicket[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
@@ -68,12 +70,16 @@ const SupportModule: React.FC = () => {
   }, [school]);
 
   const fetchTickets = async () => {
-    if (!school) return;
+    if (!school || !user) return;
 
     setLoading(true);
     try {
       const allTickets = await sdk.get<SupportTicket>('support_tickets');
-      const schoolTickets = allTickets.filter(ticket => ticket.schoolId === school.id);
+      let schoolTickets = allTickets.filter(ticket => ticket.schoolId === school.id);
+
+      if (user.userType !== 'school_admin') {
+        schoolTickets = schoolTickets.filter(ticket => ticket.submittedBy === user.id);
+      }
       setTickets(schoolTickets.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
     } catch (error) {
       console.error('Error fetching tickets:', error);

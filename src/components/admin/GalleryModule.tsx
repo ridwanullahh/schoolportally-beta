@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -29,6 +30,7 @@ interface GalleryItem {
 
 const GalleryModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
@@ -192,17 +194,20 @@ const GalleryModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Gallery Management</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setIsEditing(false); resetForm(); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              Add Media
-            </Button>
-          </DialogTrigger>
+          {isAdmin && (
+            <DialogTrigger asChild>
+              <Button onClick={() => { setIsEditing(false); resetForm(); }}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add Media
+              </Button>
+            </DialogTrigger>
+          )}
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle>{isEditing ? 'Edit Media' : 'Add New Media'}</DialogTitle>
@@ -432,19 +437,23 @@ const GalleryModule: React.FC = () => {
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="font-semibold text-sm line-clamp-1">{item.title}</h3>
                       <div className="flex space-x-1">
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => handleToggleFeatured(item.id, item.featured)}
-                        >
-                          <Star className={`w-3 h-3 ${item.featured ? 'fill-yellow-400 text-yellow-400' : ''}`} />
-                        </Button>
-                        <Button variant="outline" size="sm" onClick={() => openEditDialog(item)}>
-                          <Edit className="w-3 h-3" />
-                        </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleDeleteItem(item.id)}>
-                          <Trash2 className="w-3 h-3" />
-                        </Button>
+                        {isAdmin && (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleToggleFeatured(item.id, item.featured)}
+                            >
+                              <Star className={`w-3 h-3 ${item.featured ? 'fill-yellow-400 text-yellow-400' : ''}`} />
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => openEditDialog(item)}>
+                              <Edit className="w-3 h-3" />
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => handleDeleteItem(item.id)}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                     

@@ -1,0 +1,26 @@
+/* Elegant Theme */
+:root {
+  --primary-color: #8B4513; /* SaddleBrown */
+  --secondary-color: #F5DEB3; /* Wheat */
+  --background-color: #FAF0E6; /* Linen */
+  --text-color: #5D4037; /* Dark Brown */
+  --border-radius: 4px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.hero-section {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 5rem 1rem;
+  font-family: 'Garamond', serif;
+}
+
+.section {
+  padding: 4rem 1rem;
+}
+
+.card {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border-left: 3px solid var(--primary-color);
+}

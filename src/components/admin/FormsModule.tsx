@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
+import { Form, FormField } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -13,50 +14,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Plus, Edit, Trash2, Eye, Share, Code, FileText, BarChart3 } from 'lucide-react';
 
-interface FormField {
-  id: string;
-  type: string;
-  label: string;
-  placeholder?: string;
-  required: boolean;
-  options?: string[];
-  validation?: any;
-}
-
-interface Form {
-  id: string;
-  schoolId: string;
-  title: string;
-  slug: string;
-  description: string;
-  fields: FormField[];
-  settings: {
-    allowMultipleSubmissions: boolean;
-    requireLogin: boolean;
-    showProgressBar: boolean;
-    customTheme: any;
-    notifications: {
-      email: boolean;
-      sms: boolean;
-      webhook: string;
-    };
-  };
-  status: string;
-  submissions: any[];
-  createdAt: string;
-  updatedAt: string;
-  createdBy: string;
-  embedCode: string;
-  shareUrl: string;
-  analytics: {
-    views: number;
-    submissions: number;
-    conversionRate: number;
-  };
-}
-
 const FormsModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [forms, setForms] = useState<Form[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedForm, setSelectedForm] = useState<Form | null>(null);
@@ -67,6 +27,7 @@ const FormsModule: React.FC = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
+    status: 'draft',
     fields: [] as FormField[],
     settings: {
       allowMultipleSubmissions: false,
@@ -125,11 +86,6 @@ const FormsModule: React.FC = () => {
     return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   };
 
-  const generateEmbedCode = (formId: string) => {
-    const baseUrl = window.location.origin;
-    return `<iframe src="${baseUrl}/forms/${formId}/embed" width="100%" height="600" frameborder="0"></iframe>`;
-  };
-
   const generateShareUrl = (slug: string) => {
     const baseUrl = window.location.origin;
     return `${baseUrl}/${school?.slug}/forms/${slug}`;
@@ -144,12 +100,10 @@ const FormsModule: React.FC = () => {
         ...formData,
         slug,
         schoolId: school.id,
-        status: 'draft',
         submissions: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         createdBy: 'admin',
-        embedCode: '',
         shareUrl: generateShareUrl(slug),
         analytics: {
           views: 0,
@@ -158,11 +112,7 @@ const FormsModule: React.FC = () => {
         },
       });
 
-      // Generate embed code after form is created
-      const embedCode = generateEmbedCode(newForm.id);
-      const updatedForm = await sdk.update<Form>('forms', newForm.id, { embedCode });
-      
-      setForms([...forms, updatedForm]);
+      setForms([...forms, newForm]);
       resetForm();
       setIsDialogOpen(false);
     } catch (error) {
@@ -203,6 +153,7 @@ const FormsModule: React.FC = () => {
     setFormData({
       title: '',
       description: '',
+      status: 'draft',
       fields: [],
       settings: {
         allowMultipleSubmissions: false,
@@ -263,6 +214,7 @@ const FormsModule: React.FC = () => {
     setFormData({
       title: form.title,
       description: form.description,
+      status: form.status,
       fields: form.fields,
       settings: form.settings,
     });
@@ -278,17 +230,20 @@ const FormsModule: React.FC = () => {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
   }
 
+  const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Forms Management</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={() => { setIsEditing(false); resetForm(); }}>
-              <Plus className="w-4 h-4 mr-2" />
-              New Form
-            </Button>
-          </DialogTrigger>
+          {isAdmin && (
+            <DialogTrigger asChild>
+              <Button onClick={() => { setIsEditing(false); resetForm(); }}>
+                <Plus className="w-4 h-4 mr-2" />
+                New Form
+              </Button>
+            </DialogTrigger>
+          )}
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{isEditing ? 'Edit Form' : 'Create New Form'}</DialogTitle>
@@ -320,7 +275,22 @@ const FormsModule: React.FC = () => {
                     rows={3}
                   />
                 </div>
-              </TabsContent>
+                <div>
+                 <label className="block text-sm font-medium mb-2">Status</label>
+                 <Select
+                   value={formData.status}
+                   onValueChange={(value) => setFormData({ ...formData, status: value })}
+                 >
+                   <SelectTrigger>
+                     <SelectValue />
+                   </SelectTrigger>
+                   <SelectContent>
+                     <SelectItem value="draft">Draft</SelectItem>
+                     <SelectItem value="published">Published</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+             </TabsContent>
               
               <TabsContent value="fields" className="space-y-4">
                 <div className="border rounded-lg p-4">
@@ -529,15 +499,16 @@ const FormsModule: React.FC = () => {
                       <Button variant="outline" size="sm" onClick={() => copyToClipboard(form.shareUrl)}>
                         <Share className="w-4 h-4" />
                       </Button>
-                      <Button variant="outline" size="sm" onClick={() => copyToClipboard(form.embedCode)}>
-                        <Code className="w-4 h-4" />
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => openEditDialog(form)}>
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => handleDeleteForm(form.id)}>
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
+                      {isAdmin && (
+                        <>
+                          <Button variant="outline" size="sm" onClick={() => openEditDialog(form)}>
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button variant="outline" size="sm" onClick={() => handleDeleteForm(form.id)}>
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </div>
                 </CardHeader>

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
+import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -44,6 +45,7 @@ interface PaystackConfig {
 
 const FeesModule: React.FC = () => {
   const { school } = useSchool();
+  const { user } = useAuth();
   const [fees, setFees] = useState<Fee[]>([]);
   const [paystackConfig, setPaystackConfig] = useState<PaystackConfig | null>(null);
   const [loading, setLoading] = useState(true);
@@ -77,7 +79,7 @@ const FeesModule: React.FC = () => {
   }, [school]);
 
   const fetchData = async () => {
-    if (!school) return;
+    if (!school || !user) return;
 
     setLoading(true);
     try {
@@ -86,7 +88,17 @@ const FeesModule: React.FC = () => {
         sdk.get<PaystackConfig>('paystack_config')
       ]);
 
-      const schoolFees = allFees.filter(fee => fee.schoolId === school.id);
+      let schoolFees = allFees.filter(fee => fee.schoolId === school.id);
+
+      if (user.userType === 'student') {
+        schoolFees = schoolFees.filter(fee => fee.studentId === user.id);
+      } else if (user.userType === 'parent') {
+        // This assumes that a parent has a list of their children's IDs
+        // You may need to fetch this list first
+        // For now, we'll assume the user object has a `children` array
+        const childrenIds = user.children || [];
+        schoolFees = schoolFees.filter(fee => childrenIds.includes(fee.studentId));
+      }
       const schoolConfig = allConfigs.find(config => config.schoolId === school.id);
 
       setFees(schoolFees);
