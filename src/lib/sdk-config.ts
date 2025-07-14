@@ -46,7 +46,31 @@ const dbSchema = {
       onboardingCompleted: 'boolean',
       branding: 'object',
       createdAt: 'string',
-      updatedAt: 'string'
+      updatedAt: 'string',
+      headerStyle: 'string',
+      footerStyle: 'string',
+      blogPostStyle: 'string',
+      blogArchiveStyle: 'string',
+      announcementPostStyle: 'string',
+      announcementArchiveStyle: 'string',
+      eventPostStyle: 'string',
+      eventArchiveStyle: 'string',
+      programPostStyle: 'string',
+      programArchiveStyle: 'string',
+      classPostStyle: 'string',
+      classArchiveStyle: 'string',
+      coursePostStyle: 'string',
+      courseArchiveStyle: 'string',
+      galleryPostStyle: 'string',
+      galleryArchiveStyle: 'string',
+      elibraryBookPostStyle: 'string',
+      elibraryBookArchiveStyle: 'string',
+      knowledgebasePostStyle: 'string',
+      knowledgebaseArchiveStyle: 'string',
+      faqPostStyle: 'string',
+      faqArchiveStyle: 'string',
+      jobPostStyle: 'string',
+      jobArchiveStyle: 'string'
     }
   },
   pages: {
@@ -74,7 +98,7 @@ const dbSchema = {
       schoolId: 'string',
       title: 'string',
       description: 'string',
-      instructorId: 'string',
+      instructorIds: 'array',
       status: 'string',
       publishStatus: 'string',
       scheduledDate: 'string',
@@ -115,11 +139,55 @@ const dbSchema = {
       id: 'string',
       schoolId: 'string',
       name: 'string',
+      slug: 'string',
+      description: 'string',
       programId: 'string',
-      teacherId: 'string',
-      schedule: 'string',
+      teacherIds: 'array',
+      schedule: 'object',
       capacity: 'number',
       enrolled: 'number',
+      status: 'string',
+      fee: 'number',
+      room: 'string',
+      gradeLevel: 'string',
+      subject: 'string',
+      students: 'array',
+      materials: 'array',
+      assignments: 'array',
+      attendance: 'array',
+      createdAt: 'string'
+    }
+  },
+  class_materials: {
+    required: ['classId', 'title'],
+    types: {
+      id: 'string',
+      classId: 'string',
+      title: 'string',
+      description: 'string',
+      fileUrl: 'string',
+      createdAt: 'string'
+    }
+  },
+  class_assignments: {
+    required: ['classId', 'title'],
+    types: {
+      id: 'string',
+      classId: 'string',
+      title: 'string',
+      description: 'string',
+      dueDate: 'string',
+      maxScore: 'number',
+      createdAt: 'string'
+    }
+  },
+  class_attendance: {
+    required: ['classId', 'studentId', 'date'],
+    types: {
+      id: 'string',
+      classId: 'string',
+      studentId: 'string',
+      date: 'string',
       status: 'string',
       createdAt: 'string'
     }

@@ -2,10 +2,10 @@ import React from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Routes, Route } from 'react-router-dom';
 import { Bell, FileText, DollarSign, Users } from 'lucide-react';
-import AnnouncementsModule from '@/components/admin/AnnouncementsModule';
-import ResultsModule from '@/components/admin/ResultsModule';
-import FeesModule from '@/components/admin/FeesModule';
-import SupportModule from '@/components/admin/SupportModule';
+import AnnouncementsModule from '@/components/users/AnnouncementsModule';
+import ResultsModule from '@/components/users/ResultsModule';
+import FeesModule from '@/components/users/FeesModule';
+import SupportModule from '@/components/users/SupportModule';
 
 const sidebarItems = [
     { name: 'Announcements', href: 'announcements', icon: Bell, active: true },

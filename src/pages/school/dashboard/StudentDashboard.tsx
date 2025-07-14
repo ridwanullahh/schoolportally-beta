@@ -2,13 +2,13 @@ import React from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Routes, Route } from 'react-router-dom';
 import { Book, Calendar, Bell, FileText, Users, DollarSign } from 'lucide-react';
-import AnnouncementsModule from '@/components/admin/AnnouncementsModule';
-import ClassesModule from '@/components/admin/ClassesModule';
-import ResultsModule from '@/components/admin/ResultsModule';
-import FeesModule from '@/components/admin/FeesModule';
-import CalendarModule from '@/components/admin/CalendarModule';
-import ELibraryModule from '@/components/admin/ELibraryModule';
-import SupportModule from '@/components/admin/SupportModule';
+import AnnouncementsModule from '@/components/users/AnnouncementsModule';
+import ClassesModule from '@/components/users/ClassesModule';
+import ResultsModule from '@/components/users/ResultsModule';
+import FeesModule from '@/components/users/FeesModule';
+import CalendarModule from '@/components/users/CalendarModule';
+import ELibraryModule from '@/components/users/ELibraryModule';
+import SupportModule from '@/components/users/SupportModule';
 
 const sidebarItems = [
     { name: 'Announcements', href: 'announcements', icon: Bell, active: true },

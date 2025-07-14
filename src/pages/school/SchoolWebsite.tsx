@@ -23,6 +23,15 @@ const SchoolWebsite: React.FC<{ children?: React.ReactNode }> = ({ children }) =
     }
   }, [pageSlug, pages, pagesLoading]);
 
+  useEffect(() => {
+    if (school?.branding) {
+      const root = document.documentElement;
+      root.style.setProperty('--brand-primary', school.branding.primaryColor || '#000000');
+      root.style.setProperty('--brand-secondary', school.branding.secondaryColor || '#ffffff');
+      root.style.setProperty('--brand-accent', school.branding.accentColor || '#ff0000');
+    }
+  }, [school]);
+
   if (schoolLoading || pagesLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">

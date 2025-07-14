@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Plus, Edit, Trash2, Users, BookOpen, Calendar } from 'lucide-react';
+import { MultiSelect } from '@/components/ui/multi-select';
 import sdk from '@/lib/sdk-config';
 
 interface Course {
@@ -19,8 +20,8 @@ interface Course {
   schoolId: string;
   title: string;
   description: string;
-  instructorId: string;
-  instructorName?: string;
+  instructorIds: string[];
+  instructorNames?: string[];
   status: string;
   publishStatus: 'draft' | 'published' | 'scheduled';
   scheduledDate?: string;
@@ -48,7 +49,7 @@ const LMSModule = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    instructorId: '',
+    instructorIds: [],
     publishStatus: 'draft' as 'draft' | 'published' | 'scheduled',
     scheduledDate: ''
   });
@@ -66,7 +67,7 @@ const LMSModule = () => {
       let schoolCourses = allCourses.filter(course => course.schoolId === school?.id);
 
       if (user.userType === 'teacher') {
-        schoolCourses = schoolCourses.filter(course => course.instructorId === user.id);
+        schoolCourses = schoolCourses.filter(course => course.instructorIds.includes(user.id));
       } else if (user.userType === 'student') {
         // This assumes that a student has a list of their enrolled course IDs
         // You may need to fetch this list first
@@ -77,11 +78,13 @@ const LMSModule = () => {
       
       // Fetch teacher names for courses
       const teachers = await sdk.get<Teacher>('users');
-      const coursesWithTeachers = schoolCourses.map(course => ({
-        ...course,
-        instructorName: teachers.find(t => t.id === course.instructorId)?.firstName + ' ' + 
-                      teachers.find(t => t.id === course.instructorId)?.lastName
-      }));
+      const coursesWithTeachers = schoolCourses.map(course => {
+        const instructorNames = course.instructorIds.map(id => {
+          const teacher = teachers.find(t => t.id === id);
+          return teacher ? `${teacher.firstName} ${teacher.lastName}` : '';
+        }).filter(name => name);
+        return { ...course, instructorNames };
+      });
       
       setCourses(coursesWithTeachers);
     } catch (error) {
@@ -151,7 +154,7 @@ const LMSModule = () => {
     setFormData({
       title: course.title,
       description: course.description,
-      instructorId: course.instructorId,
+      instructorIds: course.instructorIds,
       publishStatus: course.publishStatus,
       scheduledDate: course.scheduledDate || ''
     });
@@ -181,7 +184,7 @@ const LMSModule = () => {
     setFormData({
       title: '',
       description: '',
-      instructorId: '',
+      instructorIds: [],
       publishStatus: 'draft',
       scheduledDate: ''
     });
@@ -242,19 +245,13 @@ const LMSModule = () => {
               </div>
 
               <div>
-                <Label htmlFor="instructorId">Instructor</Label>
-                <Select value={formData.instructorId} onValueChange={(value) => setFormData({...formData, instructorId: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select an instructor" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {teachers.map((teacher) => (
-                      <SelectItem key={teacher.id} value={teacher.id}>
-                        {teacher.firstName} {teacher.lastName}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label htmlFor="instructorIds">Instructors</Label>
+                <MultiSelect
+                  options={teachers.map(t => ({ value: t.id, label: `${t.firstName} ${t.lastName}` }))}
+                  selected={formData.instructorIds}
+                  onChange={(selected) => setFormData({ ...formData, instructorIds: selected })}
+                  placeholder="Select instructors"
+                />
               </div>
 
               <div>
@@ -310,7 +307,7 @@ const LMSModule = () => {
                   <div className="flex items-center gap-4 text-sm text-gray-500">
                     <span className="flex items-center gap-1">
                       <Users className="w-4 h-4" />
-                      Instructor: {course.instructorName || 'Not assigned'}
+                      Instructors: {course.instructorNames?.join(', ') || 'Not assigned'}
                     </span>
                     {course.scheduledDate && (
                       <span className="flex items-center gap-1">

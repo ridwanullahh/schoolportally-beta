@@ -48,6 +48,7 @@ import ELibraryModule from '@/components/admin/ELibraryModule';
 import ResultsModule from '@/components/admin/ResultsModule';
 import MessagesModule from '@/components/admin/MessagesModule';
 import EcommerceModule from '@/components/admin/EcommerceModule';
+import BrandingModule from '@/components/admin/BrandingModule';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -145,15 +146,6 @@ const OverviewModule = () => {
   );
 };
 
-const SettingsModule = () => (
-  <div className="space-y-6">
-    <h2 className="text-2xl font-bold">School Settings</h2>
-    <div className="text-center py-8 text-gray-500">
-      School settings and configuration will be available here.
-    </div>
-  </div>
-);
-
 interface SidebarItem {
   id: string;
   label: string;
@@ -211,7 +203,7 @@ export const adminRoutes = (
     <Route path="elibrary" element={<ELibraryModule />} />
     <Route path="jobs" element={<JobsModule />} />
     <Route path="support" element={<SupportModule />} />
-    <Route path="settings" element={<SettingsModule />} />
+    <Route path="settings" element={<BrandingModule />} />
   </>
 );
 
