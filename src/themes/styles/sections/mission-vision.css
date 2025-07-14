@@ -141,7 +141,7 @@
     overflow: hidden;
     padding: 3rem;
     border-radius: 0.5rem;
-    background-color: var(--brand-primary-light);
+    background-color: var(--brand-primary-light, #e2e8f0);
 }
 .mission_vision-hover-slide .overlay {
     position: absolute;

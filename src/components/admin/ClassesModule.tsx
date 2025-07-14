@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Edit, Trash2, Users, Clock, BookOpen } from 'lucide-react';
+import { MultiSelect } from '@/components/ui/multi-select';
 
 interface Class {
   id: string;
@@ -19,7 +20,7 @@ interface Class {
   slug: string;
   description: string;
   schoolId: string;
-  teacherId: string;
+  teacherIds: string[];
   programId: string;
   schedule: any;
   capacity: number;
@@ -49,7 +50,7 @@ const ClassesModule: React.FC = () => {
   const [classForm, setClassForm] = useState({
     name: '',
     description: '',
-    teacherId: '',
+    teacherIds: [],
     programId: '',
     capacity: 30,
     fee: 0,
@@ -74,21 +75,21 @@ const ClassesModule: React.FC = () => {
 
     setLoading(true);
     try {
-      const [allClasses, allPrograms, allStaff] = await Promise.all([
+      const [allClasses, allPrograms, allUsers] = await Promise.all([
         sdk.get<Class>('classes'),
         sdk.get('programs'),
-        sdk.get('staff')
+        sdk.get('users')
       ]);
 
       let schoolClasses = allClasses.filter(cls => cls.schoolId === school.id);
 
       if (user.userType === 'teacher') {
-        schoolClasses = schoolClasses.filter(cls => cls.teacherId === user.id);
+        schoolClasses = schoolClasses.filter(cls => cls.teacherIds.includes(user.id));
       } else if (user.userType === 'student') {
         schoolClasses = schoolClasses.filter(cls => cls.students.includes(user.id));
       }
       const schoolPrograms = allPrograms.filter(prog => prog.schoolId === school.id);
-      const schoolTeachers = allStaff.filter(staff => staff.schoolId === school.id && staff.position === 'teacher');
+      const schoolTeachers = allUsers.filter(user => user.schoolId === school.id && user.userType === 'teacher');
 
       setClasses(schoolClasses);
       setPrograms(schoolPrograms);
@@ -154,7 +155,7 @@ const ClassesModule: React.FC = () => {
     setClassForm({
       name: '',
       description: '',
-      teacherId: '',
+      teacherIds: [],
       programId: '',
       capacity: 30,
       fee: 0,
@@ -176,7 +177,7 @@ const ClassesModule: React.FC = () => {
     setClassForm({
       name: classItem.name,
       description: classItem.description,
-      teacherId: classItem.teacherId,
+      teacherIds: classItem.teacherIds,
       programId: classItem.programId,
       capacity: classItem.capacity,
       fee: classItem.fee,
@@ -195,9 +196,12 @@ const ClassesModule: React.FC = () => {
     setIsDialogOpen(true);
   };
 
-  const getTeacherName = (teacherId: string) => {
-    const teacher = teachers.find(t => t.id === teacherId);
-    return teacher ? teacher.name : 'Unassigned';
+  const getTeacherNames = (teacherIds: string[]) => {
+    if (!teacherIds || teacherIds.length === 0) return 'Unassigned';
+    return teacherIds.map(id => {
+      const teacher = teachers.find(t => t.id === id);
+      return teacher ? `${teacher.firstName} ${teacher.lastName}` : '';
+    }).filter(name => name).join(', ');
   };
 
   const getProgramName = (programId: string) => {
@@ -244,19 +248,13 @@ const ClassesModule: React.FC = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">Teacher</label>
-                    <Select value={classForm.teacherId} onValueChange={(value) => setClassForm({ ...classForm, teacherId: value })}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select teacher" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {teachers.map((teacher) => (
-                          <SelectItem key={teacher.id} value={teacher.id}>
-                            {teacher.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <label className="block text-sm font-medium mb-2">Teachers</label>
+                    <MultiSelect
+                      options={teachers.map(t => ({ value: t.id, label: `${t.firstName} ${t.lastName}` }))}
+                      selected={classForm.teacherIds}
+                      onChange={(selected) => setClassForm({ ...classForm, teacherIds: selected })}
+                      placeholder="Select teachers"
+                    />
                   </div>
                   
                   <div>
@@ -469,8 +467,8 @@ const ClassesModule: React.FC = () => {
               
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Teacher:</span>
-                  <span>{getTeacherName(classItem.teacherId)}</span>
+                  <span className="text-gray-500">Teachers:</span>
+                  <span>{getTeacherNames(classItem.teacherIds)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Program:</span>

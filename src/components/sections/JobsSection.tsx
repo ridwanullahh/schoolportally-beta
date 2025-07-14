@@ -12,22 +12,43 @@ const JobsSection: React.FC<JobsSectionProps> = ({ section }) => {
   const styleId = section.styleId || 'jobs-card-postings';
 
   const defaultJobs = [
-    { title: 'Senior Lecturer - Computer Science', location: 'Main Campus', type: 'Full-time', link: '#' },
-    { title: 'Admissions Officer', location: 'Administration Building', type: 'Full-time', link: '#' },
-    { title: 'Part-time Research Assistant', location: 'Remote', type: 'Part-time', link: '#' },
+    { title: 'Senior Lecturer - Computer Science', location: 'Main Campus', type: 'Full-time', link: '#', tags: 'Academic,Computer Science' },
+    { title: 'Admissions Officer', location: 'Administration Building', type: 'Full-time', link: '#', tags: 'Administrative' },
+    { title: 'Part-time Research Assistant', location: 'Remote', type: 'Part-time', link: '#', tags: 'Research,Part-time' },
   ];
 
   const jobItems = jobs && jobs.length > 0 ? jobs : defaultJobs;
 
-  const renderJob = (job: any, index: number) => (
-    <div key={index} className="job-card">
-      <h3 className="job-title">{job.title}</h3>
-      <p className="job-location">{job.location} - {job.type}</p>
-      <Button asChild className="apply-button">
-        <a href={job.link}>Apply Now</a>
-      </Button>
-    </div>
-  );
+  const renderJob = (job: any, index: number) => {
+    if (styleId === 'jobs-list-with-tags') {
+      return (
+        <div key={index} className="job-item">
+          <div>
+            <h3 className="job-title">{job.title}</h3>
+            <p className="job-location">{job.location} - {job.type}</p>
+          </div>
+          <div className="tags">
+            {job.tags?.split(',').map((tag: string) => (
+              <span key={tag} className="tag">{tag}</span>
+            ))}
+          </div>
+          <Button asChild className="apply-button">
+            <a href={job.link}>Apply Now</a>
+          </Button>
+        </div>
+      )
+    }
+    
+    return (
+      <div key={index} className="job-card">
+        <h3 className="job-title">{job.title}</h3>
+        <p className="job-location">{job.location} - {job.type}</p>
+        <Button asChild className="apply-button">
+          <a href={job.link}>Apply Now</a>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <section className={`jobs-section py-16 ${styleId}`}>

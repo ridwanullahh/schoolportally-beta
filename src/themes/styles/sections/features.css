@@ -1,70 +1,53 @@
 /* Features Section Styles */
 
-/* Style 1: Icon Grid */
-.features-icon-grid {
+.features-section {
+    --brand-primary: var(--school-brand-primary, #4f46e5);
+    --brand-secondary: var(--school-brand-secondary, #9333ea);
+    --brand-accent: var(--school-brand-accent, #f59e0b);
+    --brand-text: var(--school-brand-text, #1f2937);
+    color: var(--brand-text);
+    padding: 4rem 0;
+}
+
+.features-section .features-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    padding: 3rem 1rem;
+}
+
+.features-section .feature-item {
     text-align: center;
 }
-.features-icon-grid .feature-item {
-    padding: 1.5rem;
-}
-.features-icon-grid .icon {
-    margin-bottom: 1rem;
-    color: var(--brand-primary);
+
+/* Style 1: Icon Grid */
+.features-icon-grid .features-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 /* Style 2: Vertical Steps */
-.features-vertical-steps {
+.features-vertical-steps .features-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 3rem 1rem;
-    position: relative;
 }
-.features-vertical-steps::before {
-    content: '';
-    position: absolute;
-    left: 24px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #e2e8f0;
-}
-.features-vertical-steps .step {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    position: relative;
-}
-.features-vertical-steps .step-number {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--brand-primary);
-    color: white;
+.features-vertical-steps .feature-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    z-index: 1;
+    text-align: left;
+}
+.features-vertical-steps .step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-accent);
+    margin-right: 1.5rem;
 }
 
 /* Style 3: Accordion List */
-.features-accordion-list {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-.features-accordion-list details {
-    border-bottom: 1px solid #e2e8f0;
-    padding: 1rem 0;
+.features-accordion-list .feature-item {
+    border-bottom: 1px solid #e5e7eb;
 }
 .features-accordion-list summary {
-    font-weight: bold;
+    padding: 1rem 0;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -72,122 +55,101 @@
 }
 
 /* Style 4: Left-Right Alternates */
-.features-left-right-alternates {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    padding: 3rem 1rem;
-}
-.features-left-right-alternates .feature-row {
+.features-left-right-alternates .feature-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     align-items: center;
 }
-.features-left-right-alternates .feature-row:nth-child(even) .image-container {
+.features-left-right-alternates .feature-item:nth-child(even) .icon-container {
     order: 2;
 }
 
 /* Style 5: Tabbed Features */
-.features-tabbed-features {
-    padding: 2rem 0;
-}
-.features-tabbed-features .tabs {
+.features-tabbed-features .tab-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
     margin-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
 }
-.features-tabbed-features .tab {
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
+.features-tabbed-features .tab-buttons button {
+    padding: 1rem;
+    border: none;
+    background: transparent;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
 }
-.features-tabbed-features .tab.active {
-    background-color: var(--brand-primary);
-    color: white;
+.features-tabbed-features .tab-buttons button.active {
+    border-bottom: 2px solid var(--brand-primary);
+    color: var(--brand-primary);
 }
-.features-tabbed-features .tab-content {
-    text-align: center;
+.features-tabbed-features .feature-item {
+    display: none;
+}
+.features-tabbed-features .feature-item.active {
+    display: block;
 }
 
 /* Style 6: Hover Cards */
-.features-hover-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 3rem 1rem;
-}
-.features-hover-cards .feature-card {
+.features-hover-cards .feature-item {
     padding: 2rem;
-    border: 1px solid #e2e8f0;
     border-radius: 0.75rem;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
 }
-.features-hover-cards .feature-card:hover {
+.features-hover-cards .feature-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 /* Style 7: Framed Highlights */
-.features-framed-highlights {
-    padding: 3rem 1rem;
-}
-.features-framed-highlights .feature-frame {
-    padding: 2rem;
-    border: 2px dashed var(--brand-primary);
+.features-framed-highlights .feature-item {
+    border: 2px solid var(--brand-secondary);
+    padding: 1.5rem;
     border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 
 /* Style 8: Split Highlights */
-.features-split-highlights {
+.features-split-highlights .feature-item {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    padding: 3rem 1rem;
-    align-items: start;
+    align-items: center;
 }
-.features-split-highlights .feature-list {
-    position: sticky;
-    top: 2rem;
+.features-split-highlights .feature-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
 }
 
 /* Style 9: Inline Pills */
-.features-inline-pills {
-    padding: 2rem 1rem;
-    text-align: center;
-}
-.features-inline-pills .pills-container {
+.features-inline-pills .features-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1rem;
 }
-.features-inline-pills .pill {
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    background-color: #edf2f7;
-    font-weight: 500;
+.features-inline-pills .feature-item {
+    display: flex;
+    align-items: center;
+    background: #f3f4f6;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    gap: 0.5rem;
 }
 
 /* Style 10: Flip Panels */
-.features-flip-panels {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 3rem 1rem;
+.features-flip-panels .feature-item {
     perspective: 1000px;
 }
 .features-flip-panels .flip-card-inner {
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* Aspect ratio 1:1 */
+    height: 150px; /* Adjust height as needed */
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
-.features-flip-panels .flip-card:hover .flip-card-inner {
+.features-flip-panels .feature-item:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
 .features-flip-panels .flip-card-front, .features-flip-panels .flip-card-back {
@@ -196,38 +158,32 @@
     height: 100%;
     backface-visibility: hidden;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding: 1rem;
-    border-radius: 0.75rem;
-    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
 }
 .features-flip-panels .flip-card-front {
-    background-color: white;
+    background: #f9fafb;
 }
 .features-flip-panels .flip-card-back {
-    background-color: var(--brand-primary);
+    background: var(--brand-primary);
     color: white;
     transform: rotateY(180deg);
 }
 
 /* Style 11: Rotating View */
 .features-rotating-view {
-    padding: 3rem 1rem;
-    /* Requires a JS library like Swiper.js or custom JS for actual rotation */
-    overflow: hidden;
+    position: relative;
+    min-height: 200px;
 }
-.features-rotating-view .feature-track {
-    display: flex;
-    animation: scroll 20s linear infinite;
+.features-rotating-view .feature-item {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
-.features-rotating-view .feature-slide {
-    flex: 0 0 50%;
-    padding: 1rem;
-}
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+.features-rotating-view .feature-item.active {
+    opacity: 1;
 }

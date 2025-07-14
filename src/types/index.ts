@@ -8,6 +8,16 @@ export interface Section {
   visible: boolean;
 }
 
+export interface Event {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  countdown?: string;
+  category?: string;
+  tags?: string[];
+}
+
 export interface Page {
   id: string;
   uid?: string;
@@ -121,6 +131,13 @@ export interface Order {
   updatedAt?: string;
 }
 
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  category?: string;
+}
+
 export interface Customer {
   id: string;
   schoolId: string;
@@ -131,6 +148,15 @@ export interface Customer {
   phone?: string;
   addresses: any[];
   createdAt: string;
+}
+
+export interface QuickFact {
+  icon?: string;
+  label: string;
+  value: string;
+  unit?: string;
+  group?: string;
+  graphPoint?: number;
 }
 
 export interface School {
@@ -156,6 +182,12 @@ export interface School {
     accentColor?: string;
     fontFamily?: string;
     logoUrl?: string;
+    headerStyle?: string;
+    footerStyle?: string;
+    blogPostStyle?: string;
+    blogArchiveStyle?: string;
+    announcementPostStyle?: string;
+    announcementArchiveStyle?: string;
   };
   createdAt: string;
   updatedAt?: string;

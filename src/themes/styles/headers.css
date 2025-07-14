@@ -1,0 +1,126 @@
+:root {
+  --header-bg: var(--school-brand-primary, #ffffff);
+  --header-text: var(--school-brand-text, #1f2937);
+  --header-accent: var(--school-brand-accent, #f59e0b);
+}
+
+/* Base Header Styling */
+.app-header {
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--header-accent);
+  transition: width 0.3s;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Style 1: Classic & Clean */
+.header-style-1 {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Style 2: Bold & Modern */
+.header-style-2 {
+  background-color: var(--brand-secondary, #1f2937);
+  color: white;
+}
+.header-style-2 .nav-link { color: white; }
+.header-style-2 .nav-link::after { background-color: white; }
+
+/* Style 3: Minimalist Transparent */
+.header-style-3 {
+  background-color: transparent;
+  color: var(--header-text);
+  position: absolute;
+  width: 100%;
+}
+.header-style-3.scrolled {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Style 4: Top Bar */
+.header-style-4 .top-bar {
+  background-color: rgba(0,0,0,0.05);
+  padding: 0.5rem 2rem;
+  font-size: 0.8rem;
+  text-align: right;
+}
+.header-style-4 .main-header {
+  padding: 1rem 2rem;
+}
+
+/* Style 5: Centered with Border */
+.header-style-5 .container {
+  flex-direction: column;
+}
+.header-style-5 nav {
+  width: 100%;
+  justify-content: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1rem;
+}
+
+/* Style 6: Floating & Rounded */
+.header-style-6 {
+  background-color: transparent;
+  padding-top: 1rem;
+}
+.header-style-6 .container {
+  background: white;
+  border-radius: 999px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Style 7: Vertical Left */
+.header-style-7 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 240px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: flex-start;
+}
+.header-style-7 .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+.header-style-7 nav ul {
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.header-style-7 .md\:flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+/* Mobile Nav */
+.mobile-nav {
+  /* Basic styles, can be enhanced with transitions */
+}

@@ -1,207 +1,170 @@
 /* Partners Section Styles */
 
-/* Style 1: Logo Carousel */
-.partners-logo-carousel {
-    padding: 2rem 0;
-    overflow: hidden;
-    position: relative;
-}
-.partners-logo-carousel::before,
-.partners-logo-carousel::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100px;
-    z-index: 2;
-}
-.partners-logo-carousel::before {
-    left: 0;
-    background: linear-gradient(to right, white, transparent);
-}
-.partners-logo-carousel::after {
-    right: 0;
-    background: linear-gradient(to left, white, transparent);
-}
-.partners-logo-carousel .logo-track {
-    display: flex;
-    width: max-content;
-    animation: scroll-logos 30s linear infinite;
-}
-.partners-logo-carousel .logo-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-    margin: 0 2rem;
-}
-.partners-logo-carousel img {
-    max-height: 60px;
-    filter: grayscale(100%);
-    transition: filter 0.3s;
-}
-.partners-logo-carousel img:hover {
-    filter: grayscale(0%);
+.partners-section {
+    --brand-primary: var(--school-brand-primary, #4f46e5);
+    --brand-secondary: var(--school-brand-secondary, #9333ea);
+    --brand-accent: var(--school-brand-accent, #f59e0b);
+    --brand-text: var(--school-brand-text, #1f2937);
+    color: var(--brand-text);
+    padding: 4rem 0;
 }
 
-@keyframes scroll-logos {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* Style 2: Logo Grid */
-.partners-logo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 2rem;
-    padding: 3rem 1rem;
-    align-items: center;
-    justify-items: center;
-}
-
-/* Style 3: Stacked Partner Cards */
-.partners-stacked-partner-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 3rem 1rem;
-    max-width: 700px;
-    margin: 0 auto;
-}
-.partners-stacked-partner-cards .partner-card {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.75rem;
-}
-.partners-stacked-partner-cards .logo-container {
-    flex-shrink: 0;
-    width: 100px;
-}
-
-/* Style 4: Hover Badge */
-.partners-hover-badge {
+.partners-section .partners-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
-    padding: 3rem 1rem;
 }
+
+/* Style 1: Logo Carousel */
+.partners-logo-carousel .partners-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+.partners-logo-carousel .logo-item {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+
+/* Style 2: Logo Grid */
+.partners-logo-grid .partners-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+/* Style 3: Stacked Partner Cards */
+.partners-stacked-partner-cards .partner-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Style 4: Hover Badge */
 .partners-hover-badge .logo-item {
     position: relative;
 }
 .partners-hover-badge .tooltip {
     position: absolute;
-    bottom: 110%;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
+    background: var(--brand-text);
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    white-space: nowrap;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.3s;
+    white-space: nowrap;
 }
 .partners-hover-badge .logo-item:hover .tooltip {
     opacity: 1;
-    visibility: visible;
 }
 
 /* Style 5: Accordion Blocks */
-.partners-accordion-blocks {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
+.partners-accordion-blocks .partners-container {
+    flex-direction: column;
+    width: 100%;
 }
 .partners-accordion-blocks details {
-    border-bottom: 1px solid #e2e8f0;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
 }
 .partners-accordion-blocks summary {
-    padding: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-.partners-accordion-blocks .partner-details {
-    padding: 1.5rem;
+    font-weight: 600;
 }
 
 /* Style 6: Minimal Strip */
-.partners-minimal-strip {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 2rem 1rem;
-    border-top: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
+.partners-minimal-strip .partners-container {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+}
+.partners-minimal-strip .partners-container:hover {
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
 /* Style 7: Center Focus */
-.partners-center-focus {
-    text-align: center;
-    padding: 3rem 1rem;
+.partners-center-focus .partners-container {
+    position: relative;
+    height: 100px;
 }
-.partners-center-focus .main-logo {
-    margin-bottom: 2rem;
+.partners-center-focus .logo-item {
+    position: absolute;
+    transition: transform 0.5s, opacity 0.5s;
+    opacity: 0.5;
+    transform: scale(0.8);
 }
-.partners-center-focus .other-logos {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    filter: opacity(0.6);
+.partners-center-focus .logo-item.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
 }
 
 /* Style 8: List with Text */
-.partners-list-with-text {
-    padding: 2rem 1rem;
+.partners-list-with-text .partners-container {
+    flex-direction: column;
+    align-items: flex-start;
 }
 .partners-list-with-text .partner-item {
     display: flex;
-    align-items: center;
     gap: 2rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-/* Style 9: Scrolling List */
-/* Same as carousel, but with a different name for semantic distinction */
-.partners-scrolling-list {
-    /* Uses .partners-logo-carousel styles */
+/* Style 9: Scrolling List (same as carousel) */
+.partners-scrolling-list .partners-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+.partners-scrolling-list .logo-item {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
 }
 
 /* Style 10: Rotating Ring */
-/* This style requires complex CSS or JS for a true circular path.
-   This is a simplified representation. */
-.partners-rotating-ring {
+.partners-rotating-ring .partners-container {
     position: relative;
     width: 300px;
     height: 300px;
-    margin: 4rem auto;
-    border: 2px dashed #e2e8f0;
-    border-radius: 50%;
+    margin: 2rem auto;
 }
 .partners-rotating-ring .logo-item {
     position: absolute;
-    /* JS would be needed to calculate positions properly */
+    top: 50%;
+    left: 50%;
+    animation: rotate 20s linear infinite;
 }
 
 /* Style 11: Slide Reveal */
-.partners-slide-reveal {
-    display: flex;
-    justify-content: space-around;
-    padding: 3rem 1rem;
-    gap: 1rem;
-}
 .partners-slide-reveal .logo-item {
     opacity: 0;
-    animation: slide-up 0.5s forwards;
+    transform: translateX(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+.partners-slide-reveal .logo-item.in-view {
+    opacity: 1;
+    transform: translateX(0);
 }
 
-@keyframes slide-up {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg) translateX(150px) rotate(-360deg); }
 }

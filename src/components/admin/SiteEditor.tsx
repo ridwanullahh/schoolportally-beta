@@ -18,6 +18,7 @@ import { Switch } from '@/components/ui/switch';
 import { defaultPages } from '@/data/defaultSiteStructure';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import SectionEditor from './SectionEditor';
+import ThemeStyler from './ThemeStyler';
 
 const SiteEditor = () => {
   const { school, setSchool } = useSchool();
@@ -501,10 +502,12 @@ const SiteEditor = () => {
           <TabsTrigger value="global">Global Settings</TabsTrigger>
           <TabsTrigger value="pages">Pages & Content</TabsTrigger>
           <TabsTrigger value="onboarding">Onboarding</TabsTrigger>
+          <TabsTrigger value="theme">Theme</TabsTrigger>
         </TabsList>
         <TabsContent value="global" className="mt-4">{renderGlobalSettings()}</TabsContent>
         <TabsContent value="pages" className="mt-4">{renderPagesContent()}</TabsContent>
         <TabsContent value="onboarding" className="mt-4">{renderOnboarding()}</TabsContent>
+        <TabsContent value="theme" className="mt-4"><ThemeStyler /></TabsContent>
       </Tabs>
     </div>
   );

@@ -77,9 +77,6 @@ const SupportModule: React.FC = () => {
       const allTickets = await sdk.get<SupportTicket>('support_tickets');
       let schoolTickets = allTickets.filter(ticket => ticket.schoolId === school.id);
 
-      if (user.userType !== 'school_admin') {
-        schoolTickets = schoolTickets.filter(ticket => ticket.submittedBy === user.id);
-      }
       setTickets(schoolTickets.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
     } catch (error) {
       console.error('Error fetching tickets:', error);

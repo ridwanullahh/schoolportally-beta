@@ -2,10 +2,10 @@ import React from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Routes, Route } from 'react-router-dom';
 import { Book, Bell, Users } from 'lucide-react';
-import AnnouncementsModule from '@/components/admin/AnnouncementsModule';
-import ClassesModule from '@/components/admin/ClassesModule';
-import LMSModule from '@/components/admin/LMSModule';
-import SupportModule from '@/components/admin/SupportModule';
+import AnnouncementsModule from '@/components/users/AnnouncementsModule';
+import ClassesModule from '@/components/users/ClassesModule';
+import LMSModule from '@/components/users/LMSModule';
+import SupportModule from '@/components/users/SupportModule';
 
 const sidebarItems = [
     { name: 'Announcements', href: 'announcements', icon: Bell, active: true },
