@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
-import sdk from '@/lib/sdk-config';
+import { useAnnouncements } from '@/hooks/useAnnouncements';
+import { Announcement } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -13,31 +14,10 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Plus, Edit, Trash2, Megaphone, Pin, Eye, Calendar } from 'lucide-react';
 
-interface Announcement {
-  id: string;
-  title: string;
-  content: string;
-  schoolId: string;
-  authorId: string;
-  priority: 'low' | 'normal' | 'high' | 'urgent';
-  targetAudience: string[];
-  status: 'published' | 'draft' | 'scheduled';
-  publishedAt: string;
-  expiresAt: string;
-  category: string;
-  attachments: string[];
-  readBy: string[];
-  pinned: boolean;
-  sendEmail: boolean;
-  sendSMS: boolean;
-  views: number;
-}
-
 const AnnouncementsModule: React.FC = () => {
   const { school } = useSchool();
   const { user } = useAuth();
-  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { announcements, loading, createAnnouncement, updateAnnouncement, deleteAnnouncement } = useAnnouncements();
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Announcement | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -82,52 +62,19 @@ const AnnouncementsModule: React.FC = () => {
     'holiday'
   ];
 
-  useEffect(() => {
-    fetchAnnouncements();
-  }, [school]);
-
-  const fetchAnnouncements = async () => {
-    if (!school || !user) return;
-
-    setLoading(true);
-    try {
-      const allAnnouncements = await sdk.get<Announcement>('announcements');
-      let schoolAnnouncements = allAnnouncements.filter(announcement => announcement.schoolId === school.id);
-
-      const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
-      if (!isAdmin) {
-        schoolAnnouncements = schoolAnnouncements.filter(announcement =>
-          announcement.targetAudience.includes('all') || announcement.targetAudience.includes(user.userType)
-        );
-      }
-      // Sort by pinned first, then by published date
-      schoolAnnouncements.sort((a, b) => {
-        if (a.pinned && !b.pinned) return -1;
-        if (!a.pinned && b.pinned) return 1;
-        return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-      });
-      setAnnouncements(schoolAnnouncements);
-    } catch (error) {
-      console.error('Error fetching announcements:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleCreateAnnouncement = async () => {
     if (!school) return;
 
     try {
-      const newAnnouncement = await sdk.insert<Announcement>('announcements', {
+      await createAnnouncement({
         ...announcementForm,
-        schoolId: school.id,
         authorId: 'admin', // In real app, use current user
         publishedAt: announcementForm.status === 'published' ? new Date().toISOString() : '',
         attachments: [],
         readBy: [],
         views: 0,
       });
-      setAnnouncements([newAnnouncement, ...announcements]);
       resetForm();
       setIsDialogOpen(false);
     } catch (error) {
@@ -139,15 +86,12 @@ const AnnouncementsModule: React.FC = () => {
     if (!selectedAnnouncement) return;
 
     try {
-      const updatedAnnouncement = await sdk.update<Announcement>('announcements', selectedAnnouncement.id, {
+      await updateAnnouncement(selectedAnnouncement.id, {
         ...announcementForm,
-        publishedAt: announcementForm.status === 'published' && !selectedAnnouncement.publishedAt 
-          ? new Date().toISOString() 
+        publishedAt: announcementForm.status === 'published' && !selectedAnnouncement.publishedAt
+          ? new Date().toISOString()
           : selectedAnnouncement.publishedAt,
       });
-      setAnnouncements(announcements.map(announcement => 
-        announcement.id === selectedAnnouncement.id ? updatedAnnouncement : announcement
-      ));
       resetForm();
       setIsDialogOpen(false);
       setIsEditing(false);
@@ -159,8 +103,7 @@ const AnnouncementsModule: React.FC = () => {
 
   const handleDeleteAnnouncement = async (announcementId: string) => {
     try {
-      await sdk.delete('announcements', announcementId);
-      setAnnouncements(announcements.filter(announcement => announcement.id !== announcementId));
+      await deleteAnnouncement(announcementId);
     } catch (error) {
       console.error('Error deleting announcement:', error);
     }
@@ -168,12 +111,9 @@ const AnnouncementsModule: React.FC = () => {
 
   const togglePin = async (announcementId: string, currentPinned: boolean) => {
     try {
-      const updatedAnnouncement = await sdk.update<Announcement>('announcements', announcementId, {
+      await updateAnnouncement(announcementId, {
         pinned: !currentPinned,
       });
-      setAnnouncements(announcements.map(announcement => 
-        announcement.id === announcementId ? updatedAnnouncement : announcement
-      ));
     } catch (error) {
       console.error('Error toggling pin:', error);
     }

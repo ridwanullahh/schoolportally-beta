@@ -31,36 +31,33 @@ export const useSchool = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchSchool = async () => {
-      if (!isAuthenticated || !user?.schoolId) {
-        setLoading(false);
-        return;
-      }
+    if (!isAuthenticated || !user?.schoolId) {
+      setLoading(false);
+      setSchool(null);
+      return;
+    }
 
-      setLoading(true);
-      setError(null);
+    setLoading(true);
+    setError(null);
 
-      try {
-        console.log('Fetching school for user:', user.schoolId);
-        const schools = await sdk.get<School>('schools');
-        const schoolData = schools.find(s => s.id === user.schoolId);
-        
-        if (schoolData) {
-          setSchool(schoolData);
-          console.log('School found:', schoolData);
-        } else {
-          console.log('No school found for user');
-          setSchool(null);
-        }
-      } catch (err) {
-        console.error('Failed to fetch school:', err);
-        setError('Failed to load school data');
-      } finally {
-        setLoading(false);
+    const unsubscribe = sdk.subscribe<School>('schools', (schools) => {
+      console.log('Received school updates:', schools);
+      const schoolData = schools.find(s => s.id === user.schoolId);
+      if (schoolData) {
+        setSchool(schoolData);
+        console.log('School updated:', schoolData);
+      } else {
+        setSchool(null);
+        console.log('No matching school found after update');
       }
+      setLoading(false);
+    });
+
+    return () => {
+      console.log('Unsubscribing from schools');
+      unsubscribe();
     };
 
-    fetchSchool();
   }, [isAuthenticated, user?.schoolId]);
 
   const updateSchool = async (updates: Partial<School>) => {

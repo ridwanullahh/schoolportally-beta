@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
-import sdk from '@/lib/sdk-config';
+import { useBlog } from '@/hooks/useBlog';
+import { Blog as BlogPost } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,33 +13,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Badge } from '@/components/ui/badge';
 import { Plus, Edit, Trash2, Eye, Calendar, User } from 'lucide-react';
 
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  content: string;
-  excerpt: string;
-  schoolId: string;
-  authorId: string;
-  status: 'draft' | 'published' | 'archived';
-  featuredImage: string;
-  publishedAt: string;
-  tags: string[];
-  categories: string[];
-  readingTime: number;
-  views: number;
-  likes: number;
-  comments: any[];
-  relatedPosts: string[];
-  seoTitle: string;
-  seoDescription: string;
-}
-
 const BlogModule: React.FC = () => {
   const { school } = useSchool();
   const { user } = useAuth();
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { posts, loading, createPost, updatePost, deletePost } = useBlog();
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -55,24 +33,6 @@ const BlogModule: React.FC = () => {
     seoDescription: '',
   });
 
-  useEffect(() => {
-    fetchPosts();
-  }, [school]);
-
-  const fetchPosts = async () => {
-    if (!school) return;
-
-    setLoading(true);
-    try {
-      const allPosts = await sdk.get<BlogPost>('blog_posts');
-      const schoolPosts = allPosts.filter(post => post.schoolId === school.id);
-      setPosts(schoolPosts);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleCreatePost = async () => {
     if (!school) return;
@@ -83,10 +43,9 @@ const BlogModule: React.FC = () => {
       const tags = postForm.tags.split(',').map(tag => tag.trim()).filter(Boolean);
       const categories = postForm.categories.split(',').map(cat => cat.trim()).filter(Boolean);
       
-      const newPost = await sdk.insert<BlogPost>('blog_posts', {
+      await createPost({
         ...postForm,
         slug,
-        schoolId: school.id,
         authorId: 'admin', // In real app, use current user
         publishedAt: postForm.status === 'published' ? new Date().toISOString() : '',
         tags,
@@ -97,7 +56,6 @@ const BlogModule: React.FC = () => {
         comments: [],
         relatedPosts: [],
       });
-      setPosts([...posts, newPost]);
       resetForm();
       setIsDialogOpen(false);
     } catch (error) {
@@ -113,18 +71,15 @@ const BlogModule: React.FC = () => {
       const categories = postForm.categories.split(',').map(cat => cat.trim()).filter(Boolean);
       const readingTime = Math.ceil(postForm.content.split(' ').length / 200);
       
-      const updatedPost = await sdk.update<BlogPost>('blog_posts', selectedPost.id, {
+      await updatePost(selectedPost.id, {
         ...postForm,
         tags,
         categories,
         readingTime,
-        publishedAt: postForm.status === 'published' && !selectedPost.publishedAt 
-          ? new Date().toISOString() 
+        publishedAt: postForm.status === 'published' && !selectedPost.publishedAt
+          ? new Date().toISOString()
           : selectedPost.publishedAt,
       });
-      setPosts(posts.map(post => 
-        post.id === selectedPost.id ? updatedPost : post
-      ));
       resetForm();
       setIsDialogOpen(false);
       setIsEditing(false);
@@ -136,8 +91,7 @@ const BlogModule: React.FC = () => {
 
   const handleDeletePost = async (postId: string) => {
     try {
-      await sdk.delete('blog_posts', postId);
-      setPosts(posts.filter(post => post.id !== postId));
+      await deletePost(postId);
     } catch (error) {
       console.error('Error deleting post:', error);
     }
