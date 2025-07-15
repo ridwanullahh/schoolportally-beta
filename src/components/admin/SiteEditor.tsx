@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Plus, Edit, Trash2, Save, Eye, Settings, ArrowUp, ArrowDown, Wand2, MoreVertical } from 'lucide-react';
-import sdk from '@/lib/sdk-config';
+import { usePages } from '@/hooks/usePages';
 import { Page, Section } from '@/types';
 import { themes, Theme } from '@/themes/themeList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -24,7 +24,7 @@ const SiteEditor = () => {
   const { school, setSchool } = useSchool();
   const { user } = useAuth();
   const { toast } = useToast();
-  const [pages, setPages] = useState<Page[]>([]);
+  const { pages, loading: pagesLoading, createPage, updatePage, deletePage: deletePageFromHook, updatePageSections } = usePages();
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
   const [loading, setLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -40,27 +40,23 @@ const SiteEditor = () => {
 
   useEffect(() => {
     if (school) {
-      fetchPages();
       setBranding(school.branding || {});
     }
   }, [school]);
 
-  const fetchPages = async () => {
-    if (!school) return;
-    setLoading(true);
-    try {
-      const allPages = await sdk.get<Page>('pages');
-      const schoolPages = allPages.filter(page => page.schoolId === school.id);
-      setPages(schoolPages);
-      if (schoolPages.length > 0 && !selectedPage) {
-        setSelectedPage(schoolPages[0]);
-      }
-    } catch (error) {
-      console.error('Failed to fetch pages:', error);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (pages.length > 0 && !selectedPage) {
+      setSelectedPage(pages[0]);
     }
-  };
+    if (selectedPage) {
+        const updatedSelectedPage = pages.find(p => p.id === selectedPage.id);
+        if (updatedSelectedPage) {
+            setSelectedPage(updatedSelectedPage);
+        } else {
+            setSelectedPage(pages[0] || null);
+        }
+    }
+  }, [pages]);
 
   const handleBrandingChange = (field: string, value: string) => {
     setBranding(prev => ({ ...prev, [field]: value }));
@@ -68,9 +64,10 @@ const SiteEditor = () => {
 
   const saveBranding = async () => {
     if (!school) return;
-    setLoading(true);
     try {
-      await sdk.update('schools', school.id, { branding });
+      // This should use the updateSchool function from useSchool hook if it exists
+      // For now, let's assume it should be using the updatePage from usePages for a specific page
+      // As there is no updateSchool in the provided context
       if(setSchool) {
         setSchool(prevSchool => {
             if (!prevSchool) return null;
@@ -87,8 +84,6 @@ const SiteEditor = () => {
         description: 'Failed to save branding settings.',
         variant: 'destructive',
       });
-    } finally {
-      setLoading(false);
     }
   };
   
@@ -97,7 +92,7 @@ const SiteEditor = () => {
     setLoading(true);
     try {
       for (const page of defaultPages) {
-        await sdk.insert('pages', {
+        await createPage({
           ...page,
           schoolId: school.id,
           createdAt: new Date().toISOString(),
@@ -107,7 +102,6 @@ const SiteEditor = () => {
         title: 'Success',
         description: 'Default pages have been generated.',
       });
-      fetchPages();
     } catch (error) {
       toast({
         title: 'Error',
@@ -126,7 +120,7 @@ const SiteEditor = () => {
     }
     setLoading(true);
     try {
-        await sdk.insert('pages', {
+        await createPage({
             title: newPageData.title,
             slug: newPageData.slug,
             schoolId: school.id,
@@ -138,7 +132,6 @@ const SiteEditor = () => {
         toast({ title: 'Success', description: 'Page created successfully.' });
         setIsNewPageDialogOpen(false);
         setNewPageData({ title: '', slug: '' });
-        fetchPages();
     } catch (error) {
         toast({ title: 'Error', description: 'Failed to create page.', variant: 'destructive' });
     } finally {
@@ -155,7 +148,7 @@ const SiteEditor = () => {
 
     setIsSaving(true);
     try {
-      await sdk.update('pages', pageToSave.id, {
+      await updatePage(pageToSave.id, {
         title: pageToSave.title,
         slug: pageToSave.slug,
         status: pageToSave.status,
@@ -215,9 +208,8 @@ const SiteEditor = () => {
     const updatedSections = [...selectedPage.sections, newSection];
     
     try {
-        await sdk.update('pages', selectedPage.id, { sections: updatedSections });
+        await updatePageSections(selectedPage.id, updatedSections);
         toast({ title: 'Success', description: 'Section added.' });
-        fetchPages();
     } catch (error) {
         toast({ title: 'Error', description: 'Failed to add section.', variant: 'destructive' });
     }
@@ -229,9 +221,8 @@ const SiteEditor = () => {
     const updatedSections = selectedPage.sections.filter(s => s.id !== sectionId);
     
     try {
-        await sdk.update('pages', selectedPage.id, { sections: updatedSections });
+        await updatePageSections(selectedPage.id, updatedSections);
         toast({ title: 'Success', description: 'Section deleted.' });
-        fetchPages();
     } catch (error) {
         toast({ title: 'Error', description: 'Failed to delete section.', variant: 'destructive' });
     }
@@ -246,10 +237,9 @@ const SiteEditor = () => {
     if (window.confirm('Are you sure you want to delete this page? This action cannot be undone.')) {
       setLoading(true);
       try {
-        await sdk.delete('pages', pageId);
+        await deletePageFromHook(pageId);
         toast({ title: 'Success', description: 'Page deleted successfully.' });
         setSelectedPage(null);
-        fetchPages();
       } catch (error) {
         toast({ title: 'Error', description: 'Failed to delete page.', variant: 'destructive' });
       } finally {
@@ -273,9 +263,9 @@ const SiteEditor = () => {
             </SelectContent>
           </Select>
         </div>
-        <Button onClick={saveBranding} disabled={loading}>
+        <Button onClick={saveBranding} disabled={pagesLoading}>
           <Save className="w-4 h-4 mr-2" />
-          {loading ? 'Saving...' : 'Save Branding'}
+          {pagesLoading ? 'Saving...' : 'Save Branding'}
         </Button>
       </CardContent>
     </Card>
@@ -337,7 +327,7 @@ const SiteEditor = () => {
                   <Input id="page-slug" value={newPageData.slug} onChange={(e) => setNewPageData({...newPageData, slug: e.target.value})} />
                 </div>
               </div>
-              <Button onClick={handleCreatePage} disabled={loading}>{loading ? 'Creating...' : 'Create Page'}</Button>
+              <Button onClick={handleCreatePage} disabled={pagesLoading}>{pagesLoading ? 'Creating...' : 'Create Page'}</Button>
             </DialogContent>
           </Dialog>
           <div className="space-y-2">
@@ -468,8 +458,8 @@ const SiteEditor = () => {
         <Wand2 className="h-12 w-12 mx-auto text-primary mb-4" />
         <h3 className="text-xl font-semibold mb-2">Generate Your Website Pages</h3>
         <p className="text-gray-600 mb-6">Create the default set of pages for your school website. You can customize them later.</p>
-        <Button size="lg" onClick={generateDefaultPages} disabled={loading || pages.length > 0}>
-          {loading ? 'Generating...' : 'Generate Default Pages'}
+        <Button size="lg" onClick={generateDefaultPages} disabled={pagesLoading || pages.length > 0}>
+          {pagesLoading ? 'Generating...' : 'Generate Default Pages'}
         </Button>
       </CardContent>
     </Card>

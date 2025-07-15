@@ -93,6 +93,14 @@ interface CloudinaryUploadResult {
   [key: string]: any;
 }
 
+interface QueuedWrite {
+  collection: string;
+  data: any[];
+  resolve: (value: any) => void;
+  reject: (reason?: any) => void;
+  retries: number;
+}
+
 interface EmailPayload {
   to: string;
   subject: string;
@@ -116,6 +124,11 @@ class UniversalSDK {
   private sessionStore: Record<string, Session>;
   private otpMemory: Record<string, OTPRecord>;
   private auditLog: Record<string, AuditLogEntry[]>;
+  private cache: Record<string, { data: any[], etag?: string, sha?: string }> = {};
+  private subscribers: Record<string, Function[]> = {};
+  private pollingIntervals: Record<string, number> = {};
+  private writeQueue: QueuedWrite[] = [];
+  private isProcessingQueue = false;
 
   constructor(config: UniversalSDKConfig) {
     this.owner = config.owner;
@@ -141,24 +154,105 @@ class UniversalSDK {
     };
   }
 
-  private async request(path: string, method: string = "GET", body: any = null): Promise<any> {
+  private async request(path: string, method: string = "GET", body: any = null, etag?: string): Promise<any> {
     const url = `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${path}` +
                 (method === "GET" ? `?ref=${this.branch}` : "");
+    
+    const headers = this.headers();
+    if (etag) {
+      headers["If-None-Match"] = etag;
+    }
+
     const res = await fetch(url, {
       method,
-      headers: this.headers(),
+      headers,
       body: body ? JSON.stringify(body) : null,
     });
+
+    if (res.status === 304) {
+      return { notModified: true };
+    }
+
     if (!res.ok) throw new Error(await res.text());
-    return res.json();
+    
+    if (res.status === 204 || res.status === 201) {
+        return { success: true, ...await res.json() };
+    }
+
+    const json = await res.json();
+    return { ...json, etag: res.headers.get("ETag") };
   }
 
-  async get<T = any>(collection: string): Promise<T[]> {
+  async get<T = any>(collection: string, force = false): Promise<T[]> {
+    const cacheEntry = this.cache[collection];
+    if (cacheEntry && !force) {
+      return cacheEntry.data;
+    }
+
     try {
-      const res = await this.request(`${this.basePath}/${collection}.json`);
-      return JSON.parse(atob(res.content));
-    } catch {
-      return [];
+      const res = await this.request(`${this.basePath}/${collection}.json`, "GET", null, cacheEntry?.etag);
+      if (res.notModified) {
+        return cacheEntry.data;
+      }
+      const data = JSON.parse(atob(res.content));
+      this.cache[collection] = { data, etag: res.etag, sha: res.sha };
+      this.notifySubscribers(collection, data);
+      return data;
+    } catch (e) {
+      if ((e as Error).message.includes("Not Found")) {
+        this.cache[collection] = { data: [], etag: undefined, sha: undefined };
+        return [];
+      }
+      throw e;
+    }
+  }
+
+  private notifySubscribers(collection: string, data: any[]) {
+    (this.subscribers[collection] || []).forEach(cb => cb(data));
+  }
+
+  subscribe<T = any>(collection: string, callback: (data: T[]) => void): () => void {
+    if (!this.subscribers[collection]) {
+      this.subscribers[collection] = [];
+    }
+    this.subscribers[collection].push(callback);
+
+    if (!this.pollingIntervals[collection]) {
+      this.pollCollection(collection);
+      const intervalId = setInterval(() => this.pollCollection(collection), 5000); // Poll every 5 seconds
+      this.pollingIntervals[collection] = intervalId as any;
+    }
+    
+    // Immediately provide current data
+    if (this.cache[collection]) {
+      callback(this.cache[collection].data);
+    } else {
+      this.get(collection).then(data => callback(data));
+    }
+
+    return () => this.unsubscribe(collection, callback);
+  }
+
+  unsubscribe(collection: string, callback: Function) {
+    this.subscribers[collection] = (this.subscribers[collection] || []).filter(cb => cb !== callback);
+    if (this.subscribers[collection].length === 0) {
+      clearInterval(this.pollingIntervals[collection]);
+      delete this.pollingIntervals[collection];
+    }
+  }
+
+  private async pollCollection(collection: string) {
+    try {
+      const cacheEntry = this.cache[collection];
+      const res = await this.request(`${this.basePath}/${collection}.json`, "GET", null, cacheEntry?.etag);
+
+      if (!res.notModified) {
+        const data = JSON.parse(atob(res.content));
+        this.cache[collection] = { data, etag: res.etag, sha: res.sha };
+        this.notifySubscribers(collection, data);
+      }
+    } catch (error) {
+      console.error(`Polling failed for ${collection}:`, error);
     }
   }
 
@@ -167,22 +261,62 @@ class UniversalSDK {
     return arr.find((x: any) => x.id === key || x.uid === key) || null;
   }
 
-  private async save<T = any>(collection: string, data: T[]): Promise<void> {
-    let sha: string | undefined;
-    try {
-      const head = await this.request(`${this.basePath}/${collection}.json`);
-      sha = head.sha;
-    } catch (error: any) {
-      if (!error.message.includes("Not Found")) {
-        throw error;
-      }
+  private async processQueue() {
+    if (this.isProcessingQueue || this.writeQueue.length === 0) {
+      return;
     }
+    this.isProcessingQueue = true;
+    const write = this.writeQueue[0];
 
-    await this.request(`${this.basePath}/${collection}.json`, "PUT", {
-      message: `Update ${collection} - ${new Date().toISOString()}`,
-      content: btoa(JSON.stringify(data, null, 2)),
-      branch: this.branch,
-      ...(sha ? { sha } : {}),
+    try {
+      const { collection, data, resolve } = write;
+      // Always fetch latest sha before writing
+      const file = await this.request(`${this.basePath}/${collection}.json`).catch(() => ({ sha: undefined }));
+      
+      await this.request(`${this.basePath}/${collection}.json`, "PUT", {
+          message: `Update ${collection} - ${new Date().toISOString()}`,
+          content: btoa(JSON.stringify(data, null, 2)),
+          branch: this.branch,
+          sha: file.sha,
+      });
+
+      this.writeQueue.shift(); // Remove from queue on success
+      this.get(collection, true); // Force-fetch latest data after successful write
+      resolve(data);
+    } catch (error: any) {
+        if (error.message.includes("409") && write.retries < 5) { // Conflict
+            write.retries++;
+            // Don't remove from queue, will retry on next process tick
+        } else {
+            write.reject(error);
+            this.writeQueue.shift(); // Remove from queue on hard failure
+        }
+    } finally {
+        this.isProcessingQueue = false;
+        // Immediately process next item
+        if (this.writeQueue.length > 0) {
+          setTimeout(() => this.processQueue(), 250);
+        }
+    }
+  }
+
+  private save<T = any>(collection: string, data: T[]): Promise<T[]> {
+      return new Promise((resolve, reject) => {
+        // Optimistic update
+        this.cache[collection] = { ...this.cache[collection], data };
+        this.notifySubscribers(collection, data);
+        
+        this.writeQueue.push({
+            collection,
+            data,
+            resolve,
+            reject,
+            retries: 0
+        });
+        
+        if (!this.isProcessingQueue) {
+            this.processQueue();
+        }
     });
   }
 
@@ -215,51 +349,21 @@ class UniversalSDK {
   }
 
   async update<T = any>(collection: string, key: string, updates: Partial<T>): Promise<T> {
-    const MAX_RETRIES = 3;
-    let lastError: Error | null = null;
-
-    for (let i = 0; i < MAX_RETRIES; i++) {
-      let file;
-      try {
-        file = await this.request(`${this.basePath}/${collection}.json`);
-      } catch (e: any) {
-        if (e.message.includes("Not Found")) {
-          throw new Error("Collection not found, cannot update.");
-        }
-        throw e;
-      }
-
-      const arr = JSON.parse(atob(file.content));
-      const sha = file.sha;
-
-      const itemIndex = arr.findIndex((x: any) => x.id === key || x.uid === key);
-      if (itemIndex === -1) {
-        throw new Error(`Item with key "${key}" not found in collection "${collection}".`);
-      }
-
-      const updatedItem = { ...arr[itemIndex], ...updates };
-      this.validateSchema(collection, updatedItem);
-      arr[itemIndex] = updatedItem;
-
-      try {
-        await this.request(`${this.basePath}/${collection}.json`, "PUT", {
-          message: `Update ${collection} - ${new Date().toISOString()}`,
-          content: btoa(JSON.stringify(arr, null, 2)),
-          branch: this.branch,
-          sha,
-        });
-        this._audit(collection, updatedItem, "update");
-        return updatedItem;
-      } catch (error: any) {
-        lastError = error;
-        if (error.message.includes("409") && i < MAX_RETRIES - 1) {
-          await new Promise(res => setTimeout(res, 200 + Math.random() * 800));
-          continue;
-        }
-        throw error;
-      }
+    await this.get(collection, true); // Ensure we have latest data
+    const arr = [...(this.cache[collection]?.data || [])];
+    
+    const itemIndex = arr.findIndex((x: any) => x.id === key || x.uid === key);
+    if (itemIndex === -1) {
+      throw new Error(`Item with key "${key}" not found in collection "${collection}".`);
     }
-    throw new Error(`Update failed after ${MAX_RETRIES} retries. Last error: ${lastError?.message}`);
+
+    const updatedItem = { ...arr[itemIndex], ...updates };
+    this.validateSchema(collection, updatedItem);
+    arr[itemIndex] = updatedItem;
+
+    await this.save(collection, arr);
+    this._audit(collection, updatedItem, "update");
+    return updatedItem;
   }
 
   async bulkUpdate<T = any>(collection: string, updates: (Partial<T> & { id?: string; uid?: string })[]): Promise<T[]> {

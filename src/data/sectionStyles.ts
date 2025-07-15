@@ -3,210 +3,42 @@ import { SectionStyle } from '@/types';
 
 // Hero Section Styles (15 unique layouts)
 export const heroStyles: SectionStyle[] = [
-  {
-    id: 'hero-1',
-    name: 'Classic Center',
-    description: 'Centered content with large heading and CTA buttons',
-    preview: '/previews/hero-1.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
-      { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' },
-      { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
-    ]
-  },
-  {
-    id: 'hero-2',
-    name: 'Split Layout',
-    description: 'Content on left, image on right',
-    preview: '/previews/hero-2.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
-      { id: 'image', name: 'image', type: 'image' as const, label: 'Hero Image', required: true },
-    ]
-  },
-  {
-    id: 'hero-3',
-    name: 'Video Background',
-    description: 'Full-screen video with overlay content',
-    preview: '/previews/hero-3.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
-      { id: 'videoUrl', name: 'videoUrl', type: 'video' as const, label: 'Background Video', required: true },
-    ]
-  },
-  {
-    id: 'hero-4',
-    name: 'Minimal Text',
-    description: 'Clean, minimal design with focus on typography',
-    preview: '/previews/hero-4.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
-    ]
-  },
-  {
-    id: 'hero-5',
-    name: 'Card Overlay',
-    description: 'Content in a card overlaying the background',
-    preview: '/previews/hero-5.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
-    ]
-  },
-  {
-    id: 'hero-6',
-    name: 'Diagonal Split',
-    description: 'Diagonal division with content and image',
-    preview: '/previews/hero-6.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' },
-      { id: 'image', name: 'image', type: 'image' as const, label: 'Hero Image', required: true },
-    ]
-  },
-  {
-    id: 'hero-7',
-    name: 'Parallax Background',
-    description: 'Parallax scrolling background effect',
-    preview: '/previews/hero-7.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
-    ]
-  },
-  {
-    id: 'hero-8',
-    name: 'Animated Gradient',
-    description: 'Animated gradient background with centered content',
-    preview: '/previews/hero-8.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-    ]
-  },
-  {
-    id: 'hero-9',
-    name: 'Split Screen Video',
-    description: 'Split screen with video on one side',
-    preview: '/previews/hero-9.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'videoUrl', name: 'videoUrl', type: 'video' as const, label: 'Video URL' },
-    ]
-  },
-  {
-    id: 'hero-10',
-    name: 'Layered Cards',
-    description: 'Multiple layered cards with depth effect',
-    preview: '/previews/hero-10.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'image', name: 'image', type: 'image' as const, label: 'Hero Image' },
-    ]
-  },
-  {
-    id: 'hero-11',
-    name: 'Full Width Image',
-    description: 'Full width background image with overlay text',
-    preview: '/previews/hero-11.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'backgroundImage', name: 'backgroundImage', type: 'image' as const, label: 'Background Image' },
-    ]
-  },
-  {
-    id: 'hero-12',
-    name: 'Geometric Shapes',
-    description: 'Modern design with geometric shapes and patterns',
-    preview: '/previews/hero-12.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-    ]
-  },
-  {
-    id: 'hero-13',
-    name: 'Carousel Hero',
-    description: 'Multiple slides with different content',
-    preview: '/previews/hero-13.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'slides', name: 'slides', type: 'repeater' as const, label: 'Hero Slides' },
-    ]
-  },
-  {
-    id: 'hero-14',
-    name: 'Interactive Elements',
-    description: 'Hero with interactive hover effects',
-    preview: '/previews/hero-14.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' },
-      { id: 'features', name: 'features', type: 'repeater' as const, label: 'Interactive Features' },
-    ]
-  },
-  {
-    id: 'hero-15',
-    name: 'Timeline Hero',
-    description: 'Hero section with timeline elements',
-    preview: '/previews/hero-15.jpg',
-    category: 'hero',
-    fields: [
-      { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true },
-      { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' },
-      { id: 'timeline', name: 'timeline', type: 'repeater' as const, label: 'Timeline Items' },
-    ]
-  }
+  { id: 'hero-center-stage', name: 'Center Stage', description: 'Full viewport height, flexbox centering, fade-in animation', preview: '/previews/hero-1.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-split-columns', name: 'Split Columns', description: 'CSS Grid 2-column layout, content left, breathing space right', preview: '/previews/hero-2.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-full-card', name: 'Full Card Hero', description: 'Full-width card with prominent shadow and bordered container', preview: '/previews/hero-3.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-overlay-frame', name: 'Overlay Frame', description: 'Top-padded frame with floating elements', preview: '/previews/hero-4.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-grid-power', name: 'Grid Power', description: 'CSS Grid with emphasized hierarchy and structured layout', preview: '/previews/hero-5.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-minimal-punch', name: 'Minimal Punch', description: 'Compact top section with bottom accent border', preview: '/previews/hero-6.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-dynamic-fold', name: 'Dynamic Fold', description: 'Folded section with slide-in animation from side', preview: '/previews/hero-7.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-sticky-topline', name: 'Sticky Topline', description: 'Sticky hero that shrinks on scroll', preview: '/previews/hero-8.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-block-statement', name: 'Block Statement', description: 'Side floating headline with sharp geometric corners', preview: '/previews/hero-9.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-slide-reveal', name: 'Slide Reveal', description: 'Horizontal slide-in animation from edge', preview: '/previews/hero-10.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-skew-panel', name: 'Skew Panel', description: 'Angled hero block with bold skewed layout', preview: '/previews/hero-11.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-minimalist-clean', name: 'Minimalist Clean', description: 'Clean, simple, and modern design', preview: '/previews/hero-12.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-bold-geometric', name: 'Bold Geometric Shapes', description: 'Striking design with geometric shapes', preview: '/previews/hero-13.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-gradient-waves', name: 'Gradient Waves', description: 'Animated gradient with wave-like shapes', preview: '/previews/hero-14.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-split-yin-yang', name: 'Split Screen Yin-Yang', description: 'Diagonally split screen with contrasting colors', preview: '/previews/hero-15.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-floating-card-deck', name: 'Floating Card Deck', description: 'A stack of floating cards with a modern look', preview: '/previews/hero-16.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-dot-matrix', name: 'Animated Dot Matrix', description: 'Background with an animated dot matrix', preview: '/previews/hero-17.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-typography-sculpture', name: 'Typography Sculpture', description: 'Creative use of typography as a design element', preview: '/previews/hero-18.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-hexagonal-grid', name: 'Hexagonal Grid', description: 'A background made of a hexagonal grid', preview: '/previews/hero-19.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-circular-orbit', name: 'Circular Orbit', description: 'Elements orbiting a central point', preview: '/previews/hero-20.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-glass-morphism', name: 'Glass Morphism Stack', description: 'Frosted glass effect with stacked layers', preview: '/previews/hero-21.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-skewed-perspective', name: 'Skewed Perspective', description: 'Content with a 3D skewed perspective', preview: '/previews/hero-22.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-neumorphic', name: 'Neumorphic Landscape', description: 'Soft UI with a neumorphic design', preview: '/previews/hero-23.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-magazine-editorial', name: 'Magazine Editorial', description: 'Layout inspired by a magazine editorial', preview: '/previews/hero-24.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-liquid-wave', name: 'Liquid Wave Motion', description: 'Animated liquid wave effect', preview: '/previews/hero-25.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-brutalist', name: 'Brutalist Concrete', description: 'Raw, brutalist design with a concrete texture', preview: '/previews/hero-26.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-neon-cyber', name: 'Neon Cyber Glow', description: 'Cyberpunk-inspired design with neon glows', preview: '/previews/hero-27.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-3d-isometric', name: '3D Isometric Blocks', description: '3D isometric blocks with a sense of depth', preview: '/previews/hero-28.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-origami-folds', name: 'Origami Paper Folds', description: 'Design inspired by origami paper folds', preview: '/previews/hero-29.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-particle-burst', name: 'Particle Burst', description: 'An explosion of particles for a dynamic effect', preview: '/previews/hero-30.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-layered-depth', name: 'Layered Depth Parallax', description: 'Parallax effect with multiple layers', preview: '/previews/hero-31.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-ribbon-banner-flow', name: 'Ribbon Banner Flow', description: 'Flowing ribbon banners for a decorative touch', preview: '/previews/hero-32.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-organic-blob', name: 'Organic Blob Shapes', description: 'Soft, organic blob shapes for a friendly feel', preview: '/previews/hero-33.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-terminal', name: 'Terminal Command Line', description: 'A retro terminal command line interface', preview: '/previews/hero-34.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-art-deco', name: 'Art Deco Geometric', description: 'Elegant art deco geometric patterns', preview: '/previews/hero-35.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
+  { id: 'hero-flowing-lines', name: 'Flowing Line Art', description: 'Elegant and simple flowing line art', preview: '/previews/hero-36.jpg', category: 'hero', fields: [ { id: 'title', name: 'title', type: 'text' as const, label: 'Main Title', required: true }, { id: 'subtitle', name: 'subtitle', type: 'text' as const, label: 'Subtitle' }, { id: 'description', name: 'description', type: 'textarea' as const, label: 'Description' }, { id: 'primaryButton', name: 'primaryButton', type: 'text' as const, label: 'Primary Button Text' }, { id: 'primaryLink', name: 'primaryLink', type: 'link' as const, label: 'Primary Button Link' }, { id: 'secondaryButton', name: 'secondaryButton', type: 'text' as const, label: 'Secondary Button Text' }, { id: 'secondaryLink', name: 'secondaryLink', type: 'link' as const, label: 'Secondary Button Link' } ] },
 ];
 
 // Features Section Styles (15 unique layouts)

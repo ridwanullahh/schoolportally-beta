@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Page, PageSection } from '@/types';
+import { Page, Section as PageSection } from '@/types';
 import { useSchool } from '@/contexts/SchoolContext';
 import sdk from '@/lib/sdk-config';
 
@@ -10,70 +10,37 @@ export const usePages = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchPages = async () => {
-    if (!school) return;
-
+  const fetchPages = () => {
+    if (!school) {
+      setPages([]);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
-    setError(null);
-
-    try {
-      const allPages = await sdk.get<Page>('pages');
+    const unsubscribe = sdk.subscribe<Page>('pages', (allPages) => {
       const schoolPages = allPages.filter(p => p.schoolId === school.id);
       setPages(schoolPages);
-    } catch (err) {
-      console.error('Failed to fetch pages:', err);
-      setError('Failed to load pages');
-    } finally {
       setLoading(false);
-    }
+    });
+
+    return unsubscribe;
   };
 
   const createPage = async (pageData: Omit<Page, 'id' | 'uid'>) => {
     if (!school) throw new Error('No school context');
-
-    try {
-      const newPage = await sdk.insert<Page>('pages', {
-        ...pageData,
-        schoolId: school.id,
-      });
-      setPages([...pages, newPage]);
-      return newPage;
-    } catch (err) {
-      console.error('Failed to create page:', err);
-      throw err;
-    }
+    return sdk.insert<Page>('pages', { ...pageData, schoolId: school.id });
   };
 
   const updatePage = async (pageId: string, updates: Partial<Page>) => {
-    try {
-      const updatedPage = await sdk.update<Page>('pages', pageId, updates);
-      setPages(pages.map(p => p.id === pageId ? updatedPage : p));
-      return updatedPage;
-    } catch (err) {
-      console.error('Failed to update page:', err);
-      throw err;
-    }
+    return sdk.update<Page>('pages', pageId, updates);
   };
 
   const deletePage = async (pageId: string) => {
-    try {
-      await sdk.delete('pages', pageId);
-      setPages(pages.filter(p => p.id !== pageId));
-    } catch (err) {
-      console.error('Failed to delete page:', err);
-      throw err;
-    }
+    return sdk.delete('pages', pageId);
   };
 
   const updatePageSections = async (pageId: string, sections: PageSection[]) => {
-    try {
-      const updatedPage = await sdk.update<Page>('pages', pageId, { sections });
-      setPages(pages.map(p => p.id === pageId ? updatedPage : p));
-      return updatedPage;
-    } catch (err) {
-      console.error('Failed to update page sections:', err);
-      throw err;
-    }
+    return sdk.update<Page>('pages', pageId, { sections });
   };
 
   const getPageBySlug = (slug: string): Page | null => {
@@ -85,7 +52,13 @@ export const usePages = () => {
   };
 
   useEffect(() => {
-    fetchPages();
+    const unsubscribe = fetchPages();
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
   }, [school]);
 
   return {

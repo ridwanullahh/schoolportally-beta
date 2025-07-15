@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
-import sdk from '@/lib/sdk-config';
+import { useAdmissions } from '@/hooks/useAdmissions';
+import { Admission } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -13,42 +14,10 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Eye, Edit, Trash2, Plus, Search, Filter } from 'lucide-react';
 
-interface Admission {
-  id: string;
-  studentName: string;
-  email: string;
-  phone: string;
-  parentName: string;
-  parentEmail: string;
-  parentPhone: string;
-  schoolId: string;
-  programId: string;
-  grade: string;
-  previousSchool: string;
-  documents: string[];
-  status: 'pending' | 'approved' | 'rejected' | 'waitlisted';
-  notes: string;
-  submittedAt: string;
-  reviewedAt?: string;
-  reviewedBy?: string;
-  dateOfBirth: string;
-  address: string;
-  medicalInfo: string;
-  emergencyContact: any;
-  academicRecords: any[];
-  extracurriculars: any[];
-  interviewDate?: string;
-  interviewNotes?: string;
-  testScores?: any;
-  financialAid: boolean;
-  tuitionPlan?: string;
-}
-
 const AdmissionsModule: React.FC = () => {
   const { school } = useSchool();
   const { user } = useAuth();
-  const [admissions, setAdmissions] = useState<Admission[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { admissions, loading, createAdmission, updateAdmission, deleteAdmission } = useAdmissions();
   const [selectedAdmission, setSelectedAdmission] = useState<Admission | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -70,32 +39,14 @@ const AdmissionsModule: React.FC = () => {
     notes: '',
   });
 
-  useEffect(() => {
-    fetchAdmissions();
-  }, [school]);
-
-  const fetchAdmissions = async () => {
-    if (!school) return;
-
-    setLoading(true);
-    try {
-      const allAdmissions = await sdk.get<Admission>('admissions');
-      const schoolAdmissions = allAdmissions.filter(admission => admission.schoolId === school.id);
-      setAdmissions(schoolAdmissions);
-    } catch (error) {
-      console.error('Error fetching admissions:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleCreateAdmission = async () => {
     if (!school) return;
 
     try {
-      const newAdmission = await sdk.insert<Admission>('admissions', {
+      await createAdmission({
         ...admissionForm,
-        schoolId: school.id,
+        programId: '', // Add a default or get from a form
         status: 'pending',
         submittedAt: new Date().toISOString(),
         documents: [],
@@ -103,7 +54,6 @@ const AdmissionsModule: React.FC = () => {
         extracurriculars: [],
         emergencyContact: {},
       });
-      setAdmissions([...admissions, newAdmission]);
       setAdmissionForm({
         studentName: '',
         email: '',
@@ -127,14 +77,11 @@ const AdmissionsModule: React.FC = () => {
 
   const handleUpdateStatus = async (admissionId: string, newStatus: Admission['status']) => {
     try {
-      const updatedAdmission = await sdk.update<Admission>('admissions', admissionId, {
+      await updateAdmission(admissionId, {
         status: newStatus,
         reviewedAt: new Date().toISOString(),
         reviewedBy: 'Admin', // In real app, use current user
       });
-      setAdmissions(admissions.map(admission => 
-        admission.id === admissionId ? updatedAdmission : admission
-      ));
     } catch (error) {
       console.error('Error updating admission status:', error);
     }
@@ -142,8 +89,7 @@ const AdmissionsModule: React.FC = () => {
 
   const handleDeleteAdmission = async (admissionId: string) => {
     try {
-      await sdk.delete('admissions', admissionId);
-      setAdmissions(admissions.filter(admission => admission.id !== admissionId));
+      await deleteAdmission(admissionId);
     } catch (error) {
       console.error('Error deleting admission:', error);
     }

@@ -70,7 +70,11 @@ const dbSchema = {
       faqPostStyle: 'string',
       faqArchiveStyle: 'string',
       jobPostStyle: 'string',
-      jobArchiveStyle: 'string'
+      jobArchiveStyle: 'string',
+      lightGreen: 'string',
+      lighterGreen: 'string',
+      backgroundLight: 'string',
+      backgroundMedium: 'string'
     }
   },
   pages: {

@@ -192,3 +192,112 @@ export interface School {
   createdAt: string;
   updatedAt?: string;
 }
+export interface Admission {
+  id: string;
+  uid?: string;
+  studentName: string;
+  email: string;
+  phone: string;
+  parentName: string;
+  parentEmail: string;
+  parentPhone: string;
+  schoolId: string;
+  programId: string;
+  grade: string;
+  previousSchool: string;
+  documents: string[];
+  status: 'pending' | 'approved' | 'rejected' | 'waitlisted';
+  notes: string;
+  submittedAt: string;
+  reviewedAt?: string;
+  reviewedBy?: string;
+  dateOfBirth: string;
+  address: string;
+  medicalInfo: string;
+  emergencyContact: any;
+  academicRecords: any[];
+  extracurriculars: any[];
+  interviewDate?: string;
+  interviewNotes?: string;
+  testScores?: any;
+  financialAid: boolean;
+  tuitionPlan?: string;
+}
+
+export interface Announcement {
+  id: string;
+  uid?: string;
+  title: string;
+  content: string;
+  schoolId: string;
+  authorId: string;
+  priority: 'low' | 'normal' | 'high' | 'urgent';
+  targetAudience: string[];
+  status: 'published' | 'draft' | 'scheduled';
+  publishedAt: string;
+  expiresAt: string;
+  category: string;
+  attachments: string[];
+  readBy: string[];
+  pinned: boolean;
+  sendEmail: boolean;
+  sendSMS: boolean;
+  views: number;
+}
+
+export interface Blog {
+  id: string;
+  uid?: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  schoolId: string;
+  authorId: string;
+  status: 'draft' | 'published' | 'archived';
+  featuredImage: string;
+  publishedAt: string;
+  tags: string[];
+  categories: string[];
+  readingTime: number;
+  views: number;
+  likes: number;
+  comments: any[];
+  relatedPosts: string[];
+  seoTitle: string;
+  seoDescription: string;
+}
+
+export interface Branding {
+  theme?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  accentColor?: string;
+  lightGreen?: string;
+  lighterGreen?: string;
+  backgroundLight?: string;
+  backgroundMedium?: string;
+  fontFamily?: string;
+  logoUrl?: string;
+  headerStyle?: string;
+  footerStyle?: string;
+  blogPostStyle?: string;
+  blogArchiveStyle?: string;
+  announcementPostStyle?: string;
+  announcementArchiveStyle?: string;
+}
+
+export interface SectionStyle {
+  id: string;
+  name: string;
+  description: string;
+  preview: string;
+  category: string;
+  fields: {
+    id: string;
+    name: string;
+    type: 'text' | 'textarea' | 'image' | 'video' | 'link' | 'repeater' | 'select';
+    label: string;
+    required?: boolean;
+  }[];
+}
