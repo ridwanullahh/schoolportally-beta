@@ -23,6 +23,34 @@ const dbSchema = {
       status: 'string',
       approvalStatus: 'string',
       createdAt: 'string',
+      updatedAt: 'string',
+      guardianId: 'string'
+    }
+  },
+  sessions: {
+    required: ['schoolId', 'name', 'startDate', 'endDate'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      name: 'string',
+      startDate: 'string',
+      endDate: 'string',
+      status: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  terms: {
+    required: ['schoolId', 'sessionId', 'name', 'startDate', 'endDate'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      sessionId: 'string',
+      name: 'string',
+      startDate: 'string',
+      endDate: 'string',
+      status: 'string',
+      createdAt: 'string',
       updatedAt: 'string'
     }
   },
@@ -147,6 +175,8 @@ const dbSchema = {
       description: 'string',
       programId: 'string',
       teacherIds: 'array',
+      sessionId: 'string',
+      termId: 'string',
       schedule: 'object',
       capacity: 'number',
       enrolled: 'number',
@@ -159,6 +189,68 @@ const dbSchema = {
       materials: 'array',
       assignments: 'array',
       attendance: 'array',
+      createdAt: 'string'
+    }
+  },
+  subjects: {
+    required: ['schoolId', 'classId', 'name'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      classId: 'string',
+      name: 'string',
+      description: 'string',
+      teacherIds: 'array',
+      students: 'array', // All students from the class are here by default
+      disabledStudents: 'array', // Student IDs disabled for this subject
+      materials: 'array',
+      assignments: 'array',
+      attendance: 'array',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  subject_materials: {
+    required: ['subjectId', 'title'],
+    types: {
+      id: 'string',
+      subjectId: 'string',
+      title: 'string',
+      description: 'string',
+      fileUrl: 'string',
+      createdAt: 'string'
+    }
+  },
+  subject_assignments: {
+    required: ['subjectId', 'title'],
+    types: {
+      id: 'string',
+      subjectId: 'string',
+      title: 'string',
+      description: 'string',
+      dueDate: 'string',
+      maxScore: 'number',
+      createdAt: 'string'
+    }
+  },
+  subject_attendance: {
+    required: ['subjectId', 'studentId', 'date'],
+    types: {
+      id: 'string',
+      subjectId: 'string',
+      studentId: 'string',
+      date: 'string',
+      status: 'string',
+      createdAt: 'string'
+    }
+  },
+   subject_enrollments: {
+    required: ['subjectId', 'studentId'],
+    types: {
+      id: 'string',
+      subjectId: 'string',
+      studentId: 'string',
+      status: 'string', // e.g., 'enabled', 'disabled'
       createdAt: 'string'
     }
   },
@@ -444,6 +536,34 @@ const dbSchema = {
       createdAt: 'string'
     }
   },
+  forum_threads: {
+    required: ['schoolId', 'subjectId', 'title', 'userId'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      subjectId: 'string',
+      title: 'string',
+      userId: 'string', // author
+      status: 'string', // 'open', 'closed', 'hidden'
+      sticky: 'boolean',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  forum_posts: {
+    required: ['threadId', 'userId', 'content'],
+    types: {
+      id: 'string',
+      threadId: 'string',
+      userId: 'string', // author
+      content: 'string',
+      parentId: 'string', // for replies to other posts
+      status: 'string', // 'visible', 'hidden', 'deleted'
+      reactions: 'object',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
   messages: {
     required: ['schoolId', 'senderId'],
     types: {
@@ -480,6 +600,41 @@ const dbSchema = {
         email: 'string',
       },
     },
+  },
+ live_class_schedules: {
+   required: ['schoolId', 'subjectId', 'topic', 'startTime', 'teacherId'],
+   types: {
+     id: 'string',
+     schoolId: 'string',
+     subjectId: 'string',
+     teacherId: 'string',
+     topic: 'string',
+     startTime: 'string',
+     status: 'string', // scheduled, ongoing, finished
+     accessCode: 'string'
+   }
+ },
+ class_questions: {
+    required: ['classId', 'userId', 'question'],
+    types: {
+      id: 'string',
+      classId: 'string',
+      userId: 'string',
+      question: 'string',
+      answered: 'boolean',
+      createdAt: 'string'
+    }
+  },
+  class_polls: {
+    required: ['classId', 'question', 'options'],
+    types: {
+      id: 'string',
+      classId: 'string',
+      question: 'string',
+      options: 'object',
+      status: 'string', // 'open', 'closed'
+      createdAt: 'string'
+    }
   }
 };
 

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -34,6 +33,8 @@ interface Class {
   materials: string[];
   assignments: string[];
   attendance: any[];
+  sessionId: string;
+  termId: string;
 }
 
 const ClassesModule: React.FC = () => {
@@ -42,8 +43,12 @@ const ClassesModule: React.FC = () => {
   const [classes, setClasses] = useState<Class[]>([]);
   const [programs, setPrograms] = useState<any[]>([]);
   const [teachers, setTeachers] = useState<any[]>([]);
+  const [sessions, setSessions] = useState<any[]>([]);
+  const [terms, setTerms] = useState<any[]>([]);
+  const [allStudents, setAllStudents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedClass, setSelectedClass] = useState<Class | null>(null);
+  const [isEnrollmentDialogOpen, setIsEnrollmentDialogOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -52,6 +57,8 @@ const ClassesModule: React.FC = () => {
     description: '',
     teacherIds: [],
     programId: '',
+    sessionId: '',
+    termId: '',
     capacity: 30,
     fee: 0,
     room: '',
@@ -70,30 +77,45 @@ const ClassesModule: React.FC = () => {
     fetchData();
   }, [school]);
 
+   useEffect(() => {
+   if (classForm.sessionId) {
+     fetchTerms(classForm.sessionId);
+   }
+   }, [classForm.sessionId]);
+
+  const fetchTerms = async (sessionId) => {
+   if (!school) return;
+   try {
+       const allTerms = await sdk.get('terms');
+       setTerms(allTerms.filter(t => t.schoolId === school.id && t.sessionId === sessionId));
+   } catch (error) {
+       console.error("Error fetching terms", error)
+   }
+  }
+
   const fetchData = async () => {
     if (!school || !user) return;
 
     setLoading(true);
     try {
-      const [allClasses, allPrograms, allUsers] = await Promise.all([
-        sdk.get<Class>('classes'),
+      const [allClasses, allPrograms, allUsers, allSessions] = await Promise.all([
+        sdk.get('classes'),
         sdk.get('programs'),
-        sdk.get('users')
+        sdk.get('users'),
+        sdk.get('sessions')
       ]);
 
-      let schoolClasses = allClasses.filter(cls => cls.schoolId === school.id);
-
-      if (user.userType === 'teacher') {
-        schoolClasses = schoolClasses.filter(cls => cls.teacherIds.includes(user.id));
-      } else if (user.userType === 'student') {
-        schoolClasses = schoolClasses.filter(cls => cls.students.includes(user.id));
-      }
+      const schoolClasses = allClasses.filter(cls => cls.schoolId === school.id);
       const schoolPrograms = allPrograms.filter(prog => prog.schoolId === school.id);
-      const schoolTeachers = allUsers.filter(user => user.schoolId === school.id && user.userType === 'teacher');
+      const schoolTeachers = allUsers.filter(u => u.schoolId === school.id && u.userType === 'teacher');
+      const schoolStudents = allUsers.filter(u => u.schoolId === school.id && u.userType === 'student');
+      const schoolSessions = allSessions.filter(s => s.schoolId === school.id);
 
       setClasses(schoolClasses);
       setPrograms(schoolPrograms);
       setTeachers(schoolTeachers);
+      setAllStudents(schoolStudents);
+      setSessions(schoolSessions);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -157,6 +179,8 @@ const ClassesModule: React.FC = () => {
       description: '',
       teacherIds: [],
       programId: '',
+      sessionId: '',
+      termId: '',
       capacity: 30,
       fee: 0,
       room: '',
@@ -179,6 +203,8 @@ const ClassesModule: React.FC = () => {
       description: classItem.description,
       teacherIds: classItem.teacherIds,
       programId: classItem.programId,
+      sessionId: classItem.sessionId,
+      termId: classItem.termId,
       capacity: classItem.capacity,
       fee: classItem.fee,
       room: classItem.room,
@@ -196,6 +222,17 @@ const ClassesModule: React.FC = () => {
     setIsDialogOpen(true);
   };
 
+   const openEnrollmentDialog = (classItem: Class) => {
+       setSelectedClass(classItem);
+       setIsEnrollmentDialogOpen(true);
+   };
+
+   const handleUpdateEnrollment = async (classId, studentIds) => {
+       await sdk.update('classes', classId, { students: studentIds });
+       fetchData(); // Refresh data
+       setIsEnrollmentDialogOpen(false);
+   }
+
   const getTeacherNames = (teacherIds: string[]) => {
     if (!teacherIds || teacherIds.length === 0) return 'Unassigned';
     return teacherIds.map(id => {
@@ -208,6 +245,16 @@ const ClassesModule: React.FC = () => {
     const program = programs.find(p => p.id === programId);
     return program ? program.name : 'No Program';
   };
+
+   const getSessionName = (sessionId: string) => {
+       const session = sessions.find(s => s.id === sessionId);
+       return session ? session.name : 'No Session';
+   }
+
+   const getTermName = (termId: string) => {
+       const term = terms.find(t => t.id === termId);
+       return term ? term.name : 'No Term';
+   }
 
   if (loading) {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
@@ -273,6 +320,38 @@ const ClassesModule: React.FC = () => {
                     </Select>
                   </div>
                   
+                  <div>
+                   <label className="block text-sm font-medium mb-2">Session</label>
+                   <Select value={classForm.sessionId} onValueChange={(value) => setClassForm({ ...classForm, sessionId: value, termId: '' })}>
+                       <SelectTrigger>
+                       <SelectValue placeholder="Select session" />
+                       </SelectTrigger>
+                       <SelectContent>
+                       {sessions.map((session) => (
+                           <SelectItem key={session.id} value={session.id}>
+                           {session.name}
+                           </SelectItem>
+                       ))}
+                       </SelectContent>
+                   </Select>
+                 </div>
+
+                 <div>
+                   <label className="block text-sm font-medium mb-2">Term</label>
+                   <Select value={classForm.termId} onValueChange={(value) => setClassForm({ ...classForm, termId: value })} disabled={!classForm.sessionId}>
+                       <SelectTrigger>
+                       <SelectValue placeholder="Select term" />
+                       </SelectTrigger>
+                       <SelectContent>
+                       {terms.map((term) => (
+                           <SelectItem key={term.id} value={term.id}>
+                           {term.name}
+                           </SelectItem>
+                       ))}
+                       </SelectContent>
+                   </Select>
+                 </div>
+
                   <div>
                     <label className="block text-sm font-medium mb-2">Subject</label>
                     <Input
@@ -459,6 +538,9 @@ const ClassesModule: React.FC = () => {
                   <Button variant="outline" size="sm" onClick={() => handleDeleteClass(classItem.id)}>
                     <Trash2 className="w-4 h-4" />
                   </Button>
+                  <Button variant="outline" size="sm" onClick={() => openEnrollmentDialog(classItem)}>
+                       <Users className="w-4 h-4" />
+                   </Button>
                 </div>
               </div>
             </CardHeader>
@@ -474,6 +556,14 @@ const ClassesModule: React.FC = () => {
                   <span className="text-gray-500">Program:</span>
                   <span>{getProgramName(classItem.programId)}</span>
                 </div>
+                 <div className="flex justify-between">
+                   <span className="text-gray-500">Session:</span>
+                   <span>{getSessionName(classItem.sessionId)}</span>
+                   </div>
+               <div className="flex justify-between">
+                   <span className="text-gray-500">Term:</span>
+                   <span>{getTermName(classItem.termId)}</span>
+               </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Grade Level:</span>
                   <span>{classItem.gradeLevel}</span>
@@ -515,6 +605,23 @@ const ClassesModule: React.FC = () => {
           </div>
         )}
       </div>
+       <Dialog open={isEnrollmentDialogOpen} onOpenChange={setIsEnrollmentDialogOpen}>
+           <DialogContent>
+               <DialogHeader>
+                   <DialogTitle>Manage Enrollment for {selectedClass?.name}</DialogTitle>
+               </DialogHeader>
+               <MultiSelect
+                   options={allStudents.map(s => ({ value: s.id, label: `${s.firstName} ${s.lastName}` }))}
+                   selected={selectedClass?.students || []}
+                   onChange={(selected) => {
+                       if(selectedClass) {
+                           handleUpdateEnrollment(selectedClass.id, selected);
+                       }
+                   }}
+                   placeholder="Select students"
+               />
+           </DialogContent>
+       </Dialog>
     </div>
   );
 };
