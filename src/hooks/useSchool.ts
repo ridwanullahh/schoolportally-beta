@@ -2,27 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import sdk from '@/lib/sdk-config';
-
-interface School {
-  id: string;
-  name: string;
-  slug: string;
-  ownerId: string;
-  logo?: string;
-  address?: string;
-  phone?: string;
-  email?: string;
-  website?: string;
-  timezone: string;
-  currency: string;
-  status: string;
-  subscriptionPlan: string;
-  subscriptionStatus: string;
-  onboardingCompleted?: boolean;
-  branding?: any;
-  createdAt?: string;
-  updatedAt?: string;
-}
+import { School } from '@/types';
 
 export const useSchool = () => {
   const { user, isAuthenticated } = useAuth();

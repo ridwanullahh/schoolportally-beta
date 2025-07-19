@@ -23,7 +23,8 @@ import {
   DollarSign,
   Camera,
   Briefcase,
-  ShoppingCart
+  ShoppingCart,
+  Video
 } from 'lucide-react';
 
 // Import all modules including the new ones
@@ -49,6 +50,10 @@ import ResultsModule from '@/components/admin/ResultsModule';
 import MessagesModule from '@/components/admin/MessagesModule';
 import EcommerceModule from '@/components/admin/EcommerceModule';
 import BrandingModule from '@/components/admin/BrandingModule';
+import SessionsPage from './SessionsPage';
+import TermsPage from './TermsPage';
+import SubjectsPage from './SubjectsPage';
+import LiveClassSchedulePage from './LiveClassSchedulePage';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -160,6 +165,10 @@ const sidebarItems: SidebarItem[] = [
   { id: 'users', label: 'Users', icon: Users },
   { id: 'programs', label: 'Programs', icon: BookOpen },
   { id: 'classes', label: 'Classes', icon: Users },
+  { id: 'sessions', label: 'Sessions', icon: Calendar },
+  { id: 'terms', label: 'Terms', icon: Calendar },
+  { id: 'subjects', label: 'Subjects', icon: BookOpen },
+  { id: 'live-class-schedule', label: 'Live Classes', icon: Video },
   { id: 'calendar', label: 'Academic Calendar', icon: Calendar },
   { id: 'results', label: 'Results', icon: Award },
   { id: 'fees', label: 'Fees', icon: DollarSign },
@@ -188,6 +197,10 @@ export const adminRoutes = (
     <Route path="users" element={<UsersModule />} />
     <Route path="programs" element={<ProgramsModule />} />
     <Route path="classes" element={<ClassesModule />} />
+    <Route path="sessions" element={<SessionsPage />} />
+    <Route path="terms" element={<TermsPage />} />
+    <Route path="subjects" element={<SubjectsPage />} />
+    <Route path="live-class-schedule" element={<LiveClassSchedulePage />} />
     <Route path="calendar" element={<CalendarModule />} />
     <Route path="results" element={<ResultsModule />} />
     <Route path="fees" element={<FeesModule />} />

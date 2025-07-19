@@ -41,6 +41,11 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
       setError(null);
 
       try {
+       const storedSchool = localStorage.getItem('school');
+       if(storedSchool) {
+           setSchool(JSON.parse(storedSchool));
+       }
+
         const schoolSlug = getSchoolSlug();
         
         if (schoolSlug) {
@@ -50,10 +55,12 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
           
           if (schoolData) {
             setSchool(schoolData);
+            localStorage.setItem('school', JSON.stringify(schoolData));
             console.log('School found by slug:', schoolData);
           } else {
             console.log('No school found with slug:', schoolSlug);
             setSchool(null);
+            localStorage.removeItem('school');
           }
         } else if (isAuthenticated && user?.schoolId) {
           console.log('Fetching school by user schoolId:', user.schoolId);
@@ -62,13 +69,16 @@ export const SchoolProvider: React.FC<SchoolProviderProps> = ({ children }) => {
           
           if (schoolData) {
             setSchool(schoolData);
+            localStorage.setItem('school', JSON.stringify(schoolData));
             console.log('School found by user:', schoolData);
           } else {
             console.log('No school found for user');
             setSchool(null);
+            localStorage.removeItem('school');
           }
-        } else {
+        } else if(!storedSchool) {
           setSchool(null);
+          localStorage.removeItem('school');
         }
       } catch (err) {
         console.error('Failed to fetch school:', err);

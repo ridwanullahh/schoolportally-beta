@@ -1,10 +1,11 @@
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import StudentDashboard from './StudentDashboard';
 import TeacherDashboard from './TeacherDashboard';
 import ParentDashboard from './ParentDashboard';
 import StaffDashboard from './StaffDashboard';
+import SchoolAdminDashboard from '../admin/SchoolAdminDashboard';
 
 const Dashboard: React.FC = () => {
     const { user, loading } = useAuth();
@@ -17,18 +18,33 @@ const Dashboard: React.FC = () => {
         return <Navigate to="/login" />;
     }
 
+    let dashboardComponent;
     switch (user.userType) {
         case 'student':
-            return <StudentDashboard />;
+            dashboardComponent = <StudentDashboard />;
+            break;
         case 'teacher':
-            return <TeacherDashboard />;
+            dashboardComponent = <TeacherDashboard />;
+            break;
         case 'parent':
-            return <ParentDashboard />;
+            dashboardComponent = <ParentDashboard />;
+            break;
         case 'staff':
-            return <StaffDashboard />;
+            dashboardComponent = <StaffDashboard />;
+            break;
+        case 'school_admin':
+        case 'school_owner':
+            dashboardComponent = <SchoolAdminDashboard />;
+            break;
         default:
             return <Navigate to="/" />;
     }
+
+    return (
+       <>
+           {React.cloneElement(dashboardComponent, { children: <Outlet /> })}
+       </>
+    )
 };
 
 export default Dashboard;

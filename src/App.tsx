@@ -37,10 +37,13 @@ import ProgramsPage from "./pages/school/ProgramsPage";
 import ProgramPage from "./pages/school/ProgramPage";
 import CoursesPage from "./pages/school/CoursesPage";
 import CoursePage from "./pages/school/CoursePage";
+import SubjectPage from "./pages/school/SubjectPage";
+import LiveClassLobbyPage from "./pages/school/dashboard/LiveClassLobbyPage";
 import AnnouncementsPage from "./pages/school/AnnouncementsPage";
 import LibraryPage from "./pages/school/LibraryPage";
 import BookPage from "./pages/school/BookPage";
 import GalleryPage from "./pages/school/GalleryPage";
+import ModernLiveClass from "./components/shared/ModernLiveClass";
 import KnowledgebasePage from "./pages/school/KnowledgebasePage";
 import ArticlePage from "./pages/school/ArticlePage";
 import JobsPage from "./pages/school/JobsPage";
@@ -121,7 +124,10 @@ const App = () => {
                 
                 {/* Protected School Dashboard Routes */}
                 {/* Protected School Dashboard Routes */}
-                <Route path="/:schoolSlug/dashboard/*" element={<Dashboard />} />
+                <Route path="/:schoolSlug/dashboard/*" element={<Dashboard />}>
+                   <Route path="live-classes" element={<LiveClassLobbyPage />} />
+                   <Route path="live-class/:roomId" element={<ModernLiveClass />} />
+                </Route>
                 
                 {/* Catch-all route */}
                 <Route path="*" element={<NotFound />} />
