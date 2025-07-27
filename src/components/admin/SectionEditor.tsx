@@ -87,10 +87,10 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
                 <Input className="heroicon_style2" value={section.content.icon || ''} onChange={(e) => handleContentChange('icon', e.target.value)} placeholder="e.g., 'award', 'book-open'" />
               </div>
             )}
-            {heroStyle === 'hero-full-card-hero' && (
+            {heroStyle === 'hero-full-card' && (
               <div>
                 <Label>Card Border Color</Label>
-                <Input className="herocardbordercolor_style3" value={section.content.borderColor || ''} onChange={(e) => handleContentChange('borderColor', e.target.value)} placeholder="e.g., '#FFFFFF'" />
+                <Input className="herocardbordercolor_style3" type="color" value={section.content.borderColor || ''} onChange={(e) => handleContentChange('borderColor', e.target.value)} />
               </div>
             )}
             {heroStyle === 'hero-overlay-frame' && (
@@ -137,34 +137,6 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
                 <Input className="heroskewangle_style11" value={section.content.skewAngle || ''} onChange={(e) => handleContentChange('skewAngle', e.target.value)} placeholder="e.g., '-5deg'" />
               </div>
             )}
-          </div>
-        );
-      case 'style-2':
-        return (
-          <div>
-            <Label>CSS Shapes</Label>
-            <Input value={section.content.cssShapes || ''} onChange={(e) => handleContentChange('cssShapes', e.target.value)} />
-          </div>
-        );
-      case 'style-10':
-        return (
-          <div>
-            <Label>Glass Morphism Panels</Label>
-            <Input value={section.content.glassPanels || ''} onChange={(e) => handleContentChange('glassPanels', e.target.value)} />
-          </div>
-        );
-      case 'style-17':
-        return (
-          <div>
-            <Label>3D Blocks</Label>
-            <Input value={section.content.threeDBlocks || ''} onChange={(e) => handleContentChange('threeDBlocks', e.target.value)} />
-          </div>
-        );
-      case 'style-20':
-        return (
-          <div>
-            <Label>Parallax Layers</Label>
-            <Input value={section.content.parallaxLayers || ''} onChange={(e) => handleContentChange('parallaxLayers', e.target.value)} />
           </div>
         );
       case 'features':
@@ -887,30 +859,6 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
             <Button onClick={() => addRepeaterItem('products', { name: '', price: '', image: '', link: '' })}><Plus className="w-4 h-4 mr-2" />Add Product</Button>
           </div>
         );
-      case 'products':
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label>Section Title</Label>
-              <Input value={section.content.title || ''} onChange={(e) => handleContentChange('title', e.target.value)} />
-            </div>
-            <Label>Products</Label>
-            {(section.content.products || []).map((product: any, index: number) => (
-              <div key={`product-${index}`} className="flex items-center gap-2 border p-2 rounded-md">
-                <div className="flex-grow space-y-2">
-                  <Input placeholder="Product Name" value={product.name} onChange={(e) => handleRepeaterChange('products', index, 'name', e.target.value)} />
-                  <Input placeholder="Price" value={product.price} onChange={(e) => handleRepeaterChange('products', index, 'price', e.target.value)} />
-                  <Input placeholder="Image URL" value={product.image} onChange={(e) => handleRepeaterChange('products', index, 'image', e.target.value)} />
-                  <Input placeholder="Link" value={product.link} onChange={(e) => handleRepeaterChange('products', index, 'link', e.target.value)} />
-                </div>
-                <Button variant="destructive" size="sm" onClick={() => removeRepeaterItem('products', index)}><Trash2 className="w-4 h-4" /></Button>
-              </div>
-            ))}
-            <Button onClick={() => addRepeaterItem('products', { name: '', price: '', image: '', link: '' })}><Plus className="w-4 h-4 mr-2" />Add Product</Button>
-          </div>
-        );
-      case 'form_embed':
-        return <FormSectionEditor section={section} onUpdate={onUpdate} />;
       case 'form_embed':
         return <FormSectionEditor section={section} onUpdate={onUpdate} />;
       default:

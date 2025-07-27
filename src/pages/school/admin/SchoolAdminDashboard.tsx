@@ -54,6 +54,7 @@ import SessionsPage from './SessionsPage';
 import TermsPage from './TermsPage';
 import SubjectsPage from './SubjectsPage';
 import LiveClassSchedulePage from './LiveClassSchedulePage';
+import PaymentSettingsPage from './PaymentSettingsPage';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -184,6 +185,7 @@ const sidebarItems: SidebarItem[] = [
   { id: 'jobs', label: 'Jobs', icon: Briefcase },
   { id: 'faq', label: 'FAQ', icon: HelpCircle },
   { id: 'support', label: 'Support', icon: BookOpen },
+  { id: 'payment-settings', label: 'Payment Settings', icon: DollarSign },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
@@ -216,9 +218,10 @@ export const adminRoutes = (
     <Route path="elibrary" element={<ELibraryModule />} />
     <Route path="jobs" element={<JobsModule />} />
     <Route path="support" element={<SupportModule />} />
+    <Route path="payment-settings" element={<PaymentSettingsPage />} />
     <Route path="settings" element={<BrandingModule />} />
   </>
-);
+  );
 
 const SchoolAdminDashboard = () => {
     const { school } = useSchool();

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { getDashboardPath } from '@/utils/getDashboardPath';
 
 const SchoolLogin = () => {
   const { schoolSlug } = useParams();
@@ -24,12 +25,13 @@ const SchoolLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(formData.email, formData.password);
+      const user = await login(formData.email, formData.password);
       toast({
         title: 'Success',
         description: 'Logged in successfully',
       });
-      navigate(`/${schoolSlug}/dashboard`);
+      const dashboardPath = getDashboardPath(user, schoolSlug);
+      navigate(dashboardPath);
     } catch (error: any) {
       toast({
         title: 'Error',

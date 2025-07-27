@@ -8,7 +8,7 @@ interface AuthContextType {
   user: User | null;
   token: string | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<User>;
   register: (email: string, password: string, profile?: Partial<User>) => Promise<void>;
   logout: () => void;
   verifyOTP: (email: string, otp: string) => Promise<void>;
@@ -93,7 +93,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, [user]);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<User> => {
     setLoading(true);
     try {
       try {
@@ -107,7 +107,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           setToken(userToken);
           setUser(foundUser);
           console.log('Login successful with SDK:', foundUser);
-          return;
+          return foundUser;
         }
       } catch (error) {
         console.log('SDK login failed, trying fallback');
@@ -118,7 +118,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setToken(userToken);
         setUser(localUser as User);
         console.log('Login successful with fallback:', localUser);
-        return;
+        return localUser as User;
       }
       
       throw new Error('Invalid credentials');
