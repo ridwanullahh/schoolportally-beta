@@ -290,7 +290,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section }) => {
           </>
         );
 
-      case 'hero-floating-card-deck':
+      case 'hero-floating-deck':
         return (
           <div className="card-stack">
             <div className="floating-card card-3"></div>

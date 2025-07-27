@@ -21,20 +21,35 @@ interface Fee {
   paidAt?: string;
   paymentMethod?: string;
   transactionId?: string;
-  paystackConfig?: any;
   installments?: any[];
   createdAt: string;
 }
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import PaymentManager from '@/lib/payments';
+
 const FeesModule: React.FC = () => {
-  const { school } = useSchool();
+  const { school, sdk } = useSchool();
   const { user } = useAuth();
   const [fees, setFees] = useState<Fee[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedFee, setSelectedFee] = useState<Fee | null>(null);
+  const [selectedProvider, setSelectedProvider] = useState<string>('');
+  const [paymentManager, setPaymentManager] = useState<PaymentManager | null>(null);
 
   useEffect(() => {
+    if (sdk) {
+      setPaymentManager(new PaymentManager(sdk));
+    }
     fetchData();
-  }, [school, user]);
+  }, [school, user, sdk]);
 
   const fetchData = async () => {
     if (!school || !user) return;
@@ -68,6 +83,23 @@ const FeesModule: React.FC = () => {
       case 'pending': return 'bg-yellow-100 text-yellow-800';
       case 'overdue': return 'bg-red-100 text-red-800';
       default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const handlePay = async () => {
+    if (!paymentManager || !selectedFee || !selectedProvider || !school || !user) return;
+
+    try {
+      const result = await paymentManager.initiatePayment(
+        selectedProvider,
+        school.id,
+        user.id,
+        selectedFee.amount,
+        selectedFee.currency
+      );
+      window.location.href = result.redirectUrl;
+    } catch (error) {
+      console.error('Payment initiation failed', error);
     }
   };
 
@@ -124,7 +156,34 @@ const FeesModule: React.FC = () => {
                       </div>
                     </div>
                     {fee.status !== 'paid' && (
-                        <Button>Pay Now</Button>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button onClick={() => setSelectedFee(fee)}>Pay Now</Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Select Payment Provider</DialogTitle>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <Select onValueChange={setSelectedProvider}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a provider" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {school?.paymentSettings &&
+                                  Object.keys(school.paymentSettings).map((p) => (
+                                    <SelectItem key={p} value={p}>
+                                      {p}
+                                    </SelectItem>
+                                  ))}
+                              </SelectContent>
+                            </Select>
+                            <Button onClick={handlePay} disabled={!selectedProvider}>
+                              Proceed to Payment
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     )}
                   </div>
                 </div>

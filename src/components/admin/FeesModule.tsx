@@ -27,19 +27,7 @@ interface Fee {
   paidAt?: string;
   paymentMethod?: string;
   transactionId?: string;
-  paystackConfig?: any;
   installments?: any[];
-  createdAt: string;
-}
-
-interface PaystackConfig {
-  id: string;
-  schoolId: string;
-  publicKey: string;
-  secretKey: string;
-  webhookUrl: string;
-  isActive: boolean;
-  testMode: boolean;
   createdAt: string;
 }
 
@@ -47,11 +35,9 @@ const FeesModule: React.FC = () => {
   const { school } = useSchool();
   const { user } = useAuth();
   const [fees, setFees] = useState<Fee[]>([]);
-  const [paystackConfig, setPaystackConfig] = useState<PaystackConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedFee, setSelectedFee] = useState<Fee | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isConfigDialogOpen, setIsConfigDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   const [feeForm, setFeeForm] = useState({
@@ -62,14 +48,6 @@ const FeesModule: React.FC = () => {
     dueDate: '',
     category: 'tuition',
     status: 'pending'
-  });
-
-  const [configForm, setConfigForm] = useState({
-    publicKey: '',
-    secretKey: '',
-    webhookUrl: '',
-    testMode: true,
-    isActive: false
   });
 
   const categories = ['tuition', 'transport', 'uniform', 'books', 'sports', 'meals', 'exam', 'other'];
@@ -83,11 +61,7 @@ const FeesModule: React.FC = () => {
 
     setLoading(true);
     try {
-      const [allFees, allConfigs] = await Promise.all([
-        sdk.get<Fee>('fees'),
-        sdk.get<PaystackConfig>('paystack_config')
-      ]);
-
+      const allFees = await sdk.get<Fee>('fees');
       let schoolFees = allFees.filter(fee => fee.schoolId === school.id);
 
       if (user.userType === 'student') {
@@ -99,20 +73,8 @@ const FeesModule: React.FC = () => {
         const childrenIds = user.children || [];
         schoolFees = schoolFees.filter(fee => childrenIds.includes(fee.studentId));
       }
-      const schoolConfig = allConfigs.find(config => config.schoolId === school.id);
 
       setFees(schoolFees);
-      setPaystackConfig(schoolConfig || null);
-
-      if (schoolConfig) {
-        setConfigForm({
-          publicKey: schoolConfig.publicKey,
-          secretKey: schoolConfig.secretKey,
-          webhookUrl: schoolConfig.webhookUrl,
-          testMode: schoolConfig.testMode,
-          isActive: schoolConfig.isActive
-        });
-      }
     } catch (error) {
       console.error('Error fetching fees data:', error);
     } finally {
@@ -163,26 +125,6 @@ const FeesModule: React.FC = () => {
     }
   };
 
-  const handleSaveConfig = async () => {
-    if (!school) return;
-
-    try {
-      if (paystackConfig) {
-        await sdk.update<PaystackConfig>('paystack_config', paystackConfig.id, configForm);
-      } else {
-        await sdk.insert<PaystackConfig>('paystack_config', {
-          ...configForm,
-          schoolId: school.id,
-          createdAt: new Date().toISOString()
-        });
-      }
-      await fetchData();
-      setIsConfigDialogOpen(false);
-    } catch (error) {
-      console.error('Error saving Paystack config:', error);
-    }
-  };
-
   const resetForm = () => {
     setFeeForm({
       name: '',
@@ -228,64 +170,6 @@ const FeesModule: React.FC = () => {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Fees Management</h2>
         <div className="flex space-x-2">
-          <Dialog open={isConfigDialogOpen} onOpenChange={setIsConfigDialogOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline">
-                <Settings className="w-4 h-4 mr-2" />
-                Paystack Config
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Paystack Configuration</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Public Key</label>
-                  <Input
-                    value={configForm.publicKey}
-                    onChange={(e) => setConfigForm({ ...configForm, publicKey: e.target.value })}
-                    placeholder="pk_test_..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Secret Key</label>
-                  <Input
-                    type="password"
-                    value={configForm.secretKey}
-                    onChange={(e) => setConfigForm({ ...configForm, secretKey: e.target.value })}
-                    placeholder="sk_test_..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Webhook URL</label>
-                  <Input
-                    value={configForm.webhookUrl}
-                    onChange={(e) => setConfigForm({ ...configForm, webhookUrl: e.target.value })}
-                    placeholder="https://your-site.com/webhook"
-                  />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={configForm.testMode}
-                    onChange={(e) => setConfigForm({ ...configForm, testMode: e.target.checked })}
-                  />
-                  <label>Test Mode</label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={configForm.isActive}
-                    onChange={(e) => setConfigForm({ ...configForm, isActive: e.target.checked })}
-                  />
-                  <label>Active</label>
-                </div>
-                <Button onClick={handleSaveConfig}>Save Configuration</Button>
-              </div>
-            </DialogContent>
-          </Dialog>
-          
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button onClick={() => { setIsEditing(false); resetForm(); }}>

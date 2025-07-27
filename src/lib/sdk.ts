@@ -15,6 +15,40 @@ interface SMTPConfig {
   test?: () => Promise<boolean>;
 }
 
+interface PaystackConfig {
+  publicKey: string;
+  secretKey: string;
+}
+
+interface StripeConfig {
+  publicKey: string;
+  secretKey: string;
+}
+
+interface FlutterwaveConfig {
+  publicKey: string;
+  secretKey: string;
+}
+
+interface RazorpayConfig {
+  keyId: string;
+  keySecret: string;
+}
+
+interface PaypalConfig {
+  clientId: string;
+  clientSecret: string;
+  mode: 'sandbox' | 'live';
+}
+
+interface PaymentGatewayConfig {
+  paystack?: PaystackConfig;
+  stripe?: StripeConfig;
+  flutterwave?: FlutterwaveConfig;
+  razorpay?: RazorpayConfig;
+  paypal?: PaypalConfig;
+}
+
 interface AuthConfig {
   requireEmailVerification?: boolean;
   otpTriggers?: string[];
@@ -38,6 +72,7 @@ interface UniversalSDKConfig {
   templates?: Record<string, string>;
   schemas?: Record<string, SchemaDefinition>;
   auth?: AuthConfig;
+  paymentGateways?: PaymentGatewayConfig;
 }
 
 interface User {
@@ -118,6 +153,7 @@ class UniversalSDK {
   private mediaPath: string;
   private cloudinary: CloudinaryConfig;
   private smtp: SMTPConfig;
+  private paymentGateways: PaymentGatewayConfig;
   private templates: Record<string, string>;
   private schemas: Record<string, SchemaDefinition>;
   private authConfig: AuthConfig;
@@ -139,8 +175,42 @@ class UniversalSDK {
     this.mediaPath = config.mediaPath || "media";
     this.cloudinary = config.cloudinary || {};
     this.smtp = config.smtp || {};
+    this.paymentGateways = config.paymentGateways || {};
     this.templates = config.templates || {};
-    this.schemas = config.schemas || {};
+    this.schemas = {
+      schools: {
+        types: {
+          name: 'string',
+          paymentSettings: 'object'
+        }
+      },
+      payments: {
+        types: {
+          schoolId: 'string',
+          studentId: 'string',
+          amount: 'number',
+          currency: 'string',
+          provider: 'string',
+          transactionId: 'string',
+          status: 'string',
+          createdAt: 'date',
+          updatedAt: 'date',
+        }
+      },
+      sections: {
+        types: {
+          icon: 'string',
+          borderColor: 'string',
+          framePadding: 'string',
+          gridGap: 'string',
+          animationDuration: 'string',
+          shrinkScale: 'string',
+          slideDirection: 'string',
+          skewAngle: 'string',
+        }
+      },
+      ...config.schemas
+    };
     this.authConfig = config.auth || { requireEmailVerification: true, otpTriggers: ["register"] };
     this.sessionStore = {};
     this.otpMemory = {};

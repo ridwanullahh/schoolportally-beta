@@ -1,14 +1,14 @@
 
 import React from 'react';
-import { Header } from '../../components/layout/Header';
-import { Footer } from '../../components/layout/Footer';
+import MarketingHeader from '../../components/marketing/MarketingHeader';
+import MarketingFooter from '../../components/marketing/MarketingFooter';
 import HeroSection from '../../components/marketing/HeroSection';
 import FeaturesSection from '../../components/marketing/FeaturesSection';
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <MarketingHeader />
       <main>
         <HeroSection />
         <FeaturesSection />
@@ -34,7 +34,7 @@ const Home = () => {
           </div>
         </section>
       </main>
-      <Footer />
+      <MarketingFooter />
     </div>
   );
 };

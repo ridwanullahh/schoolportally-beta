@@ -40,7 +40,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
             <h1 className="text-2xl font-bold mb-4">Authentication Required</h1>
             <p className="text-gray-600 mb-6">Please sign in to access this area.</p>
             <Button 
-              onClick={() => window.location.href = fallbackPath || '/login'}
+              onClick={() => window.location.href = fallbackPath || (school ? `/${school.slug}/login` : '/login')}
               className="w-full"
             >
               Sign In
