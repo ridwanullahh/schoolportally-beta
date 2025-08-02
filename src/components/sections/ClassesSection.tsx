@@ -1,33 +1,143 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import '@/themes/styles/sections/classes.css';
+import sdk from '@/lib/sdk-config';
+import { useSchool } from '@/contexts/SchoolContext';
 
 interface ClassesSectionProps {
   section: Section;
 }
 
+interface ClassItem {
+  id: string;
+  name: string;
+  description?: string;
+  teacherId?: string;
+  teacherName?: string;
+  schedule?: string;
+  time?: string;
+  capacity?: number;
+  enrolled?: number;
+  status: 'active' | 'inactive' | 'completed';
+  schoolId: string;
+}
+
 const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
-  const { title, classes } = section.content;
+  const { title, classesLimit = 6 } = section.content;
+  const { school } = useSchool();
   const styleId = section.styleId || 'classes-grade-grid';
+  const [classes, setClasses] = useState<ClassItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const defaultClasses = [
-    { name: 'Mathematics 101', teacher: 'Mr. Smith', schedule: 'Mon, Wed, Fri', time: '9:00 AM' },
-    { name: 'History of Art', teacher: 'Ms. Davis', schedule: 'Tue, Thu', time: '11:00 AM' },
-    { name: 'Introduction to Physics', teacher: 'Dr. Brown', schedule: 'Mon, Wed', time: '1:00 PM' },
-    { name: 'Creative Writing', teacher: 'Mrs. Wilson', schedule: 'Tue, Thu', time: '2:00 PM' },
+    {
+      id: '1',
+      name: 'Mathematics 101',
+      teacherName: 'Mr. Smith',
+      schedule: 'Mon, Wed, Fri',
+      time: '9:00 AM',
+      capacity: 30,
+      enrolled: 25,
+      status: 'active' as const,
+      schoolId: school?.id || ''
+    },
+    {
+      id: '2',
+      name: 'History of Art',
+      teacherName: 'Ms. Davis',
+      schedule: 'Tue, Thu',
+      time: '11:00 AM',
+      capacity: 25,
+      enrolled: 20,
+      status: 'active' as const,
+      schoolId: school?.id || ''
+    },
+    {
+      id: '3',
+      name: 'Introduction to Physics',
+      teacherName: 'Dr. Brown',
+      schedule: 'Mon, Wed',
+      time: '1:00 PM',
+      capacity: 30,
+      enrolled: 28,
+      status: 'active' as const,
+      schoolId: school?.id || ''
+    },
+    {
+      id: '4',
+      name: 'Creative Writing',
+      teacherName: 'Mrs. Wilson',
+      schedule: 'Tue, Thu',
+      time: '2:00 PM',
+      capacity: 20,
+      enrolled: 15,
+      status: 'active' as const,
+      schoolId: school?.id || ''
+    },
   ];
 
-  const classItems = classes && classes.length > 0 ? classes : defaultClasses;
+  useEffect(() => {
+    const fetchClasses = async () => {
+      if (!school) return;
+      setLoading(true);
+      try {
+        const allClasses = await sdk.get<ClassItem>('classes');
+        const schoolClasses = allClasses
+          .filter((classItem: ClassItem) =>
+            classItem.schoolId === school.id &&
+            classItem.status === 'active'
+          )
+          .slice(0, classesLimit);
 
-  const renderClass = (classItem: any, index: number) => (
-    <div key={index} className="class-card">
+        setClasses(schoolClasses.length > 0 ? schoolClasses : defaultClasses);
+      } catch (error) {
+        console.error('Failed to fetch classes:', error);
+        setClasses(defaultClasses);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchClasses();
+  }, [school, classesLimit]);
+
+  const classItems = classes;
+
+  const renderClass = (classItem: ClassItem, index: number) => (
+    <div key={classItem.id} className="class-card">
       <h3 className="class-name font-bold text-lg">{classItem.name}</h3>
-      <p className="class-teacher text-muted-foreground">Taught by: {classItem.teacher}</p>
-      <p className="class-schedule text-sm text-gray-500">{classItem.schedule}</p>
+      {classItem.teacherName && (
+        <p className="class-teacher text-muted-foreground">
+          Taught by: {classItem.teacherName}
+        </p>
+      )}
+      {classItem.schedule && (
+        <p className="class-schedule text-sm text-gray-500">{classItem.schedule}</p>
+      )}
+      {classItem.time && (
+        <p className="class-time text-sm text-gray-500">Time: {classItem.time}</p>
+      )}
+      {classItem.capacity && classItem.enrolled !== undefined && (
+        <p className="class-enrollment text-sm text-gray-500">
+          Enrolled: {classItem.enrolled}/{classItem.capacity}
+        </p>
+      )}
+      {classItem.description && (
+        <p className="class-description text-sm text-muted-foreground mt-2">
+          {classItem.description}
+        </p>
+      )}
     </div>
   );
   
   const renderContent = () => {
+    if (loading) {
+      return <div className="loading-state">Loading classes...</div>;
+    }
+
+    if (classItems.length === 0) {
+      return <div className="empty-state">No classes available.</div>;
+    }
+
     if (styleId === 'classes-timetable-style') {
       return (
         <table className="timetable w-full">
@@ -36,14 +146,21 @@ const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
               <th>Time</th>
               <th>Class</th>
               <th>Teacher</th>
+              <th>Enrollment</th>
             </tr>
           </thead>
           <tbody>
-            {classItems.map((classItem: any, index: number) => (
-              <tr key={index}>
-                <td>{classItem.time}</td>
+            {classItems.map((classItem: ClassItem) => (
+              <tr key={classItem.id}>
+                <td>{classItem.time || 'TBA'}</td>
                 <td>{classItem.name}</td>
-                <td>{classItem.teacher}</td>
+                <td>{classItem.teacherName || 'TBA'}</td>
+                <td>
+                  {classItem.enrolled !== undefined && classItem.capacity
+                    ? `${classItem.enrolled}/${classItem.capacity}`
+                    : 'N/A'
+                  }
+                </td>
               </tr>
             ))}
           </tbody>
