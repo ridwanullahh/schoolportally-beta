@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { School, Page } from '@/types';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 import { usePages } from '@/hooks/usePages';
 import '@/themes/styles/headers.css';
+import '@/themes/styles/headers-modern.css';
 
 interface SchoolHeaderProps {
   school: School;
@@ -33,52 +34,181 @@ const SchoolHeader: React.FC<SchoolHeaderProps> = ({ school, pages: initialPages
     return `/${schoolSlug}/${page.slug}`;
   };
 
-  return (
-    <header className={`sticky top-0 z-50 ${headerStyle}`}>
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
-          <Link to={`/${schoolSlug}`} className="flex items-center space-x-3">
-            {school.branding?.logoUrl ? (
-              <img src={school.branding.logoUrl} alt={school.name} className="h-10 w-auto object-contain" />
-            ) : (
-              <span className="text-xl font-bold">{school.name}</span>
-            )}
-          </Link>
-
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigationPages.map((page) => (
-              <Link key={page.id} to={getPageUrl(page)} className="nav-link">
-                {page.title}
+  const renderHeaderContent = () => {
+    switch (headerStyle) {
+      case 'header-style-4':
+        return (
+          <>
+            <div className="top-bar">
+              <div className="contact-info">
+                {school.phone && (
+                  <span className="contact-item">
+                    <Phone className="h-4 w-4" />
+                    {school.phone}
+                  </span>
+                )}
+                {school.email && (
+                  <span className="contact-item">
+                    <Mail className="h-4 w-4" />
+                    {school.email}
+                  </span>
+                )}
+              </div>
+              <div className="quick-links">
+                <Link to={`/${schoolSlug}/portal`} className="quick-link">Student Portal</Link>
+                <Link to={`/${schoolSlug}/apply`} className="quick-link">Apply Now</Link>
+              </div>
+            </div>
+            <div className="main-header">
+              <Link to={`/${schoolSlug}`} className="logo">
+                {school.branding?.logoUrl ? (
+                  <>
+                    <img src={school.branding.logoUrl} alt={school.name} />
+                    <span>{school.name}</span>
+                  </>
+                ) : (
+                  <span>{school.name}</span>
+                )}
               </Link>
-            ))}
-          </nav>
+              <nav className="nav-links hidden md:flex">
+                {navigationPages.map((page) => (
+                  <Link key={page.id} to={getPageUrl(page)} className="nav-link">
+                    {page.title}
+                  </Link>
+                ))}
+              </nav>
+              <div className="header-actions hidden md:flex">
+                <Link to={`/${schoolSlug}/apply`} className="btn-outline">Apply Now</Link>
+                <Link to={`/${schoolSlug}/portal`} className="btn-primary">Portal Login</Link>
+              </div>
+              <button className="nav-toggle md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </>
+        );
 
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline">Apply Now</Button>
-            <Button>Portal Login</Button>
-          </div>
-
-          <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t">
-            <nav className="flex flex-col space-y-4">
+      case 'header-style-5':
+        return (
+          <div className="container">
+            <Link to={`/${schoolSlug}`} className="logo">
+              {school.branding?.logoUrl ? (
+                <>
+                  <img src={school.branding.logoUrl} alt={school.name} />
+                  <span>{school.name}</span>
+                </>
+              ) : (
+                <span>{school.name}</span>
+              )}
+            </Link>
+            <nav className="nav-links">
               {navigationPages.map((page) => (
-                <Link key={page.id} to={getPageUrl(page)} className="nav-link-mobile" onClick={() => setMobileMenuOpen(false)}>
+                <Link key={page.id} to={getPageUrl(page)} className="nav-link">
                   {page.title}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t">
-                <Button variant="outline" className="w-full">Apply Now</Button>
-                <Button className="w-full">Portal Login</Button>
-              </div>
             </nav>
+            <div className="header-actions">
+              <Link to={`/${schoolSlug}/apply`} className="btn-outline">Apply Now</Link>
+              <Link to={`/${schoolSlug}/portal`} className="btn-primary">Portal Login</Link>
+            </div>
           </div>
-        )}
-      </div>
+        );
+
+      case 'header-style-6':
+        return (
+          <>
+            <div className="container">
+              <Link to={`/${schoolSlug}`} className="logo">
+                {school.branding?.logoUrl ? (
+                  <>
+                    <img src={school.branding.logoUrl} alt={school.name} />
+                    <span>{school.name}</span>
+                  </>
+                ) : (
+                  <span>{school.name}</span>
+                )}
+              </Link>
+              <button className="nav-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                <Menu className="h-6 w-6" />
+              </button>
+            </div>
+            <div className={`nav-sidebar ${mobileMenuOpen ? 'open' : ''}`}>
+              <button className="close-btn" onClick={() => setMobileMenuOpen(false)}>
+                <X className="h-6 w-6" />
+              </button>
+              <nav className="nav-links">
+                {navigationPages.map((page) => (
+                  <Link key={page.id} to={getPageUrl(page)} className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+                    {page.title}
+                  </Link>
+                ))}
+              </nav>
+              <div className="header-actions">
+                <Link to={`/${schoolSlug}/apply`} className="btn-outline">Apply Now</Link>
+                <Link to={`/${schoolSlug}/portal`} className="btn-primary">Portal Login</Link>
+              </div>
+            </div>
+          </>
+        );
+
+      default:
+        return (
+          <div className="container">
+            <Link to={`/${schoolSlug}`} className="logo">
+              {school.branding?.logoUrl ? (
+                <>
+                  <img src={school.branding.logoUrl} alt={school.name} />
+                  <span>{school.name}</span>
+                </>
+              ) : (
+                <span>{school.name}</span>
+              )}
+            </Link>
+            <nav className="nav-links hidden md:flex">
+              {navigationPages.map((page) => (
+                <Link key={page.id} to={getPageUrl(page)} className="nav-link">
+                  {page.title}
+                </Link>
+              ))}
+            </nav>
+            <div className="header-actions hidden md:flex">
+              <Link to={`/${schoolSlug}/apply`} className="btn-outline">Apply Now</Link>
+              <Link to={`/${schoolSlug}/portal`} className="btn-primary">Portal Login</Link>
+            </div>
+            <button className="nav-toggle md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <header className={`school-header sticky top-0 z-50 ${headerStyle}`}>
+      {renderHeaderContent()}
+
+      {/* Mobile Menu for non-sidebar styles */}
+      {mobileMenuOpen && !['header-style-6'].includes(headerStyle) && (
+        <div className="mobile-menu md:hidden">
+          <nav className="mobile-nav">
+            {navigationPages.map((page) => (
+              <Link
+                key={page.id}
+                to={getPageUrl(page)}
+                className="mobile-nav-link"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {page.title}
+              </Link>
+            ))}
+            <div className="mobile-actions">
+              <Link to={`/${schoolSlug}/apply`} className="btn-outline">Apply Now</Link>
+              <Link to={`/${schoolSlug}/portal`} className="btn-primary">Portal Login</Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

@@ -1,96 +1,159 @@
-/* /src/themes/styles/sections/hero.css */
+RE: This is a revision of this task, this task have already been giving to othe AI like yours but their implmentations was not functional as expected atalll. So overhaul it and ensure it's fully functional. If the issues is that it's using purre css, you can try using tailwind css but ensure the goal is met. 
 
-/* Base Hero Section Styles */
-.hero-section {
-  position: relative;
-  overflow: hidden;
-  font-family: var(--font-family, system-ui, -apple-system, sans-serif);
-  font-size: 16px;
-}
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .hero-section {
-    --background-light: #181818;
-    --background-medium: #2d2d2d;
-  }
-}
+### 🚀 **STRICT PRODUCTION-SAFE CODE MODIFICATION**
 
-/* Common button styles */
-.hero-section a {
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
+---
 
-.hero-section .buttons {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
+**Remember: You are a highly disciplined senior production engineer. Your only goal is to modify the codebase _exactly_ as instructed — no assumptions, no creativity, no additions beyond the task.** 
 
-/* 1. Center Stage */
+👉 **ABSOLUTE RULES (DO NOT BREAK THESE UNDER ANY CIRCUMSTANCES):**
+1️⃣ **DO NOT REMOVE, delete, rename, or comment out any existing:**
+
+- Features
+    
+- Components
+    
+- Pages
+    
+- Functions
+    
+- Code blocks
+    
+
+🚫 _Unless explicitly instructed in the task._
+
+---
+
+2️⃣ **DO NOT BREAK or change existing functionality or behavior of the platform in any way.**
+
+- All existing pages, APIs, and components must continue to function _exactly as they do now_.
+    
+- No regressions, no side effects.
+    
+
+---
+
+3️⃣ **DO NOT use:**
+
+- Placeholder data
+    
+- Mock data
+    
+- Dummy data
+    
+- Simulated code
+    
+
+✅ _All code must be real, complete, and ready for production use._
+
+---
+
+4️⃣ **DO NOT modify or refactor unrelated code.**
+
+- Make only the minimal, direct changes needed to complete the task.
+    
+- Do not restructure, optimize, or improve anything beyond the task’s scope.
+    
+
+---
+
+5️⃣ **DO NOT make assumptions.**
+
+- If the task does not explicitly specify a change, leave that part of the code untouched.
+    
+- If any detail is ambiguous or missing, reply:
+    
+
+> `TASK INCOMPLETE: Please clarify [state the ambiguity]`
+
+---
+
+6️⃣ **Your code must:**
+
+- Be production-ready, clean, and tested (no pseudo code or unfinished logic)
+    
+- Integrate fully with the existing codebase as-is
+    
+
+---
+
+👉 **DELIVERABLE FORMAT:**  
+✅ **ONLY provide the code required for the requested change**  
+✅ **Include full file paths and exact code modifications (before/after or full file content if needed)**  
+✅ **NO explanations, no extra suggestions, no commentary, no assumptions**
+
+---
+
+### TASK TO PERFORM:
+
+"Your task is to implement a flexible and granular styling system for a school portal's website sections. For each of the 28 sections, you will implement 11 distinct, modern, and creative styles. Each style must be fully functional and adaptable, meaning that the layout, structure, and available fields for a section should change based on the selected style.
+
+For each section, you will:
+
+understand the previous styles and their unique characteristics.
+ensure to update the SectionEditor.tsx to include conditional fields that appear only when a specific style is selected. For example, a "Split Columns" style might require an "Icon" field, while a "Full Card Hero" style might not.
+Update the corresponding section component (e.g., HeroSection.tsx) to render each of the styles correctly. This includes not only applying the correct CSS classes but also rendering the unique fields and HTML structure for each style.
+Ensure all styles are fully functional. For example, if a style includes a "Read More" button, it should link to the correct blog post. If a style has a "Countdown" feature, it should display a functioning countdown timer.
+Integrate with the backend. All content, including the new style-specific fields, must be saved to and retrieved from the database via the SDK. There should be no dummy data.
+Maintain school brand consistency. All styles should inherit the school's brand colors and fonts, which are defined as CSS variables.
+You will start with the HeroSection and fully implement all below 36 of its styles 
+
+It advisable that  you start to complete reimplementations, it is advisable that you add custom class name to each field of each section and style based conditional field of each section so you can style each section's style uniquely for example we might name field of hero section such as headline as heroheadline and those style that use that field in there style for example style1 as heroheadline_style1 - this is just an idea. 
+
+As for the colors, you have to use and rely on brand color that each have set and only use a fallback colors if not set.
+
+This have been done a bit, but are like zero, not effective atall, still long way to go.   
+
+
+Firstly, your works are still flaws and awkward;
+1. All of the styles are still not using the school's set brand color and neither using the fallback colors giving. Everything is just using one pink gradient color, i don't know your issue. 
+2. All the additional 25 styles are not effective atall.
+3. All your previous 11 styles are even more zero than ever, most styles primary and secondary button, description and other areas are just raw text 
+
+Below is what to follow again; 
+
+> Key constraints:
+> - Use school brand colors (they want green and complementary colors as fallback)
+> - Same font family
+> - No media/images
+> - Same fields: Headline, Sub Headline, Description, Primary Button, Secondary Button
+> - Each should be truly distinct and modern
+
+You can check the github db schema config and the @/src/components/admin/BrandingModule.tsx  to know how to retrieve and use the actual school's brand color they set or changed.   
+
+Here are detailed CSS implementation instructions for all 36 hero section styles, designed for AI implementation:
+
+## **EXISTING 11 STYLES - DETAILED IMPLEMENTATION**
+
+### 1. **Center Stage**
+```css
+/* Full viewport height, flexbox centering, fade-in animation */
 .hero-center-stage {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, var(--background-light, #f8fffe) 0%, var(--background-medium, #e8f5e8) 100%);
+  background: linear-gradient(135deg, #f8fffe 0%, #e8f5e8 100%);
   animation: fadeIn 1.2s ease-out;
-  text-align: center;
 }
 
-.hero-center-stage .content-container {
-  max-width: 800px;
-  padding: 0 2rem;
-}
-
-.hero-center-stage .headline { 
-  font-size: 3.5rem; 
-  font-weight: 700; 
-  color: var(--primary-green, #2d7d32); 
-  margin-bottom: 1rem; 
-  line-height: 1.2;
-}
-
-.hero-center-stage .sub-headline { 
-  font-size: 1.5rem; 
-  font-weight: 400; 
-  color: var(--secondary-green, #4caf50); 
-  margin-bottom: 1rem; 
-}
-
-.hero-center-stage .description { 
-  font-size: 1.1rem; 
-  color: #666; 
-  line-height: 1.6;
-  margin-bottom: 2rem; 
-}
-
-.hero-center-stage .primary-btn { 
-  background: var(--primary-green, #2d7d32); 
-  color: white; 
-  padding: 16px 32px; 
-  border-radius: 8px; 
-  font-weight: 600; 
-}
-
-.hero-center-stage .secondary-btn { 
-  border: 2px solid var(--secondary-green, #4caf50); 
-  color: var(--secondary-green, #4caf50); 
-  padding: 14px 30px; 
-  border-radius: 8px; 
-  font-weight: 600;
-}
+.headline { font-size: 3.5rem; font-weight: 700; color: #2d7d32; text-align: center; margin-bottom: 1rem; }
+.sub-headline { font-size: 1.5rem; font-weight: 400; color: #4caf50; margin-bottom: 1rem; }
+.description { font-size: 1.1rem; color: #666; max-width: 600px; text-align: center; margin-bottom: 2rem; }
+.primary-btn { background: #2d7d32; color: white; padding: 16px 32px; border-radius: 8px; font-weight: 600; }
+.secondary-btn { border: 2px solid #4caf50; color: #4caf50; padding: 14px 30px; border-radius: 8px; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+```
 
-/* 2. Split Columns */
+### 2. **Split Columns**
+```css
+/* CSS Grid 2-column layout, content left, breathing space right */
 .hero-split-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -98,20 +161,20 @@
   background: white;
 }
 
-.hero-split-columns .content-column {
+.content-column {
   padding: 80px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(45deg, var(--background-light, #f1f8e9) 0%, #ffffff 100%);
+  background: linear-gradient(45deg, #f1f8e9 0%, #ffffff 100%);
 }
 
-.hero-split-columns .spacer-column {
-  background: linear-gradient(135deg, var(--primary-green, #2d7d32) 0%, var(--secondary-green, #4caf50) 100%);
+.spacer-column {
+  background: linear-gradient(135deg, #2d7d32 0%, #4caf50 100%);
   position: relative;
 }
 
-.hero-split-columns .spacer-column::after {
+.spacer-column::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -121,138 +184,58 @@
   background: rgba(255,255,255,0.1);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: pulse 4s ease-in-out infinite;
 }
+```
 
-.hero-split-columns .headline {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--primary-green, #2d7d32);
-  margin-bottom: 1rem;
-}
-
-.hero-split-columns .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-split-columns .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.hero-split-columns .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-split-columns .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
-}
-
-/* 3. Full Card Hero */
+### 3. **Full Card Hero**
+```css
+/* Full-width card with prominent shadow and bordered container */
 .hero-full-card {
   padding: 40px 20px;
-  background: var(--background-light, #f8fffe);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #f8fffe;
 }
 
-.hero-full-card .card-container {
+.card-container {
   max-width: 1200px;
-  width: 100%;
+  margin: 0 auto;
   background: white;
-  border: 2px solid var(--background-medium, #e8f5e8);
+  border: 2px solid #e8f5e8;
   border-radius: 16px;
   padding: 60px 40px;
   box-shadow: 0 20px 60px rgba(45, 125, 50, 0.15);
   text-align: center;
 }
 
-.hero-full-card .shadowed-headline {
+.shadowed-headline {
   font-size: 3rem;
-  color: var(--primary-green, #2d7d32);
+  color: #2d7d32;
   text-shadow: 0 4px 12px rgba(45, 125, 50, 0.2);
   margin-bottom: 1.5rem;
-  font-weight: 700;
 }
+```
 
-.hero-full-card .sub-headline {
-  font-size: 1.4rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-full-card .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-full-card .buttons {
-  justify-content: center;
-}
-
-.hero-full-card .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-full-card .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* 4. Overlay Frame */
+### 4. **Overlay Frame**
+```css
+/* Top-padded frame with floating elements */
 .hero-overlay-frame {
   position: relative;
   min-height: 100vh;
   background: linear-gradient(rgba(45, 125, 50, 0.05), rgba(76, 175, 80, 0.05));
-  padding: 120px 40px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-top: 120px;
 }
 
-.hero-overlay-frame .frame-overlay {
+.frame-overlay {
   position: absolute;
   top: 40px;
   left: 40px;
   right: 40px;
   bottom: 40px;
-  border: 3px solid var(--secondary-green, #4caf50);
+  border: 3px solid #4caf50;
   border-radius: 12px;
   pointer-events: none;
-  animation: frameGlow 3s ease-in-out infinite alternate;
 }
 
-.hero-overlay-frame .floating-title {
+.floating-title {
   position: relative;
   z-index: 2;
   background: white;
@@ -260,67 +243,13 @@
   padding: 20px 40px;
   border-radius: 50px;
   box-shadow: 0 10px 30px rgba(45, 125, 50, 0.2);
-  margin-bottom: 2rem;
-  animation: float 3s ease-in-out infinite;
+  margin: 0 auto 2rem;
 }
+```
 
-.hero-overlay-frame .headline {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--primary-green, #2d7d32);
-  margin: 0;
-}
-
-.hero-overlay-frame .content-container {
-  text-align: center;
-  max-width: 600px;
-  z-index: 2;
-  position: relative;
-}
-
-.hero-overlay-frame .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-overlay-frame .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.hero-overlay-frame .buttons {
-  justify-content: center;
-}
-
-.hero-overlay-frame .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-overlay-frame .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-@keyframes frameGlow {
-  0% { box-shadow: 0 0 0 rgba(76, 175, 80, 0.3); }
-  100% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* 5. Grid Power */
+### 5. **Grid Power**
+```css
+/* CSS Grid with emphasized hierarchy and structured layout */
 .hero-grid-power {
   display: grid;
   grid-template-areas: 
@@ -330,206 +259,116 @@
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
   padding: 80px;
-  background: radial-gradient(circle at top right, var(--background-medium, #e8f5e8), white);
+  background: radial-gradient(circle at top right, #e8f5e8, white);
   min-height: 100vh;
   align-content: center;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
-.hero-grid-power .grid-headline { 
+.grid-headline { 
   grid-area: headline; 
   font-size: 4rem; 
   font-weight: 800; 
-  color: var(--primary-green, #2d7d32);
-  border-bottom: 4px solid var(--secondary-green, #4caf50);
+  color: #2d7d32;
+  border-bottom: 4px solid #4caf50;
   padding-bottom: 1rem;
-  line-height: 1.1;
 }
 
-.hero-grid-power .grid-sub { 
-  grid-area: sub; 
-  font-size: 1.8rem; 
-  color: var(--secondary-green, #4caf50); 
-  font-weight: 600; 
-}
+.grid-sub { grid-area: sub; font-size: 1.8rem; color: #4caf50; font-weight: 600; }
+.grid-desc { grid-area: desc; font-size: 1.2rem; color: #666; line-height: 1.8; }
+.grid-buttons { grid-area: buttons; display: flex; gap: 1rem; }
+```
 
-.hero-grid-power .grid-desc { 
-  grid-area: desc; 
-  font-size: 1.2rem; 
-  color: #666; 
-  line-height: 1.8; 
-}
-
-.hero-grid-power .grid-buttons { 
-  grid-area: buttons; 
-  display: flex; 
-  gap: 1rem; 
-}
-
-.hero-grid-power .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-grid-power .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* 6. Minimal Punch */
+### 6. **Minimal Punch**
+```css
+/* Compact top section with bottom accent border */
 .hero-minimal-punch {
   padding: 60px 40px 40px;
   background: white;
-  border-bottom: 8px solid var(--primary-green, #2d7d32);
+  border-bottom: 8px solid #2d7d32;
   text-align: center;
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-.hero-minimal-punch .content-container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.hero-minimal-punch .compact-headline {
+.compact-headline {
   font-size: 2.5rem;
-  color: var(--primary-green, #2d7d32);
+  color: #2d7d32;
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
-.hero-minimal-punch .compact-sub {
+.compact-sub {
   font-size: 1.2rem;
-  color: var(--secondary-green, #4caf50);
+  color: #4caf50;
   margin-bottom: 1rem;
 }
 
-.hero-minimal-punch .compact-description {
+.compact-description {
   font-size: 1rem;
   color: #666;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
 }
 
-.hero-minimal-punch .compact-buttons {
+.compact-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 
-.hero-minimal-punch .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
+.compact-buttons button {
   padding: 12px 24px;
   border-radius: 6px;
   font-size: 0.95rem;
-  font-weight: 600;
 }
+```
 
-.hero-minimal-punch .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 10px 22px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-/* 7. Dynamic Fold */
+### 7. **Dynamic Fold**
+```css
+/* Folded section with slide-in animation from side */
 .hero-dynamic-fold {
   position: relative;
-  background: var(--background-light, #f8fffe);
+  background: #f8fffe;
   overflow: hidden;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
 }
 
-.hero-dynamic-fold .fold-section {
+.fold-section {
   position: relative;
   background: white;
+  margin: 40px;
   padding: 60px;
   clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
   animation: slideInFold 1s ease-out;
   box-shadow: 0 15px 40px rgba(45, 125, 50, 0.15);
-  max-width: 800px;
-  width: 100%;
 }
 
-.hero-dynamic-fold .fold-accent {
+.fold-accent {
   position: absolute;
   top: 0;
   right: 0;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--primary-green, #2d7d32), var(--secondary-green, #4caf50));
+  background: linear-gradient(135deg, #2d7d32, #4caf50);
   clip-path: polygon(100% 0, 0 100%, 100% 100%);
-}
-
-.hero-dynamic-fold .headline {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--primary-green, #2d7d32);
-  margin-bottom: 1rem;
-}
-
-.hero-dynamic-fold .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-dynamic-fold .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.hero-dynamic-fold .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-dynamic-fold .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
 }
 
 @keyframes slideInFold {
   from { transform: translateX(-100px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
+```
 
-/* 8. Sticky Topline */
+### 8. **Sticky Topline**
+```css
+/* Sticky hero that shrinks on scroll */
 .hero-sticky-topline {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: linear-gradient(90deg, var(--primary-green, #2d7d32) 0%, var(--secondary-green, #4caf50) 100%);
+  background: linear-gradient(90deg, #2d7d32 0%, #4caf50 100%);
   color: white;
   padding: 60px 40px;
   transition: all 0.3s ease;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .hero-sticky-topline.scrolled {
@@ -538,189 +377,84 @@
   box-shadow: 0 4px 20px rgba(45, 125, 50, 0.3);
 }
 
-.hero-sticky-topline .sticky-content {
+.sticky-content {
   max-width: 1200px;
-  width: 100%;
+  margin: 0 auto;
   text-align: center;
   transition: all 0.3s ease;
-}
-
-.hero-sticky-topline .sticky-headline {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  transition: font-size 0.3s ease;
 }
 
 .hero-sticky-topline.scrolled .sticky-headline {
   font-size: 1.8rem;
 }
 
-.hero-sticky-topline .sub-headline {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
+/* JavaScript needed: Add 'scrolled' class on scroll */
+```
 
-.hero-sticky-topline .description {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-sticky-topline .buttons {
-  justify-content: center;
-}
-
-.hero-sticky-topline .primary-btn {
-  background: white;
-  color: var(--primary-green, #2d7d32);
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-sticky-topline .secondary-btn {
-  border: 2px solid white;
-  color: white;
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* 9. Block Statement */
+### 9. **Block Statement**
+```css
+/* Side floating headline with sharp geometric corners */
 .hero-block-statement {
   position: relative;
   background: white;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
 }
 
-.hero-block-statement .floating-block {
+.floating-block {
   position: absolute;
   left: -100px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--primary-green, #2d7d32);
+  background: #2d7d32;
   color: white;
   padding: 40px 120px 40px 140px;
   clip-path: polygon(100px 0, 100% 0, 100% 100%, 0 100%);
   z-index: 2;
 }
 
-.hero-block-statement .sharp-headline {
-  font-size: 3rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.1;
-}
-
-.hero-block-statement .main-content {
+.main-content {
   margin-left: 200px;
   padding: 40px;
-  flex: 1;
-  max-width: 800px;
+  max-width: 600px;
 }
 
-.hero-block-statement .content-block {
-  background: var(--background-light, #f8fffe);
-  padding: 40px;
-  border-left: 6px solid var(--secondary-green, #4caf50);
-  border-radius: 0 8px 8px 0;
-}
-
-.hero-block-statement .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
+.sharp-headline {
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 1rem;
 }
 
-.hero-block-statement .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+.content-block {
+  background: #f8fffe;
+  padding: 40px;
+  border: none;
+  border-left: 6px solid #4caf50;
 }
+```
 
-.hero-block-statement .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-block-statement .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* 10. Slide Reveal */
+### 10. **Slide Reveal**
+```css
+/* Horizontal slide-in animation from edge */
 .hero-slide-reveal {
-  background: linear-gradient(45deg, var(--background-light, #f8fffe) 0%, var(--background-medium, #e8f5e8) 100%);
+  background: linear-gradient(45deg, #f8fffe 0%, #e8f5e8 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 0 20px;
 }
 
-.hero-slide-reveal .slide-container {
+.slide-container {
   width: 100%;
   animation: slideInFromLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.hero-slide-reveal .slide-content {
+.slide-content {
   background: white;
-  margin: 0 40px;
+  margin: 0 60px;
   padding: 60px;
   border-radius: 0 20px 20px 0;
   box-shadow: 0 20px 60px rgba(45, 125, 50, 0.1);
-  border-left: 8px solid var(--primary-green, #2d7d32);
-  max-width: 800px;
-}
-
-.hero-slide-reveal .reveal-headline {
-  font-size: 3.2rem;
-  color: var(--primary-green, #2d7d32);
-  margin-bottom: 1rem;
-  font-weight: 700;
-  animation: slideInFromLeft 1.2s 0.3s both;
-}
-
-.hero-slide-reveal .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-slide-reveal .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.hero-slide-reveal .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-slide-reveal .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
+  border-left: 8px solid #2d7d32;
 }
 
 @keyframes slideInFromLeft {
@@ -728,29 +462,36 @@
   to { transform: translateX(0); }
 }
 
-/* 11. Skew Panel */
+.reveal-headline {
+  font-size: 3.2rem;
+  color: #2d7d32;
+  margin-bottom: 1rem;
+  animation: slideInFromLeft 1.2s 0.3s both;
+}
+```
+
+### 11. **Skew Panel**
+```css
+/* Angled hero block with bold skewed layout */
 .hero-skew-panel {
-  background: linear-gradient(135deg, var(--primary-green, #2d7d32) 0%, var(--secondary-green, #4caf50) 100%);
+  background: linear-gradient(135deg, #2d7d32 0%, #4caf50 100%);
   min-height: 100vh;
   position: relative;
   transform: skewY(-3deg);
   transform-origin: top left;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
 }
 
-.hero-skew-panel .skew-content {
+.skew-content {
   transform: skewY(3deg);
   padding: 120px 80px;
   color: white;
-  text-align: center;
-  max-width: 800px;
-  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.hero-skew-panel::before {
+.skew-panel::before {
   content: '';
   position: absolute;
   top: 0;
@@ -762,50 +503,28 @@
   transform-origin: top;
 }
 
-.hero-skew-panel .skew-headline {
+.skew-headline {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
   text-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.hero-skew-panel .sub-headline {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-
-.hero-skew-panel .description {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-.hero-skew-panel .skew-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.hero-skew-panel .primary-btn {
+.skew-buttons button {
   background: white;
-  color: var(--primary-green, #2d7d32);
+  color: #2d7d32;
+  border: none;
   padding: 16px 32px;
+  margin-right: 1rem;
   border-radius: 8px;
   font-weight: 600;
 }
+```
 
-.hero-skew-panel .secondary-btn {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-}
+## **MY 25 STYLES - DETAILED IMPLEMENTATION**
 
-/* 12. Minimalist Clean */
+### 12. **Minimalist Clean**
+```css
 .hero-minimalist-clean {
   background: white;
   min-height: 100vh;
@@ -815,73 +534,51 @@
   padding: 80px 40px;
 }
 
-.hero-minimalist-clean .clean-content {
+.clean-content {
   text-align: center;
   max-width: 800px;
-  width: 100%;
 }
 
-.hero-minimalist-clean .clean-headline {
+.clean-headline {
   font-size: 3rem;
   font-weight: 300;
-  color: var(--primary-green, #2d7d32);
+  color: #2d7d32;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
-  line-height: 1.2;
 }
 
-.hero-minimalist-clean .clean-accent-line {
+.clean-accent-line {
   width: 60px;
   height: 2px;
-  background: var(--secondary-green, #4caf50);
+  background: #4caf50;
   margin: 2rem auto;
 }
 
-.hero-minimalist-clean .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-minimalist-clean .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-minimalist-clean .clean-buttons {
+.clean-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 
-.hero-minimalist-clean .clean-primary {
+.clean-primary {
   background: transparent;
-  border: 1px solid var(--primary-green, #2d7d32);
-  color: var(--primary-green, #2d7d32);
+  border: 1px solid #2d7d32;
+  color: #2d7d32;
   padding: 14px 28px;
   border-radius: 50px;
   transition: all 0.3s ease;
-  font-weight: 600;
 }
 
-.hero-minimalist-clean .clean-secondary {
-  background: var(--primary-green, #2d7d32);
+.clean-secondary {
+  background: #2d7d32;
   color: white;
   padding: 15px 29px;
   border-radius: 50px;
-  font-weight: 600;
 }
+```
 
-.hero-minimalist-clean .clean-primary:hover {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-}
-
-/* 13. Bold Geometric Shapes */
+### 13. **Bold Geometric Shapes**
+```css
 .hero-bold-geometric {
   background: white;
   min-height: 100vh;
@@ -891,19 +588,19 @@
   overflow: hidden;
 }
 
-.hero-bold-geometric .geometric-content {
+.geometric-content {
   padding: 80px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.hero-bold-geometric .geometric-shapes {
+.geometric-shapes {
   position: relative;
-  background: linear-gradient(45deg, var(--background-light, #f8fffe), var(--background-medium, #e8f5e8));
+  background: linear-gradient(45deg, #f8fffe, #e8f5e8);
 }
 
-.hero-bold-geometric .shape-triangle {
+.shape-triangle {
   position: absolute;
   top: 20%;
   right: 30%;
@@ -911,83 +608,64 @@
   height: 0;
   border-left: 80px solid transparent;
   border-right: 80px solid transparent;
-  border-bottom: 120px solid var(--secondary-green, #4caf50);
+  border-bottom: 120px solid #4caf50;
   animation: float 3s ease-in-out infinite;
 }
 
-.hero-bold-geometric .shape-circle {
+.shape-circle {
   position: absolute;
   bottom: 30%;
   left: 20%;
   width: 100px;
   height: 100px;
-  background: var(--primary-green, #2d7d32);
+  background: #2d7d32;
   border-radius: 50%;
   animation: float 4s ease-in-out infinite reverse;
 }
 
-.hero-bold-geometric .shape-polygon {
+.shape-polygon {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 60px;
   height: 60px;
-  background: var(--light-green, #81c784);
+  background: #81c784;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   transform: translate(-50%, -50%);
   animation: rotate 6s linear infinite;
 }
 
-.hero-bold-geometric .geometric-headline {
+.geometric-headline {
   font-size: 3.5rem;
   font-weight: 800;
-  color: var(--primary-green, #2d7d32);
+  color: #2d7d32;
   text-transform: uppercase;
   letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-  line-height: 1.1;
 }
 
-.hero-bold-geometric .sub-headline {
-  font-size: 1.3rem;
-  color: var(--secondary-green, #4caf50);
-  margin-bottom: 1rem;
-}
-
-.hero-bold-geometric .description {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.hero-bold-geometric .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
+.geometric-buttons button {
   padding: 16px 24px;
+  border: none;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-radius: 4px;
 }
 
-.hero-bold-geometric .secondary-btn {
-  background: var(--secondary-green, #4caf50);
-  color: white;
-  padding: 16px 24px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 4px;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes rotate {
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+```
 
-/* 14. Gradient Waves */
+### 14. **Gradient Waves**
+```css
 .hero-gradient-waves {
-  background: linear-gradient(45deg, var(--primary-green, #2d7d32), var(--secondary-green, #4caf50), var(--light-green, #81c784));
+  background: linear-gradient(45deg, #2d7d32, #4caf50, #81c784);
   background-size: 300% 300%;
   animation: gradientShift 6s ease infinite;
   min-height: 100vh;
@@ -997,18 +675,16 @@
   overflow: hidden;
 }
 
-.hero-gradient-waves .wave-content {
+.wave-content {
   position: relative;
   z-index: 2;
   text-align: center;
   color: white;
   padding: 80px 40px;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
-.hero-gradient-waves .wave-shape {
+.wave-shape {
   position: absolute;
   bottom: -10px;
   left: 0;
@@ -1018,47 +694,15 @@
   clip-path: ellipse(100% 100% at 50% 100%);
 }
 
-.hero-gradient-waves .wave-headline {
+.wave-headline {
   font-size: 3.5rem;
   font-weight: 700;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
   margin-bottom: 1.5rem;
 }
 
-.hero-gradient-waves .wave-glow {
+.wave-glow {
   text-shadow: 0 0 30px rgba(255,255,255,0.5);
-}
-
-.hero-gradient-waves .sub-headline {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-
-.hero-gradient-waves .description {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-.hero-gradient-waves .buttons {
-  justify-content: center;
-}
-
-.hero-gradient-waves .primary-btn {
-  background: white;
-  color: var(--primary-green, #2d7d32);
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-.hero-gradient-waves .secondary-btn {
-  border: 2px solid white;
-  color: white;
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-weight: 600;
 }
 
 @keyframes gradientShift {
@@ -1066,89 +710,53 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+```
 
-/* 15. Split Screen Yin-Yang */
+### 15. **Split Screen Yin-Yang**
+```css
 .hero-split-yin-yang {
   min-height: 100vh;
   position: relative;
   background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.hero-split-yin-yang .diagonal-split {
+.diagonal-split {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary-green, #2d7d32) 0%, var(--primary-green, #2d7d32) 60%, white 60%, white 100%);
+  background: linear-gradient(135deg, #2d7d32 0%, #2d7d32 60%, white 60%, white 100%);
   clip-path: polygon(0 0, 60% 0, 40% 100%, 0 100%);
 }
 
-.hero-split-yin-yang .split-content-white {
+.split-content-white {
   position: absolute;
   top: 50%;
   left: 70%;
   transform: translate(-50%, -50%);
-  color: var(--primary-green, #2d7d32);
+  color: #2d7d32;
   text-align: center;
-  max-width: 300px;
 }
 
-.hero-split-yin-yang .split-content-green {
+.split-content-green {
   position: absolute;
   top: 50%;
   left: 30%;
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  max-width: 300px;
 }
 
-.hero-split-yin-yang .yin-yang-headline {
+.yin-yang-headline {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  line-height: 1.2;
 }
+```
 
-.hero-split-yin-yang .sub-headline {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.hero-split-yin-yang .description {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.hero-split-yin-yang .buttons {
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-split-yin-yang .primary-btn {
-  background: var(--primary-green, #2d7d32);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.hero-split-yin-yang .secondary-btn {
-  border: 2px solid var(--secondary-green, #4caf50);
-  color: var(--secondary-green, #4caf50);
-  padding: 10px 22px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-/* 16. Floating Card Deck */
+### 16. **Floating Card Deck**
+```css
 .hero-floating-deck {
   background: radial-gradient(circle at center, #f8fffe, #e8f5e8);
   min-height: 100vh;
@@ -1209,8 +817,10 @@
   transform: rotate(0deg) translateY(-10px);
   transition: all 0.3s ease;
 }
+```
 
-/* 17. Animated Dot Matrix */
+### 17. **Animated Dot Matrix**
+```css
 .hero-dot-matrix {
   background: white;
   min-height: 100vh;
@@ -1262,8 +872,10 @@
   from { transform: translate(0, 0); }
   to { transform: translate(30px, 30px); }
 }
+```
 
-/* 18. Typography Sculpture */
+### 18. **Typography Sculpture**
+```css
 .hero-typography-sculpture {
   background: white;
   min-height: 100vh;
@@ -1327,8 +939,10 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+```
 
-/* 19. Hexagonal Grid */
+### 19. **Hexagonal Grid**
+```css
 .hero-hexagonal-grid {
   background: #f8fffe;
   min-height: 100vh;
@@ -1389,8 +1003,10 @@
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(180deg); }
 }
+```
 
-/* 20. Circular Orbit */
+### 20. **Circular Orbit**
+```css
 .hero-circular-orbit {
   background: radial-gradient(circle at center, white, #f8fffe);
   min-height: 100vh;
@@ -1475,8 +1091,12 @@
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+```
 
-/* 21. Glass Morphism Stack */
+[Continuing with remaining 16 styles...]
+
+### 21. **Glass Morphism Stack**
+```css
 .hero-glass-morphism {
   background: linear-gradient(135deg, #2d7d32, #4caf50);
   min-height: 100vh;
@@ -1541,8 +1161,10 @@
   border-radius: 50px;
   margin-right: 1rem;
 }
+```
 
-/* 22. Skewed Perspective */
+### 22. **Skewed Perspective**
+```css
 .hero-skewed-perspective {
   background: white;
   min-height: 100vh;
@@ -1606,8 +1228,10 @@
   transform: rotateX(0deg) rotateY(0deg);
   transition: transform 0.5s ease;
 }
+```
 
-/* 23. Neumorphic Landscape */
+### 23. **Neumorphic Landscape**
+```css
 .hero-neumorphic {
   background: #e8f5e8;
   min-height: 100vh;
@@ -1675,8 +1299,10 @@
     8px 8px 16px rgba(45, 125, 50, 0.3),
     -8px -8px 16px rgba(255, 255, 255, 0.1);
 }
+```
 
-/* 24. Magazine Editorial */
+### 24. **Magazine Editorial**
+```css
 .hero-magazine-editorial {
   background: white;
   min-height: 100vh;
@@ -1697,8 +1323,7 @@
 .editorial-headline {
   grid-area: headline;
   font-size: 4rem;
-  
-font-weight: 800;
+  font-weight: 800;
   color: #2d7d32;
   line-height: 1.1;
   border-bottom: 3px solid #4caf50;
@@ -1770,8 +1395,10 @@ font-weight: 800;
   background: white;
   color: #2d7d32;
 }
+```
 
-/* 25. Liquid Wave Motion */
+### 25. **Liquid Wave Motion**
+```css
 .hero-liquid-wave {
   background: #2d7d32;
   min-height: 100vh;
@@ -1863,8 +1490,10 @@ font-weight: 800;
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+```
 
-/* 26. Brutalist Concrete */
+### 26. **Brutalist Concrete**
+```css
 .hero-brutalist {
   background: #f5f5f5;
   min-height: 100vh;
@@ -1945,8 +1574,10 @@ font-weight: 800;
   background: #4caf50;
   transform: skew(-5deg) translateY(-3px);
 }
+```
 
-/* 27. Neon Cyber Glow */
+### 27. **Neon Cyber Glow**
+```css
 .hero-neon-cyber {
   background: #0a0a0a;
   min-height: 100vh;
@@ -2063,8 +1694,10 @@ font-weight: 800;
   from { transform: translate(0, 0); }
   to { transform: translate(50px, 50px); }
 }
+```
 
-/* 28. 3D Isometric Blocks */
+### 28. **3D Isometric Blocks**
+```css
 .hero-3d-isometric {
   background: linear-gradient(135deg, #f8fffe, #e8f5e8);
   min-height: 100vh;
@@ -2157,8 +1790,10 @@ font-weight: 800;
   transform: translateZ(15px);
   transition: transform 0.3s ease;
 }
+```
 
-/* 29. Origami Paper Folds */
+### 29. **Origami Paper Folds**
+```css
 .hero-origami-folds {
   background: #f8fffe;
   min-height: 100vh;
@@ -2262,8 +1897,10 @@ font-weight: 800;
   background: #4caf50;
   color: white;
 }
+```
 
-/* 30. Particle Burst */
+### 30. **Particle Burst**
+```css
 .hero-particle-burst {
   background: radial-gradient(circle at center, #f8fffe, white);
   min-height: 100vh;
@@ -2369,8 +2006,10 @@ font-weight: 800;
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
+```
 
-/* 31. Layered Depth Parallax */
+### 31. **Layered Depth Parallax**
+```css
 .hero-layered-depth {
   background: #f8fffe;
   min-height: 100vh;
@@ -2485,8 +2124,10 @@ font-weight: 800;
   0%, 100% { transform: translateY(0) rotateX(0deg); }
   50% { transform: translateY(-20px) rotateX(180deg); }
 }
+```
 
-/* 32. Ribbon Banner Flow */
+### 32. **Ribbon Banner Flow**
+```css
 .hero-ribbon-flow {
   background: white;
   min-height: 100vh;
@@ -2577,8 +2218,10 @@ font-weight: 800;
   0%, 100% { transform: translateX(0) scaleX(1); }
   50% { transform: translateX(10px) scaleX(1.02); }
 }
+```
 
-/* 33. Organic Blob Shapes */
+### 33. **Organic Blob Shapes**
+```css
 .hero-organic-blob {
   background: linear-gradient(135deg, #f8fffe, white);
   min-height: 100vh;
@@ -2703,8 +2346,10 @@ font-weight: 800;
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-15px) rotate(1deg); }
 }
+```
 
-/* 34. Terminal Command Line */
+### 34. **Terminal Command Line**
+```css
 .hero-terminal {
   background: #0f0f0f;
   color: #4caf50;
@@ -2829,8 +2474,10 @@ font-weight: 800;
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
+```
 
-/* 35. Art Deco Geometric */
+### 35. **Art Deco Geometric**
+```css
 .hero-art-deco {
   background: #f8fffe;
   min-height: 100vh;
@@ -2957,8 +2604,10 @@ font-weight: 800;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(45, 125, 50, 0.3);
 }
+```
 
-/* 36. Flowing Line Art */
+### 36. **Flowing Line Art**
+```css
 .hero-flowing-lines {
   background: white;
   min-height: 100vh;
@@ -3131,3 +2780,52 @@ font-weight: 800;
   0% { left: -100%; }
   100% { left: 100%; }
 }
+```
+
+**HTML Structure for all designs (just an example, adapt it for the existing hero section based on our stack) :**
+```html
+<div class="hero-[style-name]">
+  <div class="[content-container-class]">
+    <h1 class="[headline-class]">Your Headline</h1>
+    <h2 class="[sub-headline-class]">Your Sub Headline</h2>
+    <p class="[description-class]">Your description text goes here...</p>
+    <div class="[buttons-class]">
+      <button class="[primary-btn-class]">Primary Button</button>
+      <button class="[secondary-btn-class]">Secondary Button</button>
+    </div>
+  </div>
+  <!-- Additional structural elements as needed per design -->
+</div>
+```
+You check the github db schema config and the @/src/components/admin/BrandingModule.tsx  to know how to retrieve and use the actual school's brand color they set or changed. 
+
+
+**Color Palette Used - Should be used only as fallback for school's brand color:**
+- Primary Green: `#2d7d32`
+- Secondary Green: `#4caf50`
+- Light Green: `#81c784`
+- Lighter Green: `#a5d6a7`
+- Background Light: `#f8fffe`
+- Background Medium: `#e8f5e8`
+
+Each implementation provides complete CSS with animations, responsive considerations, and modern visual effects achievable through pure CSS without external media dependencies.
+
+---
+  
+Implement all those fully functional now and continue to the remaining feature as in the original spec. 
+
+Ensure everything is github db sdk focused first to ensure it's full functional and production ready. - Adjust and modified the sdk db schema config as needed in the respective file(s). : Critically Important.
+### FINAL NOTE
+
+💥 **If you attempt to:**
+
+- Remove features
+    
+- Break existing functionality
+    
+- Use placeholder/mock/dummy/simulated code
+    
+- Modify unrelated code
+    
+
+✅ **You will have failed the task. Do not proceed unless you can strictly follow the above rules.**

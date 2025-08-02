@@ -1,48 +1,161 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import '@/themes/styles/sections/gallery.css';
+import sdk from '@/lib/sdk-config';
+import { useSchool } from '@/contexts/SchoolContext';
 
 interface GallerySectionProps {
   section: Section;
 }
 
+interface GalleryImage {
+  id: string;
+  title: string;
+  description?: string;
+  imageUrl: string;
+  thumbnailUrl?: string;
+  category?: string;
+  tags?: string[];
+  uploadedAt: string;
+  schoolId: string;
+  status: 'active' | 'inactive';
+}
+
 const GallerySection: React.FC<GallerySectionProps> = ({ section }) => {
-  const { title, images } = section.content;
+  const { title, imagesLimit = 12 } = section.content;
+  const { school } = useSchool();
   const styleId = section.styleId || 'gallery-lightbox-grid';
   const [activeTab, setActiveTab] = useState('All');
+  const [images, setImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const defaultImages = [
-    { src: 'https://via.placeholder.com/400x300?text=Image+1', alt: 'Image 1', album: 'Nature' },
-    { src: 'https://via.placeholder.com/400x300?text=Image+2', alt: 'Image 2', album: 'People' },
-    { src: 'https://via.placeholder.com/400x300?text=Image+3', alt: 'Image 3', album: 'Nature' },
-    { src: 'https://via.placeholder.com/400x300?text=Image+4', alt: 'Image 4', album: 'Architecture' },
-    { src: 'https://via.placeholder.com/400x300?text=Image+5', alt: 'Image 5', album: 'People' },
-    { src: 'https://via.placeholder.com/400x300?text=Image+6', alt: 'Image 6', album: 'Architecture' },
+    {
+      id: '1',
+      title: 'School Campus',
+      imageUrl: 'https://via.placeholder.com/400x300?text=School+Campus',
+      category: 'Campus',
+      uploadedAt: new Date().toISOString(),
+      schoolId: school?.id || '',
+      status: 'active' as const
+    },
+    {
+      id: '2',
+      title: 'Students in Class',
+      imageUrl: 'https://via.placeholder.com/400x300?text=Students+in+Class',
+      category: 'Academic',
+      uploadedAt: new Date().toISOString(),
+      schoolId: school?.id || '',
+      status: 'active' as const
+    },
+    {
+      id: '3',
+      title: 'Library',
+      imageUrl: 'https://via.placeholder.com/400x300?text=Library',
+      category: 'Facilities',
+      uploadedAt: new Date().toISOString(),
+      schoolId: school?.id || '',
+      status: 'active' as const
+    },
+    {
+      id: '4',
+      title: 'Sports Field',
+      imageUrl: 'https://via.placeholder.com/400x300?text=Sports+Field',
+      category: 'Sports',
+      uploadedAt: new Date().toISOString(),
+      schoolId: school?.id || '',
+      status: 'active' as const
+    },
+    {
+      id: '5',
+      title: 'Science Lab',
+      imageUrl: 'https://via.placeholder.com/400x300?text=Science+Lab',
+      category: 'Academic',
+      uploadedAt: new Date().toISOString(),
+      schoolId: school?.id || '',
+      status: 'active' as const
+    },
+    {
+      id: '6',
+      title: 'Graduation Ceremony',
+      imageUrl: 'https://via.placeholder.com/400x300?text=Graduation+Ceremony',
+      category: 'Events',
+      uploadedAt: new Date().toISOString(),
+      schoolId: school?.id || '',
+      status: 'active' as const
+    },
   ];
 
-  const galleryImages = images && images.length > 0 ? images : defaultImages;
+  useEffect(() => {
+    const fetchImages = async () => {
+      if (!school) return;
+      setLoading(true);
+      try {
+        const allImages = await sdk.get<GalleryImage>('gallery');
+        const schoolImages = allImages
+          .filter((image: GalleryImage) =>
+            image.schoolId === school.id &&
+            image.status === 'active'
+          )
+          .sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime())
+          .slice(0, imagesLimit);
+
+        setImages(schoolImages.length > 0 ? schoolImages : defaultImages);
+      } catch (error) {
+        console.error('Failed to fetch gallery images:', error);
+        setImages(defaultImages);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchImages();
+  }, [school, imagesLimit]);
+
+  const galleryImages = images;
   
-  const albums = ['All', ...new Set(galleryImages.map((img: any) => img.album))];
-  
+  const categories = ['All', ...new Set(galleryImages.map((img: GalleryImage) => img.category).filter(Boolean))];
+
   const filteredImages = activeTab === 'All'
     ? galleryImages
-    : galleryImages.filter((img: any) => img.album === activeTab);
+    : galleryImages.filter((img: GalleryImage) => img.category === activeTab);
 
-  const renderImage = (image: any, index: number) => (
-    <div key={index} className="gallery-item">
-      <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+  const renderImage = (image: GalleryImage, index: number) => (
+    <div key={image.id} className="gallery-item">
+      <img
+        src={image.thumbnailUrl || image.imageUrl}
+        alt={image.title}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div className="gallery-overlay">
+        <h4 className="gallery-title">{image.title}</h4>
+        {image.description && (
+          <p className="gallery-description">{image.description}</p>
+        )}
+      </div>
     </div>
   );
   
   const renderContent = () => {
+    if (loading) {
+      return <div className="loading-state">Loading gallery...</div>;
+    }
+
+    if (galleryImages.length === 0) {
+      return <div className="empty-state">No images available.</div>;
+    }
+
     if (styleId === 'gallery-tabs-by-album') {
       return (
         <div>
           <div className="tabs flex justify-center gap-4 mb-8">
-            {albums.map((album: string) => (
-              <button key={album} className={`tab ${activeTab === album ? 'active' : ''}`} onClick={() => setActiveTab(album)}>
-                {album}
+            {categories.map((category: string) => (
+              <button
+                key={category}
+                className={`tab ${activeTab === category ? 'active' : ''}`}
+                onClick={() => setActiveTab(category)}
+              >
+                {category}
               </button>
             ))}
           </div>

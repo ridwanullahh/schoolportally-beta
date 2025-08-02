@@ -137,6 +137,30 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
                 <Input className="heroskewangle_style11" value={section.content.skewAngle || ''} onChange={(e) => handleContentChange('skewAngle', e.target.value)} placeholder="e.g., '-5deg'" />
               </div>
             )}
+            {heroStyle === 'hero-minimalist-clean' && (
+              <div>
+                <Label>Clean Theme Accent</Label>
+                <Input className="heroaccent_style12" value={section.content.accent || ''} onChange={(e) => handleContentChange('accent', e.target.value)} placeholder="e.g., '#fff'" />
+              </div>
+            )}
+            {heroStyle === 'hero-bold-geometric' && (
+              <div>
+                <Label>Geometric Angle</Label>
+                <Input className="herogeometricangle_style13" value={section.content.geometricAngle || ''} onChange={(e) => handleContentChange('geometricAngle', e.target.value)} placeholder="e.g., '45deg'" />
+              </div>
+            )}
+            {heroStyle === 'hero-gradient-waves' && (
+              <div>
+                <Label>Wave Intensity</Label>
+                <Input className="herowaveintensity_style14" value={section.content.waveIntensity || ''} onChange={(e) => handleContentChange('waveIntensity', e.target.value)} placeholder="e.g., 'strong'" />
+              </div>
+            )}
+            {heroStyle === 'hero-split-yin-yang' && (
+              <div>
+                <Label>Yang Accent</Label>
+                <Input className="heroyangaccent_style15" value={section.content.yangAccent || ''} onChange={(e) => handleContentChange('yangAccent', e.target.value)} placeholder="e.g., '#000'" />
+              </div>
+            )}
           </div>
         );
       case 'features':
@@ -300,7 +324,62 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
             <Button onClick={() => addRepeaterItem('propositions', { title: '', description: '', icon: 'CheckCircle', comparisonValues: [], timelineDate: '', tabName: '' })}><Plus className="w-4 h-4 mr-2" />Add Proposition</Button>
           </div>
         );
-      case 'teaser':
+      case 'hero-modern-minimal':
+        return (
+          <div className="space-y-4">
+            <Label>Header Alignment</Label>
+            <Input className="hero_header_alignment" value={section.content.headerAlignment || ''} onChange={(e) => handleContentChange('headerAlignment', e.target.value)} />
+          </div>
+        );
+      case 'hero-angled-background':
+        return (
+          <div className="space-y-4">
+            <Label>Angle Direction</Label>
+            <Input className="hero_angle_direction" value={section.content.angleDirection || ''} onChange={(e) => handleContentChange('angleDirection', e.target.value)} />
+          </div>
+        );
+      case 'hero-parallax-scroll':
+        return (
+          <div className="space-y-4">
+            <Label>Scroll Speed Factor</Label>
+            <Input type="number" className="hero_scroll_speed" value={section.content.scrollSpeed || ''} onChange={(e) => handleContentChange('scrollSpeed', e.target.value)} />
+          </div>
+        );
+      case 'hero-responsive-axis':
+        return (
+          <div className="space-y-4">
+            <Label>Responsive Breakpoint</Label>
+            <Input className="hero_responsive_breakpoint" value={section.content.responsiveBreakpoint || ''} onChange={(e) => handleContentChange('responsiveBreakpoint', e.target.value)} />
+          </div>
+        );
+      case 'hero-circular-theme':
+        return (
+          <div className="space-y-4">
+            <Label>Circle Diameter</Label>
+            <Input className="hero_circle_diameter" value={section.content.circleDiameter || ''} onChange={(e) => handleContentChange('circleDiameter', e.target.value)} />
+          </div>
+        );
+      case 'hero-floating-labels':
+        return (
+          <div className="space-y-4">
+            <Label>Floating Speed</Label>
+            <Input type="number" className="hero_floating_speed" value={section.content.floatingSpeed || ''} onChange={(e) => handleContentChange('floatingSpeed', e.target.value)} />
+          </div>
+        );
+      case 'hero-border-accent':
+        return (
+          <div className="space-y-4">
+            <Label>Border Thickness</Label>
+            <Input className="hero_border_thickness" value={section.content.borderThickness || ''} onChange={(e) => handleContentChange('borderThickness', e.target.value)} />
+          </div>
+        );
+      case 'hero-abstract-frame':
+        return (
+          <div className="space-y-4">
+            <Label>Frame Pattern</Label>
+            <Input className="hero_frame_pattern" value={section.content.framePattern || ''} onChange={(e) => handleContentChange('framePattern', e.target.value)} />
+          </div>
+        );
         const teaserStyle = section.styleId || '';
         return (
           <div className="space-y-4">
