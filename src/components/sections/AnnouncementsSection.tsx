@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/announcements.css';
+import { useAnnouncements } from '@/hooks/useAnnouncements';
+import '@/themes/styles/sections/announcements-ultra-modern.css';
 import { Megaphone, Info, AlertTriangle, CheckCircle } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
@@ -22,70 +23,118 @@ interface Announcement {
 
 const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ section }) => {
   const { title, announcementsLimit = 6 } = section.content;
-  const { school } = useSchool();
-  const styleId = section.styleId || 'announcements-card-notices';
-  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
-  const [loading, setLoading] = useState(true);
+  const styleId = section.styleId || 'announcements-floating-glass';
+
+  // Use dynamic content from announcements admin module
+  const { announcements, loading, error, getRecentAnnouncements } = useAnnouncements();
 
   const defaultAnnouncements = [
     {
       id: '1',
-      title: 'Mid-term Break',
-      publishedAt: '2024-10-25',
-      content: 'The school will be closed for mid-term break from...',
-      type: 'info' as const,
-      status: 'published' as const,
+      title: 'Mid-term Break Announcement',
+      content: 'The school will be closed for mid-term break from November 20-24. Classes will resume on Monday, November 27th.',
+      excerpt: 'School closure for mid-term break from Nov 20-24.',
+      type: 'general' as const,
       priority: 'medium' as const,
-      schoolId: school?.id || ''
+      author: 'Principal Johnson',
+      publishDate: '2024-10-25',
+      targetAudience: 'all' as const,
+      image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop',
+      pinned: true,
+      views: 245,
+      likes: 18,
+      status: 'published' as const,
+      featured: true
     },
     {
       id: '2',
       title: 'Annual General Meeting',
-      publishedAt: '2024-11-05',
-      content: 'All parents are invited to the AGM...',
-      type: 'info' as const,
-      status: 'published' as const,
+      content: 'All parents and guardians are cordially invited to attend our Annual General Meeting on December 5th at 6:00 PM in the main auditorium.',
+      excerpt: 'AGM scheduled for December 5th at 6:00 PM.',
+      type: 'event' as const,
       priority: 'high' as const,
-      schoolId: school?.id || ''
+      author: 'School Administration',
+      publishDate: '2024-11-05',
+      targetAudience: 'parents' as const,
+      image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=300&fit=crop',
+      pinned: false,
+      views: 189,
+      likes: 12,
+      status: 'published' as const,
+      featured: true
     },
     {
       id: '3',
-      title: 'Sports Day Trials',
-      publishedAt: '2024-11-10',
-      content: 'Trials for the annual sports day will be held...',
-      type: 'info' as const,
+      title: 'Sports Day Postponed',
+      content: 'Due to unfavorable weather conditions, the annual sports day has been postponed to December 15th. All participants will be notified of the new schedule.',
+      excerpt: 'Sports day moved to December 15th due to weather.',
+      type: 'urgent' as const,
+      priority: 'urgent' as const,
+      author: 'Sports Department',
+      publishDate: '2024-11-10',
+      targetAudience: 'students' as const,
+      image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop',
+      pinned: true,
+      views: 312,
+      likes: 25,
       status: 'published' as const,
-      priority: 'medium' as const,
-      schoolId: school?.id || ''
+      featured: false
     },
+    {
+      id: '4',
+      title: 'Extended Library Hours',
+      content: 'Great news! Our library will now be open with extended hours from 7:00 AM to 8:00 PM, Monday through Friday, to better serve our students.',
+      excerpt: 'Library now open 7 AM - 8 PM weekdays.',
+      type: 'academic' as const,
+      priority: 'low' as const,
+      author: 'Library Staff',
+      publishDate: '2024-11-15',
+      targetAudience: 'students' as const,
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+      pinned: false,
+      views: 156,
+      likes: 8,
+      status: 'published' as const,
+      featured: false
+    },
+    {
+      id: '5',
+      title: 'Winter Holiday Schedule',
+      content: 'Winter holidays will begin on December 22nd and classes will resume on January 8th. Wishing all our students and families a wonderful holiday season!',
+      excerpt: 'Winter break: Dec 22 - Jan 8.',
+      type: 'holiday' as const,
+      priority: 'medium' as const,
+      author: 'Academic Office',
+      publishDate: '2024-11-20',
+      targetAudience: 'all' as const,
+      image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=400&h=300&fit=crop',
+      pinned: false,
+      views: 203,
+      likes: 15,
+      status: 'published' as const,
+      featured: true
+    },
+    {
+      id: '6',
+      title: 'New Science Lab Equipment',
+      content: 'We are excited to announce the arrival of new state-of-the-art equipment for our science laboratories, enhancing our students\' learning experience.',
+      excerpt: 'New science lab equipment installed.',
+      type: 'academic' as const,
+      priority: 'low' as const,
+      author: 'Science Department',
+      publishDate: '2024-11-25',
+      targetAudience: 'students' as const,
+      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
+      pinned: false,
+      views: 134,
+      likes: 22,
+      status: 'published' as const,
+      featured: false
+    }
   ];
 
-  useEffect(() => {
-    const fetchAnnouncements = async () => {
-      if (!school) return;
-      setLoading(true);
-      try {
-        const allAnnouncements = await sdk.get<Announcement>('announcements');
-        const schoolAnnouncements = allAnnouncements
-          .filter((announcement: Announcement) =>
-            announcement.schoolId === school.id &&
-            announcement.status === 'published'
-          )
-          .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
-          .slice(0, announcementsLimit);
-
-        setAnnouncements(schoolAnnouncements.length > 0 ? schoolAnnouncements : defaultAnnouncements);
-      } catch (error) {
-        console.error('Failed to fetch announcements:', error);
-        setAnnouncements(defaultAnnouncements);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchAnnouncements();
-  }, [school, announcementsLimit]);
-
-  const announcementItems = announcements;
+  // Use dynamic content if available, otherwise use defaults
+  const announcementItems = announcements && announcements.length > 0 ? announcements.slice(0, announcementsLimit) : defaultAnnouncements;
   
   const getIcon = (type: string) => {
     switch (type) {
@@ -104,65 +153,80 @@ const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ section }) 
     });
   };
 
-  const renderAnnouncement = (announcement: Announcement, index: number) => {
-    if (styleId === 'announcements-alert-strip') {
-      return (
-        <div key={announcement.id} className={`alert ${announcement.type}`}>
-          {getIcon(announcement.type)}
-          <div>
-            <h3 className="announcement-title font-bold text-lg">{announcement.title}</h3>
-            <p className="announcement-content">{announcement.content}</p>
-            <span className="announcement-date text-sm opacity-75">
-              {formatDate(announcement.publishedAt)}
-            </span>
-          </div>
-        </div>
-      )
-    }
+  const renderAnnouncement = (announcement: any, index: number) => {
+    const announcementImage = announcement.image || 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop';
 
     return (
-      <div key={announcement.id} className="notice-card">
-        <div className="flex items-center mb-2">
-          {getIcon(announcement.type)}
-          <h3 className="announcement-title font-bold text-lg">{announcement.title}</h3>
-          {announcement.priority === 'urgent' && (
-            <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded">
-              URGENT
-            </span>
-          )}
-        </div>
-        <p className="announcement-date text-sm text-gray-500 mb-2">
-          {formatDate(announcement.publishedAt)}
-        </p>
-        <p className="announcement-content text-muted-foreground">{announcement.content}</p>
+      <div key={announcement.id} className="announcement-card">
+        <img
+          src={announcementImage}
+          alt={announcement.title}
+          className="announcement-image"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop';
+          }}
+        />
+        <div className="announcement-title">{announcement.title}</div>
+        <div className="announcement-type">{announcement.type}</div>
+        <div className="announcement-author">By: {announcement.author}</div>
+        <div className="announcement-date">{formatDate(announcement.publishDate)}</div>
+        {announcement.content && <div className="announcement-content">{announcement.content}</div>}
+        {announcement.pinned && <div className="pinned-badge">📌 Pinned</div>}
       </div>
     );
   }
 
-  if (loading) {
-    return (
-      <section className={`announcements-section py-16 ${styleId}`}>
-        <div className="container mx-auto px-4">
-          {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <div className="announcements-container">
+          <div className="loading-state">Loading announcements...</div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="announcements-container">
+          <div className="error-state">Error loading announcements. Showing default announcements.</div>
           <div className="announcements-container">
-            <div className="loading-state">Loading announcements...</div>
+            {defaultAnnouncements.map(renderAnnouncement)}
           </div>
         </div>
-      </section>
-    );
+      );
+    }
+
+    switch (styleId) {
+      case 'announcements-sliding-carousel':
+        return (
+          <div className="announcements-container">
+            <div className="carousel-track">
+              {announcementItems.map(renderAnnouncement)}
+              {/* Duplicate for seamless loop */}
+              {announcementItems.map((announcement, index) => renderAnnouncement(announcement, index + announcementItems.length))}
+            </div>
+          </div>
+        );
+      case 'announcements-minimal-lines':
+        return (
+          <div className="announcements-container">
+            {announcementItems.map(renderAnnouncement)}
+          </div>
+        );
+      default:
+        return (
+          <div className="announcements-container">
+            {announcementItems.map(renderAnnouncement)}
+          </div>
+        );
+    }
   }
 
   return (
-    <section className={`announcements-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
-        <div className="announcements-container">
-          {announcementItems.length > 0 ? (
-            announcementItems.map(renderAnnouncement)
-          ) : (
-            <div className="empty-state">No announcements available.</div>
-          )}
-        </div>
+    <section className={`announcements-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
+        {renderContent()}
       </div>
     </section>
   );

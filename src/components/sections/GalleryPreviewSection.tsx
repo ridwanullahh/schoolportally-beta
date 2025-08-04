@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Section, GalleryImage } from '@/types';
-import '@/themes/styles/sections/gallery-preview.css';
+import { Section } from '@/types';
+import { useGallery, GalleryImage } from '@/hooks/useGallery';
+import '@/themes/styles/sections/gallery-preview-ultra-modern.css';
 
 interface GalleryPreviewSectionProps {
   section: Section;
@@ -8,81 +9,186 @@ interface GalleryPreviewSectionProps {
 
 const GalleryPreviewSection: React.FC<GalleryPreviewSectionProps> = ({ section }) => {
   const { title, images, featuredImage } = section.content;
-  const styleId = section.styleId || 'gallery_preview-grid-display';
+  const { getRecentImages, loading } = useGallery();
+  const styleId = section.styleId || 'gallery-floating-masonry';
   const [activeImage, setActiveImage] = useState(0);
   const [activeCategory, setActiveCategory] = useState('All');
   const [isGridView, setIsGridView] = useState(true);
 
   const defaultImages: GalleryImage[] = [
-    { src: 'https://via.placeholder.com/400x300', alt: 'Placeholder 1', caption: 'Caption 1', category: 'Nature' },
-    { src: 'https://via.placeholder.com/400x300', alt: 'Placeholder 2', caption: 'Caption 2', category: 'City' },
-    { src: 'https://via.placeholder.com/400x300', alt: 'Placeholder 3', caption: 'Caption 3', category: 'Nature' },
-    { src: 'https://via.placeholder.com/400x300', alt: 'Placeholder 4', caption: 'Caption 4', category: 'People' },
+    {
+      id: '1',
+      schoolId: '',
+      title: 'School Campus',
+      description: 'Beautiful view of our main campus building',
+      imageUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=300&fit=crop',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=150&fit=crop',
+      category: 'Campus',
+      tags: ['campus', 'building', 'architecture'],
+      uploadedAt: '2024-01-15T00:00:00Z',
+      status: 'active',
+      featured: true,
+      createdAt: '2024-01-15T00:00:00Z'
+    },
+    {
+      id: '2',
+      schoolId: '',
+      title: 'Science Laboratory',
+      description: 'State-of-the-art science lab facilities',
+      imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=200&h=150&fit=crop',
+      category: 'Facilities',
+      tags: ['science', 'laboratory', 'education'],
+      uploadedAt: '2024-01-10T00:00:00Z',
+      status: 'active',
+      featured: false,
+      createdAt: '2024-01-10T00:00:00Z'
+    },
+    {
+      id: '3',
+      schoolId: '',
+      title: 'Library Reading Area',
+      description: 'Quiet study spaces in our modern library',
+      imageUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=150&fit=crop',
+      category: 'Facilities',
+      tags: ['library', 'study', 'books'],
+      uploadedAt: '2024-01-05T00:00:00Z',
+      status: 'active',
+      featured: false,
+      createdAt: '2024-01-05T00:00:00Z'
+    },
+    {
+      id: '4',
+      schoolId: '',
+      title: 'Sports Complex',
+      description: 'Our comprehensive sports and fitness facilities',
+      imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=150&fit=crop',
+      category: 'Sports',
+      tags: ['sports', 'fitness', 'gymnasium'],
+      uploadedAt: '2024-01-01T00:00:00Z',
+      status: 'active',
+      featured: true,
+      createdAt: '2024-01-01T00:00:00Z'
+    },
   ];
 
-  const imageItems: GalleryImage[] = images && images.length > 0 ? images : defaultImages;
+  // Get recent images from admin module or use defaults
+  const recentImages = getRecentImages(8);
+
+  // Use images from section content, recent images, or defaults
+  const imageItems = images && images.length > 0
+    ? images
+    : recentImages.length > 0
+    ? recentImages
+    : defaultImages;
+
   const categories = ['All', ...Array.from(new Set(imageItems.map(i => i.category || 'Other')))];
 
   const renderImage = (image: GalleryImage, index: number) => {
     const imageContent = (
       <>
-        <img src={image.src} alt={image.alt} className="w-full h-auto" />
-        {image.caption && <div className="caption">{image.caption}</div>}
+        <img
+          src={image.thumbnailUrl || image.imageUrl}
+          alt={image.title}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=300&fit=crop';
+          }}
+        />
+        {image.title && <p className="caption">{image.title}</p>}
       </>
     );
 
     switch(styleId) {
-        case 'gallery_preview-accordion-gallery':
-            return <details key={index} className="gallery-item"><summary>{image.caption || `Image ${index + 1}`}</summary><img src={image.src} alt={image.alt} /></details>;
-        case 'gallery_preview-show-hide-box':
-            return <details key={index} className="gallery-item"><summary>Show/Hide</summary>{imageContent}</details>;
-        default:
-            return <div key={index} className="gallery-item">{imageContent}</div>;
+      case 'gallery-sliding-lightbox':
+        return (
+          <div
+            key={index}
+            className={`gallery-item ${index === activeImage ? 'active' : index === activeImage - 1 ? 'prev' : ''}`}
+          >
+            <img
+              src={image.imageUrl}
+              alt={image.title}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop';
+              }}
+            />
+            {image.title && <p className="caption">{image.title}</p>}
+          </div>
+        );
+      case 'gallery-hexagon-grid':
+      case 'gallery-circular-frames':
+        return (
+          <div key={index} className="gallery-item">
+            <div className="image-frame">
+              <img
+                src={image.thumbnailUrl || image.imageUrl}
+                alt={image.title}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop';
+                }}
+              />
+            </div>
+            {image.title && <p className="caption">{image.title}</p>}
+          </div>
+        );
+      default:
+        return (
+          <div key={index} className="gallery-item">
+            {imageContent}
+          </div>
+        );
     }
   };
 
   const renderContent = () => {
+    if (loading) {
+      return (
+        <div className="loading-state">
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary"></div>
+          </div>
+        </div>
+      );
+    }
+
+    if (imageItems.length === 0) {
+      return (
+        <div className="empty-state text-center py-12">
+          <p className="text-brand-text-secondary">No images available at the moment.</p>
+        </div>
+      );
+    }
+
     const filteredImages = activeCategory === 'All' ? imageItems : imageItems.filter(i => i.category === activeCategory);
 
     switch(styleId) {
-        case 'gallery_preview-toggle-layouts':
-            return (
-                <>
-                    <div className="layout-toggle"><button onClick={() => setIsGridView(!isGridView)}>{isGridView ? 'List View' : 'Grid View'}</button></div>
-                    <div className={`gallery-container ${isGridView ? 'grid-view' : 'list-view'}`}>{imageItems.map(renderImage)}</div>
-                </>
-            );
-        case 'gallery_preview-dot-nav-carousel':
-        case 'gallery_preview-slide-layout':
+        case 'gallery-sliding-lightbox':
             return (
                 <div className="gallery-container">
-                    {imageItems.map((image, index) => <div key={index} className={`gallery-item ${index === activeImage ? 'active' : ''}`}>{renderImage(image, index)}</div>)}
-                    <div className="dot-nav">{imageItems.map((_, index) => <button key={index} onClick={() => setActiveImage(index)} className={index === activeImage ? 'active' : ''} />)}</div>
-                </div>
-            );
-        case 'gallery_preview-tabbed-sets':
-            return (
-                 <>
-                    <div className="tab-buttons">{categories.map(c => <button key={c} onClick={() => setActiveCategory(c)} className={activeCategory === c ? 'active' : ''}>{c}</button>)}</div>
-                    <div className="gallery-container">{filteredImages.map(renderImage)}</div>
-                </>
-            );
-        case 'gallery_preview-showcase-strip':
-             return (
-                <div>
-                  <img src={featuredImage || imageItems[activeImage]?.src} alt="Featured" className="featured-image" />
-                  <div className="thumbnail-strip">{imageItems.map((img, i) => <img key={i} src={img.src} alt={img.alt} onClick={() => setActiveImage(i)} className={i === activeImage ? 'active' : ''} />)}</div>
+                    {imageItems.map(renderImage)}
+                    <div className="lightbox-controls">
+                        {imageItems.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setActiveImage(index)}
+                                className={index === activeImage ? 'active' : ''}
+                                aria-label={`View image ${index + 1}`}
+                            />
+                        ))}
+                    </div>
                 </div>
             );
         default:
-            return <div className="gallery-container">{imageItems.map(renderImage)}</div>;
+            return <div className="gallery-container">{filteredImages.map(renderImage)}</div>;
     }
   };
 
   return (
-    <section className={`gallery-preview-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
+    <section className={`gallery-preview-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
         {renderContent()}
       </div>
     </section>
