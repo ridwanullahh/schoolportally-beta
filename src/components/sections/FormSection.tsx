@@ -10,12 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'; // Added this import
 import { FormField } from '@/types';
-import '@/themes/styles/sections/form.css';
+import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { useToast } from '@/hooks/use-toast';
 
 const FormSection: React.FC<SectionProps> = ({ content, settings }) => {
   const { formId } = content;
-  const styleId = (settings as Section).styleId || 'form-full-page-form';
+  const styleId = (settings as Section).styleId || 'form-floating-glass';
   const [formData, setFormData] = useState<Form | null>(null);
   const [loading, setLoading] = useState(true);
   const [submissionData, setSubmissionData] = useState<Record<string, any>>({});
@@ -85,11 +85,13 @@ const FormSection: React.FC<SectionProps> = ({ content, settings }) => {
   }
 
   return (
-    <section className={`form-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">{formData.title}</h2>
-        <p className="text-center text-muted-foreground mb-12">{formData.description}</p>
-        <form onSubmit={handleSubmit} className="form-content max-w-xl mx-auto space-y-6 bg-white p-8 rounded-lg shadow-md">
+    <section className={`form-section ${styleId}`}>
+      <div className="container">
+        <h2 className="section-title">{formData.title}</h2>
+        <p className="section-description">{formData.description}</p>
+        <div className="form-container">
+          <div className="form-card">
+            <form onSubmit={handleSubmit} className="form-content">
           {formData.fields.map(field => (
             <div key={field.id} className="form-group">
               <Label htmlFor={field.id}>{field.label}{field.required && <span className="text-red-500">*</span>}</Label>
@@ -151,10 +153,12 @@ const FormSection: React.FC<SectionProps> = ({ content, settings }) => {
               ) : null}
             </div>
           ))}
-          <Button type="submit" className="w-full" disabled={loading}>
-            Submit
-          </Button>
-        </form>
+              <Button type="submit" className="w-full" disabled={loading}>
+                Submit
+              </Button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );

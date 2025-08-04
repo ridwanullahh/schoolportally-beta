@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Section, Event } from '@/types';
-import '@/themes/styles/sections/events-snapshot.css';
+import { Section } from '@/types';
+import { useEvents, Event } from '@/hooks/useEvents';
+import '@/themes/styles/sections/events-snapshot-ultra-modern.css';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 
 interface EventsSnapshotSectionProps {
@@ -9,116 +10,217 @@ interface EventsSnapshotSectionProps {
 
 const EventsSnapshotSection: React.FC<EventsSnapshotSectionProps> = ({ section }) => {
   const { title, events } = section.content;
-  const styleId = section.styleId || 'events_snapshot-grid-cards';
+  const { getUpcomingEvents, loading } = useEvents();
+  const styleId = section.styleId || 'events-floating-timeline';
   const [activeCategory, setActiveCategory] = useState('All');
   const [timeLefts, setTimeLefts] = useState<Record<number, { days: number; hours: number; minutes: number; seconds: number; } | {}>>({});
   const [activeEvent, setActiveEvent] = useState(0);
 
   const defaultEvents: Event[] = [
-    { title: 'Annual Sports Day', date: '2024-08-15', time: '9:00 AM', location: 'Main Ground', countdown: '2024-08-15T09:00:00', category: 'Sports' },
-    { title: 'Science Fair', date: '2024-09-01', time: '10:00 AM', location: 'Auditorium', countdown: '2024-09-01T10:00:00', category: 'Academics' },
-    { title: 'Parent-Teacher Meeting', date: '2024-09-15', time: '1:00 PM', location: 'Classrooms', countdown: '2024-09-15T13:00:00', category: 'Academics' },
+    {
+      id: '1',
+      schoolId: '',
+      title: 'Annual Sports Day',
+      description: 'Join us for our annual sports day featuring various athletic competitions and team events.',
+      date: '2024-08-15',
+      time: '9:00 AM',
+      location: 'Main Ground',
+      category: 'sports',
+      organizer: 'Sports Department',
+      capacity: 500,
+      status: 'upcoming',
+      tags: ['sports', 'annual', 'competition'],
+      recurring: true,
+      createdAt: '2024-01-15T00:00:00Z'
+    },
+    {
+      id: '2',
+      schoolId: '',
+      title: 'Science Fair',
+      description: 'Students showcase their innovative science projects and experiments.',
+      date: '2024-09-01',
+      time: '10:00 AM',
+      location: 'Auditorium',
+      category: 'academic',
+      organizer: 'Science Department',
+      capacity: 300,
+      status: 'upcoming',
+      tags: ['science', 'exhibition', 'students'],
+      recurring: false,
+      createdAt: '2024-01-10T00:00:00Z'
+    },
+    {
+      id: '3',
+      schoolId: '',
+      title: 'Parent-Teacher Meeting',
+      description: 'Important meeting to discuss student progress and academic performance.',
+      date: '2024-09-15',
+      time: '1:00 PM',
+      location: 'Classrooms',
+      category: 'meeting',
+      organizer: 'Academic Office',
+      capacity: 200,
+      status: 'upcoming',
+      tags: ['parents', 'teachers', 'academic'],
+      recurring: true,
+      createdAt: '2024-01-05T00:00:00Z'
+    },
   ];
 
-  const eventItems: Event[] = events && events.length > 0 ? events : defaultEvents;
+  // Get upcoming events from admin module or use defaults
+  const upcomingEvents = getUpcomingEvents();
+
+  // Use events from section content, upcoming events, or defaults
+  const eventItems = events && events.length > 0
+    ? events
+    : upcomingEvents.length > 0
+    ? upcomingEvents.slice(0, 6) // Limit to 6 events
+    : defaultEvents;
 
   useEffect(() => {
-    if (styleId === 'events_snapshot-countdown-boxes') {
-      const calculateTimeLeft = (countdown: string | undefined) => {
-        if (!countdown) return {};
-        const difference = +new Date(countdown) - +new Date();
-        return difference > 0 ? {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        } : {};
-      };
-      const timer = setInterval(() => {
-        const newTimeLefts: Record<number, { days: number; hours: number; minutes: number; seconds: number; } | {}> = {};
-        eventItems.forEach((event, index) => {
-          newTimeLefts[index] = calculateTimeLeft(event.countdown);
-        });
-        setTimeLefts(newTimeLefts);
-      }, 1000);
-      return () => clearInterval(timer);
+    if (styleId === 'events-sliding-carousel') {
+      const interval = setInterval(() => {
+        setActiveEvent((prev) => (prev + 1) % eventItems.length);
+      }, 5000);
+      return () => clearInterval(interval);
     }
-  }, [styleId, eventItems]);
+  }, [styleId, eventItems.length]);
+
+  useEffect(() => {
+    const calculateTimeLeft = (eventDate: string, eventTime: string) => {
+      const eventDateTime = new Date(`${eventDate}T${eventTime}`);
+      const difference = eventDateTime.getTime() - new Date().getTime();
+      return difference > 0 ? {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+      } : {};
+    };
+
+    const timer = setInterval(() => {
+      const newTimeLefts: Record<number, { days: number; hours: number; minutes: number; seconds: number; } | {}> = {};
+      eventItems.forEach((event, index) => {
+        newTimeLefts[index] = calculateTimeLeft(event.date, event.time);
+      });
+      setTimeLefts(newTimeLefts);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [eventItems]);
 
   const renderEvent = (event: Event, index: number) => {
     const eventContent = (
       <>
-        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-        <div className="flex items-center text-muted-foreground text-sm mb-1"><Calendar className="w-4 h-4 mr-2" /><span>{event.date}</span></div>
-        <div className="flex items-center text-muted-foreground text-sm"><MapPin className="w-4 h-4 mr-2" /><span>{event.location}</span></div>
-        {styleId === 'events_snapshot-pill-tags' && event.tags && (
-            <div className="tags">
-                {event.tags.map((tag: string, i: number) => <span key={i} className="tag">{tag}</span>)}
-            </div>
+        <h3 className="event-title">{event.title}</h3>
+        <div className="event-meta">
+          <div className="event-meta-item">
+            <Calendar />
+            <span>{new Date(event.date).toLocaleDateString()}</span>
+          </div>
+          <div className="event-meta-item">
+            <Clock />
+            <span>{event.time}</span>
+          </div>
+          <div className="event-meta-item">
+            <MapPin />
+            <span>{event.location}</span>
+          </div>
+        </div>
+        {event.description && (
+          <p className="event-description">{event.description}</p>
         )}
       </>
     );
 
     switch (styleId) {
-      case 'events_snapshot-countdown-boxes':
-        const timeLeft = timeLefts[index] || {};
+      case 'events-sliding-carousel':
         return (
-          <div key={index} className="event-item event-box">
-            <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-            <div className="countdown">
-              {Object.entries(timeLeft).map(([unit, value]) => (
-                <div key={unit}><span className="value">{value as number}</span><span className="unit text-sm">{unit}</span></div>
+          <div
+            key={index}
+            className={`event-item ${index === activeEvent ? 'active' : index === activeEvent - 1 ? 'prev' : ''}`}
+          >
+            {eventContent}
+          </div>
+        );
+      case 'events-hexagon-calendar':
+        return (
+          <div key={index} className="event-item">
+            <div className="event-date">{new Date(event.date).getDate()}</div>
+            <h3 className="event-title">{event.title}</h3>
+            <div className="event-location">{event.location}</div>
+          </div>
+        );
+      case 'events-circular-calendar':
+        return (
+          <div key={index} className="event-item">
+            <div className="event-date">{new Date(event.date).getDate()}</div>
+            <h3 className="event-title">{event.title}</h3>
+            <div className="event-location">{event.location}</div>
+          </div>
+        );
+      default:
+        return (
+          <div key={index} className="event-item">
+            {eventContent}
+          </div>
+        );
+    }
+  };
+
+  const categories = ['All', ...Array.from(new Set(eventItems.map(e => e.category || 'other')))];
+
+  const renderContainer = () => {
+    if (loading) {
+      return (
+        <div className="loading-state">
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary"></div>
+          </div>
+        </div>
+      );
+    }
+
+    if (eventItems.length === 0) {
+      return (
+        <div className="empty-state text-center py-12">
+          <p className="text-brand-text-secondary">No upcoming events at the moment.</p>
+        </div>
+      );
+    }
+
+    const filteredEvents = activeCategory === 'All' ? eventItems : eventItems.filter(e => (e.category || 'other') === activeCategory);
+
+    switch(styleId) {
+      case 'events-sliding-carousel':
+        return (
+          <div className="events-container">
+            {eventItems.map(renderEvent)}
+            <div className="carousel-controls">
+              {eventItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveEvent(index)}
+                  className={index === activeEvent ? 'active' : ''}
+                  aria-label={`View event ${index + 1}`}
+                />
               ))}
             </div>
           </div>
         );
-      case 'events_snapshot-accordion':
-        return (
-            <details key={index} className="event-item">
-                <summary>{event.title}</summary>
-                <div className="p-4">{eventContent}</div>
-            </details>
-        )
       default:
-        return <div key={index} className="event-item">{eventContent}</div>;
+        return (
+          <div className="events-container">
+            {filteredEvents.map(renderEvent)}
+          </div>
+        );
     }
   };
 
-  const categories = ['All', ...Array.from(new Set(eventItems.map(e => e.category || 'Other')))];
-
-  const renderContainer = () => {
-    const filteredEvents = activeCategory === 'All' ? eventItems : eventItems.filter(e => (e.category || 'Other') === activeCategory);
-    
-    switch(styleId) {
-        case 'events_snapshot-tabbed-views':
-            return (
-                <>
-                    <div className="tab-buttons">
-                        {categories.map(c => <button key={c} onClick={() => setActiveCategory(c)} className={activeCategory === c ? 'active' : ''}>{c}</button>)}
-                    </div>
-                    <div className="events-container">{filteredEvents.map(renderEvent)}</div>
-                </>
-            );
-        case 'events_snapshot-sticky-panel':
-            return (
-                <div className="events-container">
-                    <div className="event-list">
-                        {eventItems.map((event, index) => <div key={index} onClick={() => setActiveEvent(index)} className={`event-title ${index === activeEvent ? 'active' : ''}`}>{event.title}</div>)}
-                    </div>
-                    <div className="event-details">
-                        {eventItems[activeEvent] && renderEvent(eventItems[activeEvent], activeEvent)}
-                    </div>
-                </div>
-            )
-        default:
-            return <div className="events-container">{filteredEvents.map(renderEvent)}</div>;
-    }
-  }
-
   return (
-    <section className={`events-snapshot-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
+    <section className={`events-snapshot-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
         {renderContainer()}
       </div>
     </section>

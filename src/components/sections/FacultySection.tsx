@@ -1,69 +1,164 @@
 import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/faculty.css';
+import { useFaculty } from '@/hooks/useFaculty';
+import '@/themes/styles/sections/faculty-ultra-modern.css';
 
 interface FacultySectionProps {
   section: Section;
 }
 
 const FacultySection: React.FC<FacultySectionProps> = ({ section }) => {
-  const { title, faculty } = section.content;
-  const styleId = section.styleId || 'faculty-card-collection';
+  const { title } = section.content;
+  const styleId = section.styleId || 'faculty-floating-glass';
   const [activeTab, setActiveTab] = useState('All');
 
+  // Use dynamic content from faculty admin module
+  const { faculty, loading, error, getDepartments } = useFaculty();
+
   const defaultFaculty = [
-    { name: 'Dr. Alan Grant', department: 'Paleontology', image: 'https://via.placeholder.com/120' },
-    { name: 'Ms. Sarah Connor', department: 'Computer Science', image: 'https://via.placeholder.com/120' },
-    { name: 'Mr. Indiana Jones', department: 'Archaeology', image: 'https://via.placeholder.com/120' },
-    { name: 'Dr. Ellie Sattler', department: 'Paleobotany', image: 'https://via.placeholder.com/120' },
+    {
+      id: '1',
+      name: 'Dr. Alice Johnson',
+      title: 'Professor of Mathematics',
+      department: 'Mathematics',
+      subject: 'Advanced Mathematics',
+      bio: 'Dr. Johnson brings 15 years of experience in mathematical education and research, specializing in calculus and statistics.',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      email: 'alice.johnson@school.edu'
+    },
+    {
+      id: '2',
+      name: 'Mr. Bob Smith',
+      title: 'English Literature Teacher',
+      department: 'English',
+      subject: 'Literature & Writing',
+      bio: 'Mr. Smith is passionate about fostering creative writing and critical thinking skills in students through literature.',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+      email: 'bob.smith@school.edu'
+    },
+    {
+      id: '3',
+      name: 'Ms. Carol Davis',
+      title: 'Science Coordinator',
+      department: 'Science',
+      subject: 'Biology & Chemistry',
+      bio: 'Ms. Davis coordinates our science curriculum and leads innovative laboratory experiments for hands-on learning.',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+      email: 'carol.davis@school.edu'
+    },
+    {
+      id: '4',
+      name: 'Dr. Michael Chen',
+      title: 'Physics Professor',
+      department: 'Science',
+      subject: 'Physics & Engineering',
+      bio: 'Dr. Chen combines theoretical physics with practical engineering applications to inspire future scientists.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      email: 'michael.chen@school.edu'
+    },
+    {
+      id: '5',
+      name: 'Ms. Sarah Wilson',
+      title: 'Art & Design Teacher',
+      department: 'Arts',
+      subject: 'Visual Arts',
+      bio: 'Ms. Wilson nurtures creativity and artistic expression through various mediums and contemporary art techniques.',
+      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face',
+      email: 'sarah.wilson@school.edu'
+    },
+    {
+      id: '6',
+      name: 'Mr. David Kumar',
+      title: 'History & Social Studies',
+      department: 'Social Studies',
+      subject: 'World History',
+      bio: 'Mr. Kumar brings history to life through engaging storytelling and interactive learning experiences.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
+      email: 'david.kumar@school.edu'
+    },
   ];
 
+  // Use dynamic content if available, otherwise use defaults
   const facultyMembers = faculty && faculty.length > 0 ? faculty : defaultFaculty;
   
-  const departments = ['All', ...new Set(facultyMembers.map((m: any) => m.department))];
-  
+  const departments = getDepartments ? ['All', ...getDepartments()] : ['All', ...new Set(facultyMembers.map((m: any) => m.department))];
+
   const filteredMembers = activeTab === 'All'
     ? facultyMembers
     : facultyMembers.filter((m: any) => m.department === activeTab);
 
-  const renderMember = (member: any, index: number) => (
-    <div key={index} className="faculty-card">
-      <img src={member.image} alt={member.name} className="faculty-image" />
-      <h3 className="faculty-name font-bold text-lg">{member.name}</h3>
-      <p className="faculty-department text-muted-foreground">{member.department}</p>
-    </div>
-  );
-  
-  const renderContent = () => {
-    if (styleId === 'faculty-grouped-by-department') {
-      return (
-        <div>
-          <div className="tabs flex justify-center gap-4 mb-8">
-            {departments.map((department: string) => (
-              <button key={department} className={`tab ${activeTab === department ? 'active' : ''}`} onClick={() => setActiveTab(department)}>
-                {department}
-              </button>
-            ))}
-          </div>
-          <div className="faculty-container grid grid-cols-1 md:grid-cols-4 gap-8">
-            {filteredMembers.map(renderMember)}
-          </div>
-        </div>
-      )
-    }
+  const renderMember = (member: any, index: number) => {
+    const memberImage = member.image || 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face';
 
     return (
-      <div className="faculty-container grid grid-cols-1 md:grid-cols-4 gap-8">
-        {facultyMembers.map(renderMember)}
+      <div key={member.id || index} className="faculty-card">
+        <img
+          src={memberImage}
+          alt={member.name}
+          className="faculty-image"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face';
+          }}
+        />
+        <div className="faculty-name font-bold text-lg">{member.name}</div>
+        <div className="faculty-title">{member.title}</div>
+        <div className="faculty-department text-muted-foreground">{member.department}</div>
+        {member.bio && <div className="faculty-bio">{member.bio}</div>}
       </div>
-    )
+    );
+  };
+  
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <div className="faculty-container">
+          <div className="loading-state">Loading faculty members...</div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="faculty-container">
+          <div className="error-state">Error loading faculty. Showing default members.</div>
+          <div className="faculty-container">
+            {defaultFaculty.map(renderFacultyMember)}
+          </div>
+        </div>
+      );
+    }
+
+    switch (styleId) {
+      case 'faculty-sliding-carousel':
+        return (
+          <div className="faculty-container">
+            <div className="carousel-track">
+              {facultyMembers.map(renderFacultyMember)}
+              {/* Duplicate for seamless loop */}
+              {facultyMembers.map((member, index) => renderFacultyMember(member, index + facultyMembers.length))}
+            </div>
+          </div>
+        );
+      case 'faculty-minimal-lines':
+        return (
+          <div className="faculty-container">
+            {facultyMembers.map(renderFacultyMember)}
+          </div>
+        );
+      default:
+        return (
+          <div className="faculty-container">
+            {facultyMembers.map(renderFacultyMember)}
+          </div>
+        );
+    }
   }
 
   return (
-    <section className={`faculty-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
+    <section className={`faculty-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
         {renderContent()}
       </div>
     </section>
