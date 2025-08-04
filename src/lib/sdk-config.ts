@@ -378,6 +378,69 @@ const dbSchema = {
       createdAt: 'string'
     }
   },
+  testimonials: {
+    required: ['schoolId', 'text', 'author'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      text: 'string',
+      author: 'string',
+      role: 'string',
+      avatar: 'string',
+      rating: 'number',
+      status: 'string',
+      featured: 'boolean',
+      date: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  gallery: {
+    required: ['schoolId', 'title', 'imageUrl'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      title: 'string',
+      description: 'string',
+      imageUrl: 'string',
+      thumbnailUrl: 'string',
+      category: 'string',
+      tags: 'array',
+      uploadedAt: 'string',
+      status: 'string',
+      featured: 'boolean',
+      albumId: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  blog_posts: {
+    required: ['schoolId', 'title', 'content'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      title: 'string',
+      content: 'string',
+      excerpt: 'string',
+      slug: 'string',
+      featuredImage: 'string',
+      author: 'string',
+      authorId: 'string',
+      category: 'string',
+      tags: 'array',
+      status: 'string',
+      publishedAt: 'string',
+      scheduledAt: 'string',
+      featured: 'boolean',
+      views: 'number',
+      likes: 'number',
+      comments: 'number',
+      seoTitle: 'string',
+      seoDescription: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
   lms_enrollments: {
     required: ['courseId', 'studentId'],
     types: {
@@ -481,18 +544,6 @@ const dbSchema = {
       tags: 'array',
       recurring: 'boolean',
       recurringPattern: 'object',
-      createdAt: 'string'
-    }
-  },
-  gallery: {
-    required: ['schoolId', 'title'],
-    types: {
-      id: 'string',
-      schoolId: 'string',
-      title: 'string',
-      description: 'string',
-      imageUrl: 'string',
-      category: 'string',
       createdAt: 'string'
     }
   },

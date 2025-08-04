@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/result-checker.css';
+import { useResults } from '@/hooks/useResults';
+import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -10,110 +11,140 @@ interface ResultCheckerSectionProps {
 }
 
 const ResultCheckerSection: React.FC<ResultCheckerSectionProps> = ({ section }) => {
-  const { title, steps } = section.content;
-  const styleId = section.styleId || 'result_checker-form-panel';
+  const { title } = section.content;
+  const styleId = section.styleId || 'result-checker-floating-glass';
   const [studentId, setStudentId] = useState('');
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
-  const handleCheckResult = () => {
+  // Use dynamic content from results admin module
+  const { results, loading: resultsLoading, error, getStudentResult } = useResults();
+
+  const handleCheckResult = async () => {
+    if (!studentId.trim()) return;
+
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      if (studentId === '12345') {
-        setResult({
-          name: 'John Doe',
-          grade: 'A',
-          status: 'Pass',
-          subjects: [
-            { name: 'Mathematics', score: 95 },
-            { name: 'English', score: 88 },
-            { name: 'Science', score: 92 },
-          ],
-        });
+    try {
+      // Try to get result from dynamic hook first
+      const dynamicResult = await getStudentResult(studentId);
+      if (dynamicResult) {
+        setResult(dynamicResult);
       } else {
-        setResult(null);
-        alert('Student ID not found.');
+        // Fallback to demo data
+        if (studentId === '12345') {
+          setResult({
+            id: '1',
+            studentId: '12345',
+            name: 'John Doe',
+            class: 'Grade 12A',
+            term: 'Fall 2024',
+            overallGrade: 'A',
+            gpa: 3.8,
+            status: 'Pass',
+            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+            subjects: [
+              { name: 'Mathematics', score: 95, grade: 'A', credits: 4 },
+              { name: 'English', score: 88, grade: 'B+', credits: 3 },
+              { name: 'Science', score: 92, grade: 'A-', credits: 4 },
+              { name: 'History', score: 85, grade: 'B', credits: 3 },
+              { name: 'Physical Education', score: 90, grade: 'A-', credits: 2 }
+            ],
+            totalCredits: 16,
+            remarks: 'Excellent performance. Keep up the good work!',
+            publishedDate: '2024-11-20'
+          });
+        } else {
+          setResult(null);
+          alert('Student ID not found.');
+        }
       }
+    } catch (error) {
+      console.error('Error fetching result:', error);
+      setResult(null);
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
   
   const renderContent = () => {
-    if (styleId === 'result_checker-step-by-step-checker') {
+    if (resultsLoading) {
       return (
-        <div className="checker-container">
-          <div className="steps-indicator">
-            {steps?.map((step: any, index: number) => (
-              <div key={index} className={`step-progress ${currentStep === index ? 'active' : ''}`}>
-                {index + 1}
-              </div>
-            ))}
-          </div>
+        <div className="results-container">
+          <div className="loading-state">Loading result checker...</div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="results-container">
+          <div className="error-state">Error loading result checker. Please try again.</div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="results-container">
+        <div className="result-card">
           <div className="form-panel">
             <div className="form-group">
-              <Label htmlFor="studentId">{steps[currentStep]?.label || 'Student ID'}</Label>
+              <Label htmlFor="studentId">Student ID</Label>
               <Input
                 id="studentId"
                 type="text"
                 value={studentId}
                 onChange={(e) => setStudentId(e.target.value)}
-                placeholder="Enter Student ID"
+                placeholder="Enter Student ID (try: 12345)"
               />
             </div>
-            <Button onClick={() => setCurrentStep(s => s + 1)} disabled={currentStep >= steps.length - 1}>
-              Next
+            <Button onClick={handleCheckResult} disabled={loading}>
+              {loading ? 'Checking...' : 'Check Result'}
             </Button>
-            {currentStep === steps.length - 1 && (
-              <Button onClick={handleCheckResult} disabled={loading}>
-                {loading ? 'Checking...' : 'Check Result'}
-              </Button>
-            )}
           </div>
-        </div>
-      )
-    }
 
-    return (
-      <div className="checker-container">
-        <div className="form-panel">
-          <div className="form-group">
-            <Label htmlFor="studentId">Student ID</Label>
-            <Input
-              id="studentId"
-              type="text"
-              value={studentId}
-              onChange={(e) => setStudentId(e.target.value)}
-              placeholder="Enter Student ID"
-            />
-          </div>
-          <Button onClick={handleCheckResult} disabled={loading}>
-            {loading ? 'Checking...' : 'Check Result'}
-          </Button>
-        </div>
+          {result && (
+            <div className="result-display">
+              {result.image && (
+                <img
+                  src={result.image}
+                  alt="Result"
+                  className="result-image"
+                />
+              )}
+              <div className="result-title">Result for {result.name}</div>
+              <div className="result-type">Class: {result.class}</div>
+              <div className="result-term">Term: {result.term}</div>
+              <div className="result-grade">Overall Grade: {result.overallGrade}</div>
+              <div className="result-gpa">GPA: {result.gpa}</div>
+              <div className="result-status">Status: {result.status}</div>
 
-        {result && (
-          <div className="result-display mt-8">
-            <h3 className="text-2xl font-bold mb-4">Result for {result.name}</h3>
-            <p className="text-lg">Overall Grade: <span className="font-bold">{result.grade}</span></p>
-            <p className="text-lg mb-4">Status: <span className="font-bold">{result.status}</span></p>
-            <h4 className="text-xl font-bold mb-2">Subject Scores:</h4>
-            <ul>
-              {result.subjects.map((subject: any, index: number) => (
-                <li key={index}>{subject.name}: {subject.score}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+              {result.subjects && (
+                <div className="subjects-list">
+                  <h4>Subject Scores:</h4>
+                  {result.subjects.map((subject: any, index: number) => (
+                    <div key={index} className="subject-score">
+                      <span>{subject.name}</span>
+                      <span>{subject.score}% ({subject.grade})</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {result.remarks && (
+                <div className="result-description">{result.remarks}</div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     )
   }
 
   return (
-    <section className={`result-checker-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
+    <section className={`result-checker-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
         {renderContent()}
       </div>
     </section>

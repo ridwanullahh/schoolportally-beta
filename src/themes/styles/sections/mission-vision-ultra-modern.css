@@ -1,0 +1,1376 @@
+/* Ultra Modern Mission Vision Section Styles - 15 Unique Designs */
+
+.mission-vision-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  
+  position: relative;
+  overflow: hidden;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+/* Style 1: Floating Glass */
+.mission-vision-floating-glass {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+.mission-vision-floating-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 40%, var(--brand-primary)15 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, var(--brand-accent)10 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.mission-vision-floating-glass .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-floating-glass .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mission-vision-floating-glass .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-floating-glass .mission-block,
+.mission-vision-floating-glass .vision-block {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 3rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-floating-glass .mission-block:hover,
+.mission-vision-floating-glass .vision-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.mission-vision-floating-glass .mission-block h3,
+.mission-vision-floating-glass .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.mission-vision-floating-glass .mission-block h3::after,
+.mission-vision-floating-glass .vision-block h3::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  border-radius: 2px;
+}
+
+.mission-vision-floating-glass .mission-block p,
+.mission-vision-floating-glass .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 2: Neon Glow */
+.mission-vision-neon-glow {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-neon-glow .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-neon-glow .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px var(--brand-primary);
+}
+
+.mission-vision-neon-glow .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-neon-glow .mission-block,
+.mission-vision-neon-glow .vision-block {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--brand-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+.mission-vision-neon-glow .mission-block:hover,
+.mission-vision-neon-glow .vision-block:hover {
+  box-shadow: 0 0 50px var(--brand-primary), 
+              inset 0 0 30px rgba(37, 99, 235, 0.1);
+  transform: scale(1.02);
+}
+
+.mission-vision-neon-glow .mission-block::before,
+.mission-vision-neon-glow .vision-block::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-vision-neon-glow .mission-block:hover::before,
+.mission-vision-neon-glow .vision-block:hover::before {
+  opacity: 1;
+}
+
+.mission-vision-neon-glow .mission-block h3,
+.mission-vision-neon-glow .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px var(--brand-primary);
+}
+
+.mission-vision-neon-glow .mission-block p,
+.mission-vision-neon-glow .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Style 3: Geometric Split */
+.mission-vision-geometric-split {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-vision-geometric-split::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    polygon(50% 0%, 0% 100%, 100% 100%) var(--brand-primary)08,
+    polygon(50% 0%, 0% 100%, 100% 100%) var(--brand-accent)05;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.mission-vision-geometric-split .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-geometric-split .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-geometric-split .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-geometric-split .mission-block,
+.mission-vision-geometric-split .vision-block {
+  background: var(--brand-bg-primary);
+  padding: 3rem;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-geometric-split .mission-block:hover,
+.mission-vision-geometric-split .vision-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-geometric-split .mission-block::before,
+.mission-vision-geometric-split .vision-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  z-index: -1;
+  transform: scale(1.02);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-vision-geometric-split .mission-block:hover::before,
+.mission-vision-geometric-split .vision-block:hover::before {
+  opacity: 0.1;
+}
+
+.mission-vision-geometric-split .mission-block h3,
+.mission-vision-geometric-split .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-geometric-split .mission-block p,
+.mission-vision-geometric-split .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 4: Minimal Lines */
+.mission-vision-minimal-lines {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-minimal-lines .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-vision-minimal-lines .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.mission-vision-minimal-lines .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--brand-primary);
+}
+
+.mission-vision-minimal-lines .mission-vision-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.mission-vision-minimal-lines .mission-block,
+.mission-vision-minimal-lines .vision-block {
+  padding: 3rem 0;
+  border-top: 2px solid var(--brand-primary);
+  border-bottom: 2px solid var(--brand-primary);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.mission-vision-minimal-lines .mission-block::before,
+.mission-vision-minimal-lines .vision-block::before,
+.mission-vision-minimal-lines .mission-block::after,
+.mission-vision-minimal-lines .vision-block::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-accent);
+  transition: width 0.6s ease;
+}
+
+.mission-vision-minimal-lines .mission-block::before,
+.mission-vision-minimal-lines .vision-block::before {
+  top: -2px;
+}
+
+.mission-vision-minimal-lines .mission-block::after,
+.mission-vision-minimal-lines .vision-block::after {
+  bottom: -2px;
+}
+
+.mission-vision-minimal-lines .mission-block:hover::before,
+.mission-vision-minimal-lines .vision-block:hover::before,
+.mission-vision-minimal-lines .mission-block:hover::after,
+.mission-vision-minimal-lines .vision-block:hover::after {
+  width: 100%;
+}
+
+.mission-vision-minimal-lines .mission-block h3,
+.mission-vision-minimal-lines .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.mission-vision-minimal-lines .mission-block h3::after,
+.mission-vision-minimal-lines .vision-block h3::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--brand-primary);
+}
+
+.mission-vision-minimal-lines .mission-block p,
+.mission-vision-minimal-lines .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 5: Hexagon Frame */
+.mission-vision-hexagon-frame {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-hexagon-frame .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-vision-hexagon-frame .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-hexagon-frame .mission-vision-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.mission-vision-hexagon-frame .mission-block,
+.mission-vision-hexagon-frame .vision-block {
+  width: 350px;
+  height: 350px;
+  background: var(--brand-bg-primary);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-hexagon-frame .mission-block:hover,
+.mission-vision-hexagon-frame .vision-block:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-hexagon-frame .mission-block::before,
+.mission-vision-hexagon-frame .vision-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  z-index: -1;
+  transform: scale(1.05);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-vision-hexagon-frame .mission-block:hover::before,
+.mission-vision-hexagon-frame .vision-block:hover::before {
+  opacity: 0.1;
+}
+
+.mission-vision-hexagon-frame .mission-block h3,
+.mission-vision-hexagon-frame .vision-block h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.mission-vision-hexagon-frame .mission-block p,
+.mission-vision-hexagon-frame .vision-block p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 6: Sliding Panel */
+.mission-vision-sliding-panel {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+  overflow: hidden;
+}
+
+.mission-vision-sliding-panel .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-sliding-panel .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-sliding-panel .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-sliding-panel .mission-block,
+.mission-vision-sliding-panel .vision-block {
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+  border-radius: 25px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-sliding-panel .mission-block::before,
+.mission-vision-sliding-panel .vision-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.mission-vision-sliding-panel .mission-block:hover::before,
+.mission-vision-sliding-panel .vision-block:hover::before {
+  left: 100%;
+}
+
+.mission-vision-sliding-panel .mission-block:hover,
+.mission-vision-sliding-panel .vision-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-sliding-panel .mission-block h3,
+.mission-vision-sliding-panel .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-sliding-panel .mission-block p,
+.mission-vision-sliding-panel .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 7: Isometric Cube */
+.mission-vision-isometric-cube {
+  background: linear-gradient(135deg, var(--brand-bg-tertiary) 0%, var(--brand-bg-secondary) 100%);
+  padding: 5rem 2rem;
+  perspective: 1000px;
+}
+
+.mission-vision-isometric-cube .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-isometric-cube .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-isometric-cube .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-isometric-cube .mission-block,
+.mission-vision-isometric-cube .vision-block {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-isometric-cube .mission-block:hover,
+.mission-vision-isometric-cube .vision-block:hover {
+  transform: rotateX(10deg) rotateY(10deg) translateZ(20px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+}
+
+.mission-vision-isometric-cube .mission-block h3,
+.mission-vision-isometric-cube .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-isometric-cube .mission-block p,
+.mission-vision-isometric-cube .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 8: Liquid Morphism */
+.mission-vision-liquid-morphism {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-vision-liquid-morphism::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--brand-primary)10 0%, transparent 70%);
+  animation: liquidFloat 20s ease-in-out infinite;
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+.mission-vision-liquid-morphism .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-liquid-morphism .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-liquid-morphism .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-liquid-morphism .mission-block,
+.mission-vision-liquid-morphism .vision-block {
+  background: var(--brand-bg-primary);
+  border-radius: 40px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.mission-vision-liquid-morphism .mission-block::before,
+.mission-vision-liquid-morphism .vision-block::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, var(--brand-primary)08, var(--brand-accent)08);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.mission-vision-liquid-morphism .mission-block:hover::before,
+.mission-vision-liquid-morphism .vision-block:hover::before {
+  transform: scale(1);
+}
+
+.mission-vision-liquid-morphism .mission-block:hover,
+.mission-vision-liquid-morphism .vision-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-liquid-morphism .mission-block h3,
+.mission-vision-liquid-morphism .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-liquid-morphism .mission-block p,
+.mission-vision-liquid-morphism .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 9: Gradient Orbs */
+.mission-vision-gradient-orbs {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-vision-gradient-orbs::before,
+.mission-vision-gradient-orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-primary)20, var(--brand-accent)20);
+  filter: blur(40px);
+  animation: orbFloat 15s ease-in-out infinite;
+}
+
+.mission-vision-gradient-orbs::before {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -150px;
+  animation-delay: 0s;
+}
+
+.mission-vision-gradient-orbs::after {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  left: -100px;
+  animation-delay: 7s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -50px) scale(1.1); }
+}
+
+.mission-vision-gradient-orbs .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-gradient-orbs .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-gradient-orbs .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-gradient-orbs .mission-block,
+.mission-vision-gradient-orbs .vision-block {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 3rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-gradient-orbs .mission-block:hover,
+.mission-vision-gradient-orbs .vision-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.mission-vision-gradient-orbs .mission-block h3,
+.mission-vision-gradient-orbs .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-gradient-orbs .mission-block p,
+.mission-vision-gradient-orbs .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 10: Paper Stack */
+.mission-vision-paper-stack {
+  background: var(--brand-bg-secondary);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-paper-stack .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-paper-stack .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-paper-stack .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-paper-stack .mission-block,
+.mission-vision-paper-stack .vision-block {
+  background: var(--brand-bg-primary);
+  border-radius: 15px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-paper-stack .mission-block::before,
+.mission-vision-paper-stack .vision-block::before,
+.mission-vision-paper-stack .mission-block::after,
+.mission-vision-paper-stack .vision-block::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  background: var(--brand-bg-primary);
+  border-radius: 15px;
+  z-index: -1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.mission-vision-paper-stack .mission-block::after,
+.mission-vision-paper-stack .vision-block::after {
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: -2;
+}
+
+.mission-vision-paper-stack .mission-block:hover,
+.mission-vision-paper-stack .vision-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-paper-stack .mission-block h3,
+.mission-vision-paper-stack .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-paper-stack .mission-block p,
+.mission-vision-paper-stack .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 11: Neon Outline */
+.mission-vision-neon-outline {
+  background: #0a0a0a;
+  padding: 5rem 2rem;
+}
+
+.mission-vision-neon-outline .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-neon-outline .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px var(--brand-primary);
+}
+
+.mission-vision-neon-outline .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-neon-outline .mission-block,
+.mission-vision-neon-outline .vision-block {
+  background: transparent;
+  border: 3px solid var(--brand-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+.mission-vision-neon-outline .mission-block:hover,
+.mission-vision-neon-outline .vision-block:hover {
+  box-shadow: 0 0 50px var(--brand-primary),
+              0 0 70px var(--brand-primary),
+              inset 0 0 30px rgba(37, 99, 235, 0.1);
+  transform: scale(1.02);
+}
+
+.mission-vision-neon-outline .mission-block::before,
+.mission-vision-neon-outline .vision-block::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-vision-neon-outline .mission-block:hover::before,
+.mission-vision-neon-outline .vision-block:hover::before {
+  opacity: 0.3;
+}
+
+.mission-vision-neon-outline .mission-block h3,
+.mission-vision-neon-outline .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px var(--brand-primary);
+}
+
+.mission-vision-neon-outline .mission-block p,
+.mission-vision-neon-outline .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Style 12: Mosaic Layout */
+.mission-vision-mosaic-layout {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-mosaic-layout .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-mosaic-layout .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-mosaic-layout .mission-vision-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2rem;
+  height: 500px;
+}
+
+.mission-vision-mosaic-layout .mission-block {
+  grid-row: span 2;
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+  border-radius: 20px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-mosaic-layout .vision-block {
+  background: linear-gradient(135deg, var(--brand-bg-tertiary), var(--brand-bg-secondary));
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-mosaic-layout .mission-block:hover,
+.mission-vision-mosaic-layout .vision-block:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-mosaic-layout .mission-block::before,
+.mission-vision-mosaic-layout .vision-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, var(--brand-primary)10, var(--brand-accent)10);
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-vision-mosaic-layout .mission-block:hover::before,
+.mission-vision-mosaic-layout .vision-block:hover::before {
+  opacity: 1;
+}
+
+.mission-vision-mosaic-layout .mission-block h3,
+.mission-vision-mosaic-layout .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-mosaic-layout .mission-block p,
+.mission-vision-mosaic-layout .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 13: Holographic Cards */
+.mission-vision-holographic-cards {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-holographic-cards .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-holographic-cards .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mission-vision-holographic-cards .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-holographic-cards .mission-block,
+.mission-vision-holographic-cards .vision-block {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 25px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.mission-vision-holographic-cards .mission-block::before,
+.mission-vision-holographic-cards .vision-block::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition: transform 0.6s ease;
+}
+
+.mission-vision-holographic-cards .mission-block:hover::before,
+.mission-vision-holographic-cards .vision-block:hover::before {
+  transform: rotate(45deg) translate(100%, 100%);
+}
+
+.mission-vision-holographic-cards .mission-block:hover,
+.mission-vision-holographic-cards .vision-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.3);
+  border-color: var(--brand-primary);
+}
+
+.mission-vision-holographic-cards .mission-block h3,
+.mission-vision-holographic-cards .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mission-vision-holographic-cards .mission-block p,
+.mission-vision-holographic-cards .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 14: Progress Reveal */
+.mission-vision-progress-reveal {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-progress-reveal .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-vision-progress-reveal .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-progress-reveal .mission-vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-progress-reveal .mission-block,
+.mission-vision-progress-reveal .vision-block {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-progress-reveal .mission-block::before,
+.mission-vision-progress-reveal .vision-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  width: 0;
+  transition: width 2s ease;
+  z-index: 3;
+}
+
+.mission-vision-progress-reveal .mission-block:hover::before,
+.mission-vision-progress-reveal .vision-block:hover::before {
+  width: 100%;
+}
+
+.mission-vision-progress-reveal .mission-block:hover,
+.mission-vision-progress-reveal .vision-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-progress-reveal .mission-block h3,
+.mission-vision-progress-reveal .vision-block h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-progress-reveal .mission-block p,
+.mission-vision-progress-reveal .vision-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 15: Circular Frame */
+.mission-vision-circular-frame {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  padding: 5rem 2rem;
+}
+
+.mission-vision-circular-frame .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-vision-circular-frame .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.mission-vision-circular-frame .mission-vision-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.mission-vision-circular-frame .mission-block,
+.mission-vision-circular-frame .vision-block {
+  width: 400px;
+  height: 400px;
+  background: var(--brand-bg-primary);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  border: 6px solid var(--brand-primary);
+}
+
+.mission-vision-circular-frame .mission-block:hover,
+.mission-vision-circular-frame .vision-block:hover {
+  transform: scale(1.05);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-accent);
+}
+
+.mission-vision-circular-frame .mission-block::before,
+.mission-vision-circular-frame .vision-block::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-vision-circular-frame .mission-block:hover::before,
+.mission-vision-circular-frame .vision-block:hover::before {
+  opacity: 0.1;
+}
+
+.mission-vision-circular-frame .mission-block h3,
+.mission-vision-circular-frame .vision-block h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.mission-vision-circular-frame .mission-block p,
+.mission-vision-circular-frame .vision-block p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--brand-text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mission-vision-floating-glass .mission-vision-container,
+  .mission-vision-neon-glow .mission-vision-container,
+  .mission-vision-geometric-split .mission-vision-container,
+  .mission-vision-sliding-panel .mission-vision-container,
+  .mission-vision-isometric-cube .mission-vision-container,
+  .mission-vision-liquid-morphism .mission-vision-container,
+  .mission-vision-gradient-orbs .mission-vision-container,
+  .mission-vision-paper-stack .mission-vision-container,
+  .mission-vision-neon-outline .mission-vision-container,
+  .mission-vision-holographic-cards .mission-vision-container,
+  .mission-vision-progress-reveal .mission-vision-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mission-vision-hexagon-frame .mission-vision-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .mission-vision-hexagon-frame .mission-block,
+  .mission-vision-hexagon-frame .vision-block {
+    width: 300px;
+    height: 300px;
+    padding: 2rem 1.5rem;
+  }
+
+  .mission-vision-circular-frame .mission-vision-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .mission-vision-circular-frame .mission-block,
+  .mission-vision-circular-frame .vision-block {
+    width: 320px;
+    height: 320px;
+    padding: 2rem;
+  }
+
+  .mission-vision-mosaic-layout .mission-vision-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+
+  .mission-vision-mosaic-layout .mission-block {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-vision-hexagon-frame .mission-block,
+  .mission-vision-hexagon-frame .vision-block {
+    width: 250px;
+    height: 250px;
+    padding: 1.5rem 1rem;
+  }
+
+  .mission-vision-circular-frame .mission-block,
+  .mission-vision-circular-frame .vision-block {
+    width: 280px;
+    height: 280px;
+    padding: 1.5rem;
+  }
+
+  .mission-vision-minimal-lines .mission-vision-container {
+    gap: 3rem;
+  }
+}

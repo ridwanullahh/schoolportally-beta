@@ -1,0 +1,1639 @@
+/* Ultra Modern Leadership Section Styles - 15 Unique Designs */
+
+.leadership-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  
+  position: relative;
+  overflow: hidden;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+/* Style 1: Floating Glass */
+.leadership-floating-glass {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+.leadership-floating-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, var(--brand-primary)12 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, var(--brand-accent)08 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.leadership-floating-glass .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-floating-glass .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.leadership-floating-glass .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-floating-glass .member-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-floating-glass .member-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.leadership-floating-glass .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  border: 4px solid var(--brand-primary);
+  transition: transform 0.4s ease;
+}
+
+.leadership-floating-glass .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-floating-glass .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-floating-glass .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-floating-glass .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 2: Neon Profiles */
+.leadership-neon-profiles {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  padding: 5rem 2rem;
+}
+
+.leadership-neon-profiles .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-neon-profiles .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px var(--brand-primary);
+}
+
+.leadership-neon-profiles .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-neon-profiles .member-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--brand-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+.leadership-neon-profiles .member-card:hover {
+  box-shadow: 0 0 50px var(--brand-primary), 
+              inset 0 0 30px rgba(37, 99, 235, 0.1);
+  transform: scale(1.02);
+}
+
+.leadership-neon-profiles .member-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.leadership-neon-profiles .member-card:hover::before {
+  opacity: 1;
+}
+
+.leadership-neon-profiles .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  border: 3px solid var(--brand-accent);
+  box-shadow: 0 0 20px var(--brand-accent);
+  transition: all 0.4s ease;
+}
+
+.leadership-neon-profiles .member-card:hover .member-image {
+  box-shadow: 0 0 30px var(--brand-accent);
+  transform: scale(1.05);
+}
+
+.leadership-neon-profiles .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px var(--brand-primary);
+}
+
+.leadership-neon-profiles .member-role {
+  font-size: 1rem;
+  color: var(--brand-accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px var(--brand-accent);
+}
+
+.leadership-neon-profiles .member-bio {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 3: Geometric Cards */
+.leadership-geometric-cards {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.leadership-geometric-cards::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    polygon(50% 0%, 0% 100%, 100% 100%) var(--brand-primary)06,
+    polygon(50% 0%, 0% 100%, 100% 100%) var(--brand-accent)04;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.leadership-geometric-cards .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-geometric-cards .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-geometric-cards .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-geometric-cards .member-card {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-geometric-cards .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-geometric-cards .member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  z-index: -1;
+  transform: scale(1.02);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.leadership-geometric-cards .member-card:hover::before {
+  opacity: 0.1;
+}
+
+.leadership-geometric-cards .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-geometric-cards .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-geometric-cards .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-geometric-cards .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-geometric-cards .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 4: Minimal Lines */
+.leadership-minimal-lines {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+}
+
+.leadership-minimal-lines .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.leadership-minimal-lines .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.leadership-minimal-lines .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--brand-primary);
+}
+
+.leadership-minimal-lines .leadership-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.leadership-minimal-lines .member-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 2px solid var(--brand-primary);
+  border-bottom: 2px solid var(--brand-primary);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.leadership-minimal-lines .member-card::before,
+.leadership-minimal-lines .member-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-accent);
+  transition: width 0.6s ease;
+}
+
+.leadership-minimal-lines .member-card::before {
+  top: -2px;
+}
+
+.leadership-minimal-lines .member-card::after {
+  bottom: -2px;
+}
+
+.leadership-minimal-lines .member-card:hover::before,
+.leadership-minimal-lines .member-card:hover::after {
+  width: 100%;
+}
+
+.leadership-minimal-lines .member-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.leadership-minimal-lines .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-minimal-lines .member-info {
+  flex: 1;
+}
+
+.leadership-minimal-lines .member-name {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.leadership-minimal-lines .member-name::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--brand-primary);
+}
+
+.leadership-minimal-lines .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-minimal-lines .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 5: Hexagon Grid */
+.leadership-hexagon-grid {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  padding: 5rem 2rem;
+}
+
+.leadership-hexagon-grid .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-hexagon-grid .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-hexagon-grid .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.leadership-hexagon-grid .member-card {
+  width: 220px;
+  height: 220px;
+  background: var(--brand-bg-primary);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-hexagon-grid .member-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-hexagon-grid .member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  z-index: -1;
+  transform: scale(1.05);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.leadership-hexagon-grid .member-card:hover::before {
+  opacity: 0.1;
+}
+
+.leadership-hexagon-grid .member-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-hexagon-grid .member-card:hover .member-image {
+  transform: scale(1.1);
+}
+
+.leadership-hexagon-grid .member-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.leadership-hexagon-grid .member-role {
+  font-size: 0.9rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Style 6: Sliding Carousel */
+.leadership-sliding-carousel {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+  overflow: hidden;
+}
+
+.leadership-sliding-carousel .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-sliding-carousel .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-sliding-carousel .leadership-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+  padding: 2rem;
+}
+
+.leadership-sliding-carousel .carousel-track {
+  display: flex;
+  animation: slide 30s linear infinite;
+  gap: 2rem;
+}
+
+.leadership-sliding-carousel .member-card {
+  flex: 0 0 300px;
+  background: var(--brand-bg-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-sliding-carousel .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-sliding-carousel .member-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-sliding-carousel .member-card:hover .member-image {
+  transform: scale(1.1);
+}
+
+.leadership-sliding-carousel .member-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-sliding-carousel .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-sliding-carousel .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Style 7: Isometric Cubes */
+.leadership-isometric-cubes {
+  background: linear-gradient(135deg, var(--brand-bg-tertiary) 0%, var(--brand-bg-secondary) 100%);
+  padding: 5rem 2rem;
+  perspective: 1000px;
+}
+
+.leadership-isometric-cubes .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-isometric-cubes .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-isometric-cubes .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-isometric-cubes .member-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-isometric-cubes .member-card:hover {
+  transform: rotateX(10deg) rotateY(10deg) translateZ(20px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+}
+
+.leadership-isometric-cubes .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-isometric-cubes .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-isometric-cubes .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-isometric-cubes .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-isometric-cubes .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 8: Liquid Morphism */
+.leadership-liquid-morphism {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.leadership-liquid-morphism::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--brand-primary)08 0%, transparent 70%);
+  animation: liquidFloat 20s ease-in-out infinite;
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+.leadership-liquid-morphism .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-liquid-morphism .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-liquid-morphism .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-liquid-morphism .member-card {
+  background: var(--brand-bg-primary);
+  border-radius: 40px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.leadership-liquid-morphism .member-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, var(--brand-primary)08, var(--brand-accent)08);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.leadership-liquid-morphism .member-card:hover::before {
+  transform: scale(1);
+}
+
+.leadership-liquid-morphism .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-liquid-morphism .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.leadership-liquid-morphism .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-liquid-morphism .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-liquid-morphism .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-liquid-morphism .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 9: Gradient Orbs */
+.leadership-gradient-orbs {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.leadership-gradient-orbs::before,
+.leadership-gradient-orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-primary)15, var(--brand-accent)15);
+  filter: blur(40px);
+  animation: orbFloat 15s ease-in-out infinite;
+}
+
+.leadership-gradient-orbs::before {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -150px;
+  animation-delay: 0s;
+}
+
+.leadership-gradient-orbs::after {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  left: -100px;
+  animation-delay: 7s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -50px) scale(1.1); }
+}
+
+.leadership-gradient-orbs .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-gradient-orbs .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-gradient-orbs .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-gradient-orbs .member-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-gradient-orbs .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.leadership-gradient-orbs .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-gradient-orbs .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-gradient-orbs .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-gradient-orbs .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-gradient-orbs .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 10: Paper Stack */
+.leadership-paper-stack {
+  background: var(--brand-bg-secondary);
+  padding: 5rem 2rem;
+}
+
+.leadership-paper-stack .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-paper-stack .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-paper-stack .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-paper-stack .member-card {
+  background: var(--brand-bg-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-paper-stack .member-card::before,
+.leadership-paper-stack .member-card::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  background: var(--brand-bg-primary);
+  border-radius: 15px;
+  z-index: -1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.leadership-paper-stack .member-card::after {
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: -2;
+}
+
+.leadership-paper-stack .member-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-paper-stack .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-paper-stack .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-paper-stack .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-paper-stack .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-paper-stack .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 11: Neon Outline */
+.leadership-neon-outline {
+  background: #0a0a0a;
+  padding: 5rem 2rem;
+}
+
+.leadership-neon-outline .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-neon-outline .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px var(--brand-primary);
+}
+
+.leadership-neon-outline .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-neon-outline .member-card {
+  background: transparent;
+  border: 3px solid var(--brand-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+.leadership-neon-outline .member-card:hover {
+  box-shadow: 0 0 50px var(--brand-primary),
+              0 0 70px var(--brand-primary),
+              inset 0 0 30px rgba(37, 99, 235, 0.1);
+  transform: scale(1.02);
+}
+
+.leadership-neon-outline .member-card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.leadership-neon-outline .member-card:hover::before {
+  opacity: 0.3;
+}
+
+.leadership-neon-outline .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  border: 2px solid var(--brand-accent);
+  box-shadow: 0 0 20px var(--brand-accent);
+  transition: all 0.4s ease;
+}
+
+.leadership-neon-outline .member-card:hover .member-image {
+  box-shadow: 0 0 30px var(--brand-accent);
+  transform: scale(1.05);
+}
+
+.leadership-neon-outline .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px var(--brand-primary);
+}
+
+.leadership-neon-outline .member-role {
+  font-size: 1rem;
+  color: var(--brand-accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px var(--brand-accent);
+}
+
+.leadership-neon-outline .member-bio {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 12: Mosaic Layout */
+.leadership-mosaic-layout {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+}
+
+.leadership-mosaic-layout .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-mosaic-layout .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-mosaic-layout .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 300px;
+  gap: 1rem;
+}
+
+.leadership-mosaic-layout .member-card {
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+  border-radius: 15px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-mosaic-layout .member-card:nth-child(3n) {
+  grid-row: span 2;
+}
+
+.leadership-mosaic-layout .member-card:nth-child(5n) {
+  grid-column: span 2;
+}
+
+.leadership-mosaic-layout .member-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-mosaic-layout .member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, var(--brand-primary)10, var(--brand-accent)10);
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.leadership-mosaic-layout .member-card:hover::before {
+  opacity: 1;
+}
+
+.leadership-mosaic-layout .member-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-mosaic-layout .member-card:hover .member-image {
+  transform: scale(1.1);
+}
+
+.leadership-mosaic-layout .member-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-mosaic-layout .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 13: Holographic Cards */
+.leadership-holographic-cards {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 5rem 2rem;
+}
+
+.leadership-holographic-cards .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-holographic-cards .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.leadership-holographic-cards .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-holographic-cards .member-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 25px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.leadership-holographic-cards .member-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition: transform 0.6s ease;
+}
+
+.leadership-holographic-cards .member-card:hover::before {
+  transform: rotate(45deg) translate(100%, 100%);
+}
+
+.leadership-holographic-cards .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.3);
+  border-color: var(--brand-primary);
+}
+
+.leadership-holographic-cards .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.leadership-holographic-cards .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-holographic-cards .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-light);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-holographic-cards .member-role {
+  font-size: 1rem;
+  color: var(--brand-accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leadership-holographic-cards .member-bio {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 14: Progress Reveal */
+.leadership-progress-reveal {
+  background: var(--brand-bg-primary);
+  padding: 5rem 2rem;
+}
+
+.leadership-progress-reveal .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-progress-reveal .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-progress-reveal .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-progress-reveal .member-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-progress-reveal .member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  width: 0;
+  transition: width 2s ease;
+  z-index: 3;
+}
+
+.leadership-progress-reveal .member-card:hover::before {
+  width: 100%;
+}
+
+.leadership-progress-reveal .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-progress-reveal .member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-progress-reveal .member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+.leadership-progress-reveal .member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-progress-reveal .member-role {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-progress-reveal .member-bio {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Style 15: Circular Frame */
+.leadership-circular-frame {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  padding: 5rem 2rem;
+}
+
+.leadership-circular-frame .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership-circular-frame .section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+}
+
+.leadership-circular-frame .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.leadership-circular-frame .member-card {
+  width: 220px;
+  height: 220px;
+  background: var(--brand-bg-primary);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border: 6px solid var(--brand-primary);
+}
+
+.leadership-circular-frame .member-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-accent);
+}
+
+.leadership-circular-frame .member-card::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.leadership-circular-frame .member-card:hover::before {
+  opacity: 0.1;
+}
+
+.leadership-circular-frame .member-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.leadership-circular-frame .member-card:hover .member-image {
+  transform: scale(1.1);
+}
+
+.leadership-circular-frame .member-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.leadership-circular-frame .member-role {
+  font-size: 0.9rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leadership-floating-glass .leadership-container,
+  .leadership-neon-profiles .leadership-container,
+  .leadership-geometric-cards .leadership-container,
+  .leadership-isometric-cubes .leadership-container,
+  .leadership-liquid-morphism .leadership-container,
+  .leadership-gradient-orbs .leadership-container,
+  .leadership-paper-stack .leadership-container,
+  .leadership-neon-outline .leadership-container,
+  .leadership-holographic-cards .leadership-container,
+  .leadership-progress-reveal .leadership-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .leadership-minimal-lines .member-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .leadership-hexagon-grid .leadership-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .leadership-hexagon-grid .member-card {
+    width: 180px;
+    height: 180px;
+    padding: 1.5rem 1rem;
+  }
+
+  .leadership-circular-frame .leadership-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .leadership-circular-frame .member-card {
+    width: 180px;
+    height: 180px;
+    padding: 1.5rem;
+  }
+
+  .leadership-mosaic-layout .leadership-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-auto-rows: 250px;
+  }
+
+  .leadership-mosaic-layout .member-card:nth-child(3n),
+  .leadership-mosaic-layout .member-card:nth-child(5n) {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadership-hexagon-grid .leadership-container {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .leadership-hexagon-grid .member-card {
+    width: 150px;
+    height: 150px;
+    padding: 1rem 0.75rem;
+  }
+
+  .leadership-circular-frame .leadership-container {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .leadership-circular-frame .member-card {
+    width: 150px;
+    height: 150px;
+    padding: 1rem;
+  }
+
+  .leadership-sliding-carousel .member-card {
+    flex: 0 0 250px;
+    padding: 1.5rem;
+  }
+}

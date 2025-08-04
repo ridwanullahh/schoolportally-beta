@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/partners.css';
+import '@/themes/styles/sections/partners-ultra-modern.css';
 
 interface PartnersSectionProps {
   section: Section;
@@ -8,16 +8,41 @@ interface PartnersSectionProps {
 
 const PartnersSection: React.FC<PartnersSectionProps> = ({ section }) => {
   const { title, partners } = section.content;
-  const styleId = section.styleId || 'partners-logo-grid';
+  const styleId = section.styleId || 'partners-floating-glass';
   const [activeIndex, setActiveIndex] = useState(0);
   const partnerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const defaultPartners = [
-    { name: 'Partner One', logo: 'https://via.placeholder.com/150x60?text=Partner1', description: 'Description for Partner One' },
-    { name: 'Partner Two', logo: 'https://via.placeholder.com/150x60?text=Partner2', description: 'Description for Partner Two' },
-    { name: 'Partner Three', logo: 'https://via.placeholder.com/150x60?text=Partner3', description: 'Description for Partner Three' },
-    { name: 'Partner Four', logo: 'https://via.placeholder.com/150x60?text=Partner4', description: 'Description for Partner Four' },
-    { name: 'Partner Five', logo: 'https://via.placeholder.com/150x60?text=Partner5', description: 'Description for Partner Five' },
+    {
+      name: 'Microsoft Education',
+      logo: 'https://images.unsplash.com/photo-1633409361618-c73427e4e206?w=150&h=60&fit=crop',
+      description: 'Leading technology partner for educational solutions'
+    },
+    {
+      name: 'Google for Education',
+      logo: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=150&h=60&fit=crop',
+      description: 'Cloud-based learning platform and tools'
+    },
+    {
+      name: 'Cambridge Assessment',
+      logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=60&fit=crop',
+      description: 'International education assessment and certification'
+    },
+    {
+      name: 'Pearson Education',
+      logo: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=150&h=60&fit=crop',
+      description: 'Global learning company and educational publisher'
+    },
+    {
+      name: 'Khan Academy',
+      logo: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=150&h=60&fit=crop',
+      description: 'Free online learning platform for students'
+    },
+    {
+      name: 'UNESCO',
+      logo: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&h=60&fit=crop',
+      description: 'United Nations Educational, Scientific and Cultural Organization'
+    },
   ];
 
   const partnerItems = partners && partners.length > 0 ? partners : defaultPartners;
@@ -42,7 +67,7 @@ const PartnersSection: React.FC<PartnersSectionProps> = ({ section }) => {
   }, [partnerItems]);
 
   useEffect(() => {
-    if (styleId === 'partners-center-focus') {
+    if (styleId === 'partners-sliding-carousel') {
       const interval = setInterval(() => {
         setActiveIndex((prev) => (prev + 1) % partnerItems.length);
       }, 3000);
@@ -51,34 +76,63 @@ const PartnersSection: React.FC<PartnersSectionProps> = ({ section }) => {
   }, [styleId, partnerItems.length]);
 
   const renderPartner = (partner: any, index: number) => {
-    const logo = <img src={partner.logo} alt={partner.name} className="max-h-16" />;
-    
+    const partnerContent = (
+      <>
+        <img
+          src={partner.logo}
+          alt={partner.name}
+          className="partner-logo"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=60&fit=crop';
+          }}
+        />
+        <div className="partner-name">{partner.name}</div>
+        {partner.description && <div className="partner-description">{partner.description}</div>}
+      </>
+    );
+
     switch(styleId) {
-        case 'partners-stacked-partner-cards':
-            return <div key={index} className="partner-card"><h3>{partner.name}</h3>{logo}<p>{partner.description}</p></div>
-        case 'partners-hover-badge':
-            return <div key={index} className="logo-item">{logo}<div className="tooltip">{partner.name}</div></div>
-        case 'partners-accordion-blocks':
-            return <details key={index}><summary>{partner.name}</summary><p>{partner.description}</p></details>
-        case 'partners-list-with-text':
-             return <div key={index} className="partner-item">{logo}<div><h3>{partner.name}</h3><p>{partner.description}</p></div></div>
-        case 'partners-center-focus':
-            return <div key={index} className={`logo-item ${index === activeIndex ? 'active' : ''}`}>{logo}</div>
-        case 'partners-rotating-ring':
-            return <div key={index} className="logo-item" style={{transform: `rotate(${index * (360 / partnerItems.length)}deg) translateX(150px) rotate(-${index * (360 / partnerItems.length)}deg)`}}>{logo}</div>
-        default:
-            return <div key={index} ref={el => partnerRefs.current[index] = el} className="logo-item">{logo}</div>
+      case 'partners-sliding-carousel':
+        return (
+          <div key={index} className="partner-item">
+            {partnerContent}
+          </div>
+        );
+      default:
+        return (
+          <div key={index} ref={el => partnerRefs.current[index] = el} className="partner-item">
+            {partnerContent}
+          </div>
+        );
+    }
+  };
+
+  const renderContent = () => {
+    switch (styleId) {
+      case 'partners-sliding-carousel':
+        return (
+          <div className="partners-container">
+            <div className="carousel-track">
+              {partnerItems.map(renderPartner)}
+              {/* Duplicate for seamless loop */}
+              {partnerItems.map((partner, index) => renderPartner(partner, index + partnerItems.length))}
+            </div>
+          </div>
+        );
+      default:
+        return (
+          <div className="partners-container">
+            {partnerItems.map(renderPartner)}
+          </div>
+        );
     }
   };
 
   return (
-    <section className={`partners-section py-12 bg-gray-50 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
-        <div className="partners-container">
-          {partnerItems.map(renderPartner)}
-          {styleId === 'partners-logo-carousel' && partnerItems.map((p, i) => renderPartner(p, i + partnerItems.length))}
-        </div>
+    <section className={`partners-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
+        {renderContent()}
       </div>
     </section>
   );
