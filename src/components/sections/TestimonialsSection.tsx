@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/testimonials.css';
+import { useTestimonials, Testimonial } from '@/hooks/useTestimonials';
+import '@/themes/styles/sections/testimonials-ultra-modern.css';
 
 interface TestimonialsSectionProps {
   section: Section;
@@ -8,19 +9,64 @@ interface TestimonialsSectionProps {
 
 const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ section }) => {
   const { title, testimonials } = section.content;
-  const styleId = section.styleId || 'testimonials-grid-praise';
+  const { getPublishedTestimonials, loading } = useTestimonials();
+  const styleId = section.styleId || 'testimonials-floating-glass';
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const defaultTestimonials = [
-    { text: 'This school is amazing! My kids are thriving.', author: 'Happy Parent', role: 'Parent', avatar: 'https://via.placeholder.com/50' },
-    { text: 'The teachers are so dedicated and supportive.', author: 'Grateful Student', role: 'Student', avatar: 'https://via.placeholder.com/50' },
-    { text: 'A wonderful and nurturing learning environment.', author: 'Alumni', role: 'Alumni', avatar: 'https://via.placeholder.com/50' },
+  const defaultTestimonials: Testimonial[] = [
+    {
+      id: '1',
+      schoolId: '',
+      text: 'This school has transformed my child\'s learning experience. The teachers are incredibly dedicated and the facilities are top-notch.',
+      author: 'Sarah Johnson',
+      role: 'Parent',
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      rating: 5,
+      status: 'published',
+      featured: false,
+      date: '2024-01-15',
+      createdAt: '2024-01-15T00:00:00Z'
+    },
+    {
+      id: '2',
+      schoolId: '',
+      text: 'The supportive environment here has helped me excel academically and personally. I couldn\'t ask for a better educational experience.',
+      author: 'Michael Chen',
+      role: 'Student',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      rating: 5,
+      status: 'published',
+      featured: false,
+      date: '2024-01-10',
+      createdAt: '2024-01-10T00:00:00Z'
+    },
+    {
+      id: '3',
+      schoolId: '',
+      text: 'As an alumnus, I can confidently say this school prepared me exceptionally well for my career. The education quality is outstanding.',
+      author: 'Emily Rodriguez',
+      role: 'Alumni',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+      rating: 5,
+      status: 'published',
+      featured: false,
+      date: '2024-01-05',
+      createdAt: '2024-01-05T00:00:00Z'
+    },
   ];
 
-  const testimonialItems = testimonials && testimonials.length > 0 ? testimonials : defaultTestimonials;
+  // Get published testimonials from admin module or use defaults
+  const publishedTestimonials = getPublishedTestimonials();
+
+  // Use testimonials from section content, published testimonials, or defaults
+  const testimonialItems = testimonials && testimonials.length > 0
+    ? testimonials
+    : publishedTestimonials.length > 0
+    ? publishedTestimonials.slice(0, 6) // Limit to 6 testimonials
+    : defaultTestimonials;
 
   useEffect(() => {
-    if (styleId === 'testimonials-faded-rotate' || styleId === 'testimonials-carousel') {
+    if (styleId === 'testimonials-sliding' || styleId === 'testimonials-carousel') {
       const interval = setInterval(() => {
         setActiveIndex((prev) => (prev + 1) % testimonialItems.length);
       }, 5000);
@@ -28,100 +74,126 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ section }) =>
     }
   }, [styleId, testimonialItems.length]);
 
-  const renderTestimonial = (testimonial: any, index: number) => {
+  const renderTestimonial = (testimonial: Testimonial, index: number) => {
     const testimonialContent = (
       <>
-        <blockquote className="text-lg italic">"{testimonial.text}"</blockquote>
-        <p className="author mt-4 font-semibold text-right">- {testimonial.author}</p>
-        {testimonial.role && <p className="role text-sm text-gray-500 text-right">{testimonial.role}</p>}
+        <blockquote>"{testimonial.text}"</blockquote>
+        <p className="author">- {testimonial.author}</p>
+        {testimonial.role && <p className="role">{testimonial.role}</p>}
+        {testimonial.rating && (
+          <div className="rating">
+            {'★'.repeat(testimonial.rating)}{'☆'.repeat(5 - testimonial.rating)}
+          </div>
+        )}
       </>
     );
 
     switch (styleId) {
-      case 'testimonials-flip-cards':
+      case 'testimonials-circular':
         return (
           <div key={index} className="testimonial-item">
-            <div className="flip-card-inner">
-              <div className="flip-card-front">{testimonialContent}</div>
-              <div className="flip-card-back"><p>{testimonial.author}</p></div>
-            </div>
+            {testimonial.avatar && (
+              <img
+                src={testimonial.avatar}
+                alt={testimonial.author}
+                className="avatar"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face';
+                }}
+              />
+            )}
+            {testimonialContent}
           </div>
         );
-      case 'testimonials-stacked-bubbles':
+      case 'testimonials-sliding':
+        return (
+          <div
+            key={index}
+            className={`testimonial-item ${index === activeIndex ? 'active' : index === activeIndex - 1 ? 'prev' : ''}`}
+          >
+            {testimonialContent}
+          </div>
+        );
+      case 'testimonials-hexagon':
+      case 'testimonials-geometric':
+      case 'testimonials-isometric':
+      case 'testimonials-liquid':
+      case 'testimonials-gradient-orbs':
+      case 'testimonials-paper-stack':
+      case 'testimonials-neon-outline':
+      case 'testimonials-mosaic':
+      case 'testimonials-holographic':
+      case 'testimonials-progress':
         return (
           <div key={index} className="testimonial-item">
-            <img src={testimonial.avatar || 'https://via.placeholder.com/50'} alt={testimonial.author} className="avatar" />
-            <div className="bubble">{testimonialContent}</div>
+            {testimonialContent}
           </div>
         );
-      case 'testimonials-timeline-voices':
-        return (
-           <div key={index} className="testimonial-item">
-             <div className="date">{testimonial.date || '2024'}</div>
-             {testimonialContent}
-           </div>
-        );
-      case 'testimonials-accordion-quotes':
-        return (
-            <details key={index} className="testimonial-item">
-                <summary>{testimonial.author}</summary>
-                <div className="p-4">{testimonialContent}</div>
-            </details>
-        )
       default:
-        return <div key={index} className="testimonial-item">{testimonialContent}</div>;
+        return (
+          <div key={index} className="testimonial-item">
+            {testimonialContent}
+          </div>
+        );
     }
   };
   
   const renderContent = () => {
-    switch (styleId) {
-        case 'testimonials-side-quote-bar':
-            return (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="author-list col-span-1">
-                        {testimonialItems.map((testimonial, index) => (
-                             <div key={index} className={`author-name ${index === activeIndex ? 'active' : ''}`} onClick={() => setActiveIndex(index)}>
-                                <p className="font-semibold">{testimonial.author}</p>
-                                <p className="text-sm text-gray-500">{testimonial.role}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="quote-display col-span-2 flex items-center">
-                        <blockquote className="text-2xl italic">
-                        "{testimonialItems[activeIndex]?.text}"
-                        </blockquote>
-                    </div>
-                </div>
-            );
-        case 'testimonials-carousel':
-        case 'testimonials-quote-slider':
-             return (
-                <div className="testimonials-container relative">
-                    {testimonialItems.map((testimonial, index) => (
-                        <div key={index} className={`testimonial-item ${index === activeIndex ? 'active' : ''}`}>
-                            {renderTestimonial(testimonial, index)}
-                        </div>
-                    ))}
-                     <div className="slider-controls">
-                        {testimonialItems.map((_, index) => (
-                            <button key={index} onClick={() => setActiveIndex(index)} className={index === activeIndex ? 'active' : ''}></button>
-                        ))}
-                    </div>
-                </div>
-            );
-        default:
-            return (
-                <div className="testimonials-container">
-                    {testimonialItems.map(renderTestimonial)}
-                </div>
-            );
+    if (loading) {
+      return (
+        <div className="loading-state">
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary"></div>
+          </div>
+        </div>
+      );
     }
-  }
+
+    if (testimonialItems.length === 0) {
+      return (
+        <div className="empty-state text-center py-12">
+          <p className="text-brand-text-secondary">No testimonials available at the moment.</p>
+        </div>
+      );
+    }
+
+    switch (styleId) {
+      case 'testimonials-sliding':
+        return (
+          <div className="testimonials-container">
+            {testimonialItems.map(renderTestimonial)}
+            <div className="slider-controls">
+              {testimonialItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={index === activeIndex ? 'active' : ''}
+                  aria-label={`View testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      case 'testimonials-minimal-lines':
+      case 'testimonials-progress':
+        return (
+          <div className="testimonials-container">
+            {testimonialItems.map(renderTestimonial)}
+          </div>
+        );
+      default:
+        return (
+          <div className="testimonials-container">
+            {testimonialItems.map(renderTestimonial)}
+          </div>
+        );
+    }
+  };
 
   return (
-    <section className={`testimonials-section py-16 ${styleId}`}>
-      <div className="container mx-auto px-4">
-        {title && <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>}
+    <section className={`testimonials-section ${styleId}`}>
+      <div className="container">
+        {title && <h2 className="section-title">{title}</h2>}
         {renderContent()}
       </div>
     </section>
