@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
+import '@/themes/styles/sections/gallery-modern.css';
 import '@/themes/styles/sections/gallery.css';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
@@ -24,7 +25,43 @@ interface GalleryImage {
 const GallerySection: React.FC<GallerySectionProps> = ({ section }) => {
   const { title, imagesLimit = 12 } = section.content;
   const { school } = useSchool();
-  const styleId = section.styleId || 'gallery-lightbox-grid';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'gallery-modern-grid',
+      '2': 'gallery-modern-masonry',
+      '3': 'gallery-modern-cards',
+      '4': 'gallery-modern-minimal',
+      '5': 'gallery-modern-hexagon',
+      '6': 'gallery-modern-bordered',
+      '7': 'gallery-modern-staggered',
+      '8': 'gallery-modern-polaroid',
+      '9': 'gallery-modern-mosaic',
+      '10': 'gallery-modern-circular',
+      '11': 'gallery-modern-asymmetric',
+      // Existing styles (12+)
+      '12': 'gallery-lightbox-grid',
+      '13': 'gallery-masonry',
+      '14': 'gallery-carousel',
+      '15': 'gallery-lightbox',
+      '16': 'gallery-tiles',
+      '17': 'gallery-slider',
+      '18': 'gallery-collage',
+      '19': 'gallery-pinterest',
+      '20': 'gallery-justified',
+      '21': 'gallery-cube',
+      '22': 'gallery-flip',
+      '23': 'gallery-zoom',
+      '24': 'gallery-fade',
+      '25': 'gallery-stack',
+      '26': 'gallery-parallax'
+    };
+    return styleMap[styleNumber] || 'gallery-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);

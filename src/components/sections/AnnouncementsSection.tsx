@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useAnnouncements } from '@/hooks/useAnnouncements';
+import '@/themes/styles/sections/announcements-modern.css';
 import '@/themes/styles/sections/announcements-ultra-modern.css';
 import { Megaphone, Info, AlertTriangle, CheckCircle } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
@@ -23,7 +24,43 @@ interface Announcement {
 
 const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ section }) => {
   const { title, announcementsLimit = 6 } = section.content;
-  const styleId = section.styleId || 'announcements-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'announcements-modern-grid',
+      '2': 'announcements-modern-timeline',
+      '3': 'announcements-modern-cards',
+      '4': 'announcements-modern-horizontal',
+      '5': 'announcements-modern-minimal',
+      '6': 'announcements-modern-bordered',
+      '7': 'announcements-modern-gradient',
+      '8': 'announcements-modern-split',
+      '9': 'announcements-modern-compact',
+      '10': 'announcements-modern-asymmetric',
+      '11': 'announcements-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'announcements-floating-glass',
+      '13': 'announcements-holographic-cards',
+      '14': 'announcements-neon-grid',
+      '15': 'announcements-particle-bg',
+      '16': 'announcements-morphing-cards',
+      '17': 'announcements-cyber-grid',
+      '18': 'announcements-liquid-metal',
+      '19': 'announcements-aurora-bg',
+      '20': 'announcements-matrix-rain',
+      '21': 'announcements-quantum-field',
+      '22': 'announcements-neural-network',
+      '23': 'announcements-hologram-effect',
+      '24': 'announcements-energy-waves',
+      '25': 'announcements-digital-rain',
+      '26': 'announcements-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'announcements-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   // Use dynamic content from announcements admin module
   const { announcements, loading, error, getRecentAnnouncements } = useAnnouncements();

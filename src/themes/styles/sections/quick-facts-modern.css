@@ -1,0 +1,609 @@
+/* Modern Quick Facts Section Styles - 11 New Attractive UI/UX Designs */
+
+.quick-facts-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.quick-facts-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.quick-facts-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.quick-facts-modern-grid .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.quick-facts-modern-grid .fact-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.quick-facts-modern-grid .fact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.quick-facts-modern-grid .fact-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-grid .fact-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-grid .fact-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 2: Modern Cards Layout */
+.quick-facts-modern-cards .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.quick-facts-modern-cards .fact-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-facts-modern-cards .fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.quick-facts-modern-cards .fact-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.quick-facts-modern-cards .fact-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.quick-facts-modern-cards .fact-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-cards .fact-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 3: Modern Horizontal Layout */
+.quick-facts-modern-horizontal .facts-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.quick-facts-modern-horizontal .fact-item {
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.quick-facts-modern-horizontal .fact-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 60px;
+  background: var(--brand-bg-tertiary);
+}
+
+.quick-facts-modern-horizontal .fact-number {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-horizontal .fact-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.quick-facts-modern-horizontal .fact-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.4;
+}
+
+/* Style 4: Modern Minimal Layout */
+.quick-facts-modern-minimal .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+}
+
+.quick-facts-modern-minimal .fact-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.quick-facts-modern-minimal .fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.quick-facts-modern-minimal .fact-number {
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--brand-primary);
+  line-height: 1;
+  margin: 2rem 0 1rem;
+}
+
+.quick-facts-modern-minimal .fact-label {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-minimal .fact-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Style 5: Modern Bordered Layout */
+.quick-facts-modern-bordered .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.quick-facts-modern-bordered .fact-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.quick-facts-modern-bordered .fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.quick-facts-modern-bordered .fact-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.quick-facts-modern-bordered .fact-card:hover::before {
+  width: 4px;
+}
+
+.quick-facts-modern-bordered .fact-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.quick-facts-modern-bordered .fact-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-bordered .fact-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 6: Modern Circular Layout */
+.quick-facts-modern-circular .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.quick-facts-modern-circular .fact-card {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--brand-text-light);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-facts-modern-circular .fact-card:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.quick-facts-modern-circular .fact-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-circular .fact-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .quick-facts-section {
+    padding: 3rem 0;
+  }
+  
+  .quick-facts-section .container {
+    padding: 0 1rem;
+  }
+  
+  .quick-facts-modern-grid .facts-container,
+  .quick-facts-modern-cards .facts-container,
+  .quick-facts-modern-minimal .facts-container,
+  .quick-facts-modern-bordered .facts-container,
+  .quick-facts-modern-circular .facts-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .quick-facts-modern-horizontal .facts-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .quick-facts-modern-horizontal .fact-item:not(:last-child)::after {
+    display: none;
+  }
+  
+  .quick-facts-modern-circular .fact-card {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .quick-facts-modern-circular .fact-number {
+    font-size: 2rem;
+  }
+}
+
+/* Style 7: Modern Gradient Layout */
+.quick-facts-modern-gradient .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.quick-facts-modern-gradient .fact-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.quick-facts-modern-gradient .fact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 8: Modern Split Layout */
+.quick-facts-modern-split .facts-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.quick-facts-modern-split .fact-card {
+  display: flex;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.quick-facts-modern-split .fact-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.quick-facts-modern-split .fact-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  margin-right: 1.5rem;
+  line-height: 1;
+}
+
+.quick-facts-modern-split .fact-content {
+  flex: 1;
+}
+
+.quick-facts-modern-split .fact-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.quick-facts-modern-split .fact-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 9: Modern Compact Layout */
+.quick-facts-modern-compact .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.quick-facts-modern-compact .fact-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.quick-facts-modern-compact .fact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+.quick-facts-modern-compact .fact-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.quick-facts-modern-compact .fact-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.quick-facts-modern-compact .fact-description {
+  font-size: 0.8rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.4;
+}
+
+/* Style 10: Modern Asymmetric Layout */
+.quick-facts-modern-asymmetric .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.quick-facts-modern-asymmetric .fact-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.quick-facts-modern-asymmetric .fact-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.quick-facts-modern-asymmetric .fact-card {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.quick-facts-modern-asymmetric .fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.quick-facts-modern-asymmetric .fact-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Typography Focus Layout */
+.quick-facts-modern-typography .facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.quick-facts-modern-typography .fact-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.quick-facts-modern-typography .fact-number {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.quick-facts-modern-typography .fact-number .highlight {
+  position: relative;
+}
+
+.quick-facts-modern-typography .fact-number .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+.quick-facts-modern-typography .fact-label {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.quick-facts-modern-typography .fact-description {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .quick-facts-modern-gradient .facts-container,
+  .quick-facts-modern-compact .facts-container,
+  .quick-facts-modern-asymmetric .facts-container,
+  .quick-facts-modern-typography .facts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-facts-modern-split .facts-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .quick-facts-modern-split .fact-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .quick-facts-modern-split .fact-number {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .quick-facts-modern-asymmetric .fact-card:nth-child(odd),
+  .quick-facts-modern-asymmetric .fact-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

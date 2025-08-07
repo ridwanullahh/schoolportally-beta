@@ -1,0 +1,440 @@
+/* Modern Partners Section Styles - 11 New Attractive UI/UX Designs */
+
+.partners-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.partners-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.partners-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.partners-modern-grid .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.partners-modern-grid .partner-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.partners-modern-grid .partner-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.partners-modern-grid .partner-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin: 0 auto 1rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.partners-modern-grid .partner-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.partners-modern-grid .partner-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 2: Modern Slider Layout */
+.partners-modern-slider .partners-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+
+.partners-modern-slider .partner-card {
+  flex: 0 0 250px;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.partners-modern-slider .partner-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 3: Modern Minimal Layout */
+.partners-modern-minimal .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+.partners-modern-minimal .partner-card {
+  text-align: center;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.partners-modern-minimal .partner-logo {
+  width: 120px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.partners-modern-minimal .partner-card:hover .partner-logo {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Style 4: Modern Cards Layout */
+.partners-modern-cards .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.partners-modern-cards .partner-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.partners-modern-cards .partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.partners-modern-cards .partner-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 5: Modern Horizontal Layout */
+.partners-modern-horizontal .partners-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.partners-modern-horizontal .partner-item {
+  flex: 1;
+  text-align: center;
+  min-width: 150px;
+}
+
+.partners-modern-horizontal .partner-logo {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+  margin: 0 auto;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.partners-modern-horizontal .partner-item:hover .partner-logo {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* Style 6: Modern Bordered Layout */
+.partners-modern-bordered .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.partners-modern-bordered .partner-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.partners-modern-bordered .partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.partners-modern-bordered .partner-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.partners-modern-bordered .partner-card:hover::before {
+  width: 4px;
+}
+
+/* Style 7: Modern Circular Layout */
+.partners-modern-circular .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.partners-modern-circular .partner-card {
+  width: 140px;
+  height: 140px;
+  background: var(--brand-bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.partners-modern-circular .partner-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.partners-modern-circular .partner-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Style 8: Modern Gradient Layout */
+.partners-modern-gradient .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.partners-modern-gradient .partner-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.partners-modern-gradient .partner-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 9: Modern Compact Layout */
+.partners-modern-compact .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+}
+
+.partners-modern-compact .partner-card {
+  background: var(--brand-bg-primary);
+  padding: 1rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.partners-modern-compact .partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+.partners-modern-compact .partner-logo {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Style 10: Modern Asymmetric Layout */
+.partners-modern-asymmetric .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.partners-modern-asymmetric .partner-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.partners-modern-asymmetric .partner-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.partners-modern-asymmetric .partner-card {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.partners-modern-asymmetric .partner-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Typography Focus Layout */
+.partners-modern-typography .partners-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.partners-modern-typography .partner-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.partners-modern-typography .partner-name {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--brand-text-primary);
+}
+
+.partners-modern-typography .partner-name .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.partners-modern-typography .partner-name .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .partners-section {
+    padding: 3rem 0;
+  }
+  
+  .partners-section .container {
+    padding: 0 1rem;
+  }
+  
+  .partners-modern-grid .partners-container,
+  .partners-modern-cards .partners-container,
+  .partners-modern-bordered .partners-container,
+  .partners-modern-gradient .partners-container,
+  .partners-modern-compact .partners-container,
+  .partners-modern-asymmetric .partners-container,
+  .partners-modern-typography .partners-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .partners-modern-minimal .partners-container,
+  .partners-modern-circular .partners-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  
+  .partners-modern-horizontal .partners-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .partners-modern-slider .partners-container {
+    gap: 1rem;
+  }
+  
+  .partners-modern-slider .partner-card {
+    flex: 0 0 200px;
+    padding: 1.5rem;
+  }
+  
+  .partners-modern-asymmetric .partner-card:nth-child(odd),
+  .partners-modern-asymmetric .partner-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

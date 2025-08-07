@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useAcademicCalendar } from '@/hooks/useAcademicCalendar';
+import '@/themes/styles/sections/academic-calendar-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { CalendarDays } from 'lucide-react';
 
@@ -11,7 +12,43 @@ interface AcademicCalendarSectionProps {
 
 const AcademicCalendarSection: React.FC<AcademicCalendarSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'academic-calendar-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'academic-calendar-modern-grid',
+      '2': 'academic-calendar-modern-timeline',
+      '3': 'academic-calendar-modern-cards',
+      '4': 'academic-calendar-modern-minimal',
+      '5': 'academic-calendar-modern-bordered',
+      '6': 'academic-calendar-modern-gradient',
+      '7': 'academic-calendar-modern-compact',
+      '8': 'academic-calendar-modern-asymmetric',
+      '9': 'academic-calendar-modern-typography',
+      '10': 'academic-calendar-modern-split',
+      '11': 'academic-calendar-modern-calendar',
+      // Existing ultra-modern styles (12+)
+      '12': 'academic-calendar-floating-glass',
+      '13': 'academic-calendar-holographic-cards',
+      '14': 'academic-calendar-neon-timeline',
+      '15': 'academic-calendar-particle-bg',
+      '16': 'academic-calendar-morphing-cards',
+      '17': 'academic-calendar-cyber-grid',
+      '18': 'academic-calendar-liquid-metal',
+      '19': 'academic-calendar-aurora-bg',
+      '20': 'academic-calendar-matrix-rain',
+      '21': 'academic-calendar-quantum-field',
+      '22': 'academic-calendar-neural-network',
+      '23': 'academic-calendar-hologram-effect',
+      '24': 'academic-calendar-energy-waves',
+      '25': 'academic-calendar-digital-rain',
+      '26': 'academic-calendar-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'academic-calendar-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
 
   // Use dynamic content from academic calendar admin module

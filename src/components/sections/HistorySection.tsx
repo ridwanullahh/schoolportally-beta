@@ -1,5 +1,6 @@
 import React from 'react';
 import { Section } from '@/types';
+import '@/themes/styles/sections/history-modern.css';
 import '@/themes/styles/sections/history-ultra-modern.css';
 
 interface HistorySectionProps {
@@ -8,7 +9,43 @@ interface HistorySectionProps {
 
 const HistorySection: React.FC<HistorySectionProps> = ({ section }) => {
   const { title, milestones } = section.content;
-  const styleId = section.styleId || 'history-floating-timeline';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'history-modern-timeline',
+      '2': 'history-modern-cards',
+      '3': 'history-modern-vertical',
+      '4': 'history-modern-minimal',
+      '5': 'history-modern-bordered',
+      '6': 'history-modern-gradient',
+      '7': 'history-modern-compact',
+      '8': 'history-modern-asymmetric',
+      '9': 'history-modern-typography',
+      '10': 'history-modern-split',
+      '11': 'history-modern-circular',
+      // Existing ultra-modern styles (12+)
+      '12': 'history-floating-timeline',
+      '13': 'history-holographic-cards',
+      '14': 'history-neon-timeline',
+      '15': 'history-particle-bg',
+      '16': 'history-morphing-cards',
+      '17': 'history-cyber-grid',
+      '18': 'history-liquid-metal',
+      '19': 'history-aurora-bg',
+      '20': 'history-matrix-rain',
+      '21': 'history-quantum-field',
+      '22': 'history-neural-network',
+      '23': 'history-hologram-effect',
+      '24': 'history-energy-waves',
+      '25': 'history-digital-rain',
+      '26': 'history-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'history-modern-timeline';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   const defaultMilestones = [
     {

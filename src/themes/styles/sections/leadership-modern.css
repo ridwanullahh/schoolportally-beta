@@ -1,0 +1,503 @@
+/* Modern Leadership Section Styles - 11 New Attractive UI/UX Designs */
+
+.leadership-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.leadership-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.leadership-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.leadership-modern-grid .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-modern-grid .leader-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.leadership-modern-grid .leader-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.leadership-modern-grid .leader-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.leadership-modern-grid .leader-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.leadership-modern-grid .leader-position {
+  font-size: 1rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.leadership-modern-grid .leader-bio {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 2: Modern Cards Layout */
+.leadership-modern-cards .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-modern-cards .leader-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.leadership-modern-cards .leader-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.leadership-modern-cards .leader-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.leadership-modern-cards .leader-avatar {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.leadership-modern-cards .leader-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Style 3: Modern Horizontal Layout */
+.leadership-modern-horizontal .leadership-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.leadership-modern-horizontal .leader-card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.leadership-modern-horizontal .leader-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.leadership-modern-horizontal .leader-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+/* Style 4: Modern Minimal Layout */
+.leadership-modern-minimal .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.leadership-modern-minimal .leader-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.leadership-modern-minimal .leader-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.leadership-modern-minimal .leader-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 2rem auto 1.5rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  transition: all 0.3s ease;
+}
+
+.leadership-modern-minimal .leader-card:hover .leader-avatar {
+  transform: scale(1.05);
+}
+
+/* Style 5: Modern Bordered Layout */
+.leadership-modern-bordered .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-modern-bordered .leader-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.leadership-modern-bordered .leader-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.leadership-modern-bordered .leader-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.leadership-modern-bordered .leader-card:hover::before {
+  width: 4px;
+}
+
+/* Style 6: Modern Gradient Layout */
+.leadership-modern-gradient .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-modern-gradient .leader-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.leadership-modern-gradient .leader-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 7: Modern Compact Layout */
+.leadership-modern-compact .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.leadership-modern-compact .leader-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.leadership-modern-compact .leader-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+.leadership-modern-compact .leader-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+/* Style 8: Modern Asymmetric Layout */
+.leadership-modern-asymmetric .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.leadership-modern-asymmetric .leader-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.leadership-modern-asymmetric .leader-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.leadership-modern-asymmetric .leader-card {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.leadership-modern-asymmetric .leader-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 9: Modern Typography Focus Layout */
+.leadership-modern-typography .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.leadership-modern-typography .leader-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.leadership-modern-typography .leader-name {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--brand-text-primary);
+}
+
+.leadership-modern-typography .leader-name .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.leadership-modern-typography .leader-name .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+/* Style 10: Modern Split Layout */
+.leadership-modern-split .leadership-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.leadership-modern-split .leader-card {
+  display: flex;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.leadership-modern-split .leader-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.leadership-modern-split .leader-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1.5rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.leadership-modern-split .leader-content {
+  flex: 1;
+}
+
+/* Style 11: Modern Organizational Chart Layout */
+.leadership-modern-org-chart .leadership-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.leadership-modern-org-chart .ceo-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.leadership-modern-org-chart .ceo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.leadership-modern-org-chart .executives-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.leadership-modern-org-chart .executive-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.leadership-modern-org-chart .executive-card:hover {
+  background: var(--brand-bg-primary);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leadership-section {
+    padding: 3rem 0;
+  }
+  
+  .leadership-section .container {
+    padding: 0 1rem;
+  }
+  
+  .leadership-modern-grid .leadership-container,
+  .leadership-modern-cards .leadership-container,
+  .leadership-modern-minimal .leadership-container,
+  .leadership-modern-bordered .leadership-container,
+  .leadership-modern-gradient .leadership-container,
+  .leadership-modern-compact .leadership-container,
+  .leadership-modern-asymmetric .leadership-container,
+  .leadership-modern-typography .leadership-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .leadership-modern-horizontal .leader-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .leadership-modern-split .leadership-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .leadership-modern-split .leader-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .leadership-modern-split .leader-avatar {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .leadership-modern-asymmetric .leader-card:nth-child(odd),
+  .leadership-modern-asymmetric .leader-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+  
+  .leadership-modern-org-chart .executives-row {
+    grid-template-columns: 1fr;
+  }
+}

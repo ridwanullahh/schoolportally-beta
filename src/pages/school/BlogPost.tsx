@@ -6,6 +6,7 @@ import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
 import '@/themes/styles/pages/blog-post.css';
 import '@/themes/styles/pages/single-post-modern.css';
+import '@/themes/styles/pages/single-post-templates-ultra-modern.css';
 import { usePages } from '@/hooks/usePages';
 import { Calendar, Clock, User, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BlogPost } from '@/types';
@@ -20,7 +21,30 @@ const BlogPostPage = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const postContentRef = useRef<HTMLDivElement>(null);
 
+  // Map old style names to new template system
+  const getTemplateStyle = (styleId: string) => {
+    const styleMap: { [key: string]: string } = {
+      'blog-post-style-1': 'single-post-style-1',
+      'blog-post-style-2': 'single-post-style-2',
+      'blog-post-style-3': 'single-post-style-3',
+      'blog-post-style-4': 'single-post-style-4',
+      'blog-post-style-5': 'single-post-style-5',
+      'blog-post-style-6': 'single-post-style-6',
+      'blog-post-style-7': 'single-post-style-7',
+      'blog-post-style-8': 'single-post-style-8',
+      'blog-post-style-9': 'single-post-style-9',
+      'blog-post-style-10': 'single-post-style-10',
+      'blog-post-style-11': 'single-post-style-11',
+      'blog-post-style-12': 'single-post-style-12',
+      'blog-post-style-13': 'single-post-style-13',
+      'blog-post-style-14': 'single-post-style-14',
+      'blog-post-style-15': 'single-post-style-15',
+    };
+    return styleMap[styleId] || 'single-post-style-1';
+  };
+
   const blogPostStyle = school?.blogPostStyle || 'blog-post-style-1';
+  const templateStyle = getTemplateStyle(blogPostStyle);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -384,9 +408,34 @@ const BlogPostPage = () => {
     }
   };
 
+  // Special wrapper for glassmorphism template
+  if (templateStyle === 'single-post-style-15') {
+    return (
+      <div className={`single-post-page ${templateStyle}`}>
+        {templateStyle === 'single-post-style-6' && (
+          <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
+        )}
+        <SchoolHeader school={school} pages={pages} />
+        <div className="post-wrapper">
+          {renderPostLayout()}
+        </div>
+        <SchoolFooter school={school} />
+
+        {/* Floating elements for template-style-9 */}
+        {templateStyle === 'single-post-style-9' && (
+          <>
+            <div className="floating-element"></div>
+            <div className="floating-element"></div>
+            <div className="floating-element"></div>
+          </>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className={`single-post-page ${blogPostStyle}`}>
-      {blogPostStyle === 'blog-post-style-6' && (
+    <div className={`single-post-page ${templateStyle}`}>
+      {templateStyle === 'single-post-style-6' && (
         <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
       )}
       <SchoolHeader school={school} pages={pages} />
@@ -394,6 +443,15 @@ const BlogPostPage = () => {
         {renderPostLayout()}
       </main>
       <SchoolFooter school={school} />
+
+      {/* Floating elements for template-style-9 */}
+      {templateStyle === 'single-post-style-9' && (
+        <>
+          <div className="floating-element"></div>
+          <div className="floating-element"></div>
+          <div className="floating-element"></div>
+        </>
+      )}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useCourses } from '@/hooks/useCourses';
+import '@/themes/styles/sections/courses-modern.css';
 import '@/themes/styles/sections/courses-ultra-modern.css';
 import { BookOpen } from 'lucide-react';
 
@@ -11,7 +12,43 @@ interface CoursesSectionProps {
 
 const CoursesSection: React.FC<CoursesSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'courses-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'courses-modern-grid',
+      '2': 'courses-modern-cards',
+      '3': 'courses-modern-horizontal',
+      '4': 'courses-modern-minimal',
+      '5': 'courses-modern-bordered',
+      '6': 'courses-modern-hexagon',
+      '7': 'courses-modern-gradient',
+      '8': 'courses-modern-split',
+      '9': 'courses-modern-compact',
+      '10': 'courses-modern-asymmetric',
+      '11': 'courses-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'courses-floating-glass',
+      '13': 'courses-holographic-cards',
+      '14': 'courses-neon-grid',
+      '15': 'courses-particle-bg',
+      '16': 'courses-morphing-cards',
+      '17': 'courses-cyber-grid',
+      '18': 'courses-liquid-metal',
+      '19': 'courses-aurora-bg',
+      '20': 'courses-matrix-rain',
+      '21': 'courses-quantum-field',
+      '22': 'courses-neural-network',
+      '23': 'courses-hologram-effect',
+      '24': 'courses-energy-waves',
+      '25': 'courses-digital-rain',
+      '26': 'courses-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'courses-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTag, setActiveTag] = useState('All');
 
   // Use dynamic content from courses admin module

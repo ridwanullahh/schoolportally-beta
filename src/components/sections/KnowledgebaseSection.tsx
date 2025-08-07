@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useKnowledgebase } from '@/hooks/useKnowledgebase';
+import '@/themes/styles/sections/knowledgebase-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { HelpCircle } from 'lucide-react';
 
@@ -11,7 +12,43 @@ interface KnowledgebaseSectionProps {
 
 const KnowledgebaseSection: React.FC<KnowledgebaseSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'knowledgebase-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'knowledgebase-modern-grid',
+      '2': 'knowledgebase-modern-cards',
+      '3': 'knowledgebase-modern-list',
+      '4': 'knowledgebase-modern-minimal',
+      '5': 'knowledgebase-modern-bordered',
+      '6': 'knowledgebase-modern-gradient',
+      '7': 'knowledgebase-modern-compact',
+      '8': 'knowledgebase-modern-asymmetric',
+      '9': 'knowledgebase-modern-typography',
+      '10': 'knowledgebase-modern-split',
+      '11': 'knowledgebase-modern-search',
+      // Existing ultra-modern styles (12+)
+      '12': 'knowledgebase-floating-glass',
+      '13': 'knowledgebase-holographic-cards',
+      '14': 'knowledgebase-neon-search',
+      '15': 'knowledgebase-particle-bg',
+      '16': 'knowledgebase-morphing-cards',
+      '17': 'knowledgebase-cyber-grid',
+      '18': 'knowledgebase-liquid-metal',
+      '19': 'knowledgebase-aurora-bg',
+      '20': 'knowledgebase-matrix-rain',
+      '21': 'knowledgebase-quantum-field',
+      '22': 'knowledgebase-neural-network',
+      '23': 'knowledgebase-hologram-effect',
+      '24': 'knowledgebase-energy-waves',
+      '25': 'knowledgebase-digital-rain',
+      '26': 'knowledgebase-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'knowledgebase-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
 
   // Use dynamic content from knowledgebase admin module

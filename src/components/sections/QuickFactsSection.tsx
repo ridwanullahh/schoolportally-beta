@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section, QuickFact } from '@/types';
 import * as Icons from 'lucide-react';
+import '@/themes/styles/sections/quick-facts-modern.css';
 import '@/themes/styles/sections/quick-facts-ultra-modern.css';
 
 interface QuickFactsSectionProps {
@@ -9,7 +10,43 @@ interface QuickFactsSectionProps {
 
 const QuickFactsSection: React.FC<QuickFactsSectionProps> = ({ section }) => {
   const { title, facts } = section.content;
-  const styleId = section.styleId || 'quick-facts-floating-cards';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'quick-facts-modern-grid',
+      '2': 'quick-facts-modern-cards',
+      '3': 'quick-facts-modern-horizontal',
+      '4': 'quick-facts-modern-minimal',
+      '5': 'quick-facts-modern-bordered',
+      '6': 'quick-facts-modern-circular',
+      '7': 'quick-facts-modern-gradient',
+      '8': 'quick-facts-modern-split',
+      '9': 'quick-facts-modern-compact',
+      '10': 'quick-facts-modern-asymmetric',
+      '11': 'quick-facts-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'quick-facts-floating-cards',
+      '13': 'quick-facts-holographic-stats',
+      '14': 'quick-facts-neon-counters',
+      '15': 'quick-facts-particle-bg',
+      '16': 'quick-facts-morphing-cards',
+      '17': 'quick-facts-cyber-grid',
+      '18': 'quick-facts-liquid-metal',
+      '19': 'quick-facts-aurora-bg',
+      '20': 'quick-facts-matrix-rain',
+      '21': 'quick-facts-quantum-field',
+      '22': 'quick-facts-neural-network',
+      '23': 'quick-facts-hologram-effect',
+      '24': 'quick-facts-energy-waves',
+      '25': 'quick-facts-digital-rain',
+      '26': 'quick-facts-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'quick-facts-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   const defaultFacts: QuickFact[] = [
     { icon: 'Users', label: 'School Capacity', value: '1,200+', unit: 'students' },

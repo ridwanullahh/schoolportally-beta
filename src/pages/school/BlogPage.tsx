@@ -7,8 +7,10 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import '@/themes/styles/pages/blog-archive.css';
 import '@/themes/styles/pages/archive-modern.css';
+import '@/themes/styles/pages/archive-templates-ultra-modern.css';
+import '@/themes/styles/pages/modern-ui-templates.css';
 import { usePages } from '@/hooks/usePages';
-import { Calendar, Clock, User, Search, Filter } from 'lucide-react';
+import { Calendar, Clock, User, Search, Filter, ArrowRight, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BlogPost } from '@/types';
 
 const BlogPage = () => {
@@ -25,7 +27,30 @@ const BlogPage = () => {
   const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page') || '1'));
   const [categories, setCategories] = useState<string[]>([]);
 
+  // Map old style names to new template system
+  const getTemplateStyle = (styleId: string) => {
+    const styleMap: { [key: string]: string } = {
+      'blog-archive-style-1': 'template-style-1',
+      'blog-archive-style-2': 'template-style-2',
+      'blog-archive-style-3': 'template-style-3',
+      'blog-archive-style-4': 'template-style-4',
+      'blog-archive-style-5': 'template-style-5',
+      'blog-archive-style-6': 'template-style-6',
+      'blog-archive-style-7': 'template-style-7',
+      'blog-archive-style-8': 'template-style-8',
+      'blog-archive-style-9': 'template-style-9',
+      'blog-archive-style-10': 'template-style-10',
+      'blog-archive-style-11': 'template-style-11',
+      'blog-archive-style-12': 'template-style-12',
+      'blog-archive-style-13': 'template-style-13',
+      'blog-archive-style-14': 'template-style-14',
+      'blog-archive-style-15': 'template-style-15',
+    };
+    return styleMap[styleId] || 'template-style-1';
+  };
+
   const blogArchiveStyle = school?.blogArchiveStyle || 'blog-archive-style-1';
+  const templateStyle = getTemplateStyle(blogArchiveStyle);
   const postsPerPage = 12;
 
   useEffect(() => {
@@ -160,45 +185,112 @@ const BlogPage = () => {
     </div>
   );
 
-  const renderPostCard = (post: BlogPost) => (
-    <article key={post.id} className="post-card">
-      {post.featuredImage && (
+  const renderPostCard = (post: BlogPost, index?: number) => {
+    const defaultImage = 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop';
+    const postImage = post.featuredImage || defaultImage;
+
+    // Special layouts for specific templates
+    if (templateStyle === 'template-style-8') {
+      // Minimalist List Layout
+      return (
+        <article key={post.id} className="post-card">
+          <div className="post-content">
+            <h2 className="post-title">
+              <Link to={`/${schoolSlug}/blog/${post.slug}`}>
+                {post.title}
+              </Link>
+            </h2>
+            <div className="post-meta">
+              <span>{formatDate(post.publishedAt || post.createdAt)}</span>
+              <span>•</span>
+              <span>{post.readingTime || getReadingTime(post.content)} min read</span>
+              {post.categories && post.categories.length > 0 && (
+                <>
+                  <span>•</span>
+                  <span>{post.categories[0]}</span>
+                </>
+              )}
+            </div>
+            <p className="post-excerpt">{post.excerpt}</p>
+          </div>
+        </article>
+      );
+    }
+
+    if (templateStyle === 'template-style-5') {
+      // Timeline Layout
+      return (
+        <article key={post.id} className="post-card">
+          <div className="post-content">
+            <h2 className="post-title">
+              <Link to={`/${schoolSlug}/blog/${post.slug}`}>
+                {post.title}
+              </Link>
+            </h2>
+            <div className="post-meta">
+              <div className="post-meta-item">
+                <Calendar className="h-4 w-4" />
+                <span>{formatDate(post.publishedAt || post.createdAt)}</span>
+              </div>
+              <div className="post-meta-item">
+                <Clock className="h-4 w-4" />
+                <span>{post.readingTime || getReadingTime(post.content)} min read</span>
+              </div>
+            </div>
+            <p className="post-excerpt">{post.excerpt}</p>
+            <Link to={`/${schoolSlug}/blog/${post.slug}`} className="read-more">
+              Read More <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </article>
+      );
+    }
+
+    // Default card layout for most templates
+    return (
+      <article key={post.id} className="post-card">
         <img
-          src={post.featuredImage}
+          src={postImage}
           alt={post.title}
           className="post-image"
           loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = defaultImage;
+          }}
         />
-      )}
-      <div className="post-content">
-        <div className="post-meta">
-          <div className="post-meta-item">
-            <Calendar className="h-4 w-4" />
-            <span>{formatDate(post.publishedAt || post.createdAt)}</span>
-          </div>
-          <div className="post-meta-item">
-            <Clock className="h-4 w-4" />
-            <span>{post.readingTime || getReadingTime(post.content)} min read</span>
+        <div className="post-content">
+          <div className="post-meta">
+            <div className="post-meta-item">
+              <Calendar className="h-4 w-4" />
+              <span>{formatDate(post.publishedAt || post.createdAt)}</span>
+            </div>
+            <div className="post-meta-item">
+              <Clock className="h-4 w-4" />
+              <span>{post.readingTime || getReadingTime(post.content)} min read</span>
+            </div>
+            {post.views && (
+              <div className="post-meta-item">
+                <Eye className="h-4 w-4" />
+                <span>{post.views} views</span>
+              </div>
+            )}
           </div>
           {post.categories && post.categories.length > 0 && (
             <span className="post-category">{post.categories[0]}</span>
           )}
-        </div>
-        <h2 className="post-title">
-          <Link to={`/${schoolSlug}/blog/${post.slug}`}>
-            {post.title}
-          </Link>
-        </h2>
-        <p className="post-excerpt">{post.excerpt}</p>
-        <div className="post-footer">
+          <h2 className="post-title">
+            <Link to={`/${schoolSlug}/blog/${post.slug}`}>
+              {post.title}
+            </Link>
+          </h2>
+          <p className="post-excerpt">{post.excerpt}</p>
           <Link to={`/${schoolSlug}/blog/${post.slug}`} className="read-more">
-            Read More
+            Read More <ArrowRight className="h-4 w-4" />
           </Link>
-          {post.views && <span className="post-views">{post.views} views</span>}
         </div>
-      </div>
-    </article>
-  );
+      </article>
+    );
+  };
 
   const renderPagination = () => {
     if (totalPages <= 1) return null;
@@ -248,9 +340,64 @@ const BlogPage = () => {
       );
     }
 
+    // Special layouts for specific templates
+    if (templateStyle === 'template-style-2') {
+      // Magazine Layout
+      const [featuredPost, ...secondaryPosts] = paginatedPosts;
+      return (
+        <div className="posts-grid">
+          {featuredPost && (
+            <div className="featured-post">
+              {renderPostCard(featuredPost, 0)}
+            </div>
+          )}
+          <div className="secondary-posts">
+            {secondaryPosts.map((post, index) => renderPostCard(post, index + 1))}
+          </div>
+        </div>
+      );
+    }
+
+    if (templateStyle === 'template-style-5') {
+      // Timeline Layout
+      return (
+        <div className="posts-timeline">
+          {paginatedPosts.map((post, index) => renderPostCard(post, index))}
+        </div>
+      );
+    }
+
+    if (templateStyle === 'template-style-8') {
+      // Minimalist List Layout
+      return (
+        <div className="posts-list">
+          {paginatedPosts.map((post, index) => renderPostCard(post, index))}
+        </div>
+      );
+    }
+
+    if (templateStyle === 'template-style-10') {
+      // Carousel Layout
+      return (
+        <div className="posts-carousel">
+          {paginatedPosts.map((post, index) => renderPostCard(post, index))}
+        </div>
+      );
+    }
+
+    if (templateStyle === 'template-style-11') {
+      // Zigzag Layout
+      return (
+        <div className="posts-list">
+          {paginatedPosts.map((post, index) => renderPostCard(post, index))}
+        </div>
+      );
+    }
+
+    // Default grid layout for most templates
     return (
       <div className="posts-grid">
-        {paginatedPosts.map(renderPostCard)}
+        {paginatedPosts.map((post, index) => renderPostCard(post, index))}
       </div>
     );
   };
@@ -258,7 +405,7 @@ const BlogPage = () => {
   if (!school) return <div className="loading-state">Loading...</div>;
 
   return (
-    <div className={`archive-page ${blogArchiveStyle}`}>
+    <div className={`page-template ${templateStyle}`}>
       <SchoolHeader school={school} pages={pages} />
       <main className="archive-container">
         <div className="archive-header">
@@ -266,6 +413,16 @@ const BlogPage = () => {
           <p className="archive-description">
             Stay updated with our latest news, insights, and educational content
           </p>
+          {templateStyle === 'template-style-13' && (
+            <p className="archive-subtitle">
+              {new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+          )}
         </div>
 
         {renderSearchAndFilters()}
@@ -273,6 +430,15 @@ const BlogPage = () => {
         {renderPagination()}
       </main>
       <SchoolFooter school={school} />
+
+      {/* Floating elements for template-style-9 */}
+      {templateStyle === 'template-style-9' && (
+        <>
+          <div className="floating-element"></div>
+          <div className="floating-element"></div>
+          <div className="floating-element"></div>
+        </>
+      )}
     </div>
   );
 };

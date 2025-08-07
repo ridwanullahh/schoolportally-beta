@@ -1,0 +1,698 @@
+/* Modern History Section Styles - 11 New Attractive UI/UX Designs */
+
+.history-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.history-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Timeline Layout */
+.history-modern-timeline .history-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.history-modern-timeline .history-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transform: translateX(-50%);
+}
+
+.history-modern-timeline .history-item {
+  position: relative;
+  margin-bottom: 4rem;
+  width: 45%;
+}
+
+.history-modern-timeline .history-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.history-modern-timeline .history-item:nth-child(even) {
+  left: 55%;
+  text-align: left;
+}
+
+.history-modern-timeline .history-item::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  border: 6px solid var(--brand-bg-primary);
+  box-shadow: 0 0 0 4px var(--brand-primary);
+}
+
+.history-modern-timeline .history-item:nth-child(odd)::before {
+  right: -35px;
+}
+
+.history-modern-timeline .history-item:nth-child(even)::before {
+  left: -35px;
+}
+
+.history-modern-timeline .history-content {
+  background: var(--brand-bg-primary);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.history-modern-timeline .history-year {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-timeline .history-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-timeline .history-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 2: Modern Cards Layout */
+.history-modern-cards .history-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.history-modern-cards .history-item {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.history-modern-cards .history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.history-modern-cards .history-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.history-modern-cards .history-year {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.history-modern-cards .history-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-cards .history-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 3: Modern Vertical Layout */
+.history-modern-vertical .history-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.history-modern-vertical .history-item {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 6px solid var(--brand-primary);
+}
+
+.history-modern-vertical .history-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-left-width: 8px;
+}
+
+.history-modern-vertical .history-year {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-vertical .history-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-vertical .history-description {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 4: Modern Minimal Layout */
+.history-modern-minimal .history-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.history-modern-minimal .history-item {
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.history-modern-minimal .history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.history-modern-minimal .history-year {
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--brand-primary);
+  margin: 2rem 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.history-modern-minimal .history-title {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.history-modern-minimal .history-description {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Style 5: Modern Bordered Layout */
+.history-modern-bordered .history-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.history-modern-bordered .history-item {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.history-modern-bordered .history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 14px 0 0 14px;
+}
+
+.history-modern-bordered .history-item:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.history-modern-bordered .history-item:hover::before {
+  width: 6px;
+}
+
+.history-modern-bordered .history-year {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-bordered .history-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-bordered .history-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 6: Modern Gradient Layout */
+.history-modern-gradient .history-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.history-modern-gradient .history-item {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.history-modern-gradient .history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.history-modern-gradient .history-item:hover::before {
+  opacity: 0.05;
+}
+
+.history-modern-gradient .history-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.history-modern-gradient .history-content {
+  position: relative;
+  z-index: 2;
+}
+
+.history-modern-gradient .history-year {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-gradient .history-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.history-modern-gradient .history-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .history-section {
+    padding: 3rem 0;
+  }
+  
+  .history-section .container {
+    padding: 0 1rem;
+  }
+  
+  .history-modern-timeline .history-container::before {
+    left: 20px;
+  }
+  
+  .history-modern-timeline .history-item {
+    width: calc(100% - 60px);
+    left: 60px !important;
+    text-align: left;
+  }
+  
+  .history-modern-timeline .history-item::before {
+    left: -35px !important;
+  }
+  
+  .history-modern-cards .history-container,
+  .history-modern-bordered .history-container,
+  .history-modern-gradient .history-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .history-modern-vertical .history-item,
+  .history-modern-minimal .history-item {
+    padding: 2rem;
+  }
+  
+  .history-modern-timeline .history-content {
+    padding: 2rem;
+  }
+}
+
+/* Style 7: Modern Compact Layout */
+.history-modern-compact .history-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.history-modern-compact .history-item {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.history-modern-compact .history-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+/* Style 8: Modern Asymmetric Layout */
+.history-modern-asymmetric .history-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.history-modern-asymmetric .history-item:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.history-modern-asymmetric .history-item:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.history-modern-asymmetric .history-item {
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.history-modern-asymmetric .history-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 9: Modern Typography Focus Layout */
+.history-modern-typography .history-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.history-modern-typography .history-item {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.history-modern-typography .history-year {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--brand-primary);
+}
+
+.history-modern-typography .history-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  color: var(--brand-text-primary);
+}
+
+.history-modern-typography .history-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.history-modern-typography .history-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+.history-modern-typography .history-description {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--brand-text-secondary);
+  line-height: 1.8;
+}
+
+/* Style 10: Modern Split Layout */
+.history-modern-split .history-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.history-modern-split .history-item {
+  display: flex;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.history-modern-split .history-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.history-modern-split .history-year {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  margin-right: 2rem;
+  line-height: 1;
+  min-width: 100px;
+}
+
+.history-modern-split .history-content {
+  flex: 1;
+}
+
+.history-modern-split .history-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.history-modern-split .history-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 11: Modern Circular Timeline Layout */
+.history-modern-circular .history-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.history-modern-circular .history-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  font-size: 1.5rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.history-modern-circular .history-item {
+  position: absolute;
+  width: 200px;
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.history-modern-circular .history-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.history-modern-circular .history-item:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.history-modern-circular .history-item:nth-child(2) { top: 20%; right: 0; }
+.history-modern-circular .history-item:nth-child(3) { bottom: 20%; right: 0; }
+.history-modern-circular .history-item:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
+.history-modern-circular .history-item:nth-child(5) { bottom: 20%; left: 0; }
+.history-modern-circular .history-item:nth-child(6) { top: 20%; left: 0; }
+
+.history-modern-circular .history-year {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 0.5rem;
+}
+
+.history-modern-circular .history-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.history-modern-circular .history-description {
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .history-modern-compact .history-container,
+  .history-modern-asymmetric .history-container {
+    grid-template-columns: 1fr;
+  }
+
+  .history-modern-split .history-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .history-modern-split .history-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .history-modern-split .history-year {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .history-modern-asymmetric .history-item:nth-child(odd),
+  .history-modern-asymmetric .history-item:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+
+  .history-modern-circular .history-container {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .history-modern-circular .history-center {
+    position: static;
+    transform: none;
+    margin: 0 auto 2rem;
+  }
+
+  .history-modern-circular .history-item {
+    position: static;
+    transform: none !important;
+    width: 100%;
+  }
+}

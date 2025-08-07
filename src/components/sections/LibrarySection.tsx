@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useLibrary } from '@/hooks/useLibrary';
+import '@/themes/styles/sections/library-modern.css';
 import '@/themes/styles/sections/library-ultra-modern.css';
 import { Bookmark } from 'lucide-react';
 
@@ -11,7 +12,43 @@ interface LibrarySectionProps {
 
 const LibrarySection: React.FC<LibrarySectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'library-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'library-modern-grid',
+      '2': 'library-modern-cards',
+      '3': 'library-modern-list',
+      '4': 'library-modern-minimal',
+      '5': 'library-modern-bordered',
+      '6': 'library-modern-gradient',
+      '7': 'library-modern-compact',
+      '8': 'library-modern-asymmetric',
+      '9': 'library-modern-typography',
+      '10': 'library-modern-split',
+      '11': 'library-modern-shelf',
+      // Existing ultra-modern styles (12+)
+      '12': 'library-floating-glass',
+      '13': 'library-holographic-books',
+      '14': 'library-neon-catalog',
+      '15': 'library-particle-bg',
+      '16': 'library-morphing-shelves',
+      '17': 'library-cyber-grid',
+      '18': 'library-liquid-metal',
+      '19': 'library-aurora-bg',
+      '20': 'library-matrix-rain',
+      '21': 'library-quantum-field',
+      '22': 'library-neural-network',
+      '23': 'library-hologram-effect',
+      '24': 'library-energy-waves',
+      '25': 'library-digital-rain',
+      '26': 'library-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'library-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   // Use dynamic content from library admin module
   const { resources, loading, error, getFeaturedResources } = useLibrary();

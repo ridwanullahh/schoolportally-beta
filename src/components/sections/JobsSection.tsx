@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useJobs } from '@/hooks/useJobs';
+import '@/themes/styles/sections/jobs-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { Button } from '@/components/ui/button';
 
@@ -11,7 +12,43 @@ interface JobsSectionProps {
 
 const JobsSection: React.FC<JobsSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'jobs-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'jobs-modern-grid',
+      '2': 'jobs-modern-cards',
+      '3': 'jobs-modern-list',
+      '4': 'jobs-modern-minimal',
+      '5': 'jobs-modern-bordered',
+      '6': 'jobs-modern-gradient',
+      '7': 'jobs-modern-compact',
+      '8': 'jobs-modern-asymmetric',
+      '9': 'jobs-modern-typography',
+      '10': 'jobs-modern-split',
+      '11': 'jobs-modern-featured',
+      // Existing ultra-modern styles (12+)
+      '12': 'jobs-floating-glass',
+      '13': 'jobs-holographic-cards',
+      '14': 'jobs-neon-listings',
+      '15': 'jobs-particle-bg',
+      '16': 'jobs-morphing-cards',
+      '17': 'jobs-cyber-grid',
+      '18': 'jobs-liquid-metal',
+      '19': 'jobs-aurora-bg',
+      '20': 'jobs-matrix-rain',
+      '21': 'jobs-quantum-field',
+      '22': 'jobs-neural-network',
+      '23': 'jobs-hologram-effect',
+      '24': 'jobs-energy-waves',
+      '25': 'jobs-digital-rain',
+      '26': 'jobs-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'jobs-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   // Use dynamic content from jobs admin module
   const { jobs, loading, error, getFeaturedJobs } = useJobs();

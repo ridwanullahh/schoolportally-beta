@@ -1,0 +1,949 @@
+/* Modern Events Section Styles - 11 New Attractive UI/UX Designs */
+
+.events-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.events-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.events-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Card Grid */
+.events-modern-grid .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.events-modern-grid .event-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.events-modern-grid .event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.events-modern-grid .event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.events-modern-grid .event-content {
+  padding: 1.5rem;
+}
+
+.events-modern-grid .event-date {
+  display: inline-block;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.events-modern-grid .event-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.events-modern-grid .event-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.events-modern-grid .event-button {
+  display: inline-flex;
+  align-items: center;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.events-modern-grid .event-button:hover {
+  background: var(--brand-secondary);
+  transform: translateX(5px);
+}
+
+/* Style 2: Modern Timeline Layout */
+.events-modern-timeline .events-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.events-modern-timeline .events-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transform: translateX(-50%);
+}
+
+.events-modern-timeline .event-card {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 45%;
+}
+
+.events-modern-timeline .event-card:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.events-modern-timeline .event-card:nth-child(even) {
+  left: 55%;
+  text-align: left;
+}
+
+.events-modern-timeline .event-card::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  border: 4px solid var(--brand-bg-primary);
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+
+.events-modern-timeline .event-card:nth-child(odd)::before {
+  right: -35px;
+}
+
+.events-modern-timeline .event-card:nth-child(even)::before {
+  left: -35px;
+}
+
+.events-modern-timeline .event-content {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.events-modern-timeline .event-date {
+  font-size: 0.875rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-timeline .event-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-timeline .event-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 3: Modern Horizontal Cards */
+.events-modern-horizontal .events-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.events-modern-horizontal .event-card {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.events-modern-horizontal .event-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.events-modern-horizontal .event-date-block {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.events-modern-horizontal .event-day {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.events-modern-horizontal .event-month {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.events-modern-horizontal .event-content {
+  flex: 1;
+}
+
+.events-modern-horizontal .event-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.events-modern-horizontal .event-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+.events-modern-horizontal .event-button {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.events-modern-horizontal .event-button:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Style 4: Modern Compact Grid */
+.events-modern-compact .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.events-modern-compact .event-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.events-modern-compact .event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+.events-modern-compact .event-date {
+  font-size: 0.875rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-compact .event-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.events-modern-compact .event-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.events-modern-compact .event-button {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.events-modern-compact .event-button:hover {
+  color: var(--brand-secondary);
+}
+
+/* Style 5: Modern Featured Layout */
+.events-modern-featured .events-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.events-modern-featured .featured-event {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.events-modern-featured .featured-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.events-modern-featured .featured-content {
+  padding: 2rem;
+}
+
+.events-modern-featured .featured-date {
+  display: inline-block;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.events-modern-featured .featured-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.events-modern-featured .featured-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.events-modern-featured .other-events {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.events-modern-featured .small-event {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.events-modern-featured .small-event:hover {
+  transform: translateX(5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.events-modern-featured .small-event .event-date {
+  font-size: 0.8rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.events-modern-featured .small-event .event-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.events-modern-featured .small-event .event-description {
+  font-size: 0.85rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.4;
+}
+
+/* Style 6: Modern Minimal Layout */
+.events-modern-minimal .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.events-modern-minimal .event-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.events-modern-minimal .event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.events-modern-minimal .event-date {
+  font-size: 0.9rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.events-modern-minimal .event-title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.events-modern-minimal .event-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.events-modern-minimal .event-button {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.events-modern-minimal .event-button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brand-primary);
+  transition: width 0.3s ease;
+}
+
+.events-modern-minimal .event-button:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .events-section {
+    padding: 3rem 0;
+  }
+  
+  .events-section .container {
+    padding: 0 1rem;
+  }
+  
+  .events-modern-grid .events-container,
+  .events-modern-compact .events-container,
+  .events-modern-minimal .events-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .events-modern-timeline .events-container::before {
+    left: 20px;
+  }
+  
+  .events-modern-timeline .event-card {
+    width: calc(100% - 60px);
+    left: 60px !important;
+    text-align: left;
+  }
+  
+  .events-modern-timeline .event-card::before {
+    left: -35px !important;
+  }
+  
+  .events-modern-horizontal .event-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .events-modern-featured .events-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Style 7: Modern Calendar Layout */
+.events-modern-calendar .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.events-modern-calendar .event-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.events-modern-calendar .event-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.events-modern-calendar .event-header {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.events-modern-calendar .event-day {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.events-modern-calendar .event-month-year {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.events-modern-calendar .event-content {
+  padding: 2rem;
+}
+
+.events-modern-calendar .event-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-calendar .event-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.events-modern-calendar .event-button {
+  width: 100%;
+  background: var(--brand-bg-secondary);
+  color: var(--brand-primary);
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.events-modern-calendar .event-button:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Style 8: Modern Gradient Cards */
+.events-modern-gradient .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.events-modern-gradient .event-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.events-modern-gradient .event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.events-modern-gradient .event-card:hover::before {
+  opacity: 0.05;
+}
+
+.events-modern-gradient .event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.events-modern-gradient .event-content {
+  position: relative;
+  z-index: 2;
+}
+
+.events-modern-gradient .event-date {
+  display: inline-block;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.events-modern-gradient .event-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-gradient .event-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.events-modern-gradient .event-button {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.events-modern-gradient .event-button:hover {
+  background: var(--brand-secondary);
+  transform: translateX(5px);
+}
+
+/* Style 9: Modern Split Layout */
+.events-modern-split .events-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.events-modern-split .event-card {
+  display: flex;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.events-modern-split .event-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.events-modern-split .event-date-section {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 120px;
+}
+
+.events-modern-split .event-day {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.events-modern-split .event-month {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.25rem;
+}
+
+.events-modern-split .event-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.events-modern-split .event-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-split .event-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.events-modern-split .event-button {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Style 10: Modern Bordered Layout */
+.events-modern-bordered .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.events-modern-bordered .event-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.events-modern-bordered .event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.events-modern-bordered .event-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.events-modern-bordered .event-card:hover::before {
+  width: 4px;
+}
+
+.events-modern-bordered .event-date {
+  font-size: 0.875rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.events-modern-bordered .event-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-bordered .event-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.events-modern-bordered .event-button {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.events-modern-bordered .event-button:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Style 11: Modern Asymmetric Layout */
+.events-modern-asymmetric .events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.events-modern-asymmetric .event-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.events-modern-asymmetric .event-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.events-modern-asymmetric .event-card {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.events-modern-asymmetric .event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.events-modern-asymmetric .event-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.events-modern-asymmetric .event-date {
+  font-size: 0.875rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.events-modern-asymmetric .event-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.events-modern-asymmetric .event-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.events-modern-asymmetric .event-button {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.events-modern-asymmetric .event-button:hover {
+  background: var(--brand-secondary);
+  transform: translateX(5px);
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .events-modern-calendar .events-container,
+  .events-modern-gradient .events-container,
+  .events-modern-bordered .events-container,
+  .events-modern-asymmetric .events-container {
+    grid-template-columns: 1fr;
+  }
+
+  .events-modern-split .events-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .events-modern-split .event-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .events-modern-split .event-date-section {
+    min-width: auto;
+    padding: 1rem;
+  }
+
+  .events-modern-asymmetric .event-card:nth-child(odd),
+  .events-modern-asymmetric .event-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

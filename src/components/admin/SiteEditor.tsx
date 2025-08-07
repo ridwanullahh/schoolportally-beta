@@ -19,6 +19,7 @@ import { defaultPages } from '@/data/defaultSiteStructure';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import SectionEditor from './SectionEditor';
 import ThemeStyler from './ThemeStyler';
+import ThemeManager from './ThemeManager';
 
 const SiteEditor = () => {
   const { school, setSchool } = useSchool();
@@ -249,26 +250,35 @@ const SiteEditor = () => {
   };
 
   const renderGlobalSettings = () => (
-    <Card>
-      <CardHeader><CardTitle>Global Website Settings</CardTitle></CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <Label>Website Theme</Label>
-          <Select value={branding.theme || 'default'} onValueChange={(value) => handleBrandingChange('theme', value)}>
-            <SelectTrigger><SelectValue placeholder="Select a theme" /></SelectTrigger>
-            <SelectContent>
-              {themes.map((theme: Theme) => (
-                <SelectItem key={theme.name} value={theme.name}>{theme.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <Button onClick={saveBranding} disabled={pagesLoading}>
-          <Save className="w-4 h-4 mr-2" />
-          {pagesLoading ? 'Saving...' : 'Save Branding'}
-        </Button>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      {/* Theme Management */}
+      <ThemeManager onThemeChange={(themeId) => {
+        handleBrandingChange('currentTheme', themeId);
+        saveBranding();
+      }} />
+
+      {/* Legacy Theme Settings (for backward compatibility) */}
+      <Card>
+        <CardHeader><CardTitle>Legacy Theme Settings</CardTitle></CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-2">
+            <Label>Website Theme (Legacy)</Label>
+            <Select value={branding.theme || 'default'} onValueChange={(value) => handleBrandingChange('theme', value)}>
+              <SelectTrigger><SelectValue placeholder="Select a theme" /></SelectTrigger>
+              <SelectContent>
+                {themes.map((theme: Theme) => (
+                  <SelectItem key={theme.name} value={theme.name}>{theme.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button onClick={saveBranding} disabled={pagesLoading}>
+            <Save className="w-4 h-4 mr-2" />
+            {pagesLoading ? 'Saving...' : 'Save Settings'}
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
   );
 
   const availableSections = [

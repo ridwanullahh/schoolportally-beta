@@ -1,0 +1,433 @@
+/* Modern Result Checker Section Styles - 11 New Attractive UI/UX Designs */
+
+.result-checker-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.result-checker-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.result-checker-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Centered Layout */
+.result-checker-modern-centered .checker-container {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--brand-bg-tertiary);
+  text-align: center;
+}
+
+.result-checker-modern-centered .form-field {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.result-checker-modern-centered .form-field label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.result-checker-modern-centered .form-field input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--brand-text-primary);
+  background: var(--brand-bg-primary);
+  transition: all 0.3s ease;
+}
+
+.result-checker-modern-centered .form-field input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.result-checker-modern-centered .submit-button {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.result-checker-modern-centered .submit-button:hover {
+  background: var(--brand-secondary);
+  transform: translateY(-2px);
+}
+
+/* Style 2: Modern Split Layout */
+.result-checker-modern-split .checker-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.result-checker-modern-split .checker-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.result-checker-modern-split .checker-info h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.result-checker-modern-split .checker-info p {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 3: Modern Minimal Layout */
+.result-checker-modern-minimal .checker-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.result-checker-modern-minimal .form-field {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.result-checker-modern-minimal .form-field label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.result-checker-modern-minimal .form-field input:focus + label,
+.result-checker-modern-minimal .form-field input:not(:placeholder-shown) + label {
+  top: -0.5rem;
+  left: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--brand-primary);
+  background: var(--brand-bg-primary);
+  padding: 0 0.25rem;
+}
+
+.result-checker-modern-minimal .form-field input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--brand-bg-tertiary);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.result-checker-modern-minimal .form-field input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+/* Style 4: Modern Bordered Layout */
+.result-checker-modern-bordered .checker-container {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.result-checker-modern-bordered .checker-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.result-checker-modern-bordered .checker-container:hover {
+  border-color: var(--brand-primary);
+}
+
+.result-checker-modern-bordered .checker-container:hover::before {
+  width: 4px;
+}
+
+/* Style 5: Modern Gradient Layout */
+.result-checker-modern-gradient .checker-container {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.result-checker-modern-gradient .checker-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0.05;
+  border-radius: 20px;
+}
+
+.result-checker-modern-gradient .checker-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 6: Modern Card Layout */
+.result-checker-modern-card .checker-container {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-checker-modern-card .checker-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+/* Style 7: Modern Compact Layout */
+.result-checker-modern-compact .checker-container {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-checker-modern-compact .form-field {
+  margin-bottom: 1.5rem;
+}
+
+.result-checker-modern-compact .form-field input {
+  padding: 0.75rem;
+  font-size: 0.95rem;
+}
+
+/* Style 8: Modern Asymmetric Layout */
+.result-checker-modern-asymmetric .checker-container {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-checker-modern-asymmetric .checker-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+/* Style 9: Modern Typography Focus Layout */
+.result-checker-modern-typography .checker-container {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 4rem 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.result-checker-modern-typography .checker-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  color: var(--brand-text-primary);
+}
+
+.result-checker-modern-typography .checker-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.result-checker-modern-typography .checker-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+/* Style 10: Modern Two Column Layout */
+.result-checker-modern-two-column .checker-container {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.result-checker-modern-two-column .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.result-checker-modern-two-column .form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Style 11: Modern Floating Layout */
+.result-checker-modern-floating .checker-container {
+  background: var(--brand-bg-primary);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.result-checker-modern-floating .form-field {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.result-checker-modern-floating .form-field input {
+  background: var(--brand-bg-secondary);
+  border: none;
+  border-radius: 12px;
+  padding: 1.25rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.result-checker-modern-floating .form-field input:focus {
+  background: var(--brand-bg-primary);
+  box-shadow: 0 0 0 2px var(--brand-primary);
+  transform: translateY(-2px);
+}
+
+/* Result Display Styles */
+.result-display {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+}
+
+.result-display.success {
+  border-left-color: #10b981;
+  background: #f0fdf4;
+}
+
+.result-display.error {
+  border-left-color: #ef4444;
+  background: #fef2f2;
+}
+
+.result-display h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.result-display .result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.result-display .result-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .result-checker-section {
+    padding: 3rem 0;
+  }
+  
+  .result-checker-section .container {
+    padding: 0 1rem;
+  }
+  
+  .result-checker-modern-split .checker-container,
+  .result-checker-modern-two-column .form-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .result-checker-modern-centered .checker-container,
+  .result-checker-modern-bordered .checker-container,
+  .result-checker-modern-gradient .checker-container,
+  .result-checker-modern-card .checker-container,
+  .result-checker-modern-compact .checker-container,
+  .result-checker-modern-asymmetric .checker-container,
+  .result-checker-modern-typography .checker-container,
+  .result-checker-modern-floating .checker-container {
+    padding: 2rem;
+  }
+  
+  .result-checker-modern-asymmetric .checker-container {
+    border-radius: 16px;
+  }
+}

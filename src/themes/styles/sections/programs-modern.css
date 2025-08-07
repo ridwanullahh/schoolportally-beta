@@ -1,0 +1,855 @@
+/* Modern Programs Section Styles - 11 New Attractive UI/UX Designs */
+
+.programs-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.programs-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.programs-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.programs-modern-grid .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.programs-modern-grid .program-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.programs-modern-grid .program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.programs-modern-grid .program-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.programs-modern-grid .program-content {
+  padding: 2rem;
+}
+
+.programs-modern-grid .program-category {
+  display: inline-block;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.programs-modern-grid .program-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.programs-modern-grid .program-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-grid .program-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-grid .program-duration {
+  font-weight: 600;
+}
+
+.programs-modern-grid .program-button {
+  display: inline-flex;
+  align-items: center;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.programs-modern-grid .program-button:hover {
+  background: var(--brand-secondary);
+  transform: translateX(5px);
+}
+
+/* Style 2: Modern Card Layout */
+.programs-modern-cards .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.programs-modern-cards .program-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.programs-modern-cards .program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.programs-modern-cards .program-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.programs-modern-cards .program-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+}
+
+.programs-modern-cards .program-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.programs-modern-cards .program-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-cards .program-meta {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-cards .program-button {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.programs-modern-cards .program-button:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Style 3: Modern Horizontal Layout */
+.programs-modern-horizontal .programs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.programs-modern-horizontal .program-card {
+  display: grid;
+  grid-template-columns: 250px 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.programs-modern-horizontal .program-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.programs-modern-horizontal .program-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.programs-modern-horizontal .program-content {
+  flex: 1;
+}
+
+.programs-modern-horizontal .program-category {
+  display: inline-block;
+  background: var(--brand-bg-secondary);
+  color: var(--brand-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.programs-modern-horizontal .program-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.programs-modern-horizontal .program-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.programs-modern-horizontal .program-meta {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+}
+
+.programs-modern-horizontal .program-button {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.programs-modern-horizontal .program-button:hover {
+  background: var(--brand-secondary);
+  transform: translateX(5px);
+}
+
+/* Style 4: Modern Minimal Layout */
+.programs-modern-minimal .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.programs-modern-minimal .program-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.programs-modern-minimal .program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.programs-modern-minimal .program-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--brand-bg-secondary);
+  border-radius: 50%;
+  margin: 2rem auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--brand-primary);
+  transition: all 0.3s ease;
+}
+
+.programs-modern-minimal .program-card:hover .program-icon {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  transform: scale(1.05);
+}
+
+.programs-modern-minimal .program-title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.programs-modern-minimal .program-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.programs-modern-minimal .program-meta {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-minimal .program-button {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.programs-modern-minimal .program-button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brand-primary);
+  transition: width 0.3s ease;
+}
+
+.programs-modern-minimal .program-button:hover::after {
+  width: 100%;
+}
+
+/* Style 5: Modern Bordered Layout */
+.programs-modern-bordered .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.programs-modern-bordered .program-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.programs-modern-bordered .program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.programs-modern-bordered .program-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.programs-modern-bordered .program-card:hover::before {
+  width: 4px;
+}
+
+.programs-modern-bordered .program-category {
+  display: inline-block;
+  background: var(--brand-bg-secondary);
+  color: var(--brand-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.programs-modern-bordered .program-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.programs-modern-bordered .program-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-bordered .program-meta {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.programs-modern-bordered .program-button {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.programs-modern-bordered .program-button:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Style 6: Modern Hexagon Layout */
+.programs-modern-hexagon .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.programs-modern-hexagon .program-card {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.programs-modern-hexagon .program-icon {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+  transition: all 0.3s ease;
+}
+
+.programs-modern-hexagon .program-card:hover .program-icon {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.programs-modern-hexagon .program-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.programs-modern-hexagon .program-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.programs-modern-hexagon .program-meta {
+  font-size: 0.85rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.programs-modern-hexagon .program-button {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .programs-section {
+    padding: 3rem 0;
+  }
+  
+  .programs-section .container {
+    padding: 0 1rem;
+  }
+  
+  .programs-modern-grid .programs-container,
+  .programs-modern-cards .programs-container,
+  .programs-modern-minimal .programs-container,
+  .programs-modern-bordered .programs-container,
+  .programs-modern-hexagon .programs-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .programs-modern-horizontal .program-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .programs-modern-horizontal .program-image {
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+  }
+}
+
+/* Style 7: Modern Gradient Layout */
+.programs-modern-gradient .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.programs-modern-gradient .program-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.programs-modern-gradient .program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.programs-modern-gradient .program-card:hover::before {
+  opacity: 0.05;
+}
+
+.programs-modern-gradient .program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.programs-modern-gradient .program-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 8: Modern Split Layout */
+.programs-modern-split .programs-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.programs-modern-split .program-card {
+  display: flex;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.programs-modern-split .program-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.programs-modern-split .program-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.programs-modern-split .program-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.programs-modern-split .program-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.programs-modern-split .program-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.programs-modern-split .program-meta {
+  font-size: 0.8rem;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 9: Modern Compact Layout */
+.programs-modern-compact .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.programs-modern-compact .program-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.programs-modern-compact .program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+.programs-modern-compact .program-category {
+  font-size: 0.7rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.programs-modern-compact .program-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.programs-modern-compact .program-description {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.programs-modern-compact .program-meta {
+  font-size: 0.8rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.programs-modern-compact .program-button {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.programs-modern-compact .program-button:hover {
+  color: var(--brand-secondary);
+}
+
+/* Style 10: Modern Asymmetric Layout */
+.programs-modern-asymmetric .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.programs-modern-asymmetric .program-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.programs-modern-asymmetric .program-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.programs-modern-asymmetric .program-card {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.programs-modern-asymmetric .program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.programs-modern-asymmetric .program-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Typography Focus Layout */
+.programs-modern-typography .programs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.programs-modern-typography .program-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.programs-modern-typography .program-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--brand-text-primary);
+}
+
+.programs-modern-typography .program-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.programs-modern-typography .program-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+.programs-modern-typography .program-description {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.programs-modern-typography .program-meta {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.programs-modern-typography .program-button {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+
+.programs-modern-typography .program-button:hover {
+  background: var(--brand-secondary);
+  transform: translateY(-2px);
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .programs-modern-gradient .programs-container,
+  .programs-modern-compact .programs-container,
+  .programs-modern-asymmetric .programs-container,
+  .programs-modern-typography .programs-container {
+    grid-template-columns: 1fr;
+  }
+
+  .programs-modern-split .programs-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .programs-modern-split .program-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .programs-modern-split .program-image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .programs-modern-asymmetric .program-card:nth-child(odd),
+  .programs-modern-asymmetric .program-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

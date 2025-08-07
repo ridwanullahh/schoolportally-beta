@@ -418,3 +418,215 @@
     flex: 0 0 280px;
   }
 }
+
+/* Additional Modern Styles 7-11 */
+
+/* Style 7: Modern Gradient Cards */
+.blog-posts-modern-gradient .posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.blog-posts-modern-gradient .post-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.blog-posts-modern-gradient .post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.blog-posts-modern-gradient .post-card:hover::before {
+  opacity: 0.05;
+}
+
+.blog-posts-modern-gradient .post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.blog-posts-modern-gradient .post-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 8: Modern Split Layout */
+.blog-posts-modern-split .posts-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.blog-posts-modern-split .post-card {
+  display: flex;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.blog-posts-modern-split .post-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.blog-posts-modern-split .post-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.blog-posts-modern-split .post-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+/* Style 9: Modern Compact Grid */
+.blog-posts-modern-compact .posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.blog-posts-modern-compact .post-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.blog-posts-modern-compact .post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+/* Style 10: Modern Asymmetric Layout */
+.blog-posts-modern-asymmetric .posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.blog-posts-modern-asymmetric .post-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.blog-posts-modern-asymmetric .post-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.blog-posts-modern-asymmetric .post-card {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.blog-posts-modern-asymmetric .post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.blog-posts-modern-asymmetric .post-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Typography Focus */
+.blog-posts-modern-typography .posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.blog-posts-modern-typography .post-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.blog-posts-modern-typography .post-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.blog-posts-modern-typography .post-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.blog-posts-modern-typography .post-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+/* Additional Responsive Rules */
+@media (max-width: 768px) {
+  .blog-posts-modern-gradient .posts-container,
+  .blog-posts-modern-compact .posts-container,
+  .blog-posts-modern-asymmetric .posts-container,
+  .blog-posts-modern-typography .posts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-posts-modern-split .posts-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .blog-posts-modern-split .post-card {
+    flex-direction: column;
+  }
+
+  .blog-posts-modern-split .post-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .blog-posts-modern-asymmetric .post-card:nth-child(odd),
+  .blog-posts-modern-asymmetric .post-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

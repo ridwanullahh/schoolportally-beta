@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section } from '@/types';
+import '@/themes/styles/sections/partners-modern.css';
 import '@/themes/styles/sections/partners-ultra-modern.css';
 
 interface PartnersSectionProps {
@@ -8,7 +9,43 @@ interface PartnersSectionProps {
 
 const PartnersSection: React.FC<PartnersSectionProps> = ({ section }) => {
   const { title, partners } = section.content;
-  const styleId = section.styleId || 'partners-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'partners-modern-grid',
+      '2': 'partners-modern-slider',
+      '3': 'partners-modern-minimal',
+      '4': 'partners-modern-cards',
+      '5': 'partners-modern-horizontal',
+      '6': 'partners-modern-bordered',
+      '7': 'partners-modern-circular',
+      '8': 'partners-modern-gradient',
+      '9': 'partners-modern-compact',
+      '10': 'partners-modern-asymmetric',
+      '11': 'partners-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'partners-floating-glass',
+      '13': 'partners-holographic-grid',
+      '14': 'partners-neon-logos',
+      '15': 'partners-particle-bg',
+      '16': 'partners-morphing-cards',
+      '17': 'partners-cyber-grid',
+      '18': 'partners-liquid-metal',
+      '19': 'partners-aurora-bg',
+      '20': 'partners-matrix-rain',
+      '21': 'partners-quantum-field',
+      '22': 'partners-neural-network',
+      '23': 'partners-hologram-effect',
+      '24': 'partners-energy-waves',
+      '25': 'partners-digital-rain',
+      '26': 'partners-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'partners-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeIndex, setActiveIndex] = useState(0);
   const partnerRefs = useRef<(HTMLDivElement | null)[]>([]);
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useTestimonials, Testimonial } from '@/hooks/useTestimonials';
+import '@/themes/styles/sections/testimonials-modern.css';
 import '@/themes/styles/sections/testimonials-ultra-modern.css';
 
 interface TestimonialsSectionProps {
@@ -10,7 +11,43 @@ interface TestimonialsSectionProps {
 const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ section }) => {
   const { title, testimonials } = section.content;
   const { getPublishedTestimonials, loading } = useTestimonials();
-  const styleId = section.styleId || 'testimonials-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'testimonials-modern-grid',
+      '2': 'testimonials-modern-centered',
+      '3': 'testimonials-modern-horizontal',
+      '4': 'testimonials-modern-masonry',
+      '5': 'testimonials-modern-minimal',
+      '6': 'testimonials-modern-bordered',
+      '7': 'testimonials-modern-gradient',
+      '8': 'testimonials-modern-quote',
+      '9': 'testimonials-modern-split',
+      '10': 'testimonials-modern-compact',
+      '11': 'testimonials-modern-asymmetric',
+      // Existing ultra-modern styles (12+)
+      '12': 'testimonials-floating-glass',
+      '13': 'testimonials-circular',
+      '14': 'testimonials-sliding',
+      '15': 'testimonials-hexagon',
+      '16': 'testimonials-geometric',
+      '17': 'testimonials-isometric',
+      '18': 'testimonials-liquid',
+      '19': 'testimonials-gradient-orbs',
+      '20': 'testimonials-paper-stack',
+      '21': 'testimonials-neon-outline',
+      '22': 'testimonials-mosaic',
+      '23': 'testimonials-holographic',
+      '24': 'testimonials-progress',
+      '25': 'testimonials-minimal-lines',
+      '26': 'testimonials-carousel'
+    };
+    return styleMap[styleNumber] || 'testimonials-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeIndex, setActiveIndex] = useState(0);
 
   const defaultTestimonials: Testimonial[] = [
@@ -89,6 +126,33 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ section }) =>
     );
 
     switch (styleId) {
+      // New Modern Styles (1-11) - Most use default layout
+      case 'testimonials-modern-grid':
+      case 'testimonials-modern-centered':
+      case 'testimonials-modern-masonry':
+      case 'testimonials-modern-minimal':
+      case 'testimonials-modern-bordered':
+      case 'testimonials-modern-gradient':
+      case 'testimonials-modern-quote':
+      case 'testimonials-modern-split':
+      case 'testimonials-modern-compact':
+      case 'testimonials-modern-asymmetric':
+        return (
+          <div key={index} className="testimonial-item">
+            {testimonialContent}
+          </div>
+        );
+
+      case 'testimonials-modern-horizontal':
+        return (
+          <div key={index} className="testimonial-item">
+            <div className="testimonial-content">
+              {testimonialContent}
+            </div>
+          </div>
+        );
+
+      // Existing Ultra-Modern Styles (12+)
       case 'testimonials-circular':
         return (
           <div key={index} className="testimonial-item">

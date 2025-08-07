@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
+import '@/themes/styles/sections/faq-modern.css';
 import '@/themes/styles/sections/faq.css';
 import { ChevronDown } from 'lucide-react';
 
@@ -10,7 +11,43 @@ interface FAQSectionProps {
 
 const FAQSection: React.FC<FAQSectionProps> = ({ section }) => {
   const { title, faqs } = section.content;
-  const styleId = section.styleId || 'faq-accordion-faq';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'faq-modern-accordion',
+      '2': 'faq-modern-cards',
+      '3': 'faq-modern-split',
+      '4': 'faq-modern-minimal',
+      '5': 'faq-modern-bordered',
+      '6': 'faq-modern-gradient',
+      '7': 'faq-modern-compact',
+      '8': 'faq-modern-asymmetric',
+      '9': 'faq-modern-typography',
+      '10': 'faq-modern-timeline',
+      '11': 'faq-modern-tabbed',
+      // Existing styles (12+)
+      '12': 'faq-accordion-faq',
+      '13': 'faq-grid',
+      '14': 'faq-tabs',
+      '15': 'faq-minimal',
+      '16': 'faq-cards',
+      '17': 'faq-timeline',
+      '18': 'faq-collapsible',
+      '19': 'faq-search',
+      '20': 'faq-category',
+      '21': 'faq-modern',
+      '22': 'faq-classic',
+      '23': 'faq-elegant',
+      '24': 'faq-creative',
+      '25': 'faq-professional',
+      '26': 'faq-academic'
+    };
+    return styleMap[styleNumber] || 'faq-modern-accordion';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
 
   const defaultFaqs = [
