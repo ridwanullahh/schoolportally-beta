@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useProducts } from '@/hooks/useProducts';
+import '@/themes/styles/sections/products-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { Button } from '@/components/ui/button';
 import { List, Grid } from 'lucide-react';
@@ -12,7 +13,43 @@ interface ProductsSectionProps {
 
 const ProductsSection: React.FC<ProductsSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'products-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'products-modern-grid',
+      '2': 'products-modern-cards',
+      '3': 'products-modern-list',
+      '4': 'products-modern-minimal',
+      '5': 'products-modern-bordered',
+      '6': 'products-modern-gradient',
+      '7': 'products-modern-compact',
+      '8': 'products-modern-asymmetric',
+      '9': 'products-modern-typography',
+      '10': 'products-modern-split',
+      '11': 'products-modern-showcase',
+      // Existing ultra-modern styles (12+)
+      '12': 'products-floating-glass',
+      '13': 'products-holographic-showcase',
+      '14': 'products-neon-catalog',
+      '15': 'products-particle-bg',
+      '16': 'products-morphing-cards',
+      '17': 'products-cyber-grid',
+      '18': 'products-liquid-metal',
+      '19': 'products-aurora-bg',
+      '20': 'products-matrix-rain',
+      '21': 'products-quantum-field',
+      '22': 'products-neural-network',
+      '23': 'products-hologram-effect',
+      '24': 'products-energy-waves',
+      '25': 'products-digital-rain',
+      '26': 'products-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'products-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [view, setView] = useState('grid');
 
   // Use dynamic content from products admin module

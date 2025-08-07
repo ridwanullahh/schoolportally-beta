@@ -1,6 +1,10 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import FloatingAIChat from "@/components/shared/FloatingAIChat";
+import { AIContextProvider } from "@/contexts/AIContext";
+import './themes/styles/breadcrumbs.css';
+import './themes/styles/comprehensive-themes.css';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -12,6 +16,7 @@ import SchoolRegister from "./pages/school/auth/SchoolRegister";
 // Marketing Pages
 import Home from "./pages/marketing/Home";
 import Features from "./pages/marketing/Features";
+import Pricing from "./pages/marketing/Pricing";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Onboarding from "./pages/onboarding/Onboarding";
@@ -29,6 +34,9 @@ import ParentDashboard from "./pages/school/dashboard/ParentDashboard";
 import StaffDashboard from "./pages/school/dashboard/StaffDashboard";
 import Dashboard from "./pages/school/dashboard/Dashboard";
 import BlogPostPage from "./pages/school/BlogPost";
+import BlogCategoryPage from "./pages/school/BlogCategoryPage";
+import EventCategoryPage from "./pages/school/EventCategoryPage";
+import GalleryItemPage from "./pages/school/GalleryItemPage";
 import EventsPage from "./pages/school/EventsPage";
 import EventPage from "./pages/school/EventPage";
 import ClassesPage from "./pages/school/ClassesPage";
@@ -43,6 +51,7 @@ import AnnouncementsPage from "./pages/school/AnnouncementsPage";
 import LibraryPage from "./pages/school/LibraryPage";
 import BookPage from "./pages/school/BookPage";
 import GalleryPage from "./pages/school/GalleryPage";
+import FacultyPage from "./pages/school/FacultyPage";
 import ModernLiveClass from "./components/shared/ModernLiveClass";
 import KnowledgebasePage from "./pages/school/KnowledgebasePage";
 import ArticlePage from "./pages/school/ArticlePage";
@@ -64,6 +73,7 @@ const App = () => {
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <AIContextProvider>
               <Routes>
                 {/* Marketing Site Routes */}
                 <Route path="/" element={<Home />} />
@@ -72,8 +82,8 @@ const App = () => {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/onboarding" element={<Onboarding />} />
                 
-                {/* Placeholder marketing routes */}
-                <Route path="/pricing" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Pricing Page - Coming Soon</h1></div>} />
+                {/* Marketing routes */}
+                <Route path="/pricing" element={<Pricing />} />
                 <Route path="/about" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">About Page - Coming Soon</h1></div>} />
                 <Route path="/blog" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Blog Page - Coming Soon</h1></div>} />
                 <Route path="/contact" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Contact Page - Coming Soon</h1></div>} />
@@ -87,8 +97,10 @@ const App = () => {
                 
                 {/* School Routes */}
                 <Route path="/:schoolSlug" element={<SchoolWebsite />} />
+                <Route path="/:schoolSlug/blog/category/:category" element={<BlogCategoryPage />} />
                 <Route path="/:schoolSlug/blog/:postSlug" element={<BlogPostPage />} />
                 <Route path="/:schoolSlug/events" element={<EventsPage />} />
+                <Route path="/:schoolSlug/events/category/:category" element={<EventCategoryPage />} />
                 <Route path="/:schoolSlug/events/:eventId" element={<EventPage />} />
                 <Route path="/:schoolSlug/classes" element={<ClassesPage />} />
                 <Route path="/:schoolSlug/classes/:classId" element={<ClassPage />} />
@@ -100,6 +112,10 @@ const App = () => {
                 <Route path="/:schoolSlug/library" element={<LibraryPage />} />
                 <Route path="/:schoolSlug/library/:bookId" element={<BookPage />} />
                 <Route path="/:schoolSlug/gallery" element={<GalleryPage />} />
+                <Route path="/:schoolSlug/gallery/:itemId" element={<GalleryItemPage />} />
+                <Route path="/:schoolSlug/faculty" element={<FacultyPage />} />
+                <Route path="/:schoolSlug/jobs" element={<JobsPage />} />
+                <Route path="/:schoolSlug/products" element={<ProductsPage />} />
                 <Route path="/:schoolSlug/knowledgebase" element={<KnowledgebasePage />} />
                 <Route path="/:schoolSlug/knowledgebase/:articleId" element={<ArticlePage />} />
                 <Route path="/:schoolSlug/jobs" element={<JobsPage />} />
@@ -132,6 +148,10 @@ const App = () => {
                 {/* Catch-all route */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
+
+              {/* AI Chat Component - Available across all pages */}
+              <FloatingAIChat />
+              </AIContextProvider>
             </BrowserRouter>
           </SchoolProvider>
         </AuthProvider>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Section } from '@/types';
+import '@/themes/styles/sections/mission-vision-modern.css';
 import '@/themes/styles/sections/mission-vision-ultra-modern.css';
 
 interface MissionVisionSectionProps {
@@ -8,7 +9,43 @@ interface MissionVisionSectionProps {
 
 const MissionVisionSection: React.FC<MissionVisionSectionProps> = ({ section }) => {
   const { title, mission, vision, sidebar } = section.content;
-  const styleId = section.styleId || 'mission-vision-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'mission-vision-modern-split',
+      '2': 'mission-vision-modern-centered',
+      '3': 'mission-vision-modern-vertical',
+      '4': 'mission-vision-modern-minimal',
+      '5': 'mission-vision-modern-bordered',
+      '6': 'mission-vision-modern-gradient',
+      '7': 'mission-vision-modern-asymmetric',
+      '8': 'mission-vision-modern-typography',
+      '9': 'mission-vision-modern-hexagon',
+      '10': 'mission-vision-modern-timeline',
+      '11': 'mission-vision-modern-compact',
+      // Existing ultra-modern styles (12+)
+      '12': 'mission-vision-floating-glass',
+      '13': 'mission-vision-holographic-cards',
+      '14': 'mission-vision-neon-split',
+      '15': 'mission-vision-particle-bg',
+      '16': 'mission-vision-morphing-cards',
+      '17': 'mission-vision-cyber-grid',
+      '18': 'mission-vision-liquid-metal',
+      '19': 'mission-vision-aurora-bg',
+      '20': 'mission-vision-matrix-rain',
+      '21': 'mission-vision-quantum-field',
+      '22': 'mission-vision-neural-network',
+      '23': 'mission-vision-hologram-effect',
+      '24': 'mission-vision-energy-waves',
+      '25': 'mission-vision-digital-rain',
+      '26': 'mission-vision-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'mission-vision-modern-split';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   const defaultMission = 'To provide exceptional education that empowers students to achieve their full potential, fostering critical thinking, creativity, and character development in a supportive and inclusive learning environment.';
   const defaultVision = 'To be a leading educational institution that inspires lifelong learning, cultivates global citizens, and shapes future leaders who will make positive contributions to society and the world.';

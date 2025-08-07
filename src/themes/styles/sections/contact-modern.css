@@ -1,0 +1,580 @@
+/* Modern Contact Section Styles - 11 New Attractive UI/UX Designs */
+
+.contact-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.contact-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Split Layout */
+.contact-modern-split .contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contact-modern-split .contact-info {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-modern-split .contact-form {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-modern-split .contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.contact-modern-split .contact-item:hover {
+  transform: translateX(10px);
+  background: var(--brand-bg-tertiary);
+}
+
+.contact-modern-split .contact-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  margin-right: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.contact-modern-split .contact-details h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.contact-modern-split .contact-details p {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style 2: Modern Cards Layout */
+.contact-modern-cards .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-modern-cards .contact-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-modern-cards .contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.contact-modern-cards .contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.contact-modern-cards .contact-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+}
+
+.contact-modern-cards .contact-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.contact-modern-cards .contact-info {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 3: Modern Minimal Layout */
+.contact-modern-minimal .contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-modern-minimal .contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.contact-modern-minimal .contact-item {
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.contact-modern-minimal .contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.contact-modern-minimal .contact-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--brand-bg-secondary);
+  border-radius: 50%;
+  margin: 2rem auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--brand-primary);
+  transition: all 0.3s ease;
+}
+
+.contact-modern-minimal .contact-item:hover .contact-icon {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  transform: scale(1.05);
+}
+
+.contact-modern-minimal .contact-title {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.contact-modern-minimal .contact-info {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Style 4: Modern Bordered Layout */
+.contact-modern-bordered .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contact-modern-bordered .contact-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.contact-modern-bordered .contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.contact-modern-bordered .contact-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.contact-modern-bordered .contact-card:hover::before {
+  width: 4px;
+}
+
+/* Style 5: Modern Gradient Layout */
+.contact-modern-gradient .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contact-modern-gradient .contact-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.contact-modern-gradient .contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 6: Modern Hexagon Layout */
+.contact-modern-hexagon .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.contact-modern-hexagon .contact-card {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.contact-modern-hexagon .contact-icon {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+  transition: all 0.3s ease;
+}
+
+.contact-modern-hexagon .contact-card:hover .contact-icon {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 3rem 0;
+  }
+  
+  .contact-section .container {
+    padding: 0 1rem;
+  }
+  
+  .contact-modern-split .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact-modern-cards .contact-container,
+  .contact-modern-bordered .contact-container,
+  .contact-modern-gradient .contact-container,
+  .contact-modern-hexagon .contact-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-modern-minimal .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Style 7: Modern Compact Layout */
+.contact-modern-compact .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-modern-compact .contact-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.contact-modern-compact .contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+/* Style 8: Modern Asymmetric Layout */
+.contact-modern-asymmetric .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contact-modern-asymmetric .contact-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.contact-modern-asymmetric .contact-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.contact-modern-asymmetric .contact-card {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.contact-modern-asymmetric .contact-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 9: Modern Typography Focus Layout */
+.contact-modern-typography .contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.contact-modern-typography .contact-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-modern-typography .contact-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--brand-text-primary);
+}
+
+.contact-modern-typography .contact-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.contact-modern-typography .contact-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+/* Style 10: Modern Timeline Layout */
+.contact-modern-timeline .contact-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-modern-timeline .contact-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transform: translateX(-50%);
+}
+
+.contact-modern-timeline .contact-item {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 45%;
+}
+
+.contact-modern-timeline .contact-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.contact-modern-timeline .contact-item:nth-child(even) {
+  left: 55%;
+  text-align: left;
+}
+
+.contact-modern-timeline .contact-item::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  border: 4px solid var(--brand-bg-primary);
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+
+.contact-modern-timeline .contact-item:nth-child(odd)::before {
+  right: -25px;
+}
+
+.contact-modern-timeline .contact-item:nth-child(even)::before {
+  left: -25px;
+}
+
+.contact-modern-timeline .contact-content {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Style 11: Modern Map Integration Layout */
+.contact-modern-map .contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-modern-map .contact-info {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-modern-map .map-placeholder {
+  background: var(--brand-bg-secondary);
+  border-radius: 16px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-secondary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: 2px dashed var(--brand-bg-tertiary);
+}
+
+.contact-modern-map .contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.contact-modern-map .contact-item:hover {
+  background: var(--brand-bg-tertiary);
+  transform: translateX(5px);
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .contact-modern-compact .contact-container,
+  .contact-modern-asymmetric .contact-container,
+  .contact-modern-typography .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-modern-timeline .contact-container::before {
+    left: 20px;
+  }
+
+  .contact-modern-timeline .contact-item {
+    width: calc(100% - 60px);
+    left: 60px !important;
+    text-align: left;
+  }
+
+  .contact-modern-timeline .contact-item::before {
+    left: -25px !important;
+  }
+
+  .contact-modern-map .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-modern-map .map-placeholder {
+    height: 250px;
+  }
+
+  .contact-modern-asymmetric .contact-card:nth-child(odd),
+  .contact-modern-asymmetric .contact-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

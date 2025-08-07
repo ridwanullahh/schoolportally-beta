@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { usePrograms } from '@/hooks/usePrograms';
+import '@/themes/styles/sections/programs-modern.css';
 import '@/themes/styles/sections/programs-ultra-modern.css';
 import { Button } from '@/components/ui/button';
 
@@ -11,7 +12,43 @@ interface ProgramsSectionProps {
 
 const ProgramsSection: React.FC<ProgramsSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'programs-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'programs-modern-grid',
+      '2': 'programs-modern-cards',
+      '3': 'programs-modern-horizontal',
+      '4': 'programs-modern-minimal',
+      '5': 'programs-modern-bordered',
+      '6': 'programs-modern-hexagon',
+      '7': 'programs-modern-gradient',
+      '8': 'programs-modern-split',
+      '9': 'programs-modern-compact',
+      '10': 'programs-modern-asymmetric',
+      '11': 'programs-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'programs-floating-glass',
+      '13': 'programs-holographic-cards',
+      '14': 'programs-neon-grid',
+      '15': 'programs-particle-bg',
+      '16': 'programs-morphing-cards',
+      '17': 'programs-cyber-grid',
+      '18': 'programs-liquid-metal',
+      '19': 'programs-aurora-bg',
+      '20': 'programs-matrix-rain',
+      '21': 'programs-quantum-field',
+      '22': 'programs-neural-network',
+      '23': 'programs-hologram-effect',
+      '24': 'programs-energy-waves',
+      '25': 'programs-digital-rain',
+      '26': 'programs-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'programs-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   // Use dynamic content from programs admin module
   const { programs, loading, error, getFeaturedPrograms } = usePrograms();

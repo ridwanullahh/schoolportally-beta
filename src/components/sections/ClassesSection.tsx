@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useClasses } from '@/hooks/useClasses';
+import '@/themes/styles/sections/classes-modern.css';
 import '@/themes/styles/sections/classes-ultra-modern.css';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
@@ -25,7 +26,43 @@ interface ClassItem {
 
 const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
   const { title, classesLimit = 6 } = section.content;
-  const styleId = section.styleId || 'classes-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'classes-modern-grid',
+      '2': 'classes-modern-cards',
+      '3': 'classes-modern-horizontal',
+      '4': 'classes-modern-minimal',
+      '5': 'classes-modern-bordered',
+      '6': 'classes-modern-hexagon',
+      '7': 'classes-modern-gradient',
+      '8': 'classes-modern-split',
+      '9': 'classes-modern-compact',
+      '10': 'classes-modern-asymmetric',
+      '11': 'classes-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'classes-floating-glass',
+      '13': 'classes-holographic-cards',
+      '14': 'classes-neon-grid',
+      '15': 'classes-particle-bg',
+      '16': 'classes-morphing-cards',
+      '17': 'classes-cyber-grid',
+      '18': 'classes-liquid-metal',
+      '19': 'classes-aurora-bg',
+      '20': 'classes-matrix-rain',
+      '21': 'classes-quantum-field',
+      '22': 'classes-neural-network',
+      '23': 'classes-hologram-effect',
+      '24': 'classes-energy-waves',
+      '25': 'classes-digital-rain',
+      '26': 'classes-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'classes-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   // Use dynamic content from classes admin module
   const { classes, loading, error, getFeaturedClasses } = useClasses();

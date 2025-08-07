@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useEvents, Event } from '@/hooks/useEvents';
+import '@/themes/styles/sections/events-snapshot-modern.css';
 import '@/themes/styles/sections/events-snapshot-ultra-modern.css';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 
@@ -11,7 +12,43 @@ interface EventsSnapshotSectionProps {
 const EventsSnapshotSection: React.FC<EventsSnapshotSectionProps> = ({ section }) => {
   const { title, events } = section.content;
   const { getUpcomingEvents, loading } = useEvents();
-  const styleId = section.styleId || 'events-floating-timeline';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'events-snapshot-modern-grid',
+      '2': 'events-snapshot-modern-cards',
+      '3': 'events-snapshot-modern-timeline',
+      '4': 'events-snapshot-modern-minimal',
+      '5': 'events-snapshot-modern-bordered',
+      '6': 'events-snapshot-modern-gradient',
+      '7': 'events-snapshot-modern-compact',
+      '8': 'events-snapshot-modern-asymmetric',
+      '9': 'events-snapshot-modern-typography',
+      '10': 'events-snapshot-modern-split',
+      '11': 'events-snapshot-modern-featured',
+      // Existing ultra-modern styles (12+)
+      '12': 'events-floating-timeline',
+      '13': 'events-holographic-cards',
+      '14': 'events-neon-countdown',
+      '15': 'events-particle-bg',
+      '16': 'events-morphing-cards',
+      '17': 'events-cyber-grid',
+      '18': 'events-liquid-metal',
+      '19': 'events-aurora-bg',
+      '20': 'events-matrix-rain',
+      '21': 'events-quantum-field',
+      '22': 'events-neural-network',
+      '23': 'events-hologram-effect',
+      '24': 'events-energy-waves',
+      '25': 'events-digital-rain',
+      '26': 'events-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'events-snapshot-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeCategory, setActiveCategory] = useState('All');
   const [timeLefts, setTimeLefts] = useState<Record<number, { days: number; hours: number; minutes: number; seconds: number; } | {}>>({});
   const [activeEvent, setActiveEvent] = useState(0);

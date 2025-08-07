@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section } from '@/types';
 import * as Icons from 'lucide-react';
+import '@/themes/styles/sections/value-proposition-modern.css';
 import '@/themes/styles/sections/value-proposition-ultra-modern.css';
 
 interface ValueProposition {
@@ -17,7 +18,43 @@ interface ValuePropositionSectionProps {
 
 const ValuePropositionSection: React.FC<ValuePropositionSectionProps> = ({ section }) => {
   const { title, propositions } = section.content;
-  const styleId = section.styleId || 'value-prop-floating-cards';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'value-proposition-modern-grid',
+      '2': 'value-proposition-modern-cards',
+      '3': 'value-proposition-modern-horizontal',
+      '4': 'value-proposition-modern-minimal',
+      '5': 'value-proposition-modern-bordered',
+      '6': 'value-proposition-modern-hexagon',
+      '7': 'value-proposition-modern-gradient',
+      '8': 'value-proposition-modern-split',
+      '9': 'value-proposition-modern-compact',
+      '10': 'value-proposition-modern-asymmetric',
+      '11': 'value-proposition-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'value-prop-floating-cards',
+      '13': 'value-prop-holographic-grid',
+      '14': 'value-prop-neon-icons',
+      '15': 'value-prop-particle-bg',
+      '16': 'value-prop-morphing-cards',
+      '17': 'value-prop-cyber-grid',
+      '18': 'value-prop-liquid-metal',
+      '19': 'value-prop-aurora-bg',
+      '20': 'value-prop-matrix-rain',
+      '21': 'value-prop-quantum-field',
+      '22': 'value-prop-neural-network',
+      '23': 'value-prop-hologram-effect',
+      '24': 'value-prop-energy-waves',
+      '25': 'value-prop-digital-rain',
+      '26': 'value-prop-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'value-proposition-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   const defaultPropositions: ValueProposition[] = [
     { icon: 'CheckCircle', title: 'Expert Faculty', description: 'Learn from the best in the field with our experienced educators.' },

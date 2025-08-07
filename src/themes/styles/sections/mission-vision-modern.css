@@ -1,0 +1,737 @@
+/* Modern Mission Vision Section Styles - 11 New Attractive UI/UX Designs */
+
+.mission-vision-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.mission-vision-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.mission-vision-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Split Layout */
+.mission-vision-modern-split .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.mission-vision-modern-split .mission-card,
+.mission-vision-modern-split .vision-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-vision-modern-split .mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.mission-vision-modern-split .vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-secondary), var(--brand-accent));
+}
+
+.mission-vision-modern-split .mission-card:hover,
+.mission-vision-modern-split .vision-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-modern-split .card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.mission-vision-modern-split .card-content {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Style 2: Modern Centered Layout */
+.mission-vision-modern-centered .content-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mission-vision-modern-centered .mission-section,
+.mission-vision-modern-centered .vision-section {
+  margin-bottom: 4rem;
+  padding: 3rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.mission-vision-modern-centered .mission-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.mission-vision-modern-centered .vision-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-secondary), var(--brand-accent));
+  border-radius: 2px;
+}
+
+.mission-vision-modern-centered .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin: 2rem 0 1.5rem;
+}
+
+.mission-vision-modern-centered .section-content {
+  font-size: 1.25rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 3: Modern Vertical Layout */
+.mission-vision-modern-vertical .content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mission-vision-modern-vertical .mission-card,
+.mission-vision-modern-vertical .vision-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 6px solid var(--brand-primary);
+}
+
+.mission-vision-modern-vertical .vision-card {
+  border-left-color: var(--brand-secondary);
+}
+
+.mission-vision-modern-vertical .mission-card:hover,
+.mission-vision-modern-vertical .vision-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-left-width: 8px;
+}
+
+.mission-vision-modern-vertical .card-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-modern-vertical .card-content {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 4: Modern Minimal Layout */
+.mission-vision-modern-minimal .content-container {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-vision-modern-minimal .mission-section,
+.mission-vision-modern-minimal .vision-section {
+  margin-bottom: 5rem;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.mission-vision-modern-minimal .mission-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.mission-vision-modern-minimal .vision-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-secondary), var(--brand-accent));
+  border-radius: 2px;
+}
+
+.mission-vision-modern-minimal .section-title {
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin: 3rem 0 2rem;
+  letter-spacing: -0.02em;
+}
+
+.mission-vision-modern-minimal .section-content {
+  font-size: 1.25rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Style 5: Modern Bordered Layout */
+.mission-vision-modern-bordered .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-modern-bordered .mission-card,
+.mission-vision-modern-bordered .vision-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 16px;
+  padding: 3rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.mission-vision-modern-bordered .mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 14px 0 0 14px;
+}
+
+.mission-vision-modern-bordered .vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-secondary), var(--brand-accent));
+  transition: width 0.3s ease;
+  border-radius: 14px 0 0 14px;
+}
+
+.mission-vision-modern-bordered .mission-card:hover,
+.mission-vision-modern-bordered .vision-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.mission-vision-modern-bordered .mission-card:hover::before,
+.mission-vision-modern-bordered .vision-card:hover::before {
+  width: 6px;
+}
+
+.mission-vision-modern-bordered .card-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.mission-vision-modern-bordered .card-content {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Style 6: Modern Gradient Layout */
+.mission-vision-modern-gradient .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-modern-gradient .mission-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-modern-gradient .vision-card {
+  background: linear-gradient(135deg, var(--brand-bg-secondary) 0%, var(--brand-bg-tertiary) 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-modern-gradient .mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.mission-vision-modern-gradient .vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--brand-secondary), var(--brand-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.mission-vision-modern-gradient .mission-card:hover::before,
+.mission-vision-modern-gradient .vision-card:hover::before {
+  opacity: 0.05;
+}
+
+.mission-vision-modern-gradient .mission-card:hover,
+.mission-vision-modern-gradient .vision-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-modern-gradient .card-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.mission-vision-modern-gradient .card-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-modern-gradient .card-text {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mission-vision-section {
+    padding: 3rem 0;
+  }
+  
+  .mission-vision-section .container {
+    padding: 0 1rem;
+  }
+  
+  .mission-vision-modern-split .content-container,
+  .mission-vision-modern-bordered .content-container,
+  .mission-vision-modern-gradient .content-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .mission-vision-modern-split .mission-card,
+  .mission-vision-modern-split .vision-card,
+  .mission-vision-modern-vertical .mission-card,
+  .mission-vision-modern-vertical .vision-card,
+  .mission-vision-modern-bordered .mission-card,
+  .mission-vision-modern-bordered .vision-card,
+  .mission-vision-modern-gradient .mission-card,
+  .mission-vision-modern-gradient .vision-card {
+    padding: 2rem;
+  }
+  
+  .mission-vision-modern-centered .mission-section,
+  .mission-vision-modern-centered .vision-section,
+  .mission-vision-modern-minimal .mission-section,
+  .mission-vision-modern-minimal .vision-section {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Style 7: Modern Asymmetric Layout */
+.mission-vision-modern-asymmetric .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.mission-vision-modern-asymmetric .mission-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  padding: 3rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+}
+
+.mission-vision-modern-asymmetric .vision-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  padding: 3rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+}
+
+.mission-vision-modern-asymmetric .mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.mission-vision-modern-asymmetric .vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-secondary), var(--brand-accent));
+}
+
+.mission-vision-modern-asymmetric .mission-card:hover,
+.mission-vision-modern-asymmetric .vision-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 8: Modern Typography Focus Layout */
+.mission-vision-modern-typography .content-container {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-vision-modern-typography .mission-section,
+.mission-vision-modern-typography .vision-section {
+  margin-bottom: 5rem;
+  padding: 4rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-modern-typography .section-title {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  color: var(--brand-text-primary);
+}
+
+.mission-vision-modern-typography .section-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.mission-vision-modern-typography .section-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+.mission-vision-modern-typography .section-content {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--brand-text-secondary);
+  line-height: 1.8;
+}
+
+/* Style 9: Modern Hexagon Layout */
+.mission-vision-modern-hexagon .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  justify-items: center;
+}
+
+.mission-vision-modern-hexagon .mission-card,
+.mission-vision-modern-hexagon .vision-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.mission-vision-modern-hexagon .card-icon {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--brand-text-light);
+  transition: all 0.3s ease;
+}
+
+.mission-vision-modern-hexagon .vision-card .card-icon {
+  background: linear-gradient(135deg, var(--brand-secondary), var(--brand-accent));
+}
+
+.mission-vision-modern-hexagon .mission-card:hover .card-icon,
+.mission-vision-modern-hexagon .vision-card:hover .card-icon {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.mission-vision-modern-hexagon .card-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-modern-hexagon .card-content {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 10: Modern Timeline Layout */
+.mission-vision-modern-timeline .content-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mission-vision-modern-timeline .content-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transform: translateX(-50%);
+}
+
+.mission-vision-modern-timeline .mission-card {
+  position: relative;
+  margin-bottom: 4rem;
+  width: 45%;
+  left: 0;
+  text-align: right;
+}
+
+.mission-vision-modern-timeline .vision-card {
+  position: relative;
+  width: 45%;
+  left: 55%;
+  text-align: left;
+}
+
+.mission-vision-modern-timeline .mission-card::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -25px;
+  width: 30px;
+  height: 30px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  border: 6px solid var(--brand-bg-primary);
+  box-shadow: 0 0 0 4px var(--brand-primary);
+}
+
+.mission-vision-modern-timeline .vision-card::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: -25px;
+  width: 30px;
+  height: 30px;
+  background: var(--brand-secondary);
+  border-radius: 50%;
+  border: 6px solid var(--brand-bg-primary);
+  box-shadow: 0 0 0 4px var(--brand-secondary);
+}
+
+.mission-vision-modern-timeline .card-content {
+  background: var(--brand-bg-primary);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-modern-timeline .card-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-modern-timeline .card-text {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 11: Modern Compact Layout */
+.mission-vision-modern-compact .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.mission-vision-modern-compact .mission-card,
+.mission-vision-modern-compact .vision-card {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 6px solid var(--brand-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.mission-vision-modern-compact .vision-card {
+  border-left-color: var(--brand-secondary);
+}
+
+.mission-vision-modern-compact .mission-card:hover,
+.mission-vision-modern-compact .vision-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 8px;
+}
+
+.mission-vision-modern-compact .card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.mission-vision-modern-compact .card-content {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .mission-vision-modern-asymmetric .content-container,
+  .mission-vision-modern-hexagon .content-container,
+  .mission-vision-modern-compact .content-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mission-vision-modern-asymmetric .mission-card,
+  .mission-vision-modern-asymmetric .vision-card {
+    margin: 0;
+    border-radius: 16px;
+  }
+
+  .mission-vision-modern-timeline .content-container::before {
+    left: 20px;
+  }
+
+  .mission-vision-modern-timeline .mission-card,
+  .mission-vision-modern-timeline .vision-card {
+    width: calc(100% - 60px);
+    left: 60px !important;
+    text-align: left;
+  }
+
+  .mission-vision-modern-timeline .mission-card::before,
+  .mission-vision-modern-timeline .vision-card::before {
+    left: -25px !important;
+  }
+
+  .mission-vision-modern-hexagon .card-icon {
+    width: 120px;
+    height: 120px;
+    font-size: 2.5rem;
+  }
+}

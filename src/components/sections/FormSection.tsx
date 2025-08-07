@@ -10,12 +10,49 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'; // Added this import
 import { FormField } from '@/types';
+import '@/themes/styles/sections/form-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { useToast } from '@/hooks/use-toast';
 
 const FormSection: React.FC<SectionProps> = ({ content, settings }) => {
   const { formId } = content;
-  const styleId = (settings as Section).styleId || 'form-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'form-modern-centered',
+      '2': 'form-modern-split',
+      '3': 'form-modern-minimal',
+      '4': 'form-modern-bordered',
+      '5': 'form-modern-gradient',
+      '6': 'form-modern-card',
+      '7': 'form-modern-compact',
+      '8': 'form-modern-asymmetric',
+      '9': 'form-modern-typography',
+      '10': 'form-modern-two-column',
+      '11': 'form-modern-floating',
+      // Existing ultra-modern styles (12+)
+      '12': 'form-floating-glass',
+      '13': 'form-holographic-fields',
+      '14': 'form-neon-inputs',
+      '15': 'form-particle-bg',
+      '16': 'form-morphing-fields',
+      '17': 'form-cyber-grid',
+      '18': 'form-liquid-metal',
+      '19': 'form-aurora-bg',
+      '20': 'form-matrix-rain',
+      '21': 'form-quantum-field',
+      '22': 'form-neural-network',
+      '23': 'form-hologram-effect',
+      '24': 'form-energy-waves',
+      '25': 'form-digital-rain',
+      '26': 'form-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'form-modern-centered';
+  };
+
+  const styleId = getStyleId((settings as Section).styleId || '1');
   const [formData, setFormData] = useState<Form | null>(null);
   const [loading, setLoading] = useState(true);
   const [submissionData, setSubmissionData] = useState<Record<string, any>>({});

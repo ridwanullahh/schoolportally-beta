@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useLeadership } from '@/hooks/useLeadership';
+import '@/themes/styles/sections/leadership-modern.css';
 import '@/themes/styles/sections/leadership-ultra-modern.css';
 
 interface LeadershipSectionProps {
@@ -10,7 +11,43 @@ interface LeadershipSectionProps {
 
 const LeadershipSection: React.FC<LeadershipSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'leadership-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'leadership-modern-grid',
+      '2': 'leadership-modern-cards',
+      '3': 'leadership-modern-horizontal',
+      '4': 'leadership-modern-minimal',
+      '5': 'leadership-modern-bordered',
+      '6': 'leadership-modern-gradient',
+      '7': 'leadership-modern-compact',
+      '8': 'leadership-modern-asymmetric',
+      '9': 'leadership-modern-typography',
+      '10': 'leadership-modern-split',
+      '11': 'leadership-modern-org-chart',
+      // Existing ultra-modern styles (12+)
+      '12': 'leadership-floating-glass',
+      '13': 'leadership-holographic-cards',
+      '14': 'leadership-neon-profiles',
+      '15': 'leadership-particle-bg',
+      '16': 'leadership-morphing-cards',
+      '17': 'leadership-cyber-grid',
+      '18': 'leadership-liquid-metal',
+      '19': 'leadership-aurora-bg',
+      '20': 'leadership-matrix-rain',
+      '21': 'leadership-quantum-field',
+      '22': 'leadership-neural-network',
+      '23': 'leadership-hologram-effect',
+      '24': 'leadership-energy-waves',
+      '25': 'leadership-digital-rain',
+      '26': 'leadership-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'leadership-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
 
   // Use dynamic content from leadership admin module

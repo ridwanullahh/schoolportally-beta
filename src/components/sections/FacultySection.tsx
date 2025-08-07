@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useFaculty } from '@/hooks/useFaculty';
+import '@/themes/styles/sections/faculty-modern.css';
 import '@/themes/styles/sections/faculty-ultra-modern.css';
 
 interface FacultySectionProps {
@@ -10,7 +11,43 @@ interface FacultySectionProps {
 
 const FacultySection: React.FC<FacultySectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'faculty-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'faculty-modern-grid',
+      '2': 'faculty-modern-cards',
+      '3': 'faculty-modern-horizontal',
+      '4': 'faculty-modern-minimal',
+      '5': 'faculty-modern-bordered',
+      '6': 'faculty-modern-hexagon',
+      '7': 'faculty-modern-gradient',
+      '8': 'faculty-modern-split',
+      '9': 'faculty-modern-compact',
+      '10': 'faculty-modern-asymmetric',
+      '11': 'faculty-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'faculty-floating-glass',
+      '13': 'faculty-holographic-cards',
+      '14': 'faculty-neon-profiles',
+      '15': 'faculty-particle-bg',
+      '16': 'faculty-morphing-cards',
+      '17': 'faculty-cyber-grid',
+      '18': 'faculty-liquid-metal',
+      '19': 'faculty-aurora-bg',
+      '20': 'faculty-matrix-rain',
+      '21': 'faculty-quantum-field',
+      '22': 'faculty-neural-network',
+      '23': 'faculty-hologram-effect',
+      '24': 'faculty-energy-waves',
+      '25': 'faculty-digital-rain',
+      '26': 'faculty-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'faculty-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
 
   // Use dynamic content from faculty admin module

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sidebar } from '@/components/ui/sidebar';
+import { ModernDashboardLayout } from '@/components/layout/ModernDashboardLayout';
 import { Route, Link, useLocation, Outlet } from 'react-router-dom';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -55,6 +55,8 @@ import TermsPage from './TermsPage';
 import SubjectsPage from './SubjectsPage';
 import LiveClassSchedulePage from './LiveClassSchedulePage';
 import PaymentSettingsPage from './PaymentSettingsPage';
+import SystemIntegrationTest from '@/components/admin/SystemIntegrationTest';
+import ComponentTest from '@/pages/test/ComponentTest';
 
 // Overview Module Component
 const OverviewModule = () => {
@@ -186,6 +188,8 @@ const sidebarItems: SidebarItem[] = [
   { id: 'faq', label: 'FAQ', icon: HelpCircle },
   { id: 'support', label: 'Support', icon: BookOpen },
   { id: 'payment-settings', label: 'Payment Settings', icon: DollarSign },
+  { id: 'integration-test', label: 'Integration Test', icon: Settings },
+  { id: 'component-test', label: 'Component Test', icon: Settings },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
@@ -219,6 +223,8 @@ export const adminRoutes = (
     <Route path="jobs" element={<JobsModule />} />
     <Route path="support" element={<SupportModule />} />
     <Route path="payment-settings" element={<PaymentSettingsPage />} />
+    <Route path="integration-test" element={<SystemIntegrationTest />} />
+    <Route path="component-test" element={<ComponentTest />} />
     <Route path="settings" element={<BrandingModule />} />
   </>
   );
@@ -226,59 +232,16 @@ export const adminRoutes = (
 const SchoolAdminDashboard = () => {
     const { school } = useSchool();
     const { user, loading } = useAuth();
-    const location = useLocation();
-    const activePath = location.pathname.split('/').pop() || 'overview';
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-    if (loading) {
-        return (
-            <div className="flex h-screen items-center justify-center">
-                <div>Loading...</div>
-            </div>
-        );
-    }
-
-    const isAdmin = user?.roles?.includes('school_admin') || user?.roles?.includes('school_owner');
-
-    if (!isAdmin) {
-        return (
-            <div className="flex h-screen items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold">Access Denied</h1>
-                    <p>You do not have permission to view this page.</p>
-                </div>
-            </div>
-        );
-    }
 
     return (
-        <div className="flex h-screen bg-gray-50">
-            <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen}>
-                <div className="px-6 mb-8">
-                    <CardTitle className="text-lg font-semibold">{school?.name} Admin</CardTitle>
-                    <CardContent className="text-sm text-gray-500 p-0">Manage your school</CardContent>
-                </div>
-                <div className="space-y-1 px-3">
-                    {sidebarItems.map((item) => (
-                        <Button
-                            key={item.id}
-                            variant="ghost"
-                            className={`w-full justify-start ${activePath === item.id ? 'bg-gray-100' : ''}`}
-                            asChild
-                        >
-                            <Link to={item.id}>
-                                <item.icon className="w-4 h-4 mr-2" />
-                                {isSidebarOpen && item.label}
-                            </Link>
-                        </Button>
-                    ))}
-                </div>
-            </Sidebar>
-
-            <div className="flex-1 p-8 overflow-y-auto">
-                <Outlet />
-            </div>
-        </div>
+        <ModernDashboardLayout
+            sidebarItems={sidebarItems}
+            allowedRoles={['school_admin', 'school_owner', 'admin', 'super_admin']}
+            title="Admin Dashboard"
+            subtitle={`Manage ${school?.name || 'your school'}`}
+        >
+            <Outlet />
+        </ModernDashboardLayout>
     );
 };
 

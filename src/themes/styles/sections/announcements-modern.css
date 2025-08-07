@@ -1,0 +1,521 @@
+/* Modern Announcements Section Styles - 11 New Attractive UI/UX Designs */
+
+.announcements-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.announcements-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.announcements-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.announcements-modern-grid .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.announcements-modern-grid .announcement-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.announcements-modern-grid .announcement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.announcements-modern-grid .announcement-content {
+  padding: 2rem;
+}
+
+.announcements-modern-grid .announcement-date {
+  display: inline-block;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.announcements-modern-grid .announcement-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.announcements-modern-grid .announcement-excerpt {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.announcements-modern-grid .announcement-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.announcements-modern-grid .announcement-author {
+  font-weight: 600;
+}
+
+.announcements-modern-grid .announcement-button {
+  display: inline-flex;
+  align-items: center;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.announcements-modern-grid .announcement-button:hover {
+  background: var(--brand-secondary);
+  transform: translateX(5px);
+}
+
+/* Style 2: Modern Timeline Layout */
+.announcements-modern-timeline .announcements-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.announcements-modern-timeline .announcements-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transform: translateX(-50%);
+}
+
+.announcements-modern-timeline .announcement-card {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 45%;
+}
+
+.announcements-modern-timeline .announcement-card:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.announcements-modern-timeline .announcement-card:nth-child(even) {
+  left: 55%;
+  text-align: left;
+}
+
+.announcements-modern-timeline .announcement-card::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  border: 4px solid var(--brand-bg-primary);
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+
+.announcements-modern-timeline .announcement-card:nth-child(odd)::before {
+  right: -35px;
+}
+
+.announcements-modern-timeline .announcement-card:nth-child(even)::before {
+  left: -35px;
+}
+
+.announcements-modern-timeline .announcement-content {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Style 3: Modern Card Layout */
+.announcements-modern-cards .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.announcements-modern-cards .announcement-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.announcements-modern-cards .announcement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.announcements-modern-cards .announcement-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 4: Modern Horizontal Layout */
+.announcements-modern-horizontal .announcements-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.announcements-modern-horizontal .announcement-card {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.announcements-modern-horizontal .announcement-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.announcements-modern-horizontal .announcement-date-block {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.announcements-modern-horizontal .announcement-day {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.announcements-modern-horizontal .announcement-month {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Style 5: Modern Minimal Layout */
+.announcements-modern-minimal .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.announcements-modern-minimal .announcement-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.announcements-modern-minimal .announcement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+/* Style 6: Modern Bordered Layout */
+.announcements-modern-bordered .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.announcements-modern-bordered .announcement-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.announcements-modern-bordered .announcement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.announcements-modern-bordered .announcement-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.announcements-modern-bordered .announcement-card:hover::before {
+  width: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .announcements-section {
+    padding: 3rem 0;
+  }
+  
+  .announcements-section .container {
+    padding: 0 1rem;
+  }
+  
+  .announcements-modern-grid .announcements-container,
+  .announcements-modern-cards .announcements-container,
+  .announcements-modern-minimal .announcements-container,
+  .announcements-modern-bordered .announcements-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .announcements-modern-timeline .announcements-container::before {
+    left: 20px;
+  }
+  
+  .announcements-modern-timeline .announcement-card {
+    width: calc(100% - 60px);
+    left: 60px !important;
+    text-align: left;
+  }
+  
+  .announcements-modern-timeline .announcement-card::before {
+    left: -35px !important;
+  }
+  
+  .announcements-modern-horizontal .announcement-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+/* Style 7: Modern Gradient Layout */
+.announcements-modern-gradient .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.announcements-modern-gradient .announcement-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.announcements-modern-gradient .announcement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 8: Modern Split Layout */
+.announcements-modern-split .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.announcements-modern-split .announcement-card {
+  display: flex;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.announcements-modern-split .announcement-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 9: Modern Compact Layout */
+.announcements-modern-compact .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.announcements-modern-compact .announcement-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.announcements-modern-compact .announcement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+/* Style 10: Modern Asymmetric Layout */
+.announcements-modern-asymmetric .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.announcements-modern-asymmetric .announcement-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.announcements-modern-asymmetric .announcement-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.announcements-modern-asymmetric .announcement-card {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.announcements-modern-asymmetric .announcement-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Typography Focus Layout */
+.announcements-modern-typography .announcements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.announcements-modern-typography .announcement-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.announcements-modern-typography .announcement-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--brand-text-primary);
+}
+
+.announcements-modern-typography .announcement-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.announcements-modern-typography .announcement-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .announcements-modern-gradient .announcements-container,
+  .announcements-modern-compact .announcements-container,
+  .announcements-modern-asymmetric .announcements-container,
+  .announcements-modern-typography .announcements-container {
+    grid-template-columns: 1fr;
+  }
+
+  .announcements-modern-split .announcements-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .announcements-modern-split .announcement-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .announcements-modern-asymmetric .announcement-card:nth-child(odd),
+  .announcements-modern-asymmetric .announcement-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

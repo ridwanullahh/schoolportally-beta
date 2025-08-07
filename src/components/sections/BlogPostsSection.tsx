@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useBlogPosts } from '@/hooks/useBlogPosts';
+import '@/themes/styles/sections/blog-posts-modern.css';
 import '@/themes/styles/sections/blog-posts-ultra-modern.css';
 
 interface BlogPostsSectionProps {
@@ -10,7 +11,43 @@ interface BlogPostsSectionProps {
 const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   const { title } = section.content;
   const { posts, loading, error, getFeaturedPosts } = useBlogPosts();
-  const styleId = section.styleId || 'blog-posts-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'blog-posts-modern-grid',
+      '2': 'blog-posts-modern-featured',
+      '3': 'blog-posts-modern-masonry',
+      '4': 'blog-posts-modern-list',
+      '5': 'blog-posts-modern-stack',
+      '6': 'blog-posts-modern-minimal',
+      '7': 'blog-posts-modern-gradient',
+      '8': 'blog-posts-modern-split',
+      '9': 'blog-posts-modern-compact',
+      '10': 'blog-posts-modern-asymmetric',
+      '11': 'blog-posts-modern-typography',
+      // Existing ultra-modern styles (12+)
+      '12': 'blog-posts-floating-glass',
+      '13': 'blog-posts-card-slider',
+      '14': 'blog-posts-masonry-grid',
+      '15': 'blog-posts-timeline',
+      '16': 'blog-posts-magazine',
+      '17': 'blog-posts-minimal-cards',
+      '18': 'blog-posts-featured-grid',
+      '19': 'blog-posts-compact-list',
+      '20': 'blog-posts-image-focus',
+      '21': 'blog-posts-modern-tiles',
+      '22': 'blog-posts-elegant-cards',
+      '23': 'blog-posts-creative-layout',
+      '24': 'blog-posts-professional',
+      '25': 'blog-posts-academic',
+      '26': 'blog-posts-classic'
+    };
+    return styleMap[styleNumber] || 'blog-posts-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
 
   const defaultPosts = [
     {

@@ -1,0 +1,513 @@
+/* Modern Value Proposition Section Styles - 11 New Attractive UI/UX Designs */
+
+.value-proposition-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.value-proposition-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.value-proposition-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.value-proposition-modern-grid .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.value-proposition-modern-grid .value-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.value-proposition-modern-grid .value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.value-proposition-modern-grid .value-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+}
+
+.value-proposition-modern-grid .value-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.value-proposition-modern-grid .value-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 2: Modern Cards Layout */
+.value-proposition-modern-cards .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.value-proposition-modern-cards .value-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.value-proposition-modern-cards .value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.value-proposition-modern-cards .value-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 3: Modern Horizontal Layout */
+.value-proposition-modern-horizontal .values-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.value-proposition-modern-horizontal .value-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.value-proposition-modern-horizontal .value-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.value-proposition-modern-horizontal .value-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+}
+
+.value-proposition-modern-horizontal .value-content {
+  flex: 1;
+}
+
+.value-proposition-modern-horizontal .value-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.value-proposition-modern-horizontal .value-description {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Style 4: Modern Minimal Layout */
+.value-proposition-modern-minimal .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.value-proposition-modern-minimal .value-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.value-proposition-modern-minimal .value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+.value-proposition-modern-minimal .value-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--brand-bg-secondary);
+  border-radius: 50%;
+  margin: 2rem auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-primary);
+  transition: all 0.3s ease;
+}
+
+.value-proposition-modern-minimal .value-card:hover .value-icon {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  transform: scale(1.05);
+}
+
+.value-proposition-modern-minimal .value-title {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.value-proposition-modern-minimal .value-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Style 5: Modern Bordered Layout */
+.value-proposition-modern-bordered .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.value-proposition-modern-bordered .value-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.value-proposition-modern-bordered .value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.value-proposition-modern-bordered .value-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.value-proposition-modern-bordered .value-card:hover::before {
+  width: 4px;
+}
+
+/* Style 6: Modern Hexagon Layout */
+.value-proposition-modern-hexagon .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.value-proposition-modern-hexagon .value-card {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.value-proposition-modern-hexagon .value-icon {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-text-light);
+  transition: all 0.3s ease;
+}
+
+.value-proposition-modern-hexagon .value-card:hover .value-icon {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.value-proposition-modern-hexagon .value-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.value-proposition-modern-hexagon .value-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .value-proposition-section {
+    padding: 3rem 0;
+  }
+  
+  .value-proposition-section .container {
+    padding: 0 1rem;
+  }
+  
+  .value-proposition-modern-grid .values-container,
+  .value-proposition-modern-cards .values-container,
+  .value-proposition-modern-minimal .values-container,
+  .value-proposition-modern-bordered .values-container,
+  .value-proposition-modern-hexagon .values-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .value-proposition-modern-horizontal .value-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .value-proposition-modern-horizontal .value-icon {
+    margin: 0 auto;
+  }
+}
+
+/* Style 7: Modern Gradient Layout */
+.value-proposition-modern-gradient .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.value-proposition-modern-gradient .value-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.value-proposition-modern-gradient .value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 8: Modern Split Layout */
+.value-proposition-modern-split .values-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.value-proposition-modern-split .value-card {
+  display: flex;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.value-proposition-modern-split .value-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 9: Modern Compact Layout */
+.value-proposition-modern-compact .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.value-proposition-modern-compact .value-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.value-proposition-modern-compact .value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+/* Style 10: Modern Asymmetric Layout */
+.value-proposition-modern-asymmetric .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.value-proposition-modern-asymmetric .value-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.value-proposition-modern-asymmetric .value-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.value-proposition-modern-asymmetric .value-card {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.value-proposition-modern-asymmetric .value-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Typography Focus Layout */
+.value-proposition-modern-typography .values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.value-proposition-modern-typography .value-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.value-proposition-modern-typography .value-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--brand-text-primary);
+}
+
+.value-proposition-modern-typography .value-title .highlight {
+  color: var(--brand-primary);
+  position: relative;
+}
+
+.value-proposition-modern-typography .value-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--brand-primary);
+  opacity: 0.2;
+}
+
+.value-proposition-modern-typography .value-description {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+}
+
+/* Additional Responsive Rules for New Styles */
+@media (max-width: 768px) {
+  .value-proposition-modern-gradient .values-container,
+  .value-proposition-modern-compact .values-container,
+  .value-proposition-modern-asymmetric .values-container,
+  .value-proposition-modern-typography .values-container {
+    grid-template-columns: 1fr;
+  }
+
+  .value-proposition-modern-split .values-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .value-proposition-modern-split .value-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .value-proposition-modern-asymmetric .value-card:nth-child(odd),
+  .value-proposition-modern-asymmetric .value-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

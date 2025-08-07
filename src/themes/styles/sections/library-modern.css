@@ -1,0 +1,447 @@
+/* Modern Library Section Styles - 11 New Attractive UI/UX Designs */
+
+.library-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+
+  padding: 5rem 0;
+  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.library-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.library-section h2 {
+  text-align: center;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+/* Style 1: Modern Grid Layout */
+.library-modern-grid .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.library-modern-grid .book-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.library-modern-grid .book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary);
+}
+
+.library-modern-grid .book-cover {
+  width: 100px;
+  height: 140px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 8px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  font-size: 2rem;
+}
+
+.library-modern-grid .book-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.library-modern-grid .book-author {
+  font-size: 1rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.library-modern-grid .book-description {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.library-modern-grid .book-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+}
+
+/* Style 2: Modern Cards Layout */
+.library-modern-cards .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.library-modern-cards .book-card {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.library-modern-cards .book-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.library-modern-cards .book-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.library-modern-cards .book-cover {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  font-size: 3rem;
+}
+
+.library-modern-cards .book-content {
+  padding: 2rem;
+}
+
+/* Style 3: Modern List Layout */
+.library-modern-list .library-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.library-modern-list .book-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.library-modern-list .book-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.library-modern-list .book-cover {
+  width: 60px;
+  height: 80px;
+  background: var(--brand-primary);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  font-size: 1.5rem;
+}
+
+/* Style 4: Modern Minimal Layout */
+.library-modern-minimal .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.library-modern-minimal .book-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.library-modern-minimal .book-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 2px;
+}
+
+/* Style 5: Modern Bordered Layout */
+.library-modern-bordered .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.library-modern-bordered .book-card {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.library-modern-bordered .book-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+  transition: width 0.3s ease;
+  border-radius: 10px 0 0 10px;
+}
+
+.library-modern-bordered .book-card:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.library-modern-bordered .book-card:hover::before {
+  width: 4px;
+}
+
+/* Style 6: Modern Gradient Layout */
+.library-modern-gradient .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.library-modern-gradient .book-card {
+  background: linear-gradient(135deg, var(--brand-bg-primary) 0%, var(--brand-bg-secondary) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.library-modern-gradient .book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Style 7: Modern Compact Layout */
+.library-modern-compact .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.library-modern-compact .book-card {
+  background: var(--brand-bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.library-modern-compact .book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-width: 6px;
+}
+
+/* Style 8: Modern Asymmetric Layout */
+.library-modern-asymmetric .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.library-modern-asymmetric .book-card:nth-child(odd) {
+  background: var(--brand-bg-primary);
+  border-radius: 20px 5px 20px 5px;
+  margin-right: 1rem;
+}
+
+.library-modern-asymmetric .book-card:nth-child(even) {
+  background: var(--brand-bg-secondary);
+  border-radius: 5px 20px 5px 20px;
+  margin-left: 1rem;
+}
+
+.library-modern-asymmetric .book-card {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.library-modern-asymmetric .book-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 9: Modern Typography Focus Layout */
+.library-modern-typography .library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.library-modern-typography .book-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.library-modern-typography .book-title {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--brand-text-primary);
+}
+
+/* Style 10: Modern Split Layout */
+.library-modern-split .library-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.library-modern-split .book-card {
+  display: flex;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.library-modern-split .book-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Style 11: Modern Shelf Layout */
+.library-modern-shelf .library-container {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.library-modern-shelf .shelf {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.library-modern-shelf .book-spine {
+  flex: 0 0 60px;
+  height: 200px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: var(--brand-text-light);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.library-modern-shelf .book-spine:hover {
+  transform: translateY(-10px);
+  filter: brightness(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .library-section {
+    padding: 3rem 0;
+  }
+  
+  .library-section .container {
+    padding: 0 1rem;
+  }
+  
+  .library-modern-grid .library-container,
+  .library-modern-cards .library-container,
+  .library-modern-minimal .library-container,
+  .library-modern-bordered .library-container,
+  .library-modern-gradient .library-container,
+  .library-modern-compact .library-container,
+  .library-modern-asymmetric .library-container,
+  .library-modern-typography .library-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .library-modern-list .book-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .library-modern-split .library-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .library-modern-split .book-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .library-modern-asymmetric .book-card:nth-child(odd),
+  .library-modern-asymmetric .book-card:nth-child(even) {
+    margin: 0;
+    border-radius: 16px;
+  }
+}

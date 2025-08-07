@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useGallery, GalleryImage } from '@/hooks/useGallery';
+import '@/themes/styles/sections/gallery-preview-modern.css';
 import '@/themes/styles/sections/gallery-preview-ultra-modern.css';
 
 interface GalleryPreviewSectionProps {
@@ -10,7 +11,43 @@ interface GalleryPreviewSectionProps {
 const GalleryPreviewSection: React.FC<GalleryPreviewSectionProps> = ({ section }) => {
   const { title, images, featuredImage } = section.content;
   const { getRecentImages, loading } = useGallery();
-  const styleId = section.styleId || 'gallery-floating-masonry';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'gallery-preview-modern-grid',
+      '2': 'gallery-preview-modern-masonry',
+      '3': 'gallery-preview-modern-featured',
+      '4': 'gallery-preview-modern-cards',
+      '5': 'gallery-preview-modern-minimal',
+      '6': 'gallery-preview-modern-bordered',
+      '7': 'gallery-preview-modern-gradient',
+      '8': 'gallery-preview-modern-compact',
+      '9': 'gallery-preview-modern-asymmetric',
+      '10': 'gallery-preview-modern-typography',
+      '11': 'gallery-preview-modern-slider',
+      // Existing ultra-modern styles (12+)
+      '12': 'gallery-floating-masonry',
+      '13': 'gallery-holographic-grid',
+      '14': 'gallery-neon-showcase',
+      '15': 'gallery-particle-bg',
+      '16': 'gallery-morphing-tiles',
+      '17': 'gallery-cyber-grid',
+      '18': 'gallery-liquid-metal',
+      '19': 'gallery-aurora-bg',
+      '20': 'gallery-matrix-rain',
+      '21': 'gallery-quantum-field',
+      '22': 'gallery-neural-network',
+      '23': 'gallery-hologram-effect',
+      '24': 'gallery-energy-waves',
+      '25': 'gallery-digital-rain',
+      '26': 'gallery-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'gallery-preview-modern-grid';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [activeImage, setActiveImage] = useState(0);
   const [activeCategory, setActiveCategory] = useState('All');
   const [isGridView, setIsGridView] = useState(true);

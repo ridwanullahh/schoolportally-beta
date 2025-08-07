@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section } from '@/types';
 import * as Icons from 'lucide-react';
+import '@/themes/styles/sections/teaser-modern.css';
 import '@/themes/styles/sections/teaser.css';
 import { Button } from '@/components/ui/button';
 
@@ -11,7 +12,43 @@ interface TeaserSectionProps {
 
 const TeaserSection: React.FC<TeaserSectionProps> = ({ section }) => {
   const { title, description, buttonText, buttonLink, icon, flippedContent, collapsedHeight } = section.content;
-  const styleId = section.styleId || 'teaser-banner-strip';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'teaser-modern-banner',
+      '2': 'teaser-modern-card',
+      '3': 'teaser-modern-split',
+      '4': 'teaser-modern-minimal',
+      '5': 'teaser-modern-bordered',
+      '6': 'teaser-modern-gradient',
+      '7': 'teaser-modern-compact',
+      '8': 'teaser-modern-asymmetric',
+      '9': 'teaser-modern-typography',
+      '10': 'teaser-modern-floating',
+      '11': 'teaser-modern-interactive',
+      // Existing styles (12+)
+      '12': 'teaser-banner-strip',
+      '13': 'teaser-floating-card',
+      '14': 'teaser-split-content',
+      '15': 'teaser-minimal-text',
+      '16': 'teaser-gradient-bg',
+      '17': 'teaser-bordered-box',
+      '18': 'teaser-icon-focus',
+      '19': 'teaser-call-to-action',
+      '20': 'teaser-expandable',
+      '21': 'teaser-flip-card',
+      '22': 'teaser-animated-bg',
+      '23': 'teaser-parallax',
+      '24': 'teaser-video-bg',
+      '25': 'teaser-countdown',
+      '26': 'teaser-interactive'
+    };
+    return styleMap[styleNumber] || 'teaser-modern-banner';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [isExpanded, setIsExpanded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);

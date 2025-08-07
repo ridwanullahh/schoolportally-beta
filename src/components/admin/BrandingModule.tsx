@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { ColorWheelIcon } from '@radix-ui/react-icons';
 import { Branding } from '@/types';
+import FontSelector from './FontSelector';
 
 const BrandingModule = () => {
   const { school, updateSchool, loading } = useSchool();
@@ -219,48 +220,73 @@ const BrandingModule = () => {
           </TabsContent>
 
           <TabsContent value="typography" className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="fontFamily">Body Font Family</Label>
-                <Input
-                  id="fontFamily"
-                  type="text"
-                  value={branding.fontFamily || 'Inter, system-ui, sans-serif'}
-                  onChange={(e) => handleBrandingChange('fontFamily', e.target.value)}
-                  placeholder="e.g., 'Inter', sans-serif"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="headingFontFamily">Heading Font Family</Label>
-                <Input
-                  id="headingFontFamily"
-                  type="text"
-                  value={branding.headingFontFamily || 'Inter, system-ui, sans-serif'}
-                  onChange={(e) => handleBrandingChange('headingFontFamily', e.target.value)}
-                  placeholder="e.g., 'Inter', sans-serif"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="logoUrl">Logo URL</Label>
-                <Input
-                  id="logoUrl"
-                  type="url"
-                  value={branding.logoUrl || ''}
-                  onChange={(e) => handleBrandingChange('logoUrl', e.target.value)}
-                  placeholder="https://example.com/logo.png"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="faviconUrl">Favicon URL</Label>
-                <Input
-                  id="faviconUrl"
-                  type="url"
-                  value={branding.faviconUrl || ''}
-                  onChange={(e) => handleBrandingChange('faviconUrl', e.target.value)}
-                  placeholder="https://example.com/favicon.ico"
-                />
-              </div>
-            </div>
+            {/* Advanced Font Selection System */}
+            <FontSelector onFontChange={(fontId, target) => {
+              // Font changes are handled automatically by the FontSelector
+              // and integrated with the school branding system
+            }} />
+
+            {/* Legacy Font Settings */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>Legacy Font Settings</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="fontFamily">Body Font Family (Legacy)</Label>
+                    <Input
+                      id="fontFamily"
+                      type="text"
+                      value={branding.fontFamily || 'Inter, system-ui, sans-serif'}
+                      onChange={(e) => handleBrandingChange('fontFamily', e.target.value)}
+                      placeholder="e.g., 'Inter', sans-serif"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="headingFontFamily">Heading Font Family (Legacy)</Label>
+                    <Input
+                      id="headingFontFamily"
+                      type="text"
+                      value={branding.headingFontFamily || 'Inter, system-ui, sans-serif'}
+                      onChange={(e) => handleBrandingChange('headingFontFamily', e.target.value)}
+                      placeholder="e.g., 'Inter', sans-serif"
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Logo and Favicon Settings */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>Logo & Favicon</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="logoUrl">Logo URL</Label>
+                    <Input
+                      id="logoUrl"
+                      type="url"
+                      value={branding.logoUrl || ''}
+                      onChange={(e) => handleBrandingChange('logoUrl', e.target.value)}
+                      placeholder="https://example.com/logo.png"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="faviconUrl">Favicon URL</Label>
+                    <Input
+                      id="faviconUrl"
+                      type="url"
+                      value={branding.faviconUrl || ''}
+                      onChange={(e) => handleBrandingChange('faviconUrl', e.target.value)}
+                      placeholder="https://example.com/favicon.ico"
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
 

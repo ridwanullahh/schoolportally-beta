@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { ModernDashboardLayout } from '@/components/layout/ModernDashboardLayout';
 import { Routes, Route } from 'react-router-dom';
 import { Book, Calendar, Bell, FileText, Users, DollarSign, BookOpen } from 'lucide-react';
 import AnnouncementsModule from '@/components/users/AnnouncementsModule';
@@ -13,19 +13,24 @@ import ELibraryModule from '@/components/users/ELibraryModule';
 import SupportModule from '@/components/users/SupportModule';
 
 const sidebarItems = [
-    { name: 'Announcements', href: 'announcements', icon: Bell, active: true },
-    { name: 'My Classes', href: 'classes', icon: Book },
-    { name: 'My Subjects', href: 'subjects', icon: BookOpen },
-    { name: 'My Results', href: 'results', icon: FileText },
-    { name: 'My Fees', href: 'fees', icon: DollarSign },
-    { name: 'Calendar', href: 'calendar', icon: Calendar },
-    { name: 'E-Library', href: 'elibrary', icon: Book },
-    { name: 'Support', href: 'support', icon: Users },
+    { id: 'announcements', label: 'Announcements', href: 'announcements', icon: Bell },
+    { id: 'classes', label: 'My Classes', href: 'classes', icon: Book },
+    { id: 'subjects', label: 'My Subjects', href: 'subjects', icon: BookOpen },
+    { id: 'results', label: 'My Results', href: 'results', icon: FileText },
+    { id: 'fees', label: 'My Fees', href: 'fees', icon: DollarSign },
+    { id: 'calendar', label: 'Calendar', href: 'calendar', icon: Calendar },
+    { id: 'elibrary', label: 'E-Library', href: 'elibrary', icon: Book },
+    { id: 'support', label: 'Support', href: 'support', icon: Users },
 ];
 
 export default function StudentDashboard() {
     return (
-        <DashboardLayout sidebarItems={sidebarItems} allowedRoles={['student']}>
+        <ModernDashboardLayout
+            sidebarItems={sidebarItems}
+            allowedRoles={['student']}
+            title="Student Dashboard"
+            subtitle="Access your classes and resources"
+        >
             <Routes>
                <Route path="/">
                    <Route index element={<AnnouncementsModule />} />
@@ -40,6 +45,6 @@ export default function StudentDashboard() {
                    <Route path="support" element={<SupportModule />} />
                </Route>
             </Routes>
-        </DashboardLayout>
+        </ModernDashboardLayout>
     );
 };

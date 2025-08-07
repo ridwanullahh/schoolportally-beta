@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useResults } from '@/hooks/useResults';
+import '@/themes/styles/sections/result-checker-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,43 @@ interface ResultCheckerSectionProps {
 
 const ResultCheckerSection: React.FC<ResultCheckerSectionProps> = ({ section }) => {
   const { title } = section.content;
-  const styleId = section.styleId || 'result-checker-floating-glass';
+
+  // Map numbered styles to actual style IDs
+  const getStyleId = (styleNumber: string) => {
+    const styleMap: { [key: string]: string } = {
+      // New modern styles (1-11)
+      '1': 'result-checker-modern-centered',
+      '2': 'result-checker-modern-split',
+      '3': 'result-checker-modern-minimal',
+      '4': 'result-checker-modern-bordered',
+      '5': 'result-checker-modern-gradient',
+      '6': 'result-checker-modern-card',
+      '7': 'result-checker-modern-compact',
+      '8': 'result-checker-modern-asymmetric',
+      '9': 'result-checker-modern-typography',
+      '10': 'result-checker-modern-two-column',
+      '11': 'result-checker-modern-floating',
+      // Existing ultra-modern styles (12+)
+      '12': 'result-checker-floating-glass',
+      '13': 'result-checker-holographic-display',
+      '14': 'result-checker-neon-interface',
+      '15': 'result-checker-particle-bg',
+      '16': 'result-checker-morphing-form',
+      '17': 'result-checker-cyber-grid',
+      '18': 'result-checker-liquid-metal',
+      '19': 'result-checker-aurora-bg',
+      '20': 'result-checker-matrix-rain',
+      '21': 'result-checker-quantum-field',
+      '22': 'result-checker-neural-network',
+      '23': 'result-checker-hologram-effect',
+      '24': 'result-checker-energy-waves',
+      '25': 'result-checker-digital-rain',
+      '26': 'result-checker-mosaic-layout'
+    };
+    return styleMap[styleNumber] || 'result-checker-modern-centered';
+  };
+
+  const styleId = getStyleId(section.styleId || '1');
   const [studentId, setStudentId] = useState('');
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
