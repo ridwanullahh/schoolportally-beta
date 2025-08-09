@@ -173,6 +173,8 @@ class WebRTCManager {
   }
 
   private handleDataConnection(conn: any): void {
+    // TODO: type the connection when PeerJS types are available in your project
+
     conn.on('open', () => {
       console.log('Data connection opened with:', conn.peer);
     });
