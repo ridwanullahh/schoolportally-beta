@@ -72,7 +72,7 @@ class AIService {
     return true;
   }
 
-  private getContextPrompt(context: string, contextData?: any): string {
+  private getContextPrompt(context: string, contextData?: Record<string, unknown>): string {
     const basePrompts = {
       admin: `You are an AI assistant helping a school administrator. You can help with:
         - Content creation for website sections and marketing materials
@@ -150,7 +150,7 @@ class AIService {
     this.conversationMemory.set(sessionId, history);
   }
 
-  private buildConversationContext(sessionId: string, currentMessage: string): any[] {
+  private buildConversationContext(sessionId: string, currentMessage: string): Array<{ parts: Array<{ text: string }> }> {
     const history = this.getConversationHistory(sessionId);
     const contents = [];
 

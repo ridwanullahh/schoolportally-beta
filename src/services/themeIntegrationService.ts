@@ -216,23 +216,9 @@ class ThemeIntegrationService {
     const themeConfig = this.themeComponents[themeId];
     if (!themeConfig) return;
 
-    const loadPromises = themeConfig.cssFiles.map(async (cssFile) => {
-      if (this.loadedCSSFiles.has(cssFile)) return;
-
-      return new Promise<void>((resolve, reject) => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssFile;
-        link.onload = () => {
-          this.loadedCSSFiles.add(cssFile);
-          resolve();
-        };
-        link.onerror = () => reject(new Error(`Failed to load CSS: ${cssFile}`));
-        document.head.appendChild(link);
-      });
-    });
-
-    await Promise.all(loadPromises);
+    // In Vite, CSS is bundled via imports. We ensure they are imported in ThemeSwitcher.
+    // Here we simply mark them as loaded to avoid redundant work.
+    themeConfig.cssFiles.forEach((cssFile) => this.loadedCSSFiles.add(cssFile));
   }
 
   private applyThemeColors(themeId: string, school: School): void {
