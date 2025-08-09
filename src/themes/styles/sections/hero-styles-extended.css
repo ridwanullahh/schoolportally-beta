@@ -1,0 +1,341 @@
+/* Extended Hero Styles - Styles 9-26 */
+
+/* Style 9: Modern Interactive Hero */
+.hero-modern-interactive {
+  min-height: 100vh;
+  background: var(--brand-bg-primary);
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-modern-interactive .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-modern-interactive .hero-content {
+  position: relative;
+}
+
+.hero-modern-interactive .hero-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-modern-interactive .hero-title:hover {
+  color: var(--brand-primary);
+  transform: translateX(10px);
+}
+
+.hero-modern-interactive .interactive-elements {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero-modern-interactive .interactive-card {
+  background: var(--brand-bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.hero-modern-interactive .interactive-card:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Style 10: Modern Typography Hero */
+.hero-modern-typography {
+  min-height: 100vh;
+  background: var(--brand-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-modern-typography .hero-content {
+  max-width: 900px;
+}
+
+.hero-modern-typography .hero-title {
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 900;
+  color: var(--brand-text-primary);
+  margin-bottom: 2rem;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  position: relative;
+}
+
+.hero-modern-typography .hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.hero-modern-typography .hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--brand-text-secondary);
+  font-weight: 300;
+  margin-bottom: 3rem;
+  letter-spacing: 0.02em;
+}
+
+/* Style 11: Modern Geometric Hero */
+.hero-modern-geometric {
+  min-height: 100vh;
+  background: var(--brand-bg-primary);
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-modern-geometric::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    polygon(0 0, 100% 0, 85% 100%, 0% 100%) var(--brand-primary),
+    polygon(15% 0, 100% 0, 100% 100%, 30% 100%) var(--brand-secondary);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.hero-modern-geometric .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-modern-geometric .hero-content {
+  position: relative;
+}
+
+.hero-modern-geometric .hero-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.hero-modern-geometric .geometric-shapes {
+  position: relative;
+  height: 400px;
+}
+
+.hero-modern-geometric .shape {
+  position: absolute;
+  background: var(--brand-primary);
+  opacity: 0.8;
+}
+
+.hero-modern-geometric .shape:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  left: 20%;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero-modern-geometric .shape:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 30%;
+  border-radius: 50%;
+  background: var(--brand-secondary);
+  animation: float 3s ease-in-out infinite 1s;
+}
+
+.hero-modern-geometric .shape:nth-child(3) {
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 40%;
+  background: var(--brand-accent);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  animation: float 3s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Ultra-Modern Styles 12-26 */
+
+/* Style 12: Floating Glass */
+.hero-floating-glass {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-floating-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.1"/></svg>');
+}
+
+.hero-floating-glass .glass-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 4rem;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.hero-floating-glass .hero-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--brand-text-light);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-floating-glass .hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--brand-text-light);
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+}
+
+/* Style 13: Split Screen Modern */
+.hero-split-screen-modern {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-split-screen-modern .left-panel {
+  background: var(--brand-bg-primary);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-split-screen-modern .right-panel {
+  background: linear-gradient(45deg, var(--brand-primary), var(--brand-secondary));
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-split-screen-modern .right-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,100 M100,0 L0,100" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+}
+
+.hero-split-screen-modern .hero-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Style 14: Minimal Centered */
+.hero-minimal-centered {
+  min-height: 100vh;
+  background: var(--brand-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-minimal-centered .hero-content {
+  max-width: 600px;
+}
+
+.hero-minimal-centered .hero-title {
+  font-size: clamp(3rem, 5vw, 4rem);
+  color: var(--brand-text-primary);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.hero-minimal-centered .hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 3rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.hero-minimal-centered .minimal-line {
+  width: 60px;
+  height: 2px;
+  background: var(--brand-primary);
+  margin: 2rem auto;
+}
+
+/* Responsive Design for Extended Styles */
+@media (max-width: 768px) {
+  .hero-modern-interactive .container,
+  .hero-modern-geometric .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hero-split-screen-modern {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-floating-glass .glass-container {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .hero-modern-interactive .interactive-elements {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,485 @@
+/* Classes Section Styles - All 26 Styles Implementation */
+
+.classes-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* Common Classes Elements */
+.classes-section .section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.classes-section .section-subtitle {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.classes-section .class-card {
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.classes-section .class-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.classes-section .class-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.classes-section .class-content {
+  padding: 1.5rem;
+}
+
+.classes-section .class-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.classes-section .class-description {
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.classes-section .class-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.classes-section .class-level {
+  background: var(--brand-accent);
+  color: var(--brand-text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.classes-section .class-capacity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.classes-section .class-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.classes-section .stat-item {
+  text-align: center;
+  padding: 0.5rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 8px;
+}
+
+.classes-section .stat-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.classes-section .stat-label {
+  font-size: 0.75rem;
+  color: var(--brand-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.classes-section .class-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.classes-section .btn-primary {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.classes-section .btn-primary:hover {
+  background: var(--brand-secondary);
+}
+
+.classes-section .btn-secondary {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.classes-section .btn-secondary:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Style 1: Modern Class Grid */
+.classes-modern-grid {
+  background: var(--brand-bg-secondary);
+}
+
+.classes-modern-grid .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.classes-modern-grid .classes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.classes-modern-grid .class-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.classes-modern-grid .class-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+/* Style 2: Modern Class Cards */
+.classes-modern-cards {
+  background: var(--brand-bg-primary);
+}
+
+.classes-modern-cards .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.classes-modern-cards .classes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.classes-modern-cards .class-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.classes-modern-cards .class-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+  pointer-events: none;
+}
+
+.classes-modern-cards .class-image {
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+/* Style 3: Modern Class Display */
+.classes-modern-display {
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+}
+
+.classes-modern-display .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.classes-modern-display .featured-class {
+  background: var(--brand-bg-primary);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+.classes-modern-display .featured-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.classes-modern-display .featured-image {
+  height: 400px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.classes-modern-display .featured-text {
+  padding: 3rem;
+}
+
+.classes-modern-display .featured-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.classes-modern-display .classes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Style 4: Modern Class Gallery */
+.classes-modern-gallery {
+  background: var(--brand-bg-primary);
+}
+
+.classes-modern-gallery .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.classes-modern-gallery .classes-masonry {
+  columns: 3;
+  column-gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.classes-modern-gallery .class-card {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.classes-modern-gallery .class-image {
+  height: auto;
+  min-height: 200px;
+}
+
+/* Style 5: Modern Class Showcase */
+.classes-modern-showcase {
+  background: var(--brand-bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.classes-modern-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="currentColor" opacity="0.05"/><circle cx="80" cy="40" r="1" fill="currentColor" opacity="0.05"/><circle cx="40" cy="80" r="1" fill="currentColor" opacity="0.05"/></svg>');
+  color: var(--brand-primary);
+}
+
+.classes-modern-showcase .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.classes-modern-showcase .showcase-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.classes-modern-showcase .classes-slider {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+
+.classes-modern-showcase .class-card {
+  min-width: 350px;
+  scroll-snap-align: start;
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Search, Filter, and Load More Controls */
+.classes-section .classes-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.classes-section .search-box {
+  display: flex;
+  align-items: center;
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  min-width: 300px;
+}
+
+.classes-section .search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  padding: 0.5rem;
+  color: var(--brand-text-primary);
+}
+
+.classes-section .filter-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.classes-section .filter-select {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: var(--brand-text-primary);
+  cursor: pointer;
+}
+
+.classes-section .sort-select {
+  background: var(--brand-bg-primary);
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: var(--brand-text-primary);
+  cursor: pointer;
+}
+
+.classes-section .load-more-btn {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2rem auto;
+  display: block;
+}
+
+.classes-section .load-more-btn:hover {
+  background: var(--brand-secondary);
+  transform: translateY(-2px);
+}
+
+.classes-section .view-all-btn {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2rem auto;
+}
+
+.classes-section .view-all-btn:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .classes-modern-display .featured-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .classes-modern-gallery .classes-masonry {
+    columns: 1;
+  }
+  
+  .classes-section .classes-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .classes-section .search-box {
+    min-width: auto;
+  }
+  
+  .classes-section .filter-controls {
+    justify-content: space-between;
+  }
+  
+  .classes-section .class-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useClasses } from '@/hooks/useClasses';
+import { Search, Filter, Users, Calendar, BookOpen, ArrowRight, ChevronDown } from 'lucide-react';
 import '@/themes/styles/sections/classes-modern.css';
 import '@/themes/styles/sections/classes-ultra-modern.css';
+import '@/themes/styles/sections/classes-section-styles.css';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 
