@@ -1,9 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { usePrograms } from '@/hooks/usePrograms';
+import { Search, Filter, Calendar, User, ArrowRight, ChevronDown, Clock, Users } from 'lucide-react';
 import '@/themes/styles/sections/programs-modern.css';
 import '@/themes/styles/sections/programs-ultra-modern.css';
+import '@/themes/styles/sections/programs-section-styles.css';
 import { Button } from '@/components/ui/button';
 
 interface ProgramsSectionProps {
@@ -11,7 +12,22 @@ interface ProgramsSectionProps {
 }
 
 const ProgramsSection: React.FC<ProgramsSectionProps> = ({ section }) => {
-  const { title } = section.content;
+  const { content, settings } = section;
+
+  // Section settings with defaults
+  const programsToShow = parseInt(settings?.programsToShow || '6');
+  const enableSearch = settings?.enableSearch !== false;
+  const enableFiltering = settings?.enableFiltering !== false;
+  const enableSorting = settings?.enableSorting !== false;
+  const enableLoadMore = settings?.enableLoadMore !== false;
+  const showViewAllButton = settings?.showViewAllButton !== false;
+
+  // State for controls
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [sortBy, setSortBy] = useState('date');
+  const [displayedPrograms, setDisplayedPrograms] = useState(programsToShow);
+  const [filteredPrograms, setFilteredPrograms] = useState<any[]>([]);
 
   // Map numbered styles to actual style IDs
   const getStyleId = (styleNumber: string) => {

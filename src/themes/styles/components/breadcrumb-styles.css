@@ -1,0 +1,534 @@
+/* Breadcrumb Styles - All 26 Styles Implementation */
+
+.breadcrumb {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  padding: 1rem 0;
+}
+
+/* Common Breadcrumb Elements */
+.breadcrumb .breadcrumb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.breadcrumb .breadcrumb-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.breadcrumb .breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb .breadcrumb-link {
+  color: var(--brand-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.breadcrumb .breadcrumb-link:hover {
+  color: var(--brand-primary);
+  background: var(--brand-bg-secondary);
+}
+
+.breadcrumb .breadcrumb-current {
+  color: var(--brand-text-primary);
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+.breadcrumb .breadcrumb-separator {
+  color: var(--brand-text-secondary);
+  margin: 0 0.5rem;
+  opacity: 0.6;
+}
+
+/* Style 1: Modern Clean Breadcrumb */
+.breadcrumb-modern-clean {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.breadcrumb-modern-clean .breadcrumb-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.breadcrumb-modern-clean .breadcrumb-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  transition: width 0.3s ease;
+}
+
+.breadcrumb-modern-clean .breadcrumb-link:hover::before {
+  width: 100%;
+}
+
+.breadcrumb-modern-clean .breadcrumb-current {
+  background: var(--brand-bg-secondary);
+  border-radius: 6px;
+}
+
+/* Style 2: Modern Gradient Breadcrumb */
+.breadcrumb-modern-gradient {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+}
+
+.breadcrumb-modern-gradient .breadcrumb-link,
+.breadcrumb-modern-gradient .breadcrumb-current,
+.breadcrumb-modern-gradient .breadcrumb-separator {
+  color: var(--brand-text-light);
+}
+
+.breadcrumb-modern-gradient .breadcrumb-link:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--brand-text-light);
+}
+
+.breadcrumb-modern-gradient .breadcrumb-current {
+  background: rgba(255,255,255,0.2);
+  border-radius: 6px;
+}
+
+/* Style 3: Modern Card Breadcrumb */
+.breadcrumb-modern-card {
+  background: var(--brand-bg-secondary);
+  padding: 1.5rem 0;
+}
+
+.breadcrumb-modern-card .breadcrumb-container {
+  background: var(--brand-bg-primary);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.breadcrumb-modern-card .breadcrumb-link {
+  background: var(--brand-bg-secondary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.breadcrumb-modern-card .breadcrumb-link:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+.breadcrumb-modern-card .breadcrumb-current {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+/* Style 4: Modern Minimal Breadcrumb */
+.breadcrumb-modern-minimal {
+  background: transparent;
+  padding: 0.5rem 0;
+}
+
+.breadcrumb-modern-minimal .breadcrumb-link {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-modern-minimal .breadcrumb-current {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-modern-minimal .breadcrumb-separator {
+  font-size: 0.75rem;
+}
+
+/* Style 5: Modern Pill Breadcrumb */
+.breadcrumb-modern-pill {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.breadcrumb-modern-pill .breadcrumb-link {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-modern-pill .breadcrumb-link:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+.breadcrumb-modern-pill .breadcrumb-current {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-modern-pill .breadcrumb-separator {
+  display: none;
+}
+
+/* Style 6: Modern Arrow Breadcrumb */
+.breadcrumb-modern-arrow {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.breadcrumb-modern-arrow .breadcrumb-item {
+  position: relative;
+  background: var(--brand-bg-secondary);
+  margin-right: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+}
+
+.breadcrumb-modern-arrow .breadcrumb-item:first-child {
+  padding-left: 1rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+}
+
+.breadcrumb-modern-arrow .breadcrumb-item:last-child {
+  background: var(--brand-primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%);
+}
+
+.breadcrumb-modern-arrow .breadcrumb-item:last-child .breadcrumb-current {
+  color: var(--brand-text-light);
+}
+
+.breadcrumb-modern-arrow .breadcrumb-separator {
+  display: none;
+}
+
+/* Style 7: Modern Floating Breadcrumb */
+.breadcrumb-modern-floating {
+  background: transparent;
+  padding: 1.5rem 0;
+}
+
+.breadcrumb-modern-floating .breadcrumb-container {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+/* Style 8: Modern Compact Breadcrumb */
+.breadcrumb-modern-compact {
+  background: var(--brand-bg-secondary);
+  padding: 0.5rem 0;
+}
+
+.breadcrumb-modern-compact .breadcrumb-link,
+.breadcrumb-modern-compact .breadcrumb-current {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.breadcrumb-modern-compact .breadcrumb-separator {
+  font-size: 0.75rem;
+  margin: 0 0.25rem;
+}
+
+/* Style 9: Modern Icon Breadcrumb */
+.breadcrumb-modern-icon {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.breadcrumb-modern-icon .breadcrumb-link,
+.breadcrumb-modern-icon .breadcrumb-current {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb-modern-icon .breadcrumb-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.breadcrumb-modern-icon .breadcrumb-link:hover .breadcrumb-icon {
+  opacity: 1;
+}
+
+/* Style 10: Modern Dropdown Breadcrumb */
+.breadcrumb-modern-dropdown {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.breadcrumb-modern-dropdown .breadcrumb-item {
+  position: relative;
+}
+
+.breadcrumb-modern-dropdown .breadcrumb-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--brand-bg-primary);
+  border: 1px solid var(--brand-bg-tertiary);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.breadcrumb-modern-dropdown .breadcrumb-item:hover .breadcrumb-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.breadcrumb-modern-dropdown .dropdown-item {
+  padding: 0.5rem 1rem;
+  color: var(--brand-text-secondary);
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb-modern-dropdown .dropdown-item:hover {
+  background: var(--brand-bg-secondary);
+  color: var(--brand-primary);
+}
+
+/* Style 11: Modern Progress Breadcrumb */
+.breadcrumb-modern-progress {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+  position: relative;
+}
+
+.breadcrumb-modern-progress::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--brand-primary);
+  width: var(--progress-width, 50%);
+  transition: width 0.3s ease;
+}
+
+.breadcrumb-modern-progress .breadcrumb-item {
+  position: relative;
+  padding: 0.75rem 1rem;
+}
+
+.breadcrumb-modern-progress .breadcrumb-item.completed::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-modern-progress .breadcrumb-item.completed {
+  padding-left: 2rem;
+}
+
+/* Ultra-Modern Styles (12-26) */
+
+/* Style 12: Neon Breadcrumb */
+.breadcrumb-neon {
+  background: #0a0a0a;
+  border-bottom: 1px solid #333;
+  padding: 1rem 0;
+}
+
+.breadcrumb-neon .breadcrumb-link,
+.breadcrumb-neon .breadcrumb-current {
+  color: #00f5ff;
+  text-shadow: 0 0 10px #00f5ff;
+  border: 1px solid #00f5ff;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.breadcrumb-neon .breadcrumb-link:hover {
+  background: rgba(0,245,255,0.1);
+  box-shadow: 0 0 20px #00f5ff;
+}
+
+.breadcrumb-neon .breadcrumb-current {
+  background: rgba(0,245,255,0.2);
+  box-shadow: 0 0 15px #00f5ff;
+}
+
+.breadcrumb-neon .breadcrumb-separator {
+  color: #00f5ff;
+  text-shadow: 0 0 5px #00f5ff;
+}
+
+/* Style 13: Glass Morphism Breadcrumb */
+.breadcrumb-glass {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.breadcrumb-glass .breadcrumb-link {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.breadcrumb-glass .breadcrumb-link:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.breadcrumb-glass .breadcrumb-current {
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+/* Style 14: Holographic Breadcrumb */
+.breadcrumb-holographic {
+  background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+  background-size: 400% 400%;
+  animation: holographicShift 4s ease-in-out infinite;
+  padding: 1rem 0;
+}
+
+@keyframes holographicShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.breadcrumb-holographic .breadcrumb-link,
+.breadcrumb-holographic .breadcrumb-current,
+.breadcrumb-holographic .breadcrumb-separator {
+  color: var(--brand-text-light);
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.breadcrumb-holographic .breadcrumb-link:hover {
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+
+.breadcrumb-holographic .breadcrumb-current {
+  background: rgba(255,255,255,0.2);
+  border-radius: 6px;
+}
+
+/* Style 15: Particle Breadcrumb */
+.breadcrumb-particle {
+  background: #1a1a2e;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.breadcrumb-particle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="90" cy="20" r="1" fill="white" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="20" cy="90" r="1" fill="white" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/></circle></svg>');
+}
+
+.breadcrumb-particle .breadcrumb-container {
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb-particle .breadcrumb-link,
+.breadcrumb-particle .breadcrumb-current,
+.breadcrumb-particle .breadcrumb-separator {
+  color: #ffffff;
+}
+
+.breadcrumb-particle .breadcrumb-link:hover {
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+
+.breadcrumb-particle .breadcrumb-current {
+  background: rgba(255,255,255,0.2);
+  border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .breadcrumb .breadcrumb-list {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .breadcrumb .breadcrumb-link,
+  .breadcrumb .breadcrumb-current {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .breadcrumb-modern-arrow .breadcrumb-item {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .breadcrumb-modern-card .breadcrumb-container {
+    padding: 1rem;
+  }
+  
+  .breadcrumb-modern-floating .breadcrumb-container {
+    padding: 0.75rem 1rem;
+  }
+}

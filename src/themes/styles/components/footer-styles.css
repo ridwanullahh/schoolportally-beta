@@ -1,0 +1,503 @@
+/* School Footer Styles - All 26 Styles Implementation */
+
+.school-footer {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  margin-top: auto;
+}
+
+/* Common Footer Elements */
+.school-footer .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.school-footer .footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.school-footer .footer-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.school-footer .footer-section p,
+.school-footer .footer-section li {
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.school-footer .footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.school-footer .footer-section a {
+  color: var(--brand-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.school-footer .footer-section a:hover {
+  color: var(--brand-primary);
+}
+
+.school-footer .social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.school-footer .social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--brand-bg-secondary);
+  border-radius: 8px;
+  color: var(--brand-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.school-footer .social-link:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  transform: translateY(-2px);
+}
+
+.school-footer .footer-bottom {
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.school-footer .copyright {
+  color: var(--brand-text-secondary);
+  font-size: 0.875rem;
+}
+
+.school-footer .footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.school-footer .footer-links a {
+  color: var(--brand-text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.school-footer .footer-links a:hover {
+  color: var(--brand-primary);
+}
+
+/* Style 1: Modern Clean Footer */
+.footer-modern-clean {
+  background: var(--brand-bg-primary);
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-modern-clean .footer-section h3 {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-modern-clean .footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--brand-primary);
+}
+
+.footer-modern-clean .school-info {
+  background: var(--brand-bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+/* Style 2: Modern Gradient Footer */
+.footer-modern-gradient {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  padding: 3rem 0 1.5rem;
+  color: var(--brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-modern-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+}
+
+.footer-modern-gradient .footer-container {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-modern-gradient .footer-section h3,
+.footer-modern-gradient .footer-section p,
+.footer-modern-gradient .footer-section li,
+.footer-modern-gradient .footer-section a {
+  color: var(--brand-text-light);
+}
+
+.footer-modern-gradient .footer-section a:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+.footer-modern-gradient .social-link {
+  background: rgba(255,255,255,0.1);
+  color: var(--brand-text-light);
+}
+
+.footer-modern-gradient .social-link:hover {
+  background: rgba(255,255,255,0.2);
+  color: var(--brand-text-light);
+}
+
+.footer-modern-gradient .footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.footer-modern-gradient .copyright,
+.footer-modern-gradient .footer-links a {
+  color: rgba(255,255,255,0.8);
+}
+
+/* Style 3: Modern Dark Footer */
+.footer-modern-dark {
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-modern-dark .footer-section h3 {
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+
+.footer-modern-dark .footer-section p,
+.footer-modern-dark .footer-section li,
+.footer-modern-dark .footer-section a {
+  color: #cccccc;
+}
+
+.footer-modern-dark .footer-section a:hover {
+  color: var(--brand-primary);
+}
+
+.footer-modern-dark .social-link {
+  background: #333333;
+  color: #cccccc;
+}
+
+.footer-modern-dark .social-link:hover {
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+.footer-modern-dark .footer-bottom {
+  border-top: 1px solid #333333;
+}
+
+.footer-modern-dark .copyright,
+.footer-modern-dark .footer-links a {
+  color: #999999;
+}
+
+/* Style 4: Modern Minimal Footer */
+.footer-modern-minimal {
+  background: var(--brand-bg-primary);
+  padding: 2rem 0;
+  border-top: 1px solid var(--brand-bg-tertiary);
+}
+
+.footer-modern-minimal .footer-content {
+  grid-template-columns: 1fr;
+  text-align: center;
+  gap: 1rem;
+}
+
+.footer-modern-minimal .footer-section h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.footer-modern-minimal .social-links {
+  justify-content: center;
+}
+
+.footer-modern-minimal .footer-bottom {
+  border-top: none;
+  padding-top: 1rem;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Style 5: Modern Split Footer */
+.footer-modern-split {
+  background: var(--brand-bg-primary);
+  padding: 0;
+}
+
+.footer-modern-split .footer-main {
+  background: var(--brand-bg-secondary);
+  padding: 3rem 0;
+}
+
+.footer-modern-split .footer-bottom {
+  background: var(--brand-bg-primary);
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 1.5rem 0;
+}
+
+/* Style 6: Modern Card Footer */
+.footer-modern-card {
+  background: var(--brand-bg-secondary);
+  padding: 3rem 2rem 1.5rem;
+}
+
+.footer-modern-card .footer-content {
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.footer-modern-card .footer-section {
+  background: var(--brand-bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+/* Style 7: Modern Newsletter Footer */
+.footer-modern-newsletter {
+  background: var(--brand-bg-primary);
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-modern-newsletter .newsletter-section {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.footer-modern-newsletter .newsletter-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 1.5rem auto 0;
+}
+
+.footer-modern-newsletter .newsletter-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  color: var(--brand-text-light);
+  placeholder-color: rgba(255,255,255,0.7);
+}
+
+.footer-modern-newsletter .newsletter-button {
+  background: rgba(255,255,255,0.2);
+  color: var(--brand-text-light);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer-modern-newsletter .newsletter-button:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Style 8: Modern Contact Footer */
+.footer-modern-contact {
+  background: var(--brand-bg-primary);
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-modern-contact .contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-modern-contact .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--brand-bg-secondary);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.footer-modern-contact .contact-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style 9: Modern Map Footer */
+.footer-modern-map {
+  background: var(--brand-bg-primary);
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 0;
+}
+
+.footer-modern-map .map-section {
+  height: 300px;
+  background: var(--brand-bg-secondary);
+  border-radius: 16px 16px 0 0;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-modern-map .map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  font-size: 1.125rem;
+}
+
+.footer-modern-map .footer-content {
+  padding: 0 2rem 2rem;
+}
+
+/* Style 10: Modern Floating Footer */
+.footer-modern-floating {
+  background: transparent;
+  padding: 2rem;
+}
+
+.footer-modern-floating .footer-container {
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+/* Style 11: Modern Accordion Footer */
+.footer-modern-accordion {
+  background: var(--brand-bg-primary);
+  border-top: 1px solid var(--brand-bg-tertiary);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-modern-accordion .footer-section {
+  border: 1px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.footer-modern-accordion .footer-section h3 {
+  background: var(--brand-bg-secondary);
+  padding: 1rem 1.5rem;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.footer-modern-accordion .footer-section h3:hover {
+  background: var(--brand-bg-tertiary);
+}
+
+.footer-modern-accordion .footer-section-content {
+  padding: 1.5rem;
+  display: none;
+}
+
+.footer-modern-accordion .footer-section.active .footer-section-content {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .school-footer .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .school-footer .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .footer-modern-newsletter .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .footer-modern-contact .contact-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-modern-floating {
+    padding: 1rem;
+  }
+  
+  .footer-modern-map .map-section {
+    height: 200px;
+  }
+}

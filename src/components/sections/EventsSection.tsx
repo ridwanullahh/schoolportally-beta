@@ -2,19 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Search, Filter, Calendar, User, ArrowRight, ChevronDown, MapPin, Clock } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import '@/themes/styles/sections/events-modern.css';
+import '@/themes/styles/sections/events-section-styles.css';
 
 interface EventsSectionProps {
   section: Section;
 }
 
 const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
-  const { title } = section.content;
+  const { content, settings } = section;
   const { school } = useSchool();
   const [events, setEvents] = useState<any[]>([]);
+
+  // Section settings with defaults
+  const eventsToShow = parseInt(settings?.eventsToShow || '6');
+  const enableSearch = settings?.enableSearch !== false;
+  const enableFiltering = settings?.enableFiltering !== false;
+  const enableSorting = settings?.enableSorting !== false;
+  const enableLoadMore = settings?.enableLoadMore !== false;
+  const showViewAllButton = settings?.showViewAllButton !== false;
+
+  // State for controls
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [sortBy, setSortBy] = useState('date');
+  const [displayedEvents, setDisplayedEvents] = useState(eventsToShow);
+  const [filteredEvents, setFilteredEvents] = useState<any[]>([]);
 
   // Map numbered styles to actual style IDs
   const getStyleId = (styleNumber: string) => {
@@ -22,31 +39,31 @@ const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
       // New modern styles (1-11)
       '1': 'events-modern-grid',
       '2': 'events-modern-timeline',
-      '3': 'events-modern-horizontal',
-      '4': 'events-modern-compact',
-      '5': 'events-modern-featured',
-      '6': 'events-modern-minimal',
-      '7': 'events-modern-calendar',
-      '8': 'events-modern-gradient',
-      '9': 'events-modern-split',
-      '10': 'events-modern-bordered',
-      '11': 'events-modern-asymmetric',
-      // Existing styles (12+)
-      '12': 'events-grid',
-      '13': 'events-list',
-      '14': 'events-cards',
-      '15': 'events-timeline',
-      '16': 'events-calendar',
-      '17': 'events-slider',
-      '18': 'events-masonry',
-      '19': 'events-featured',
-      '20': 'events-compact',
-      '21': 'events-detailed',
-      '22': 'events-minimal',
-      '23': 'events-modern',
-      '24': 'events-classic',
-      '25': 'events-elegant',
-      '26': 'events-creative'
+      '3': 'events-modern-calendar',
+      '4': 'events-modern-cards',
+      '5': 'events-modern-showcase',
+      '6': 'events-modern-list',
+      '7': 'events-modern-masonry',
+      '8': 'events-modern-featured',
+      '9': 'events-modern-compact',
+      '10': 'events-modern-magazine',
+      '11': 'events-modern-slider',
+      // Existing ultra-modern styles (12+)
+      '12': 'events-floating-glass',
+      '13': 'events-holographic-cards',
+      '14': 'events-neon-grid',
+      '15': 'events-particle-bg',
+      '16': 'events-morphing-cards',
+      '17': 'events-cyber-grid',
+      '18': 'events-liquid-metal',
+      '19': 'events-aurora-bg',
+      '20': 'events-matrix-rain',
+      '21': 'events-quantum-field',
+      '22': 'events-neural-network',
+      '23': 'events-hologram-effect',
+      '24': 'events-energy-waves',
+      '25': 'events-digital-rain',
+      '26': 'events-mosaic-layout'
     };
     return styleMap[styleNumber] || 'events-modern-grid';
   };

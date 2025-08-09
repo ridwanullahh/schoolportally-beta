@@ -1,0 +1,470 @@
+/* School Header Styles - All 26 Styles Implementation */
+
+.school-header {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  position: relative;
+  z-index: 1000;
+}
+
+/* Common Header Elements */
+.school-header .header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.school-header .school-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+
+.school-header .logo-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.school-header .school-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin: 0;
+}
+
+.school-header .main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.school-header .nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.school-header .nav-item {
+  position: relative;
+}
+
+.school-header .nav-link {
+  color: var(--brand-text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.school-header .nav-link:hover {
+  color: var(--brand-primary);
+  background: var(--brand-bg-secondary);
+}
+
+.school-header .nav-link.active {
+  color: var(--brand-primary);
+  background: var(--brand-bg-secondary);
+}
+
+.school-header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.school-header .search-toggle {
+  background: none;
+  border: none;
+  color: var(--brand-text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.school-header .search-toggle:hover {
+  background: var(--brand-bg-secondary);
+  color: var(--brand-primary);
+}
+
+.school-header .mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--brand-text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.school-header .mobile-menu-toggle:hover {
+  background: var(--brand-bg-secondary);
+  color: var(--brand-primary);
+}
+
+/* Style 1: Modern Clean Header */
+.header-modern-clean {
+  background: var(--brand-bg-primary);
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+  padding: 1rem 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.header-modern-clean .school-name {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-modern-clean .nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-modern-clean .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  transition: width 0.3s ease;
+}
+
+.header-modern-clean .nav-link:hover::before,
+.header-modern-clean .nav-link.active::before {
+  width: 100%;
+}
+
+/* Style 2: Modern Gradient Header */
+.header-modern-gradient {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  padding: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-modern-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+}
+
+.header-modern-gradient .header-container {
+  position: relative;
+  z-index: 1;
+}
+
+.header-modern-gradient .school-name,
+.header-modern-gradient .nav-link {
+  color: var(--brand-text-light);
+}
+
+.header-modern-gradient .nav-link:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--brand-text-light);
+}
+
+.header-modern-gradient .search-toggle,
+.header-modern-gradient .mobile-menu-toggle {
+  color: var(--brand-text-light);
+}
+
+.header-modern-gradient .search-toggle:hover,
+.header-modern-gradient .mobile-menu-toggle:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--brand-text-light);
+}
+
+/* Style 3: Modern Transparent Header */
+.header-modern-transparent {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header-modern-transparent .nav-link {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.1);
+  margin: 0 0.25rem;
+}
+
+.header-modern-transparent .nav-link:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border-color: var(--brand-primary);
+}
+
+/* Style 4: Modern Minimal Header */
+.header-modern-minimal {
+  background: var(--brand-bg-primary);
+  padding: 2rem 0;
+  border-bottom: none;
+}
+
+.header-modern-minimal .school-name {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.header-modern-minimal .nav-link {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  padding: 1rem 1.5rem;
+}
+
+.header-modern-minimal .nav-link:hover {
+  background: none;
+  color: var(--brand-primary);
+  transform: translateY(-2px);
+}
+
+/* Style 5: Modern Centered Header */
+.header-modern-centered {
+  background: var(--brand-bg-primary);
+  padding: 2rem 0;
+  text-align: center;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.header-modern-centered .header-container {
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header-modern-centered .school-logo {
+  justify-content: center;
+}
+
+.header-modern-centered .main-nav {
+  justify-content: center;
+}
+
+.header-modern-centered .header-actions {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}
+
+/* Style 6: Modern Split Header */
+.header-modern-split {
+  background: var(--brand-bg-primary);
+  padding: 0;
+}
+
+.header-modern-split .header-top {
+  background: var(--brand-bg-secondary);
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+  text-align: center;
+}
+
+.header-modern-split .header-main {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+/* Style 7: Modern Floating Header */
+.header-modern-floating {
+  background: var(--brand-bg-primary);
+  margin: 1rem 2rem;
+  border-radius: 16px;
+  padding: 1rem 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.header-modern-floating .nav-link {
+  border-radius: 12px;
+}
+
+/* Style 8: Modern Sidebar Header */
+.header-modern-sidebar {
+  background: var(--brand-bg-primary);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+  position: relative;
+}
+
+.header-modern-sidebar .header-container {
+  position: relative;
+}
+
+.header-modern-sidebar .sidebar-toggle {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+/* Style 9: Modern Mega Menu Header */
+.header-modern-mega {
+  background: var(--brand-bg-primary);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.header-modern-mega .nav-item:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header-modern-mega .mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--brand-bg-primary);
+  border: 1px solid var(--brand-bg-tertiary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* Style 10: Modern Sticky Header */
+.header-modern-sticky {
+  background: var(--brand-bg-primary);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-modern-sticky.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.header-modern-sticky.scrolled .school-name {
+  font-size: 1.25rem;
+}
+
+.header-modern-sticky.scrolled .logo-image {
+  width: 40px;
+  height: 40px;
+}
+
+/* Style 11: Modern Search Header */
+.header-modern-search {
+  background: var(--brand-bg-primary);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+}
+
+.header-modern-search .search-bar {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.header-modern-search .search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border: 2px solid var(--brand-bg-tertiary);
+  border-radius: 25px;
+  background: var(--brand-bg-secondary);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.header-modern-search .search-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  background: var(--brand-bg-primary);
+}
+
+.header-modern-search .search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--brand-text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .school-header .main-nav {
+    display: none;
+  }
+  
+  .school-header .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .header-modern-centered .header-actions {
+    position: static;
+    margin-top: 1rem;
+  }
+  
+  .header-modern-floating {
+    margin: 1rem;
+  }
+  
+  .header-modern-search .search-bar {
+    max-width: 200px;
+    margin: 0 1rem;
+  }
+  
+  .school-header .nav-menu.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--brand-bg-primary);
+    border: 1px solid var(--brand-bg-tertiary);
+    border-radius: 0 0 12px 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+}

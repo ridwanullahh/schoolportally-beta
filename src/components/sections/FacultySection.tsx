@@ -1,16 +1,33 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useFaculty } from '@/hooks/useFaculty';
+import { Search, Filter, Mail, Phone, ArrowRight, ChevronDown, User, Award } from 'lucide-react';
 import '@/themes/styles/sections/faculty-modern.css';
 import '@/themes/styles/sections/faculty-ultra-modern.css';
+import '@/themes/styles/sections/faculty-section-styles.css';
 
 interface FacultySectionProps {
   section: Section;
 }
 
 const FacultySection: React.FC<FacultySectionProps> = ({ section }) => {
-  const { title } = section.content;
+  const { content, settings } = section;
+  const { faculty, loading, error } = useFaculty();
+
+  // Section settings with defaults
+  const facultyToShow = parseInt(settings?.facultyToShow || '6');
+  const enableSearch = settings?.enableSearch !== false;
+  const enableFiltering = settings?.enableFiltering !== false;
+  const enableSorting = settings?.enableSorting !== false;
+  const enableLoadMore = settings?.enableLoadMore !== false;
+  const showViewAllButton = settings?.showViewAllButton !== false;
+
+  // State for controls
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [sortBy, setSortBy] = useState('name');
+  const [displayedFaculty, setDisplayedFaculty] = useState(facultyToShow);
+  const [filteredFaculty, setFilteredFaculty] = useState<any[]>([]);
 
   // Map numbered styles to actual style IDs
   const getStyleId = (styleNumber: string) => {
@@ -49,9 +66,6 @@ const FacultySection: React.FC<FacultySectionProps> = ({ section }) => {
 
   const styleId = getStyleId(section.styleId || '1');
   const [activeTab, setActiveTab] = useState('All');
-
-  // Use dynamic content from faculty admin module
-  const { faculty, loading, error, getDepartments } = useFaculty();
 
   const defaultFaculty = [
     {
