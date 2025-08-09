@@ -9,6 +9,11 @@ import '@/themes/styles/pages/blog-archive.css';
 import '@/themes/styles/pages/archive-modern.css';
 import '@/themes/styles/pages/archive-templates-ultra-modern.css';
 import '@/themes/styles/pages/modern-ui-templates.css';
+import '@/themes/styles/sections/blog-section-styles.css';
+import '@/themes/styles/components/header-styles.css';
+import '@/themes/styles/components/footer-styles.css';
+import '@/themes/styles/components/breadcrumb-styles.css';
+import themeIntegrationService from '@/services/themeIntegrationService';
 import { usePages } from '@/hooks/usePages';
 import { Calendar, Clock, User, Search, Filter, ArrowRight, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BlogPost } from '@/types';
@@ -27,26 +32,50 @@ const BlogPage = () => {
   const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page') || '1'));
   const [categories, setCategories] = useState<string[]>([]);
 
-  // Map old style names to new template system
-  const getTemplateStyle = (styleId: string) => {
+  // Map style numbers to comprehensive blog section styles
+  const getBlogArchiveStyle = (styleId: string) => {
     const styleMap: { [key: string]: string } = {
-      'blog-archive-style-1': 'template-style-1',
-      'blog-archive-style-2': 'template-style-2',
-      'blog-archive-style-3': 'template-style-3',
-      'blog-archive-style-4': 'template-style-4',
-      'blog-archive-style-5': 'template-style-5',
-      'blog-archive-style-6': 'template-style-6',
-      'blog-archive-style-7': 'template-style-7',
-      'blog-archive-style-8': 'template-style-8',
-      'blog-archive-style-9': 'template-style-9',
-      'blog-archive-style-10': 'template-style-10',
-      'blog-archive-style-11': 'template-style-11',
-      'blog-archive-style-12': 'template-style-12',
-      'blog-archive-style-13': 'template-style-13',
-      'blog-archive-style-14': 'template-style-14',
-      'blog-archive-style-15': 'template-style-15',
+      // Modern styles (1-11)
+      '1': 'blog-modern-grid',
+      '2': 'blog-modern-cards',
+      '3': 'blog-modern-display',
+      '4': 'blog-modern-gallery',
+      '5': 'blog-modern-showcase',
+      '6': 'blog-modern-timeline',
+      '7': 'blog-modern-masonry',
+      '8': 'blog-modern-featured',
+      '9': 'blog-modern-compact',
+      '10': 'blog-modern-magazine',
+      '11': 'blog-modern-slider',
+      // Ultra-modern styles (12-26)
+      '12': 'blog-floating-glass',
+      '13': 'blog-holographic-cards',
+      '14': 'blog-neon-grid',
+      '15': 'blog-particle-bg',
+      '16': 'blog-morphing-cards',
+      '17': 'blog-cyber-grid',
+      '18': 'blog-liquid-metal',
+      '19': 'blog-aurora-bg',
+      '20': 'blog-matrix-rain',
+      '21': 'blog-quantum-field',
+      '22': 'blog-neural-network',
+      '23': 'blog-hologram-effect',
+      '24': 'blog-energy-waves',
+      '25': 'blog-digital-rain',
+      '26': 'blog-mosaic-layout',
+      // Legacy support
+      'blog-archive-style-1': 'blog-modern-grid',
+      'blog-archive-style-2': 'blog-modern-cards',
+      'blog-archive-style-3': 'blog-modern-display',
+      'blog-archive-style-4': 'blog-modern-gallery',
+      'blog-archive-style-5': 'blog-modern-showcase',
+      'template-style-1': 'blog-modern-grid',
+      'template-style-2': 'blog-modern-cards',
+      'template-style-3': 'blog-modern-display',
+      'template-style-4': 'blog-modern-gallery',
+      'template-style-5': 'blog-modern-showcase'
     };
-    return styleMap[styleId] || 'template-style-1';
+    return styleMap[styleId] || 'blog-modern-grid';
   };
 
   const blogArchiveStyle = school?.blogArchiveStyle || 'blog-archive-style-1';
