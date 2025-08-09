@@ -11,9 +11,9 @@
   --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
   --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
   --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
-
   position: relative;
   overflow: hidden;
+  position: relative;
   font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
 }
 
