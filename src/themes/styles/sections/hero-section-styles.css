@@ -1,0 +1,341 @@
+/* Hero Section Styles - All 26 Styles Implementation */
+
+.hero-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Common Hero Elements */
+.hero-section .hero-container {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-section .hero-content {
+  flex: 1;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-section .hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-section .hero-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.hero-section .hero-description {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.hero-section .hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-section .btn-primary {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.hero-section .btn-primary:hover {
+  background: var(--brand-secondary);
+  transform: translateY(-2px);
+}
+
+.hero-section .btn-secondary {
+  background: transparent;
+  color: var(--brand-text-primary);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid var(--brand-bg-tertiary);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.hero-section .btn-secondary:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.hero-section .hero-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-section .hero-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+/* Style 1: Modern Hero Grid */
+.hero-modern-grid {
+  background: var(--brand-bg-secondary);
+}
+
+.hero-modern-grid .hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Style 2: Modern Hero Cards */
+.hero-modern-cards {
+  background: var(--brand-bg-primary);
+}
+
+.hero-modern-cards .hero-container {
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-modern-cards .hero-content {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+/* Style 3: Modern Hero Featured */
+.hero-modern-featured {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+}
+
+.hero-modern-featured .hero-title,
+.hero-modern-featured .hero-subtitle,
+.hero-modern-featured .hero-description {
+  color: var(--brand-text-light);
+}
+
+.hero-modern-featured .btn-secondary {
+  background: rgba(255,255,255,0.1);
+  color: var(--brand-text-light);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* Style 4: Modern Hero Minimal */
+.hero-modern-minimal {
+  background: var(--brand-bg-primary);
+  padding: 8rem 0;
+}
+
+.hero-modern-minimal .hero-container {
+  flex-direction: column;
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-modern-minimal .hero-title {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.hero-modern-minimal .hero-subtitle {
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* Style 5: Modern Hero Gradient */
+.hero-modern-gradient {
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+  position: relative;
+}
+
+.hero-modern-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="currentColor" opacity="0.05"/><circle cx="80" cy="40" r="1" fill="currentColor" opacity="0.05"/><circle cx="40" cy="80" r="1" fill="currentColor" opacity="0.05"/></svg>');
+  color: var(--brand-primary);
+}
+
+/* Style 6: Modern Hero Showcase */
+.hero-modern-showcase {
+  background: var(--brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-modern-showcase::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--brand-bg-secondary);
+  transform: skewX(-15deg);
+  transform-origin: top;
+}
+
+/* Style 7: Modern Hero Split */
+.hero-modern-split {
+  background: var(--brand-bg-primary);
+}
+
+.hero-modern-split .hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+
+.hero-modern-split .hero-content {
+  background: var(--brand-bg-secondary);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-modern-split .hero-visual {
+  background: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style 8: Modern Hero Timeline */
+.hero-modern-timeline {
+  background: var(--brand-bg-secondary);
+  position: relative;
+}
+
+.hero-modern-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--brand-primary);
+  transform: translateX(-50%);
+}
+
+.hero-modern-timeline .hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 9: Modern Hero Interactive */
+.hero-modern-interactive {
+  background: var(--brand-bg-primary);
+  position: relative;
+}
+
+.hero-modern-interactive .hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-modern-interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, var(--brand-bg-secondary) 30%, var(--brand-bg-secondary) 70%, transparent 70%);
+  opacity: 0.5;
+}
+
+/* Style 10: Modern Hero Comparison */
+.hero-modern-comparison {
+  background: var(--brand-bg-secondary);
+}
+
+.hero-modern-comparison .hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-modern-comparison .hero-content {
+  background: var(--brand-bg-primary);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-modern-grid .hero-container,
+  .hero-modern-split .hero-container,
+  .hero-modern-comparison .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hero-section .hero-container {
+    padding: 2rem 1rem;
+    min-height: 80vh;
+  }
+  
+  .hero-section .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-section .btn-primary,
+  .hero-section .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .hero-modern-split .hero-content {
+    padding: 2rem;
+  }
+  
+  .hero-modern-cards .hero-content {
+    padding: 2rem;
+  }
+}
