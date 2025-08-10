@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useAcademicCalendar } from '@/hooks/useAcademicCalendar';
 import '@/themes/styles/sections/academic-calendar-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
-import { CalendarDays } from 'lucide-react';
+import '@/themes/styles/sections/academic-calendar-section-styles.css';
+import { Calendar, Clock, MapPin, Users, ChevronLeft, ChevronRight, Filter, X, CalendarDays } from 'lucide-react';
 
 interface AcademicCalendarSectionProps {
   section: Section;
