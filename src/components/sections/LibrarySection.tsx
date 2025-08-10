@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useLibrary } from '@/hooks/useLibrary';
 import '@/themes/styles/sections/library-modern.css';
 import '@/themes/styles/sections/library-ultra-modern.css';
-import { Bookmark } from 'lucide-react';
+import '@/themes/styles/sections/library-section-styles.css';
+import { BookOpen, Download, ExternalLink, Search, Filter, Book, FileText, Video, Headphones, Bookmark } from 'lucide-react';
 
 interface LibrarySectionProps {
   section: Section;
