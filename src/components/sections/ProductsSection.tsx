@@ -1,11 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useProducts } from '@/hooks/useProducts';
 import '@/themes/styles/sections/products-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
+import '@/themes/styles/sections/products-section-styles.css';
 import { Button } from '@/components/ui/button';
-import { List, Grid } from 'lucide-react';
+import { ShoppingCart, Eye, Heart, Star, Search, Filter, Grid, List, X } from 'lucide-react';
 
 interface ProductsSectionProps {
   section: Section;
