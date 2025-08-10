@@ -3,7 +3,8 @@ import { Section } from '@/types';
 import { useAnnouncements } from '@/hooks/useAnnouncements';
 import '@/themes/styles/sections/announcements-modern.css';
 import '@/themes/styles/sections/announcements-ultra-modern.css';
-import { Megaphone, Info, AlertTriangle, CheckCircle } from 'lucide-react';
+import '@/themes/styles/sections/announcements-section-styles.css';
+import { Megaphone, Info, AlertTriangle, CheckCircle, Search, Filter, ArrowRight, Calendar } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 
@@ -23,7 +24,28 @@ interface Announcement {
 }
 
 const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ section }) => {
-  const { title, announcementsLimit = 6 } = section.content;
+  const { content, settings } = section;
+  const { school } = useSchool();
+
+  // Section settings with defaults
+  const announcementsToShow = parseInt(settings?.announcementsToShow || content?.announcementsLimit || '6');
+  const enableSearch = settings?.enableSearch !== false;
+  const enableFiltering = settings?.enableFiltering !== false;
+  const enableSorting = settings?.enableSorting !== false;
+  const enableLoadMore = settings?.enableLoadMore !== false;
+  const showViewAllButton = settings?.showViewAllButton !== false;
+
+  // State for controls
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('all');
+  const [selectedPriority, setSelectedPriority] = useState('all');
+  const [sortBy, setSortBy] = useState('date');
+  const [displayedAnnouncements, setDisplayedAnnouncements] = useState(announcementsToShow);
+  const [filteredAnnouncements, setFilteredAnnouncements] = useState<Announcement[]>([]);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+
+  // Use dynamic content from announcements admin module
+  const { announcements: dynamicAnnouncements, loading, error } = useAnnouncements();
 
   // Map numbered styles to actual style IDs
   const getStyleId = (styleNumber: string) => {
@@ -61,9 +83,6 @@ const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ section }) 
   };
 
   const styleId = getStyleId(section.styleId || '1');
-
-  // Use dynamic content from announcements admin module
-  const { announcements, loading, error, getRecentAnnouncements } = useAnnouncements();
 
   const defaultAnnouncements = [
     {

@@ -1,9 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Section } from '@/types';
 import '@/themes/styles/sections/faq-modern.css';
 import '@/themes/styles/sections/faq.css';
-import { ChevronDown } from 'lucide-react';
+import '@/themes/styles/sections/faq-section-styles.css';
+import { ChevronDown, Search, HelpCircle, Filter, ArrowRight } from 'lucide-react';
 
 interface FAQSectionProps {
   section: Section;
