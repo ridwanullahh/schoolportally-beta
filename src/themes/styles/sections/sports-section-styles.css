@@ -1,0 +1,688 @@
+/* Sports Section Styles - All 26 Styles Implementation */
+
+.sports-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* Common Sports Elements */
+.sports-section .section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sports-section .section-subtitle {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sports-section .sport-card {
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.sports-section .sport-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-color: var(--brand-primary);
+}
+
+.sports-section .sport-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.sports-section .sport-card:hover .sport-image {
+  transform: scale(1.05);
+}
+
+.sports-section .sport-content {
+  padding: 1.5rem;
+}
+
+.sports-section .sport-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--brand-text-light);
+  font-size: 1.5rem;
+}
+
+.sports-section .sport-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.sports-section .sport-description {
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sports-section .sport-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.sports-section .sport-season {
+  background: var(--brand-accent);
+  color: var(--brand-text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.sports-section .sport-level {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sports-section .sport-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sports-section .stat-item {
+  text-align: center;
+  padding: 0.75rem;
+  background: var(--brand-bg-secondary);
+  border-radius: 8px;
+}
+
+.sports-section .stat-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 0.25rem;
+}
+
+.sports-section .stat-label {
+  font-size: 0.75rem;
+  color: var(--brand-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sports-section .sport-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.sports-section .sport-btn {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.sports-section .sport-btn:hover {
+  background: var(--brand-secondary);
+  transform: translateY(-2px);
+}
+
+.sports-section .sport-btn-secondary {
+  background: transparent;
+  color: var(--brand-text-secondary);
+  border: 2px solid var(--brand-bg-tertiary);
+}
+
+.sports-section .sport-btn-secondary:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+/* Style 1: Modern Sports Grid */
+.sports-modern-grid {
+  background: var(--brand-bg-secondary);
+}
+
+.sports-modern-grid .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sports-modern-grid .sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sports-modern-grid .sport-card {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sports-modern-grid .sport-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  z-index: 1;
+}
+
+/* Style 2: Modern Sports Cards */
+.sports-modern-cards {
+  background: var(--brand-bg-primary);
+}
+
+.sports-modern-cards .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sports-modern-cards .sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sports-modern-cards .sport-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.sports-modern-cards .sport-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+  pointer-events: none;
+}
+
+/* Style 3: Modern Sports Featured */
+.sports-modern-featured {
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+}
+
+.sports-modern-featured .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sports-modern-featured .featured-sport {
+  background: var(--brand-bg-primary);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.sports-modern-featured .featured-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.sports-modern-featured .featured-image {
+  height: 400px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+}
+
+.sports-modern-featured .featured-text {
+  padding: 3rem;
+}
+
+.sports-modern-featured .featured-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+}
+
+.sports-modern-featured .featured-description {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.sports-modern-featured .sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Style 4: Modern Sports Teams */
+.sports-modern-teams {
+  background: var(--brand-bg-primary);
+}
+
+.sports-modern-teams .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sports-modern-teams .teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sports-modern-teams .team-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.sports-modern-teams .team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.sports-modern-teams .team-logo {
+  width: 80px;
+  height: 80px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--brand-text-light);
+  font-size: 2rem;
+}
+
+.sports-modern-teams .team-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.sports-modern-teams .team-sport {
+  color: var(--brand-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.sports-modern-teams .team-record {
+  display: flex;
+  justify-content: space-around;
+  background: var(--brand-bg-primary);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.sports-modern-teams .record-item {
+  text-align: center;
+}
+
+.sports-modern-teams .record-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.sports-modern-teams .record-label {
+  font-size: 0.75rem;
+  color: var(--brand-text-secondary);
+  text-transform: uppercase;
+}
+
+/* Style 5: Modern Sports Schedule */
+.sports-modern-schedule {
+  background: var(--brand-bg-secondary);
+}
+
+.sports-modern-schedule .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sports-modern-schedule .schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sports-modern-schedule .game-card {
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.sports-modern-schedule .game-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.sports-modern-schedule .game-teams {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+.sports-modern-schedule .team {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sports-modern-schedule .team-logo {
+  width: 40px;
+  height: 40px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+}
+
+.sports-modern-schedule .team-name {
+  font-weight: 600;
+  color: var(--brand-text-primary);
+}
+
+.sports-modern-schedule .vs {
+  color: var(--brand-text-secondary);
+  font-weight: 600;
+}
+
+.sports-modern-schedule .game-info {
+  text-align: right;
+}
+
+.sports-modern-schedule .game-date {
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.sports-modern-schedule .game-time {
+  color: var(--brand-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Style 6: Modern Sports Achievements */
+.sports-modern-achievements {
+  background: var(--brand-bg-primary);
+}
+
+.sports-modern-achievements .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sports-modern-achievements .achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sports-modern-achievements .achievement-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sports-modern-achievements .achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.sports-modern-achievements .achievement-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--brand-text-light);
+  font-size: 2rem;
+}
+
+.sports-modern-achievements .achievement-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.sports-modern-achievements .achievement-year {
+  color: var(--brand-text-secondary);
+  font-weight: 500;
+}
+
+/* Sports Categories Filter */
+.sports-section .sports-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.sports-section .category-filter {
+  background: var(--brand-bg-primary);
+  color: var(--brand-text-secondary);
+  border: 2px solid var(--brand-bg-tertiary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sports-section .category-filter.active,
+.sports-section .category-filter:hover {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+  border-color: var(--brand-primary);
+}
+
+/* Sports Statistics */
+.sports-section .sports-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sports-section .stats-card {
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.sports-section .stats-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 0.5rem;
+}
+
+.sports-section .stats-label {
+  color: var(--brand-text-secondary);
+  font-weight: 500;
+}
+
+/* Coaching Staff */
+.sports-section .coaching-staff {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sports-section .coach-card {
+  background: var(--brand-bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.sports-section .coach-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.sports-section .coach-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--brand-primary);
+}
+
+.sports-section .coach-name {
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.sports-section .coach-position {
+  color: var(--brand-text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.sports-section .coach-sport {
+  background: var(--brand-accent);
+  color: var(--brand-text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sports-modern-featured .featured-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .sports-modern-schedule .game-card {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .sports-modern-schedule .game-teams {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .sports-modern-schedule .game-info {
+    text-align: center;
+  }
+  
+  .sports-section .sport-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .sports-section .sports-categories {
+    gap: 0.25rem;
+  }
+  
+  .sports-section .category-filter {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .sports-modern-teams .team-record {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .sports-section .coaching-staff {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

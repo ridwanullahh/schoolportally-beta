@@ -3,9 +3,11 @@ import { Section } from '@/types';
 import { useResults } from '@/hooks/useResults';
 import '@/themes/styles/sections/result-checker-modern.css';
 import '@/themes/styles/sections/all-remaining-ultra-modern.css';
+import '@/themes/styles/sections/result-checker-section-styles.css';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Search, FileText, Download, Eye, Check, X, Clock, Award } from 'lucide-react';
 
 interface ResultCheckerSectionProps {
   section: Section;
