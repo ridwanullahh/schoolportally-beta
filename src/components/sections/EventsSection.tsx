@@ -8,6 +8,7 @@ import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import '@/themes/styles/sections/events-modern.css';
 import '@/themes/styles/sections/events-section-styles.css';
+import '@/themes/styles/sections/events-section-styles.css';
 
 interface EventsSectionProps {
   section: Section;
