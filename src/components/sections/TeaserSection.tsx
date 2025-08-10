@@ -4,7 +4,9 @@ import { Section } from '@/types';
 import * as Icons from 'lucide-react';
 import '@/themes/styles/sections/teaser-modern.css';
 import '@/themes/styles/sections/teaser.css';
+import '@/themes/styles/sections/teaser-section-styles.css';
 import { Button } from '@/components/ui/button';
+import { ArrowRight, Calendar, User, Search, Filter, Tag } from 'lucide-react';
 
 interface TeaserSectionProps {
   section: Section;

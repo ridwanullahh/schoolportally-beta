@@ -1,0 +1,695 @@
+/* History Section Styles - All 26 Styles Implementation */
+
+.history-section {
+  /* Use brand colors directly from ThemeSwitcher */
+  --brand-primary: var(--school-brand-primary, #2563eb);
+  --brand-secondary: var(--school-brand-secondary, #3b82f6);
+  --brand-accent: var(--school-brand-accent, #60a5fa);
+  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
+  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --brand-text-light: var(--school-brand-text-light, #ffffff);
+  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
+  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
+  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* Common History Elements */
+.history-section .section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.history-section .section-subtitle {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.history-section .history-item {
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  border: 1px solid var(--brand-bg-tertiary);
+}
+
+.history-section .history-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-color: var(--brand-primary);
+}
+
+.history-section .history-year {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.history-section .history-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.history-section .history-description {
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.history-section .history-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.history-section .history-achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.history-section .achievement-tag {
+  background: var(--brand-bg-secondary);
+  color: var(--brand-text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.history-section .history-milestone {
+  background: var(--brand-accent);
+  color: var(--brand-text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Style 1: Modern History Timeline */
+.history-modern-timeline {
+  background: var(--brand-bg-secondary);
+}
+
+.history-modern-timeline .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-timeline .timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.history-modern-timeline .timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--brand-primary), var(--brand-secondary));
+  transform: translateX(-50%);
+}
+
+.history-modern-timeline .timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.history-modern-timeline .timeline-item:nth-child(odd) {
+  flex-direction: row;
+}
+
+.history-modern-timeline .timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.history-modern-timeline .timeline-content {
+  flex: 1;
+  max-width: 45%;
+  background: var(--brand-bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.history-modern-timeline .timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+.history-modern-timeline .timeline-item:nth-child(odd) .timeline-content::before {
+  right: -20px;
+  border-left-color: var(--brand-bg-primary);
+}
+
+.history-modern-timeline .timeline-item:nth-child(even) .timeline-content::before {
+  left: -20px;
+  border-right-color: var(--brand-bg-primary);
+}
+
+.history-modern-timeline .timeline-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  border: 4px solid var(--brand-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-text-light);
+  font-size: 1.25rem;
+  font-weight: 700;
+  z-index: 1;
+}
+
+/* Style 2: Modern History Cards */
+.history-modern-cards {
+  background: var(--brand-bg-primary);
+}
+
+.history-modern-cards .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-cards .history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.history-modern-cards .history-item {
+  background: var(--brand-bg-secondary);
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.history-modern-cards .history-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+  pointer-events: none;
+}
+
+.history-modern-cards .history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+}
+
+/* Style 3: Modern History Featured */
+.history-modern-featured {
+  background: linear-gradient(135deg, var(--brand-bg-secondary), var(--brand-bg-tertiary));
+}
+
+.history-modern-featured .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-featured .featured-history {
+  background: var(--brand-bg-primary);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+.history-modern-featured .featured-year {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.history-modern-featured .featured-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.history-modern-featured .featured-description {
+  font-size: 1.125rem;
+  color: var(--brand-text-secondary);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.history-modern-featured .history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Style 4: Modern History Minimal */
+.history-modern-minimal {
+  background: var(--brand-bg-primary);
+  padding: 6rem 0;
+}
+
+.history-modern-minimal .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-minimal .section-title {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.history-modern-minimal .section-subtitle {
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.history-modern-minimal .history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.history-modern-minimal .history-item {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid var(--brand-bg-tertiary);
+  border-radius: 0;
+  padding: 3rem 0;
+  text-align: left;
+}
+
+.history-modern-minimal .history-year {
+  font-weight: 300;
+  font-size: 3rem;
+  opacity: 0.7;
+}
+
+.history-modern-minimal .history-title {
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.history-modern-minimal .history-description {
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* Style 5: Modern History Showcase */
+.history-modern-showcase {
+  background: var(--brand-bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.history-modern-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="currentColor" opacity="0.05"/><circle cx="80" cy="40" r="1" fill="currentColor" opacity="0.05"/><circle cx="40" cy="80" r="1" fill="currentColor" opacity="0.05"/></svg>');
+  color: var(--brand-primary);
+}
+
+.history-modern-showcase .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.history-modern-showcase .showcase-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.history-modern-showcase .history-slider {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+
+.history-modern-showcase .history-item {
+  min-width: 400px;
+  scroll-snap-align: start;
+  background: var(--brand-bg-primary);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Style 6: Modern History Split */
+.history-modern-split {
+  background: var(--brand-bg-primary);
+}
+
+.history-modern-split .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-split .split-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.history-modern-split .split-content:nth-child(even) {
+  direction: rtl;
+}
+
+.history-modern-split .split-content:nth-child(even) > * {
+  direction: ltr;
+}
+
+.history-modern-split .split-text {
+  padding: 2rem;
+}
+
+.history-modern-split .split-visual {
+  background: var(--brand-bg-secondary);
+  border-radius: 16px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.history-modern-split .split-year {
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  opacity: 0.1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.history-modern-split .split-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Style 7: Modern History Gradient */
+.history-modern-gradient {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: var(--brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.history-modern-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+}
+
+.history-modern-gradient .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.history-modern-gradient .section-title,
+.history-modern-gradient .section-subtitle {
+  color: var(--brand-text-light);
+}
+
+.history-modern-gradient .history-item {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--brand-text-light);
+}
+
+.history-modern-gradient .history-year {
+  color: var(--brand-text-light);
+}
+
+.history-modern-gradient .history-title {
+  color: var(--brand-text-light);
+}
+
+.history-modern-gradient .history-description {
+  color: rgba(255,255,255,0.9);
+}
+
+/* Style 8: Modern History Interactive */
+.history-modern-interactive {
+  background: var(--brand-bg-secondary);
+}
+
+.history-modern-interactive .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-interactive .history-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  background: var(--brand-bg-primary);
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+.history-modern-interactive .nav-year {
+  background: transparent;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  color: var(--brand-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.history-modern-interactive .nav-year.active {
+  background: var(--brand-primary);
+  color: var(--brand-text-light);
+}
+
+.history-modern-interactive .history-content {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  min-height: 400px;
+  display: none;
+}
+
+.history-modern-interactive .history-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Style 9: Modern History Masonry */
+.history-modern-masonry {
+  background: var(--brand-bg-primary);
+}
+
+.history-modern-masonry .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-masonry .history-masonry {
+  columns: 3;
+  column-gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.history-modern-masonry .history-item {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Style 10: Modern History Stats */
+.history-modern-stats {
+  background: var(--brand-bg-secondary);
+}
+
+.history-modern-stats .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.history-modern-stats .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.history-modern-stats .stat-item {
+  text-align: center;
+  background: var(--brand-bg-primary);
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.history-modern-stats .stat-year {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 0.5rem;
+}
+
+.history-modern-stats .stat-label {
+  color: var(--brand-text-secondary);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.history-modern-stats .history-timeline {
+  background: var(--brand-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .history-modern-timeline .timeline::before {
+    left: 2rem;
+  }
+  
+  .history-modern-timeline .timeline-item {
+    flex-direction: row !important;
+    padding-left: 4rem;
+  }
+  
+  .history-modern-timeline .timeline-content {
+    max-width: 100%;
+  }
+  
+  .history-modern-timeline .timeline-marker {
+    left: 2rem;
+    transform: none;
+    width: 60px;
+    height: 60px;
+    font-size: 1rem;
+  }
+  
+  .history-modern-timeline .timeline-content::before {
+    display: none;
+  }
+  
+  .history-modern-split .split-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .history-modern-masonry .history-masonry {
+    columns: 1;
+  }
+  
+  .history-modern-interactive .history-nav {
+    padding: 0.25rem;
+  }
+  
+  .history-modern-interactive .nav-year {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .history-modern-featured .featured-year {
+    font-size: 3rem;
+  }
+  
+  .history-modern-featured .featured-title {
+    font-size: 1.5rem;
+  }
+}
