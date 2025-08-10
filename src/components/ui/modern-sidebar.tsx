@@ -84,23 +84,18 @@ export const ModernSidebar: React.FC<ModernSidebarProps> = ({
 
     return (
       <div className="w-full">
-        <Button
-          variant="ghost"
-          className={cn(
-            "w-full justify-start h-12 px-3 mb-1 transition-all duration-200",
-            level > 0 && "ml-4 w-[calc(100%-1rem)]",
-            itemIsActive && "bg-blue-50 text-blue-700 border-r-2 border-blue-700",
-            !itemIsActive && "hover:bg-gray-50 text-gray-700",
-            !isOpen && "justify-center px-0"
-          )}
-          onClick={() => {
-            if (hasChildren) {
-              toggleExpanded(item.id);
-            }
-          }}
-          asChild={!hasChildren}
-        >
-          {hasChildren ? (
+        {hasChildren ? (
+          <Button
+            variant="ghost"
+            className={cn(
+              "w-full justify-start h-12 px-3 mb-1 transition-all duration-200",
+              level > 0 && "ml-4 w-[calc(100%-1rem)]",
+              itemIsActive && "bg-blue-50 text-blue-700 border-r-2 border-blue-700",
+              !itemIsActive && "hover:bg-gray-50 text-gray-700",
+              !isOpen && "justify-center px-0"
+            )}
+            onClick={() => toggleExpanded(item.id)}
+          >
             <div className="flex items-center w-full">
               <item.icon className={cn("h-5 w-5", isOpen && "mr-3")} />
               {isOpen && (
@@ -111,31 +106,40 @@ export const ModernSidebar: React.FC<ModernSidebarProps> = ({
                       {item.badge}
                     </Badge>
                   )}
-                  <ChevronRight 
+                  <ChevronRight
                     className={cn(
                       "h-4 w-4 transition-transform",
                       isExpanded && "rotate-90"
-                    )} 
+                    )}
                   />
                 </>
               )}
             </div>
-          ) : (
-            <Link to={item.href || '#'} className="flex items-center w-full">
-              <item.icon className={cn("h-5 w-5", isOpen && "mr-3")} />
-              {isOpen && (
-                <>
-                  <span className="flex-1 text-left">{item.label}</span>
-                  {item.badge && (
-                    <Badge variant="secondary" className="ml-2 h-5 text-xs">
-                      {item.badge}
-                    </Badge>
-                  )}
-                </>
-              )}
-            </Link>
-          )}
-        </Button>
+          </Button>
+        ) : (
+          <Link
+            to={item.href || '#'}
+            className={cn(
+              "flex items-center w-full h-12 px-3 mb-1 rounded-lg transition-all duration-200",
+              level > 0 && "ml-4 w-[calc(100%-1rem)]",
+              itemIsActive && "bg-blue-50 text-blue-700 border-r-2 border-blue-700",
+              !itemIsActive && "hover:bg-gray-50 text-gray-700",
+              !isOpen && "justify-center px-0"
+            )}
+          >
+            <item.icon className={cn("h-5 w-5", isOpen && "mr-3")} />
+            {isOpen && (
+              <>
+                <span className="flex-1 text-left">{item.label}</span>
+                {item.badge && (
+                  <Badge variant="secondary" className="ml-2 h-5 text-xs">
+                    {item.badge}
+                  </Badge>
+                )}
+              </>
+            )}
+          </Link>
+        )}
 
         {/* Children */}
         {hasChildren && isExpanded && isOpen && (

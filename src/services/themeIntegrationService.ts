@@ -284,9 +284,17 @@ class ThemeIntegrationService {
   getSectionStyleClass(sectionType: string, styleId?: string, themeId?: string): string {
     const currentTheme = themeId || localStorage.getItem('currentTheme') || 'theme-1';
     const themeNumber = currentTheme.replace('theme-', '');
-    
+
     // If specific style is provided, use it
     if (styleId) {
+      // Map styleId to proper CSS class
+      const styleNumber = styleId.toString();
+
+      // Generate the proper CSS class based on style number
+      if (parseInt(styleNumber) >= 1 && parseInt(styleNumber) <= 26) {
+        return this.getModernStyleClass(sectionType, styleNumber);
+      }
+
       const styleMapping = this.themeStyleMappings[sectionType];
       return styleMapping?.[styleId] || styleMapping?.['1'] || `${sectionType}-modern-style-1`;
     }
@@ -302,22 +310,106 @@ class ThemeIntegrationService {
     return styleMapping?.[themeNumber] || styleMapping?.['1'] || `${sectionType}-modern-style-1`;
   }
 
-  getAvailableStyles(sectionType: string): Array<{ id: string; name: string; category: string }> {
-    const styleMapping = this.themeStyleMappings[sectionType];
-    if (!styleMapping) return [];
+  // Generate modern style class based on section type and style number
+  getModernStyleClass(sectionType: string, styleNumber: string): string {
+    const styleNum = parseInt(styleNumber);
 
-    return Object.entries(styleMapping).map(([id, className]) => ({
-      id,
-      name: this.formatStyleName(className),
-      category: parseInt(id) <= 11 ? 'modern' : 'ultra-modern'
-    }));
+    // Map to the comprehensive CSS classes we created
+    const styleClassMap: Record<string, string> = {
+      '1': `${sectionType}-modern-grid`,
+      '2': `${sectionType}-modern-cards`,
+      '3': `${sectionType}-modern-featured`,
+      '4': `${sectionType}-modern-minimal`,
+      '5': `${sectionType}-modern-gradient`,
+      '6': `${sectionType}-modern-showcase`,
+      '7': `${sectionType}-modern-split`,
+      '8': `${sectionType}-modern-timeline`,
+      '9': `${sectionType}-modern-interactive`,
+      '10': `${sectionType}-modern-comparison`,
+      '11': `${sectionType}-modern-masonry`,
+      '12': `${sectionType}-modern-list`,
+      '13': `${sectionType}-modern-categories`,
+      '14': `${sectionType}-modern-search`,
+      '15': `${sectionType}-modern-floating`,
+      '16': `${sectionType}-modern-overlay`,
+      '17': `${sectionType}-modern-stats`,
+      '18': `${sectionType}-modern-newsletter`,
+      '19': `${sectionType}-modern-contact`,
+      '20': `${sectionType}-modern-steps`,
+      '21': `${sectionType}-modern-inline`,
+      '22': `${sectionType}-modern-centered`,
+      '23': `${sectionType}-modern-card`,
+      '24': `${sectionType}-modern-map-focus`,
+      '25': `${sectionType}-modern-trending`,
+      '26': `${sectionType}-modern-new-arrivals`
+    };
+
+    return styleClassMap[styleNumber] || `${sectionType}-modern-grid`;
+  }
+
+  getAvailableStyles(sectionType: string): Array<{ id: string; name: string; category: string }> {
+    // Return all 26 styles for any section type
+    const allStyles = [];
+
+    for (let i = 1; i <= 26; i++) {
+      const styleId = i.toString();
+      const className = this.getModernStyleClass(sectionType, styleId);
+
+      allStyles.push({
+        id: styleId,
+        name: this.formatStyleName(className),
+        category: i <= 13 ? 'modern' : 'ultra-modern'
+      });
+    }
+
+    return allStyles;
   }
 
   private formatStyleName(className: string): string {
-    return className
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+    // Extract the style type from the class name
+    const parts = className.split('-');
+    const styleType = parts.slice(-1)[0]; // Get the last part (grid, cards, etc.)
+
+    // Create readable names for each style type
+    const styleNames: Record<string, string> = {
+      'grid': 'Modern Grid Layout',
+      'cards': 'Card-Based Layout',
+      'featured': 'Featured Content',
+      'minimal': 'Minimal Design',
+      'gradient': 'Gradient Background',
+      'showcase': 'Showcase Display',
+      'split': 'Split Layout',
+      'timeline': 'Timeline View',
+      'interactive': 'Interactive Elements',
+      'comparison': 'Comparison Table',
+      'masonry': 'Masonry Layout',
+      'list': 'List View',
+      'categories': 'Category Filters',
+      'search': 'Search Interface',
+      'floating': 'Floating Elements',
+      'overlay': 'Overlay Design',
+      'stats': 'Statistics Display',
+      'newsletter': 'Newsletter Style',
+      'contact': 'Contact Form',
+      'steps': 'Step-by-Step',
+      'inline': 'Inline Layout',
+      'centered': 'Centered Design',
+      'card': 'Card Design',
+      'map-focus': 'Map Focused',
+      'trending': 'Trending Items',
+      'new-arrivals': 'New Arrivals'
+    };
+
+    return styleNames[styleType] || this.capitalizeWords(styleType);
+  }
+
+  private capitalizeWords(str: string): string {
+    return str
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/[-_]/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase())
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
   previewTheme(themeId: string, school: School): Promise<void> {
