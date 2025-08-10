@@ -3,6 +3,8 @@ import { Section } from '@/types';
 import { useTestimonials, Testimonial } from '@/hooks/useTestimonials';
 import '@/themes/styles/sections/testimonials-modern.css';
 import '@/themes/styles/sections/testimonials-ultra-modern.css';
+import '@/themes/styles/sections/testimonials-section-styles.css';
+import { Star, Quote, Play, Filter, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface TestimonialsSectionProps {
   section: Section;
