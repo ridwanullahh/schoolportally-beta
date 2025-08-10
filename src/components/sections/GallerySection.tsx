@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import '@/themes/styles/sections/gallery-modern.css';
 import '@/themes/styles/sections/gallery.css';
+import '@/themes/styles/sections/gallery-section-styles.css';
+import { ZoomIn, Search, Filter, ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 
