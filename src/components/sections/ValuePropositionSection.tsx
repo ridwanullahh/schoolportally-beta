@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Section } from '@/types';
 import * as Icons from 'lucide-react';
 import '@/themes/styles/sections/value-proposition-modern.css';
 import '@/themes/styles/sections/value-proposition-ultra-modern.css';
+import '@/themes/styles/sections/value-proposition-section-styles.css';
+import { CheckCircle, Star, Award, Target, ArrowRight, Check, TrendingUp } from 'lucide-react';
 
 interface ValueProposition {
   icon: string;
