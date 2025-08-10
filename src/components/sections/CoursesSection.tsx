@@ -1,17 +1,34 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useCourses } from '@/hooks/useCourses';
 import '@/themes/styles/sections/courses-modern.css';
 import '@/themes/styles/sections/courses-ultra-modern.css';
-import { BookOpen } from 'lucide-react';
+import '@/themes/styles/sections/courses-section-styles.css';
+import { BookOpen, Clock, Users, Star, Search, Filter, ArrowRight, User } from 'lucide-react';
 
 interface CoursesSectionProps {
   section: Section;
 }
 
 const CoursesSection: React.FC<CoursesSectionProps> = ({ section }) => {
-  const { title } = section.content;
+  const { content, settings } = section;
+  const { courses, loading, error } = useCourses();
+
+  // Section settings with defaults
+  const coursesToShow = parseInt(settings?.coursesToShow || '6');
+  const enableSearch = settings?.enableSearch !== false;
+  const enableFiltering = settings?.enableFiltering !== false;
+  const enableSorting = settings?.enableSorting !== false;
+  const enableLoadMore = settings?.enableLoadMore !== false;
+  const showViewAllButton = settings?.showViewAllButton !== false;
+
+  // State for controls
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [sortBy, setSortBy] = useState('title');
+  const [displayedCourses, setDisplayedCourses] = useState(coursesToShow);
+  const [filteredCourses, setFilteredCourses] = useState<any[]>([]);
 
   // Map numbered styles to actual style IDs
   const getStyleId = (styleNumber: string) => {
@@ -50,9 +67,6 @@ const CoursesSection: React.FC<CoursesSectionProps> = ({ section }) => {
 
   const styleId = getStyleId(section.styleId || '1');
   const [activeTag, setActiveTag] = useState('All');
-
-  // Use dynamic content from courses admin module
-  const { courses, loading, error, getFeaturedCourses } = useCourses();
 
   const defaultCourses = [
     {
