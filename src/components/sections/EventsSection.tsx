@@ -5,7 +5,8 @@ import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
-import '@/themes/styles/sections/events.css';
+import '@/themes/styles/sections/events-modern.css';
+import '@/themes/styles/sections/events-section-styles.css';
 
 interface EventsSectionProps {
   section: Section;
@@ -72,6 +73,98 @@ const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
   const styleId = getStyleId(section.styleId || '1');
 
   // Default events data for demonstration
+  const defaultEvents = [
+    {
+      id: '1',
+      title: 'Annual Science Fair',
+      description: 'Join us for our annual science fair where students showcase their innovative projects and experiments.',
+      date: '2024-12-15',
+      time: '10:00 AM',
+      location: 'Main Auditorium',
+      category: 'Academic',
+      organizer: 'Science Department',
+      capacity: 200,
+      registrations: [],
+      status: 'published',
+      slug: 'annual-science-fair',
+      featured: true
+    },
+    {
+      id: '2',
+      title: 'Winter Sports Championship',
+      description: 'Cheer on our teams as they compete in the winter sports championship games.',
+      date: '2024-12-20',
+      time: '2:00 PM',
+      location: 'Sports Complex',
+      category: 'Sports',
+      organizer: 'Athletics Department',
+      capacity: 500,
+      registrations: [],
+      status: 'published',
+      slug: 'winter-sports-championship',
+      featured: false
+    },
+    {
+      id: '3',
+      title: 'Holiday Concert',
+      description: 'Enjoy beautiful holiday music performed by our talented students and faculty.',
+      date: '2024-12-22',
+      time: '7:00 PM',
+      location: 'Concert Hall',
+      category: 'Arts',
+      organizer: 'Music Department',
+      capacity: 300,
+      registrations: [],
+      status: 'published',
+      slug: 'holiday-concert',
+      featured: true
+    },
+    {
+      id: '4',
+      title: 'Parent-Teacher Conference',
+      description: 'Meet with teachers to discuss your child\'s progress and academic goals.',
+      date: '2024-12-18',
+      time: '3:00 PM',
+      location: 'Classrooms',
+      category: 'Academic',
+      organizer: 'Administration',
+      capacity: 100,
+      registrations: [],
+      status: 'published',
+      slug: 'parent-teacher-conference',
+      featured: false
+    },
+    {
+      id: '5',
+      title: 'Art Exhibition Opening',
+      description: 'Celebrate creativity at the opening of our student art exhibition.',
+      date: '2024-12-25',
+      time: '6:00 PM',
+      location: 'Art Gallery',
+      category: 'Arts',
+      organizer: 'Art Department',
+      capacity: 150,
+      registrations: [],
+      status: 'published',
+      slug: 'art-exhibition-opening',
+      featured: false
+    },
+    {
+      id: '6',
+      title: 'New Year Celebration',
+      description: 'Ring in the new year with our school community celebration.',
+      date: '2024-12-31',
+      time: '8:00 PM',
+      location: 'Main Campus',
+      category: 'Social',
+      organizer: 'Student Council',
+      capacity: 400,
+      registrations: [],
+      status: 'published',
+      slug: 'new-year-celebration',
+      featured: true
+    }
+  ];
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -82,10 +175,13 @@ const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
           const schoolEvents = allEvents.filter((e: any) =>
             e.schoolId === school.id && e.status === 'published'
           );
-          setEvents(schoolEvents);
+          setEvents(schoolEvents.length > 0 ? schoolEvents : defaultEvents);
+        } else {
+          setEvents(defaultEvents);
         }
       } catch (err) {
         console.error('Error fetching events:', err);
+        setEvents(defaultEvents);
         setError('Failed to load events');
       } finally {
         setLoading(false);
