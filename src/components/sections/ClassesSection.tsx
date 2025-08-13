@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useClasses } from '@/hooks/useClasses';
+import { useSchool } from '@/contexts/SchoolContext';
+import { Link } from 'react-router-dom';
 import { Search, Filter, Users, Calendar, BookOpen, ArrowRight, ChevronDown } from 'lucide-react';
+import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
 import '@/themes/styles/sections/classes-modern.css';
 import '@/themes/styles/sections/classes-ultra-modern.css';
 import '@/themes/styles/sections/classes-section-styles.css';
 import sdk from '@/lib/sdk-config';
-import { useSchool } from '@/contexts/SchoolContext';
 
 interface ClassesSectionProps {
   section: Section;
@@ -78,8 +80,8 @@ const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
       capacity: 30,
       currentEnrollment: 25,
       description: 'Advanced mathematics covering algebra, geometry, and basic calculus concepts.',
-      image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop',
       subjects: ['Algebra', 'Geometry', 'Statistics'],
+      slug: 'mathematics-101',
       schedule: {
         monday: [{ startTime: '09:00', endTime: '10:30', subject: 'Algebra' }],
         wednesday: [{ startTime: '09:00', endTime: '10:30', subject: 'Geometry' }],
@@ -97,8 +99,8 @@ const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
       capacity: 25,
       currentEnrollment: 20,
       description: 'Exploring art history from ancient civilizations to contemporary movements.',
-      image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop',
       subjects: ['Art History', 'Cultural Studies', 'Art Criticism'],
+      slug: 'history-of-art',
       schedule: {
         tuesday: [{ startTime: '11:00', endTime: '12:30', subject: 'Art History' }],
         thursday: [{ startTime: '11:00', endTime: '12:30', subject: 'Cultural Studies' }]
@@ -115,8 +117,8 @@ const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
       capacity: 30,
       currentEnrollment: 28,
       description: 'Fundamental physics concepts including mechanics, thermodynamics, and waves.',
-      image: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=400&h=300&fit=crop',
       subjects: ['Mechanics', 'Thermodynamics', 'Wave Physics'],
+      slug: 'introduction-to-physics',
       schedule: {
         monday: [{ startTime: '13:00', endTime: '14:30', subject: 'Mechanics' }],
         wednesday: [{ startTime: '13:00', endTime: '14:30', subject: 'Thermodynamics' }]
@@ -185,28 +187,67 @@ const ClassesSection: React.FC<ClassesSectionProps> = ({ section }) => {
   // Use dynamic content if available, otherwise use defaults
   const classItems = classes && classes.length > 0 ? classes.slice(0, classesLimit) : defaultClasses;
 
+  // Render class card
   const renderClass = (classItem: any, index: number) => {
-    const classImage = classItem.image || 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop';
+    const classUrl = `/${school?.slug}/classes/${classItem.slug || classItem.id}`;
 
     return (
-      <div key={classItem.id} className="class-card">
-        <img
-          src={classImage}
-          alt={classItem.name}
-          className="class-image"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop';
-          }}
-        />
-        <div className="class-name">{classItem.name}</div>
-        <div className="class-grade">{classItem.grade}</div>
-        <div className="class-teacher">Teacher: {classItem.teacher}</div>
-        <div className="class-capacity">
-          <span>Enrolled: {classItem.currentEnrollment}/{classItem.capacity}</span>
-          <span>{Math.round((classItem.currentEnrollment / classItem.capacity) * 100)}% Full</span>
+      <SectionCard key={classItem.id || index} href={classUrl}>
+        {classItem.image && (
+          <img
+            src={classItem.image}
+            alt={classItem.name}
+            className="class-image"
+          />
+        )}
+        <div className="class-content">
+          <h3 className="class-name">{classItem.name}</h3>
+          {classItem.grade && <div className="class-grade">{classItem.grade}</div>}
+          {classItem.teacher && (
+            <div className="class-teacher">
+              <Users size={14} />
+              <span>Teacher: {classItem.teacher}</span>
+            </div>
+          )}
+          {classItem.capacity && classItem.currentEnrollment && (
+            <div className="class-capacity">
+              <div className="enrollment-info">
+                <span>Enrolled: {classItem.currentEnrollment}/{classItem.capacity}</span>
+                <span className="enrollment-percentage">
+                  {Math.round((classItem.currentEnrollment / classItem.capacity) * 100)}% Full
+                </span>
+              </div>
+              <div className="enrollment-bar">
+                <div
+                  className="enrollment-fill"
+                  style={{ width: `${(classItem.currentEnrollment / classItem.capacity) * 100}%` }}
+                ></div>
+              </div>
+            </div>
+          )}
+          {classItem.subjects && classItem.subjects.length > 0 && (
+            <div className="class-subjects">
+              {classItem.subjects.map((subject: string, idx: number) => (
+                <span key={idx} className="subject-tag">{subject}</span>
+              ))}
+            </div>
+          )}
+          {classItem.description && (
+            <p className="class-description">
+              {classItem.description.length > 120
+                ? `${classItem.description.substring(0, 120)}...`
+                : classItem.description
+              }
+            </p>
+          )}
+          {classItem.room && (
+            <div className="class-room">
+              <BookOpen size={14} />
+              <span>Room: {classItem.room}</span>
+            </div>
+          )}
         </div>
-        {classItem.description && <div className="class-description">{classItem.description}</div>}
-      </div>
+      </SectionCard>
     );
   };
 

@@ -75,18 +75,39 @@ const dbSchema = {
       branding: 'object',
       createdAt: 'string',
       updatedAt: 'string',
+      // Enhanced theming system
+      currentTheme: 'string',
+      themeOverrides: 'object',
+      // Component styles
       headerStyle: 'string',
       footerStyle: 'string',
-      blogPostStyle: 'string',
+      breadcrumbStyle: 'string',
+      // Module archive styles
       blogArchiveStyle: 'string',
-      announcementPostStyle: 'string',
       announcementArchiveStyle: 'string',
-      eventPostStyle: 'string',
       eventArchiveStyle: 'string',
-      programPostStyle: 'string',
       programArchiveStyle: 'string',
-      classPostStyle: 'string',
       classArchiveStyle: 'string',
+      courseArchiveStyle: 'string',
+      facultyArchiveStyle: 'string',
+      galleryArchiveStyle: 'string',
+      jobArchiveStyle: 'string',
+      productArchiveStyle: 'string',
+      knowledgebaseArchiveStyle: 'string',
+      libraryArchiveStyle: 'string',
+      // Module single post styles
+      blogPostStyle: 'string',
+      announcementPostStyle: 'string',
+      eventPostStyle: 'string',
+      programPostStyle: 'string',
+      classPostStyle: 'string',
+      coursePostStyle: 'string',
+      facultyPostStyle: 'string',
+      galleryPostStyle: 'string',
+      jobPostStyle: 'string',
+      productPostStyle: 'string',
+      knowledgebasePostStyle: 'string',
+      libraryPostStyle: 'string',
       coursePostStyle: 'string',
       courseArchiveStyle: 'string',
       galleryPostStyle: 'string',
@@ -207,10 +228,34 @@ const dbSchema = {
       schoolId: 'string',
       name: 'string',
       description: 'string',
+      excerpt: 'string',
+      slug: 'string',
+      type: 'string',
+      level: 'string',
       duration: 'string',
       price: 'number',
+      capacity: 'number',
+      currentEnrollment: 'number',
+      instructor: 'string',
+      instructorId: 'string',
+      schedule: 'object',
+      location: 'string',
+      requirements: 'array',
+      benefits: 'array',
+      curriculum: 'array',
+      image: 'string',
+      gallery: 'array',
+      startDate: 'string',
+      endDate: 'string',
+      applicationDeadline: 'string',
+      category: 'string',
+      tags: 'array',
+      featured: 'boolean',
       status: 'string',
-      createdAt: 'string'
+      seoTitle: 'string',
+      seoDescription: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
     }
   },
   classes: {
@@ -221,6 +266,7 @@ const dbSchema = {
       name: 'string',
       slug: 'string',
       description: 'string',
+      excerpt: 'string',
       programId: 'string',
       teacherIds: 'array',
       sessionId: 'string',
@@ -233,11 +279,19 @@ const dbSchema = {
       room: 'string',
       gradeLevel: 'string',
       subject: 'string',
+      category: 'string',
+      tags: 'array',
+      featured: 'boolean',
+      image: 'string',
+      gallery: 'array',
       students: 'array',
       materials: 'array',
       assignments: 'array',
       attendance: 'array',
-      createdAt: 'string'
+      seoTitle: 'string',
+      seoDescription: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
     }
   },
   subjects: {
@@ -437,6 +491,13 @@ const dbSchema = {
       comments: 'number',
       seoTitle: 'string',
       seoDescription: 'string',
+      readingTime: 'number',
+      relatedPosts: 'array',
+      gallery: 'array',
+      videoUrl: 'string',
+      audioUrl: 'string',
+      downloadableFiles: 'array',
+      customFields: 'object',
       createdAt: 'string',
       updatedAt: 'string'
     }
@@ -532,19 +593,36 @@ const dbSchema = {
       schoolId: 'string',
       title: 'string',
       description: 'string',
+      excerpt: 'string',
+      slug: 'string',
       date: 'string',
       time: 'string',
+      endDate: 'string',
+      endTime: 'string',
       location: 'string',
       category: 'string',
       image: 'string',
+      gallery: 'array',
       organizer: 'string',
+      organizerId: 'string',
       capacity: 'number',
       registrations: 'array',
       status: 'string',
       tags: 'array',
+      featured: 'boolean',
       recurring: 'boolean',
       recurringPattern: 'object',
-      createdAt: 'string'
+      ticketPrice: 'number',
+      ticketTypes: 'array',
+      requirements: 'array',
+      agenda: 'array',
+      speakers: 'array',
+      sponsors: 'array',
+      socialLinks: 'object',
+      seoTitle: 'string',
+      seoDescription: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
     }
   },
   jobs: {
@@ -676,31 +754,55 @@ const dbSchema = {
       status: 'string',
       readAt: 'string',
       createdAt: 'string'
-    },
-    products: {
-      required: ['name', 'price', 'status'],
-      types: {
-        name: 'string',
-        price: 'number',
-        status: 'string',
-        stock: 'number',
-      },
-    },
-    orders: {
-      required: ['customerId', 'items', 'total', 'status'],
-      types: {
-        total: 'number',
-        status: 'string',
-      },
-    },
-    customers: {
-      required: ['firstName', 'lastName', 'email'],
-      types: {
-        email: 'string',
-      },
-    },
+    }
   },
- live_class_schedules: {
+  products: {
+    required: ['schoolId', 'name', 'price'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      name: 'string',
+      description: 'string',
+      price: 'number',
+      status: 'string',
+      stock: 'number',
+      category: 'string',
+      images: 'array',
+      tags: 'array',
+      featured: 'boolean',
+      slug: 'string',
+      seoTitle: 'string',
+      seoDescription: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  orders: {
+    required: ['schoolId', 'customerId', 'items', 'total'],
+    types: {
+      id: 'string',
+      schoolId: 'string',
+      customerId: 'string',
+      items: 'array',
+      total: 'number',
+      status: 'string',
+      createdAt: 'string',
+      updatedAt: 'string'
+    }
+  },
+  customers: {
+    required: ['firstName', 'lastName', 'email'],
+    types: {
+      id: 'string',
+      firstName: 'string',
+      lastName: 'string',
+      email: 'string',
+      phone: 'string',
+      address: 'string',
+      createdAt: 'string'
+    }
+  },
+  live_class_schedules: {
    required: ['schoolId', 'subjectId', 'topic', 'startTime', 'teacherId'],
    types: {
      id: 'string',

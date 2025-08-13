@@ -84,7 +84,7 @@ class ThemeService {
     return {
       header: styleBase.toString(),
       footer: styleBase.toString(),
-      breadcrumb: Math.min(styleBase, 8).toString(), // Only 8 breadcrumb styles available
+      breadcrumb: styleBase.toString(), // All 26 breadcrumb styles available
       sections: sectionStyles,
       archives: {
         blog: styleBase.toString(),
@@ -101,43 +101,42 @@ class ThemeService {
   }
 
   private initializeBreadcrumbStyles() {
-    this.breadcrumbStyles = [
-      {
-        id: '1',
-        name: 'Modern Arrow',
-        category: 'modern',
-        cssClass: 'breadcrumb-modern-arrow',
-        preview: 'Home > About > History'
-      },
-      {
-        id: '2',
-        name: 'Modern Slash',
-        category: 'modern',
-        cssClass: 'breadcrumb-modern-slash',
-        preview: 'Home / About / History'
-      },
-      {
-        id: '3',
-        name: 'Modern Dots',
-        category: 'modern',
-        cssClass: 'breadcrumb-modern-dots',
-        preview: 'Home • About • History'
-      },
-      {
-        id: '4',
-        name: 'Classic Chevron',
-        category: 'classic',
-        cssClass: 'breadcrumb-classic-chevron',
-        preview: 'Home » About » History'
-      },
-      {
-        id: '5',
-        name: 'Minimal Line',
-        category: 'minimal',
-        cssClass: 'breadcrumb-minimal-line',
-        preview: 'Home — About — History'
-      }
+    const breadcrumbConfigs = [
+      { id: '1', name: 'Classic Arrow', category: 'classic', preview: 'Home → About → History' },
+      { id: '2', name: 'Modern Gradient', category: 'modern', preview: 'Home / About / History' },
+      { id: '3', name: 'Pill Design', category: 'modern', preview: 'Home › About › History' },
+      { id: '4', name: 'Gradient Background', category: 'modern', preview: 'Home ▶ About ▶ History' },
+      { id: '5', name: 'Card Style', category: 'modern', preview: 'Home → About → History' },
+      { id: '6', name: 'Minimal Line', category: 'minimal', preview: 'Home — About — History' },
+      { id: '7', name: 'Dots Separator', category: 'modern', preview: 'Home • About • History' },
+      { id: '8', name: 'Chevron Classic', category: 'classic', preview: 'Home » About » History' },
+      { id: '9', name: 'Floating Design', category: 'modern', preview: 'Home ⟩ About ⟩ History' },
+      { id: '10', name: 'Bordered Sections', category: 'classic', preview: 'Home | About | History' },
+      { id: '11', name: 'Neumorphism', category: 'modern', preview: 'Home → About → History' },
+      { id: '12', name: 'Glassmorphism', category: 'modern', preview: 'Home ▸ About ▸ History' },
+      { id: '13', name: 'Neon Glow', category: 'modern', preview: 'Home → About → History' },
+      { id: '14', name: 'Retro Wave', category: 'retro', preview: 'Home ▶ About ▶ History' },
+      { id: '15', name: 'Simple Clean', category: 'minimal', preview: 'Home → About → History' },
+      { id: '16', name: 'Elegant Border', category: 'classic', preview: 'Home → About → History' },
+      { id: '17', name: 'Modern Rounded', category: 'modern', preview: 'Home → About → History' },
+      { id: '18', name: 'Professional', category: 'classic', preview: 'Home → About → History' },
+      { id: '19', name: 'Creative Flow', category: 'modern', preview: 'Home → About → History' },
+      { id: '20', name: 'Minimalist Pro', category: 'minimal', preview: 'Home → About → History' },
+      { id: '21', name: 'Bold Modern', category: 'modern', preview: 'Home → About → History' },
+      { id: '22', name: 'Subtle Elegant', category: 'classic', preview: 'Home → About → History' },
+      { id: '23', name: 'Dynamic Style', category: 'modern', preview: 'Home → About → History' },
+      { id: '24', name: 'Clean Corporate', category: 'classic', preview: 'Home → About → History' },
+      { id: '25', name: 'Artistic Flair', category: 'modern', preview: 'Home → About → History' },
+      { id: '26', name: 'Ultra Modern', category: 'modern', preview: 'Home → About → History' }
     ];
+
+    this.breadcrumbStyles = breadcrumbConfigs.map(config => ({
+      id: config.id,
+      name: config.name,
+      category: config.category,
+      cssClass: `breadcrumb-style-${config.id}`,
+      preview: config.preview
+    }));
   }
 
   getThemes(): Theme[] {

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useAcademicCalendar } from '@/hooks/useAcademicCalendar';
-import '@/themes/styles/sections/academic-calendar-modern.css';
-import '@/themes/styles/sections/all-remaining-ultra-modern.css';
-import '@/themes/styles/sections/academic-calendar-section-styles.css';
+import '@/themes/styles/sections/academic-calendar.css';
 import { Calendar, Clock, MapPin, Users, ChevronLeft, ChevronRight, Filter, X, CalendarDays } from 'lucide-react';
 
 interface AcademicCalendarSectionProps {
@@ -54,89 +52,8 @@ const AcademicCalendarSection: React.FC<AcademicCalendarSectionProps> = ({ secti
   // Use dynamic content from academic calendar admin module
   const { events, loading, error, getUpcomingEvents } = useAcademicCalendar();
 
-  const defaultEvents = [
-    {
-      id: '1',
-      title: 'Fall Semester Begins',
-      date: '2024-09-01',
-      endDate: '2024-09-01',
-      type: 'academic',
-      term: 'Fall 2024',
-      description: 'First day of classes for the Fall 2024 semester.',
-      location: 'Campus Wide',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
-      featured: true,
-      status: 'published'
-    },
-    {
-      id: '2',
-      title: 'Mid-term Break',
-      date: '2024-10-14',
-      endDate: '2024-10-18',
-      type: 'holiday',
-      term: 'Fall 2024',
-      description: 'Mid-semester break for students and faculty.',
-      location: 'Campus Wide',
-      image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=400&h=300&fit=crop',
-      featured: false,
-      status: 'published'
-    },
-    {
-      id: '3',
-      title: 'Fall Semester Ends',
-      date: '2024-12-20',
-      endDate: '2024-12-20',
-      type: 'academic',
-      term: 'Fall 2024',
-      description: 'Last day of classes and final exams for Fall 2024.',
-      location: 'Campus Wide',
-      image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop',
-      featured: true,
-      status: 'published'
-    },
-    {
-      id: '4',
-      title: 'Spring Semester Begins',
-      date: '2025-01-15',
-      endDate: '2025-01-15',
-      type: 'academic',
-      term: 'Spring 2025',
-      description: 'First day of classes for the Spring 2025 semester.',
-      location: 'Campus Wide',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
-      featured: true,
-      status: 'published'
-    },
-    {
-      id: '5',
-      title: 'Spring Break',
-      date: '2025-03-10',
-      endDate: '2025-03-14',
-      type: 'holiday',
-      term: 'Spring 2025',
-      description: 'Spring break vacation for students and faculty.',
-      location: 'Campus Wide',
-      image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=400&h=300&fit=crop',
-      featured: false,
-      status: 'published'
-    },
-    {
-      id: '6',
-      title: 'Graduation Ceremony',
-      date: '2025-05-15',
-      endDate: '2025-05-15',
-      type: 'ceremony',
-      term: 'Spring 2025',
-      description: 'Annual graduation ceremony for graduating students.',
-      location: 'Main Auditorium',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop',
-      featured: true,
-      status: 'published'
-    }
-  ];
-
   // Use dynamic content if available, otherwise use defaults
-  const calendarEvents = events && events.length > 0 ? events : defaultEvents;
+  const calendarEvents = events || [];
   
   const renderEvent = (event: any, index: number) => {
     const eventImage = event.image || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop';
@@ -175,10 +92,7 @@ const AcademicCalendarSection: React.FC<AcademicCalendarSectionProps> = ({ secti
     if (error) {
       return (
         <div className="events-container">
-          <div className="error-state">Error loading calendar. Showing default events.</div>
-          <div className="events-container">
-            {defaultEvents.map(renderEvent)}
-          </div>
+          <div className="error-state">Error loading calendar.</div>
         </div>
       );
     }

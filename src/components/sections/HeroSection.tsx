@@ -1,8 +1,7 @@
 import React from 'react';
 import { Section } from '@/types';
-import { themeIntegrationService } from '@/services/themeIntegrationService';
-import '@/themes/styles/sections/hero-modern.css';
-import '@/themes/styles/sections/hero-ultra-modern.css';
+import { ArrowRight, Play } from 'lucide-react';
+import { normalizeStyleId } from '@/utils/sectionStyleUtils';
 import '@/themes/styles/sections/hero-section-styles.css';
 
 interface HeroSectionProps {
@@ -21,33 +20,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section }) => {
     backgroundImage
   } = section.content;
 
-  // Get the proper CSS class from theme integration service
-  const styleClass = themeIntegrationService.getSectionStyleClass('hero', section.styleId || '1');
+  // Get the normalized style ID and create CSS class
+  const styleId = normalizeStyleId(section.styleId);
+  const styleClass = `hero-style-${styleId}`;
 
-  // Extract style type for conditional rendering
-  const getStyleType = (className: string): string => {
-    const parts = className.split('-');
-    return parts[parts.length - 1] || 'grid';
-  };
-
-  const styleType = getStyleType(styleClass);
-
-  // Note: Brand colors are automatically applied by ThemeSwitcher component
-  // No manual CSS property setting needed here
+  // Determine if this is a split layout style
+  const isSplitLayout = ['2', '7', '10'].includes(styleId);
+  const isVideoBackground = ['4'].includes(styleId);
 
   const renderHeroContent = () => {
     const commonActions = (
       <div className="hero-actions">
         <a href={primaryLink} className="btn-primary">
           {primaryButton}
+          <ArrowRight size={16} />
         </a>
         <a href={secondaryLink} className="btn-secondary">
           {secondaryButton}
+          {isVideoBackground && <Play size={16} />}
         </a>
       </div>
     );
 
-    // Generic content structure that works with all styles
     const mainContent = (
       <div className="hero-content">
         <h1 className="hero-title">{title}</h1>
@@ -63,7 +57,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section }) => {
       </div>
     );
 
-    // Return content structure that works with CSS-based styling
     return (
       <div className="hero-container">
         {mainContent}
@@ -72,8 +65,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section }) => {
     );
   };
 
-  // Handle background image for specific styles
-  const sectionStyle = backgroundImage && styleType === 'video-bg'
+  // Handle background image for video background style
+  const sectionStyle = backgroundImage && isVideoBackground
     ? { backgroundImage: `url(${backgroundImage})` }
     : {};
 

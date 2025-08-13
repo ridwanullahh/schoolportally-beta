@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useBlogPosts } from '@/hooks/useBlogPosts';
+import { useSchool } from '@/contexts/SchoolContext';
+import { Link } from 'react-router-dom';
 import { Search, Filter, Calendar, User, ArrowRight, ChevronDown } from 'lucide-react';
+import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
 import '@/themes/styles/sections/blog-posts-modern.css';
 import '@/themes/styles/sections/blog-posts-ultra-modern.css';
 import '@/themes/styles/sections/blog-section-styles.css';
@@ -13,6 +16,7 @@ interface BlogPostsSectionProps {
 const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   const { content, settings } = section;
   const { posts, loading, error, getFeaturedPosts } = useBlogPosts();
+  const { school } = useSchool();
 
   // Section settings with defaults
   const postsToShow = parseInt(settings?.postsToShow || '6');
@@ -116,7 +120,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       publishedAt: '2024-11-20',
       category: 'News',
       tags: ['academic', 'welcome', 'students'],
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop',
+      slug: 'welcome-to-our-new-academic-year',
       featured: true,
       status: 'published'
     },
@@ -128,7 +132,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       publishedAt: '2024-11-18',
       category: 'Events',
       tags: ['science', 'competition', 'students'],
-      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop',
+      slug: 'science-fair-winners-announced',
       featured: false,
       status: 'published'
     },
@@ -140,7 +144,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       publishedAt: '2024-11-15',
       category: 'Resources',
       tags: ['library', 'resources', 'digital'],
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+      slug: 'new-library-resources-available',
       featured: true,
       status: 'published'
     },
@@ -152,7 +156,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       publishedAt: '2024-11-12',
       category: 'Sports',
       tags: ['sports', 'basketball', 'championship'],
-      image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop',
+      slug: 'sports-team-championships',
       featured: false,
       status: 'published'
     },
@@ -164,7 +168,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       publishedAt: '2024-11-10',
       category: 'Arts',
       tags: ['art', 'exhibition', 'students'],
-      image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop',
+      slug: 'art-exhibition-opening',
       featured: true,
       status: 'published'
     },
@@ -176,7 +180,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       publishedAt: '2024-11-08',
       category: 'Technology',
       tags: ['technology', 'education', 'innovation'],
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
+      slug: 'technology-integration-program',
       featured: false,
       status: 'published'
     }
@@ -192,18 +196,17 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   };
 
   const renderPost = (post: any, index: number) => {
-    const postImage = post.image || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop';
+    const postUrl = `/${school?.slug}/blog/${post.slug || post.id}`;
 
     return (
-      <div key={post.id || index} className="blog-card">
-        <img
-          src={postImage}
-          alt={post.title}
-          className="blog-image"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop';
-          }}
-        />
+      <SectionCard key={post.id || index} href={postUrl}>
+        {post.featuredImage && (
+          <img
+            src={post.featuredImage}
+            alt={post.title}
+            className="blog-image"
+          />
+        )}
         <div className="blog-content">
           <h3 className="blog-title">{post.title}</h3>
           {post.excerpt && <p className="blog-excerpt">{post.excerpt}</p>}
@@ -212,7 +215,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
               <Calendar size={14} />
               <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
             </div>
-            <div className="blog-category">{post.category}</div>
+            {post.category && <div className="blog-category">{post.category}</div>}
           </div>
           {post.author && (
             <div className="blog-author">
@@ -221,7 +224,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
             </div>
           )}
         </div>
-      </div>
+      </SectionCard>
     );
   };
 
@@ -229,7 +232,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
     if (!enableSearch && !enableFiltering && !enableSorting) return null;
 
     return (
-      <div className="blog-controls">
+      <SectionControls>
         {enableSearch && (
           <div className="search-box">
             <Search size={16} />
@@ -270,7 +273,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
             </select>
           )}
         </div>
-      </div>
+      </SectionControls>
     );
   };
 
@@ -300,11 +303,13 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
         return (
           <>
             {featuredPost && (
-              <div className="featured-post">
+              <Link to={`/${school?.slug}/blog/${featuredPost.slug || featuredPost.id}`} className="featured-post">
                 <div className="featured-content">
-                  <div className="featured-image" style={{
-                    backgroundImage: `url(${featuredPost.image || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop'})`
-                  }}></div>
+                  {featuredPost.featuredImage && (
+                    <div className="featured-image" style={{
+                      backgroundImage: `url(${featuredPost.featuredImage})`
+                    }}></div>
+                  )}
                   <div className="featured-text">
                     <h3 className="featured-title">{featuredPost.title}</h3>
                     <p className="blog-excerpt">{featuredPost.excerpt}</p>
@@ -313,11 +318,11 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
                         <Calendar size={14} />
                         <span>{new Date(featuredPost.publishedAt).toLocaleDateString()}</span>
                       </div>
-                      <div className="blog-category">{featuredPost.category}</div>
+                      {featuredPost.category && <div className="blog-category">{featuredPost.category}</div>}
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             )}
             <div className="blog-grid">
               {otherPosts.map(renderPost)}
@@ -349,35 +354,22 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   };
 
   return (
-    <section className={`blog-section ${styleId}`}>
-      <div className="container">
-        {content?.title && <h2 className="section-title">{content.title}</h2>}
-        {content?.subtitle && <p className="section-subtitle">{content.subtitle}</p>}
+    <SectionWrapper
+      section={section}
+      className={`blog-section ${styleId}`}
+      itemCount={postsToDisplay.length}
+      customLayout={true}
+    >
+      {renderControls()}
+      {renderContent()}
 
-        {renderControls()}
-        {renderContent()}
-
-        {/* Load More / View All Controls */}
-        {enableLoadMore && hasMorePosts && (
-          <button
-            onClick={handleLoadMore}
-            className="load-more-btn"
-          >
-            Load More Posts
-          </button>
-        )}
-
-        {showViewAllButton && (
-          <a
-            href="/blog"
-            className="view-all-btn"
-          >
-            View All Posts
-            <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} />
-          </a>
-        )}
-      </div>
-    </section>
+      <SectionLoadMore
+        onLoadMore={enableLoadMore && hasMorePosts ? handleLoadMore : undefined}
+        hasMore={hasMorePosts}
+        viewAllHref={showViewAllButton ? `/${school?.slug}/blog` : undefined}
+        viewAllText="View All Posts"
+      />
+    </SectionWrapper>
   );
 };
 

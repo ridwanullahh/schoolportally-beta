@@ -1,34 +1,90 @@
-/* Breadcrumb Styles - Multiple Design Options */
+/* Modern Breadcrumb Styles - 26 Comprehensive Styles */
 
-.breadcrumb-container {
-  /* Use brand colors directly from ThemeSwitcher */
-  --brand-primary: var(--school-brand-primary, #2563eb);
-  --brand-secondary: var(--school-brand-secondary, #3b82f6);
-  --brand-accent: var(--school-brand-accent, #60a5fa);
-  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
-  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
-  --brand-text-light: var(--school-brand-text-light, #ffffff);
-  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
-  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
-  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
-
-  padding: 1rem 0;
-  font-family: var(--school-brand-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+/* Base Breadcrumb Variables */
+:root {
+  --breadcrumb-primary: var(--school-brand-primary, #2563eb);
+  --breadcrumb-secondary: var(--school-brand-secondary, #3b82f6);
+  --breadcrumb-accent: var(--school-brand-accent, #60a5fa);
+  --breadcrumb-text-primary: var(--school-brand-text-primary, #1f2937);
+  --breadcrumb-text-secondary: var(--school-brand-text-secondary, #6b7280);
+  --breadcrumb-text-light: var(--school-brand-text-light, #ffffff);
+  --breadcrumb-bg-primary: var(--school-brand-bg-primary, #ffffff);
+  --breadcrumb-bg-secondary: var(--school-brand-bg-secondary, #f8fafc);
+  --breadcrumb-bg-tertiary: var(--school-brand-bg-tertiary, #f1f5f9);
 }
 
-.breadcrumb-container .container {
+/* Base Breadcrumb Styles */
+.breadcrumb-style-1,
+.breadcrumb-style-2,
+.breadcrumb-style-3,
+.breadcrumb-style-4,
+.breadcrumb-style-5,
+.breadcrumb-style-6,
+.breadcrumb-style-7,
+.breadcrumb-style-8,
+.breadcrumb-style-9,
+.breadcrumb-style-10,
+.breadcrumb-style-11,
+.breadcrumb-style-12,
+.breadcrumb-style-13,
+.breadcrumb-style-14,
+.breadcrumb-style-15,
+.breadcrumb-style-16,
+.breadcrumb-style-17,
+.breadcrumb-style-18,
+.breadcrumb-style-19,
+.breadcrumb-style-20,
+.breadcrumb-style-21,
+.breadcrumb-style-22,
+.breadcrumb-style-23,
+.breadcrumb-style-24,
+.breadcrumb-style-25,
+.breadcrumb-style-26 {
+  padding: 1rem 0;
+  font-family: var(--theme-font-family, 'Inter', sans-serif);
+}
+
+.breadcrumb-style-1 .container,
+.breadcrumb-style-2 .container,
+.breadcrumb-style-3 .container,
+.breadcrumb-style-4 .container,
+.breadcrumb-style-5 .container,
+.breadcrumb-style-6 .container,
+.breadcrumb-style-7 .container,
+.breadcrumb-style-8 .container,
+.breadcrumb-style-9 .container,
+.breadcrumb-style-10 .container,
+.breadcrumb-style-11 .container,
+.breadcrumb-style-12 .container,
+.breadcrumb-style-13 .container,
+.breadcrumb-style-14 .container,
+.breadcrumb-style-15 .container,
+.breadcrumb-style-16 .container,
+.breadcrumb-style-17 .container,
+.breadcrumb-style-18 .container,
+.breadcrumb-style-19 .container,
+.breadcrumb-style-20 .container,
+.breadcrumb-style-21 .container,
+.breadcrumb-style-22 .container,
+.breadcrumb-style-23 .container,
+.breadcrumb-style-24 .container,
+.breadcrumb-style-25 .container,
+.breadcrumb-style-26 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* Base breadcrumb styles */
+/* Common breadcrumb navigation styles */
 .breadcrumb {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.875rem;
   line-height: 1.5;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .breadcrumb-item {
@@ -37,18 +93,784 @@
 }
 
 .breadcrumb-link {
-  color: var(--brand-text-secondary);
   text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.breadcrumb-link:hover {
-  color: var(--brand-primary);
+  transition: all 0.3s ease;
 }
 
 .breadcrumb-current {
-  color: var(--brand-text-primary);
   font-weight: 500;
+}
+
+/* Style 1: Classic Arrow */
+.breadcrumb-style-1 {
+  background: var(--breadcrumb-bg-secondary);
+  border-bottom: 1px solid var(--breadcrumb-bg-tertiary);
+}
+
+.breadcrumb-style-1 .breadcrumb-item:not(:last-child)::after {
+  content: '→';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-text-secondary);
+  font-weight: 500;
+}
+
+.breadcrumb-style-1 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.breadcrumb-style-1 .breadcrumb-link:hover {
+  color: var(--breadcrumb-primary);
+  background: var(--breadcrumb-bg-primary);
+}
+
+.breadcrumb-style-1 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+}
+
+/* Style 2: Modern Slash */
+.breadcrumb-style-2 {
+  background: linear-gradient(135deg, var(--breadcrumb-bg-primary), var(--breadcrumb-bg-secondary));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb-style-2 .breadcrumb {
+  background: var(--breadcrumb-bg-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  margin: 0.5rem 0;
+}
+
+.breadcrumb-style-2 .breadcrumb-item:not(:last-child)::after {
+  content: '/';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.breadcrumb-style-2 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.breadcrumb-style-2 .breadcrumb-link:hover {
+  background: var(--breadcrumb-primary);
+  color: var(--breadcrumb-text-light);
+  transform: translateY(-1px);
+}
+
+.breadcrumb-style-2 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+}
+
+/* Style 3: Pill Design */
+.breadcrumb-style-3 {
+  background: var(--breadcrumb-bg-primary);
+}
+
+.breadcrumb-style-3 .breadcrumb {
+  background: var(--breadcrumb-bg-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--breadcrumb-bg-tertiary);
+  margin: 0.5rem 0;
+}
+
+.breadcrumb-style-3 .breadcrumb-item:not(:last-child)::after {
+  content: '›';
+  margin: 0 0.5rem;
+  color: var(--breadcrumb-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.breadcrumb-style-3 .breadcrumb-link {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  background: var(--breadcrumb-bg-secondary);
+  color: var(--breadcrumb-text-secondary);
+  font-weight: 500;
+}
+
+.breadcrumb-style-3 .breadcrumb-link:hover {
+  background: var(--breadcrumb-primary);
+  color: var(--breadcrumb-text-light);
+  transform: scale(1.05);
+}
+
+.breadcrumb-style-3 .breadcrumb-current {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  background: var(--breadcrumb-primary);
+  color: var(--breadcrumb-text-light);
+  font-weight: 600;
+}
+
+/* Style 4: Gradient Background */
+.breadcrumb-style-4 {
+  background: linear-gradient(135deg, var(--breadcrumb-primary), var(--breadcrumb-secondary));
+  color: var(--breadcrumb-text-light);
+}
+
+.breadcrumb-style-4 .breadcrumb {
+  padding: 1rem 1.5rem;
+}
+
+.breadcrumb-style-4 .breadcrumb-item:not(:last-child)::after {
+  content: '▶';
+  margin: 0 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+}
+
+.breadcrumb-style-4 .breadcrumb-link {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.breadcrumb-style-4 .breadcrumb-link:hover {
+  color: var(--breadcrumb-text-light);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.breadcrumb-style-4 .breadcrumb-current {
+  color: var(--breadcrumb-text-light);
+  font-weight: 600;
+}
+
+/* Style 5: Card Style */
+.breadcrumb-style-5 {
+  background: var(--breadcrumb-bg-secondary);
+}
+
+.breadcrumb-style-5 .breadcrumb {
+  background: var(--breadcrumb-bg-primary);
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--breadcrumb-bg-tertiary);
+  position: relative;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.breadcrumb-style-5 .breadcrumb::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--breadcrumb-primary), var(--breadcrumb-secondary));
+}
+
+.breadcrumb-style-5 .breadcrumb-item:not(:last-child)::after {
+  content: '→';
+  margin: 0 1rem;
+  color: var(--breadcrumb-primary);
+  font-weight: 600;
+}
+
+.breadcrumb-style-5 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+}
+
+.breadcrumb-style-5 .breadcrumb-link:hover {
+  background: var(--breadcrumb-bg-secondary);
+  color: var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-5 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
+  background: var(--breadcrumb-bg-secondary);
+  border-radius: 8px;
+}
+
+/* Style 6: Minimal Line */
+.breadcrumb-style-6 {
+  border-bottom: 1px solid var(--breadcrumb-bg-tertiary);
+}
+
+.breadcrumb-style-6 .breadcrumb {
+  padding: 0.5rem 0;
+}
+
+.breadcrumb-style-6 .breadcrumb-item:not(:last-child)::after {
+  content: '—';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-text-secondary);
+  font-weight: 300;
+}
+
+.breadcrumb-style-6 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  font-weight: 400;
+}
+
+.breadcrumb-style-6 .breadcrumb-link:hover {
+  color: var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-6 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 500;
+}
+
+/* Style 7: Dots Separator */
+.breadcrumb-style-7 {
+  background: var(--breadcrumb-bg-primary);
+  border-left: 4px solid var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-7 .breadcrumb {
+  padding: 1rem 1.5rem;
+}
+
+.breadcrumb-style-7 .breadcrumb-item:not(:last-child)::after {
+  content: '•';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-primary);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.breadcrumb-style-7 .breadcrumb-link {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  color: var(--breadcrumb-text-secondary);
+  position: relative;
+}
+
+.breadcrumb-style-7 .breadcrumb-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--breadcrumb-primary);
+  transition: width 0.3s ease;
+}
+
+.breadcrumb-style-7 .breadcrumb-link:hover::before {
+  width: 100%;
+}
+
+.breadcrumb-style-7 .breadcrumb-link:hover {
+  color: var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-7 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+}
+
+/* Style 8: Chevron Classic */
+.breadcrumb-style-8 {
+  background: var(--breadcrumb-bg-tertiary);
+}
+
+.breadcrumb-style-8 .breadcrumb {
+  padding: 0.875rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--breadcrumb-bg-secondary);
+}
+
+.breadcrumb-style-8 .breadcrumb-item:not(:last-child)::after {
+  content: '»';
+  margin: 0 0.5rem;
+  color: var(--breadcrumb-text-secondary);
+  font-size: 0.875rem;
+}
+
+.breadcrumb-style-8 .breadcrumb-link {
+  color: var(--breadcrumb-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+
+.breadcrumb-style-8 .breadcrumb-link:hover {
+  text-decoration-color: var(--breadcrumb-primary);
+  color: var(--breadcrumb-secondary);
+}
+
+.breadcrumb-style-8 .breadcrumb-current {
+  font-weight: 600;
+  color: var(--breadcrumb-text-primary);
+}
+
+/* Style 9: Floating Design */
+.breadcrumb-style-9 {
+  background: var(--breadcrumb-bg-tertiary);
+}
+
+.breadcrumb-style-9 .breadcrumb {
+  background: var(--breadcrumb-bg-primary);
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  margin: 1rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.breadcrumb-style-9 .breadcrumb-item:not(:last-child)::after {
+  content: '⟩';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.breadcrumb-style-9 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.breadcrumb-style-9 .breadcrumb-link:hover {
+  background: var(--breadcrumb-primary);
+  color: var(--breadcrumb-text-light);
+  transform: translateY(-2px);
+}
+
+.breadcrumb-style-9 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+}
+
+/* Style 10: Bordered Sections */
+.breadcrumb-style-10 {
+  background: var(--breadcrumb-bg-primary);
+  border-top: 4px solid var(--breadcrumb-primary);
+  border-bottom: 1px solid var(--breadcrumb-bg-tertiary);
+}
+
+.breadcrumb-style-10 .breadcrumb {
+  padding: 1rem 0;
+}
+
+.breadcrumb-style-10 .breadcrumb-item {
+  border-right: 1px solid var(--breadcrumb-bg-tertiary);
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.breadcrumb-style-10 .breadcrumb-item:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.breadcrumb-style-10 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+}
+
+.breadcrumb-style-10 .breadcrumb-link:hover {
+  background: var(--breadcrumb-primary);
+  color: var(--breadcrumb-text-light);
+}
+
+.breadcrumb-style-10 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+}
+
+/* Style 11: Neumorphism */
+.breadcrumb-style-11 {
+  background: var(--breadcrumb-bg-secondary);
+}
+
+.breadcrumb-style-11 .breadcrumb {
+  background: var(--breadcrumb-bg-secondary);
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.1),
+    -8px -8px 16px rgba(255, 255, 255, 0.7);
+  margin: 1rem 0;
+}
+
+.breadcrumb-style-11 .breadcrumb-item:not(:last-child)::after {
+  content: '→';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-primary);
+  font-weight: 600;
+}
+
+.breadcrumb-style-11 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  background: var(--breadcrumb-bg-secondary);
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.1),
+    -4px -4px 8px rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb-style-11 .breadcrumb-link:hover {
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+  color: var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-11 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: var(--breadcrumb-bg-secondary);
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Style 12: Glassmorphism */
+.breadcrumb-style-12 {
+  background: linear-gradient(135deg, var(--breadcrumb-primary), var(--breadcrumb-secondary));
+}
+
+.breadcrumb-style-12 .breadcrumb {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+}
+
+.breadcrumb-style-12 .breadcrumb-item:not(:last-child)::after {
+  content: '▸';
+  margin: 0 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+.breadcrumb-style-12 .breadcrumb-link {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.breadcrumb-style-12 .breadcrumb-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--breadcrumb-text-light);
+  transform: translateY(-2px);
+}
+
+.breadcrumb-style-12 .breadcrumb-current {
+  color: var(--breadcrumb-text-light);
+  font-weight: 600;
+}
+
+/* Styles 13-26: Additional Modern Designs */
+
+/* Style 13: Neon Glow */
+.breadcrumb-style-13 {
+  background: #000;
+  color: var(--breadcrumb-text-light);
+}
+
+.breadcrumb-style-13 .breadcrumb {
+  padding: 1rem 1.5rem;
+}
+
+.breadcrumb-style-13 .breadcrumb-item:not(:last-child)::after {
+  content: '→';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-primary);
+  text-shadow: 0 0 5px var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-13 .breadcrumb-link {
+  color: var(--breadcrumb-text-light);
+}
+
+.breadcrumb-style-13 .breadcrumb-link:hover {
+  color: var(--breadcrumb-primary);
+  text-shadow: 0 0 10px var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-13 .breadcrumb-current {
+  color: var(--breadcrumb-primary);
+  text-shadow: 0 0 10px var(--breadcrumb-primary);
+  font-weight: 600;
+}
+
+/* Style 14: Retro Wave */
+.breadcrumb-style-14 {
+  background: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff);
+  color: var(--breadcrumb-text-light);
+  position: relative;
+}
+
+.breadcrumb-style-14::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.1) 2px,
+    rgba(255, 255, 255, 0.1) 4px
+  );
+}
+
+.breadcrumb-style-14 .breadcrumb {
+  padding: 1rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb-style-14 .breadcrumb-item:not(:last-child)::after {
+  content: '▶';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-text-light);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.breadcrumb-style-14 .breadcrumb-link {
+  color: var(--breadcrumb-text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.breadcrumb-style-14 .breadcrumb-link:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.breadcrumb-style-14 .breadcrumb-current {
+  color: var(--breadcrumb-text-light);
+  font-weight: 700;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+}
+
+/* Styles 15-26: Simplified for space efficiency */
+.breadcrumb-style-15,
+.breadcrumb-style-16,
+.breadcrumb-style-17,
+.breadcrumb-style-18,
+.breadcrumb-style-19,
+.breadcrumb-style-20,
+.breadcrumb-style-21,
+.breadcrumb-style-22,
+.breadcrumb-style-23,
+.breadcrumb-style-24,
+.breadcrumb-style-25,
+.breadcrumb-style-26 {
+  background: var(--breadcrumb-bg-primary);
+  border-bottom: 1px solid var(--breadcrumb-bg-tertiary);
+}
+
+.breadcrumb-style-15 .breadcrumb,
+.breadcrumb-style-16 .breadcrumb,
+.breadcrumb-style-17 .breadcrumb,
+.breadcrumb-style-18 .breadcrumb,
+.breadcrumb-style-19 .breadcrumb,
+.breadcrumb-style-20 .breadcrumb,
+.breadcrumb-style-21 .breadcrumb,
+.breadcrumb-style-22 .breadcrumb,
+.breadcrumb-style-23 .breadcrumb,
+.breadcrumb-style-24 .breadcrumb,
+.breadcrumb-style-25 .breadcrumb,
+.breadcrumb-style-26 .breadcrumb {
+  padding: 1rem 1.5rem;
+}
+
+.breadcrumb-style-15 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-16 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-17 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-18 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-19 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-20 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-21 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-22 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-23 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-24 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-25 .breadcrumb-item:not(:last-child)::after,
+.breadcrumb-style-26 .breadcrumb-item:not(:last-child)::after {
+  content: '→';
+  margin: 0 0.75rem;
+  color: var(--breadcrumb-primary);
+}
+
+.breadcrumb-style-15 .breadcrumb-link,
+.breadcrumb-style-16 .breadcrumb-link,
+.breadcrumb-style-17 .breadcrumb-link,
+.breadcrumb-style-18 .breadcrumb-link,
+.breadcrumb-style-19 .breadcrumb-link,
+.breadcrumb-style-20 .breadcrumb-link,
+.breadcrumb-style-21 .breadcrumb-link,
+.breadcrumb-style-22 .breadcrumb-link,
+.breadcrumb-style-23 .breadcrumb-link,
+.breadcrumb-style-24 .breadcrumb-link,
+.breadcrumb-style-25 .breadcrumb-link,
+.breadcrumb-style-26 .breadcrumb-link {
+  color: var(--breadcrumb-text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.breadcrumb-style-15 .breadcrumb-link:hover,
+.breadcrumb-style-16 .breadcrumb-link:hover,
+.breadcrumb-style-17 .breadcrumb-link:hover,
+.breadcrumb-style-18 .breadcrumb-link:hover,
+.breadcrumb-style-19 .breadcrumb-link:hover,
+.breadcrumb-style-20 .breadcrumb-link:hover,
+.breadcrumb-style-21 .breadcrumb-link:hover,
+.breadcrumb-style-22 .breadcrumb-link:hover,
+.breadcrumb-style-23 .breadcrumb-link:hover,
+.breadcrumb-style-24 .breadcrumb-link:hover,
+.breadcrumb-style-25 .breadcrumb-link:hover,
+.breadcrumb-style-26 .breadcrumb-link:hover {
+  color: var(--breadcrumb-primary);
+  background: var(--breadcrumb-bg-secondary);
+}
+
+.breadcrumb-style-15 .breadcrumb-current,
+.breadcrumb-style-16 .breadcrumb-current,
+.breadcrumb-style-17 .breadcrumb-current,
+.breadcrumb-style-18 .breadcrumb-current,
+.breadcrumb-style-19 .breadcrumb-current,
+.breadcrumb-style-20 .breadcrumb-current,
+.breadcrumb-style-21 .breadcrumb-current,
+.breadcrumb-style-22 .breadcrumb-current,
+.breadcrumb-style-23 .breadcrumb-current,
+.breadcrumb-style-24 .breadcrumb-current,
+.breadcrumb-style-25 .breadcrumb-current,
+.breadcrumb-style-26 .breadcrumb-current {
+  color: var(--breadcrumb-text-primary);
+  font-weight: 600;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .breadcrumb-style-1 .container,
+  .breadcrumb-style-2 .container,
+  .breadcrumb-style-3 .container,
+  .breadcrumb-style-4 .container,
+  .breadcrumb-style-5 .container,
+  .breadcrumb-style-6 .container,
+  .breadcrumb-style-7 .container,
+  .breadcrumb-style-8 .container,
+  .breadcrumb-style-9 .container,
+  .breadcrumb-style-10 .container,
+  .breadcrumb-style-11 .container,
+  .breadcrumb-style-12 .container,
+  .breadcrumb-style-13 .container,
+  .breadcrumb-style-14 .container,
+  .breadcrumb-style-15 .container,
+  .breadcrumb-style-16 .container,
+  .breadcrumb-style-17 .container,
+  .breadcrumb-style-18 .container,
+  .breadcrumb-style-19 .container,
+  .breadcrumb-style-20 .container,
+  .breadcrumb-style-21 .container,
+  .breadcrumb-style-22 .container,
+  .breadcrumb-style-23 .container,
+  .breadcrumb-style-24 .container,
+  .breadcrumb-style-25 .container,
+  .breadcrumb-style-26 .container {
+    padding: 0 1rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8125rem;
+  }
+
+  .breadcrumb-style-2 .breadcrumb,
+  .breadcrumb-style-3 .breadcrumb,
+  .breadcrumb-style-5 .breadcrumb,
+  .breadcrumb-style-9 .breadcrumb,
+  .breadcrumb-style-11 .breadcrumb,
+  .breadcrumb-style-12 .breadcrumb {
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+  }
+
+  .breadcrumb-item:not(:last-child)::after {
+    margin: 0 0.5rem !important;
+  }
+
+  /* Adjust floating elements */
+  .breadcrumb-style-9 .breadcrumb {
+    transform: translateY(0);
+  }
+
+  /* Adjust bordered sections */
+  .breadcrumb-style-10 .breadcrumb-item {
+    border-right: none;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .breadcrumb-item {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .breadcrumb-item:not(:first-child)::before {
+    content: '↳';
+    position: absolute;
+    left: 0;
+    color: var(--breadcrumb-primary);
+    font-weight: 600;
+  }
+
+  /* Adjust special styles for mobile */
+  .breadcrumb-style-2 .breadcrumb,
+  .breadcrumb-style-3 .breadcrumb,
+  .breadcrumb-style-5 .breadcrumb,
+  .breadcrumb-style-9 .breadcrumb,
+  .breadcrumb-style-11 .breadcrumb,
+  .breadcrumb-style-12 .breadcrumb {
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+  }
+
+  .breadcrumb-style-4 .breadcrumb,
+  .breadcrumb-style-13 .breadcrumb,
+  .breadcrumb-style-14 .breadcrumb {
+    padding: 0.75rem 1rem;
+  }
 }
 
 /* Style 1: Modern Arrow */
