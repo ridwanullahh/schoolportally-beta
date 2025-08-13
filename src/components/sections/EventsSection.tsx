@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Search, Filter, Calendar, User, ArrowRight, ChevronDown, MapPin, Clock } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
-import '@/themes/styles/sections/events-modern.css';
-import '@/themes/styles/sections/events-section-styles.css';
-import '@/themes/styles/sections/events-section-styles.css';
+import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
+import '@/themes/styles/sections/events.css';
 
 interface EventsSectionProps {
   section: Section;
@@ -18,6 +15,8 @@ const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
   const { content, settings } = section;
   const { school } = useSchool();
   const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Section settings with defaults
   const eventsToShow = parseInt(settings?.eventsToShow || '6');
@@ -33,6 +32,7 @@ const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
   const [sortBy, setSortBy] = useState('date');
   const [displayedEvents, setDisplayedEvents] = useState(eventsToShow);
   const [filteredEvents, setFilteredEvents] = useState<any[]>([]);
+  const [hasMoreEvents, setHasMoreEvents] = useState(false);
 
   // Map numbered styles to actual style IDs
   const getStyleId = (styleNumber: string) => {
@@ -71,46 +71,225 @@ const EventsSection: React.FC<EventsSectionProps> = ({ section }) => {
 
   const styleId = getStyleId(section.styleId || '1');
 
+  // Default events data for demonstration
+
   useEffect(() => {
     const fetchEvents = async () => {
-      if (school) {
-        const allEvents = await sdk.get('events');
-        const schoolEvents = allEvents.filter((e: any) => e.schoolId === school.id && e.status === 'published').slice(0, 3);
-        setEvents(schoolEvents);
+      try {
+        setLoading(true);
+        if (school) {
+          const allEvents = await sdk.get('events');
+          const schoolEvents = allEvents.filter((e: any) =>
+            e.schoolId === school.id && e.status === 'published'
+          );
+          setEvents(schoolEvents);
+        }
+      } catch (err) {
+        console.error('Error fetching events:', err);
+        setError('Failed to load events');
+      } finally {
+        setLoading(false);
       }
     };
     fetchEvents();
   }, [school]);
 
-  return (
-    <section className={`events-section ${styleId}`}>
-      <div className="container">
-        {title && <h2>{title}</h2>}
-        <div className="events-container">
-          {events.length > 0 ? events.map((event: any) => (
-            <div key={event.id} className="event-card">
-              {event.image && <img src={event.image} alt={event.title} className="event-image" />}
-              <div className="event-content">
-                <div className="event-date">
-                  {new Date(event.date).toLocaleDateString()}
-                </div>
-                <h3 className="event-title">{event.title}</h3>
-                <p className="event-description">
-                  {event.description?.substring(0, 150)}...
-                </p>
-                <Link to={`/${school?.slug}/events/${event.id}`} className="event-button">
-                  View Details
-                </Link>
-              </div>
+  // Get unique categories for filtering
+  const categories = ['all', ...Array.from(new Set(events.map(event => event.category)))];
+
+  // Filter and sort events
+  useEffect(() => {
+    let filtered = [...events];
+
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(event =>
+        event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Apply category filter
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(event => event.category === selectedCategory);
+    }
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'date':
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        case 'title':
+          return a.title.localeCompare(b.title);
+        case 'category':
+          return a.category.localeCompare(b.category);
+        default:
+          return 0;
+      }
+    });
+
+    setFilteredEvents(filtered);
+    setHasMoreEvents(filtered.length > displayedEvents);
+  }, [events, searchTerm, selectedCategory, sortBy, displayedEvents]);
+
+  // Get events to display
+  const eventsToDisplay = filteredEvents.slice(0, displayedEvents);
+
+  // Handle load more
+  const handleLoadMore = () => {
+    setDisplayedEvents(prev => prev + eventsToShow);
+  };
+
+  // Render controls
+  const renderControls = () => {
+    if (!enableSearch && !enableFiltering && !enableSorting) return null;
+
+    return (
+      <SectionControls>
+        {enableSearch && (
+          <div className="search-box">
+            <Search size={16} />
+            <input
+              type="text"
+              placeholder="Search events..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
+        )}
+
+        <div className="filter-controls">
+          {enableFiltering && (
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="filter-select"
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category === 'all' ? 'All Categories' : category}
+                </option>
+              ))}
+            </select>
+          )}
+
+          {enableSorting && (
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="sort-select"
+            >
+              <option value="date">Sort by Date</option>
+              <option value="title">Sort by Title</option>
+              <option value="category">Sort by Category</option>
+            </select>
+          )}
+        </div>
+      </SectionControls>
+    );
+  };
+
+  // Render event card
+  const renderEvent = (event: any, index: number) => {
+    const eventUrl = `/${school?.slug}/events/${event.slug || event.id}`;
+
+    return (
+      <SectionCard key={event.id || index} href={eventUrl}>
+        {event.image && (
+          <img
+            src={event.image}
+            alt={event.title}
+            className="event-image"
+          />
+        )}
+        <div className="event-content">
+          <div className="event-meta">
+            <div className="event-date">
+              <Calendar size={14} />
+              <span>{new Date(event.date).toLocaleDateString()}</span>
             </div>
-          )) : (
-            <div className="no-events">
-              <p>No upcoming events.</p>
+            {event.time && (
+              <div className="event-time">
+                <Clock size={14} />
+                <span>{event.time}</span>
+              </div>
+            )}
+            {event.location && (
+              <div className="event-location">
+                <MapPin size={14} />
+                <span>{event.location}</span>
+              </div>
+            )}
+          </div>
+          <h3 className="event-title">{event.title}</h3>
+          {event.description && (
+            <p className="event-description">
+              {event.description.length > 150
+                ? `${event.description.substring(0, 150)}...`
+                : event.description
+              }
+            </p>
+          )}
+          {event.category && (
+            <div className="event-category">{event.category}</div>
+          )}
+          {event.organizer && (
+            <div className="event-organizer">
+              <User size={14} />
+              <span>By {event.organizer}</span>
             </div>
           )}
         </div>
-      </div>
-    </section>
+      </SectionCard>
+    );
+  };
+
+  if (loading) {
+    return (
+      <SectionWrapper section={section} className="events-section">
+        <div className="loading-state">Loading events...</div>
+      </SectionWrapper>
+    );
+  }
+
+  if (error) {
+    return (
+      <SectionWrapper section={section} className="events-section">
+        <div className="error-state">
+          <p>Error loading events: {error}</p>
+        </div>
+      </SectionWrapper>
+    );
+  }
+
+  return (
+    <SectionWrapper
+      section={section}
+      className="events-section"
+      itemCount={eventsToDisplay.length}
+      customLayout={true}
+    >
+      {renderControls()}
+
+      {eventsToDisplay.length > 0 ? (
+        <div className="events-grid">
+          {eventsToDisplay.map(renderEvent)}
+        </div>
+      ) : (
+        <div className="no-events">
+          <p>No events found.</p>
+        </div>
+      )}
+
+      <SectionLoadMore
+        onLoadMore={enableLoadMore && hasMoreEvents ? handleLoadMore : undefined}
+        hasMore={hasMoreEvents}
+        viewAllHref={showViewAllButton ? `/${school?.slug}/events` : undefined}
+        viewAllText="View All Events"
+      />
+    </SectionWrapper>
   );
 };
 

@@ -60,38 +60,39 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   
   const breadcrumbItems = generateBreadcrumbs();
   
-  // Get style from theme service
+  // Get style from theme service or use provided styleId
   const currentStyleId = styleId || themeService.getBreadcrumbStyle();
-  const breadcrumbStyle = themeService.getBreadcrumbStyleById(currentStyleId);
-  const cssClass = breadcrumbStyle?.cssClass || 'breadcrumb-modern-arrow';
-  
+  const breadcrumbStyleClass = `breadcrumb-style-${currentStyleId}`;
+
   if (breadcrumbItems.length <= 1 && !showHome) {
     return null;
   }
-  
+
   return (
-    <div className="breadcrumb-container">
+    <div className={breadcrumbStyleClass}>
       <div className="container">
-        <nav aria-label="Breadcrumb" className={`breadcrumb ${cssClass}`}>
-          {breadcrumbItems.map((item, index) => (
-            <div key={index} className="breadcrumb-item">
-              {item.href && !item.isActive ? (
-                <Link to={item.href} className="breadcrumb-link">
-                  {index === 0 && showHome && (
-                    <Home size={14} className="inline mr-1" />
-                  )}
-                  {item.label}
-                </Link>
-              ) : (
-                <span className="breadcrumb-current">
-                  {index === 0 && showHome && (
-                    <Home size={14} className="inline mr-1" />
-                  )}
-                  {item.label}
-                </span>
-              )}
-            </div>
-          ))}
+        <nav aria-label="Breadcrumb">
+          <ol className="breadcrumb">
+            {breadcrumbItems.map((item, index) => (
+              <li key={index} className="breadcrumb-item">
+                {item.href && !item.isActive ? (
+                  <Link to={item.href} className="breadcrumb-link">
+                    {index === 0 && showHome && (
+                      <Home size={14} className="inline mr-1" />
+                    )}
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="breadcrumb-current">
+                    {index === 0 && showHome && (
+                      <Home size={14} className="inline mr-1" />
+                    )}
+                    {item.label}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
         </nav>
       </div>
     </div>

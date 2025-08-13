@@ -1,225 +1,719 @@
-/* Academic Calendar Section Styles */
+/*
+  ACADEMIC CALENDAR SECTION STYLES
+  ---------------------------------
+  This file contains all 26 modern and ultra-modern styles for the Academic Calendar Section.
+  Each style is designed to be self-contained, responsive, and customizable via CSS variables.
+  It fully utilizes the school's brand color palette.
+*/
 
-/* Style 1: Grid Month View */
-.academic_calendar-grid-month-view {
-    padding: 2rem 1rem;
-    max-width: 900px;
-    margin: 0 auto;
+/* Base Variables for Academic Calendar Section */
+.academic-calendar-section {
+    --section-bg: var(--school-brand-bg-secondary, #f8fafc);
+    --card-bg: var(--school-brand-bg-primary, #ffffff);
+    --text-primary: var(--school-brand-text-primary, #1f2937);
+    --text-secondary: var(--school-brand-text-secondary, #6b7280);
+    --accent-color: var(--school-brand-accent, #60a5fa);
+    --primary-color: var(--school-brand-primary, #2563eb);
+    --border-color: #e5e7eb;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 4rem 0;
+    background-color: var(--section-bg);
 }
-.academic_calendar-grid-month-view .calendar-header {
+
+.academic-calendar-section .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+}
+
+.academic-calendar-section .events-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Default Event Card Styles (to be extended) */
+.academic-calendar-section .event-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+}
+
+.academic-calendar-section .event-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+/*=============================================
+=            Style 1: Modern Grid             =
+=============================================*/
+.academic-calendar-modern-grid .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.academic-calendar-modern-grid .event-card {
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+.academic-calendar-modern-grid .event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.academic-calendar-modern-grid .event-image {
+    height: 200px;
+}
+
+.academic-calendar-modern-grid .event-content {
+    padding: 1.5rem;
+}
+
+.academic-calendar-modern-grid .event-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.academic-calendar-modern-grid .event-date {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.academic-calendar-modern-grid .event-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+
+/*=============================================
+=           Style 2: Modern Timeline          =
+=============================================*/
+.academic-calendar-modern-timeline .events-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.academic-calendar-modern-timeline .events-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--border-color);
+    transform: translateX(-50%);
+}
+
+.academic-calendar-modern-timeline .event-card {
+    position: relative;
+    width: calc(50% - 2rem);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.academic-calendar-modern-timeline .event-card:nth-child(odd) {
+    left: 0;
+    margin-right: 2rem;
+}
+
+.academic-calendar-modern-timeline .event-card:nth-child(even) {
+    left: calc(50% + 2rem);
+}
+
+.academic-calendar-modern-timeline .event-card::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    border: 4px solid var(--section-bg);
+    z-index: 1;
+}
+
+.academic-calendar-modern-timeline .event-card:nth-child(odd)::before {
+    right: -2.6rem;
+}
+
+.academic-calendar-modern-timeline .event-card:nth-child(even)::before {
+    left: -2.6rem;
+}
+
+.academic-calendar-modern-timeline .event-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.academic-calendar-modern-timeline .event-date {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/*=============================================
+=            Style 3: Modern Cards            =
+=============================================*/
+.academic-calendar-modern-cards .events-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.academic-calendar-modern-cards .event-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.academic-calendar-modern-cards .event-date-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--hero-text-light, #fff);
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.academic-calendar-modern-cards .date-day {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.academic-calendar-modern-cards .date-month {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.academic-calendar-modern-cards .event-content {
+    flex-grow: 1;
+}
+
+/*=============================================
+=           Style 4: Modern Minimal           =
+=============================================*/
+.academic-calendar-modern-minimal .events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.academic-calendar-modern-minimal .event-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    background: none;
+}
+
+.academic-calendar-modern-minimal .event-date {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.academic-calendar-modern-minimal .event-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.academic-calendar-modern-minimal .event-description {
+    color: var(--text-secondary);
+}
+
+/*=============================================
+=           Style 5: Modern Bordered          =
+=============================================*/
+.academic-calendar-modern-bordered .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.academic-calendar-modern-bordered .event-card {
+    border: 2px solid var(--border-color);
+    padding: 2rem;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+.academic-calendar-modern-bordered .event-card:hover {
+    border-color: var(--accent-color);
+}
+
+.academic-calendar-modern-bordered .event-date-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/*=============================================
+=           Style 6: Modern Gradient          =
+=============================================*/
+.academic-calendar-modern-gradient .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.academic-calendar-modern-gradient .event-card {
+    position: relative;
+    padding: 2rem;
+    border-radius: 15px;
+    color: var(--hero-text-light, #fff);
+    overflow: hidden;
+}
+
+.academic-calendar-modern-gradient .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    z-index: 1;
+}
+
+.academic-calendar-modern-gradient .event-card .event-content {
+    position: relative;
+    z-index: 2;
+}
+
+/*=============================================
+=           Style 7: Modern Compact           =
+=============================================*/
+.academic-calendar-modern-compact .events-container {
+    max-width: 800px;
+}
+
+.academic-calendar-modern-compact .event-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.academic_calendar-grid-month-view .days-of-week {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-.academic_calendar-grid-month-view .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-    border: 1px solid #e2e8f0;
-}
-.academic_calendar-grid-month-view .day-cell {
-    padding: 0.5rem;
-    min-height: 80px;
-    border: 1px solid #e2e8f0;
-    background-color: #fff;
-}
-.academic_calendar-grid-month-view .day-cell.current-month {
-    background-color: #f7fafc;
-}
-.academic_calendar-grid-month-view .event-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--brand-primary);
-    margin-top: 5px;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border-color);
+    margin-bottom: -1px; /* Creates a stacked effect */
 }
 
-/* Style 2: Timeline Blocks */
-.academic_calendar-timeline-blocks {
-    position: relative;
-    padding: 3rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
+.academic-calendar-modern-compact .event-card:first-child {
+    border-radius: 8px 8px 0 0;
 }
-.academic_calendar-timeline-blocks::before {
+
+.academic-calendar-modern-compact .event-card:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+/*=============================================
+=          Style 8: Modern Asymmetric         =
+=============================================*/
+.academic-calendar-modern-asymmetric .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.academic-calendar-modern-asymmetric .event-card {
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.academic-calendar-modern-asymmetric .event-card:nth-child(5n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.academic-calendar-modern-asymmetric .event-card:nth-child(5n+1) .event-image {
+    height: 100%;
+    min-height: 300px;
+}
+
+/*=============================================
+=         Style 9: Modern Typography          =
+=============================================*/
+.academic-calendar-modern-typography .events-container {
+    max-width: 900px;
+}
+.academic-calendar-modern-typography .event-card {
+    padding: 2.5rem 0;
+    border-bottom: 2px dotted var(--border-color);
+}
+.academic-calendar-modern-typography .event-card:last-child {
+    border-bottom: none;
+}
+.academic-calendar-modern-typography .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.academic-calendar-modern-typography .event-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+}
+
+/*=============================================
+=            Style 10: Modern Split           =
+=============================================*/
+.academic-calendar-modern-split .events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.academic-calendar-modern-split .event-card {
+    display: flex;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+.academic-calendar-modern-split .event-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.academic-calendar-modern-split .event-image-wrapper {
+    width: 40%;
+    flex-shrink: 0;
+}
+.academic-calendar-modern-split .event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.academic-calendar-modern-split .event-content {
+    padding: 2rem;
+}
+
+
+/*=============================================
+=          Style 11: Modern Calendar          =
+=============================================*/
+.academic-calendar-modern-calendar .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.academic-calendar-modern-calendar .event-card {
+    position: relative;
+    padding: 1.5rem;
+    padding-top: 3rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+}
+
+.academic-calendar-modern-calendar .event-date-badge {
+    position: absolute;
+    top: -15px;
+    left: 1.5rem;
+    background-color: var(--accent-color);
+    color: var(--hero-text-light, #fff);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+/*=============================================
+=        Style 12: Floating Glassmorphism     =
+=============================================*/
+.academic-calendar-floating-glass .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.academic-calendar-floating-glass .event-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+.academic-calendar-floating-glass .event-title {
+    color: var(--text-primary);
+}
+
+/*=============================================
+=        Style 13: Holographic Cards          =
+=============================================*/
+.academic-calendar-holographic-cards .event-card {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+    padding: 2rem;
+}
+.academic-calendar-holographic-cards .event-card::before {
     content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 180deg at 50% 50%, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    animation: holographic-spin 4s linear infinite;
+}
+.academic-calendar-holographic-cards .event-content {
+    position: relative;
+    z-index: 1;
+    background: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    color: white;
+}
+@keyframes holographic-spin {
+    to { transform: rotate(360deg); }
+}
+
+/*=============================================
+=          Style 14: Neon Timeline            =
+=============================================*/
+.academic-calendar-neon-timeline {
+    background: #000;
+    color: #fff;
+}
+.academic-calendar-neon-timeline .events-container::before {
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+}
+.academic-calendar-neon-timeline .event-card {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-color);
+    color: #fff;
+}
+
+/*=============================================
+=         Style 15: Particle Background       =
+=============================================*/
+.academic-calendar-particle-bg {
+    position: relative;
+    overflow: hidden;
+}
+/* Note: JS would be needed for a true particle animation. This is a static CSS fallback. */
+.academic-calendar-particle-bg::before {
+    content: '';
+    position: absolute;
     top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #e2e8f0;
-}
-.academic_calendar-timeline-blocks .event-item {
-    position: relative;
-    width: 50%;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-}
-.academic_calendar-timeline-blocks .event-item:nth-child(odd) {
-    align-self: flex-start;
-    padding-right: 2rem;
-    text-align: right;
-}
-.academic_calendar-timeline-blocks .event-item:nth-child(even) {
-    align-self: flex-end;
-    margin-left: 50%;
-    padding-left: 2rem;
-}
-
-/* Style 3: List Agenda */
-.academic_calendar-list-agenda {
-    padding: 2rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-.academic_calendar-list-agenda .day-group {
-    margin-bottom: 2rem;
-}
-.academic_calendar-list-agenda .day-header {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 0.5rem;
-}
-.academic_calendar-list-agenda .event-item {
-    display: flex;
-    gap: 1rem;
-    padding: 0.75rem 0;
-}
-
-/* Style 4: Accordion Semesters */
-.academic_calendar-accordion-semesters {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-.academic_calendar-accordion-semesters details {
-    margin-bottom: 1rem;
-}
-.academic_calendar-accordion-semesters summary {
-    padding: 1.5rem;
-    background-color: #f7fafc;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 0.5rem;
-}
-
-/* Style 5: Dot Calendar */
-.academic_calendar-dot-calendar .calendar-grid {
-    /* Similar to grid month view, but with dots for events */
-}
-.academic_calendar-dot-calendar .day-cell.has-event {
-    position: relative;
-}
-.academic_calendar-dot-calendar .day-cell.has-event::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--brand-primary);
-}
-
-/* Style 6: Tab by Term */
-.academic_calendar-tab-by-term {
-    padding: 2rem 1rem;
-}
-.academic_calendar-tab-by-term .tabs {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-/* Style 7: Hover Preview */
-.academic_calendar-hover-preview .event-item {
-    position: relative;
-    padding: 1rem 0;
-    border-bottom: 1px solid #e2e8f0;
-    cursor: pointer;
-}
-.academic_calendar-hover-preview .event-details {
-    position: absolute;
-    top: 100%;
     left: 0;
-    background-color: white;
-    border: 1px solid #e2e8f0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    z-index: 10;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(var(--accent-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: particle-move 20s linear infinite;
 }
-.academic_calendar-hover-preview .event-item:hover .event-details {
-    opacity: 1;
-    visibility: visible;
+@keyframes particle-move {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-50%, -50%); }
 }
 
-/* Style 8: Sticky Month Bar */
-.academic_calendar-sticky-month-bar .month-bar {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    padding: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+/*=============================================
+=         Style 16: Morphing Cards            =
+=============================================*/
+.academic-calendar-morphing-cards .event-card {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 8s ease-in-out infinite;
+    transition: all 1s ease-in-out;
+}
+@keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 60% 40% 30% 70% / 60% 70% 30% 40%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
 }
 
-/* Style 9: Card Date Boxes */
-.academic_calendar-card-date-boxes .day-cell {
+/*=============================================
+=            Style 17: Cyber Grid             =
+=============================================*/
+.academic-calendar-cyber-grid {
+    background-color: #0d0221;
+    background-image: linear-gradient(var(--primary-color) 1px, transparent 1px), linear-gradient(to right, var(--primary-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+.academic-calendar-cyber-grid .event-card {
+    background: rgba(10, 2, 40, 0.8);
+    border: 1px solid var(--accent-color);
+    color: #fff;
+}
+
+/*=============================================
+=           Style 18: Liquid Metal            =
+=============================================*/
+.academic-calendar-liquid-metal .event-card {
+    background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
     border: none;
-    padding: 0;
+    filter: url(#liquid); /* Requires SVG filter defined elsewhere */
 }
-.academic_calendar-card-date-boxes .date-box {
-    padding: 0.75rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-    min-height: 100px;
+/* Basic SVG filter example - would need to be in the HTML/SVG definitions */
+/*
+<svg style="display:none">
+  <defs>
+    <filter id="liquid">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="liquid" />
+      <feComposite in="SourceGraphic" in2="liquid" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
+*/
+
+/*=============================================
+=            Style 19: Aurora BG              =
+=============================================*/
+.academic-calendar-aurora-bg {
+    background: #000;
+    position: relative;
 }
-.academic_calendar-card-date-boxes .date-number {
-    font-weight: bold;
-    font-size: 1.2rem;
+.academic-calendar-aurora-bg::before,
+.academic-calendar-aurora-bg::after {
+    content: '';
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.3;
+}
+.academic-calendar-aurora-bg::before {
+    background: var(--primary-color);
+    top: 10%;
+    left: 10%;
+    animation: aurora-one 15s infinite alternate;
+}
+.academic-calendar-aurora-bg::after {
+    background: var(--accent-color);
+    bottom: 10%;
+    right: 10%;
+    animation: aurora-two 20s infinite alternate;
+}
+@keyframes aurora-one { to { transform: translateX(100px) translateY(50px); } }
+@keyframes aurora-two { to { transform: translateX(-100px) translateY(-50px); } }
+
+/*=============================================
+=           Style 20: Matrix Rain             =
+=============================================*/
+.academic-calendar-matrix-rain {
+    background: black;
+    color: #0f0;
+}
+.academic-calendar-matrix-rain .event-card {
+    background: rgba(0,0,0,0.7);
+    border: 1px solid #0f0;
+    font-family: 'Matrix Code NFI', monospace;
 }
 
-/* Style 10: Layered Events */
-.academic_calendar-layered-events .event-item {
+/*=============================================
+=          Style 21: Quantum Field            =
+=============================================*/
+.academic-calendar-quantum-field .event-card {
+    border: none;
+    background: radial-gradient(circle, var(--card-bg) 50%, transparent 100%);
+    box-shadow: 0 0 30px var(--accent-color);
+}
+
+/*=============================================
+=         Style 22: Neural Network            =
+=============================================*/
+/* Requires JS for line drawing. This is a visual representation. */
+.academic-calendar-neural-network .events-container {
     position: relative;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: var(--brand-primary-light);
-    margin-bottom: 0.5rem;
+}
+.academic-calendar-neural-network .event-card {
+    position: relative;
     z-index: 1;
 }
-.academic_calendar-layered-events .event-item:not(:first-child) {
-    margin-top: -10px;
+
+/*=============================================
+=          Style 23: Hologram Effect          =
+=============================================*/
+.academic-calendar-hologram-effect .event-card {
+    position: relative;
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(15deg);
 }
-.academic_calendar-layered-events .event-item:nth-child(even) {
-    background-color: #edf2f7;
+.academic-calendar-hologram-effect .event-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-color);
+    opacity: 0.1;
+    transform: translateZ(-10px);
 }
 
-/* Style 11: Swipeable Calendar */
-/* Requires JS for swipe functionality */
-.academic_calendar-swipeable-calendar .calendar-view {
-    overflow-x: hidden;
+/*=============================================
+=           Style 24: Energy Waves            =
+=============================================*/
+.academic-calendar-energy-waves .event-card {
+    position: relative;
+    overflow: hidden;
 }
+.academic-calendar-energy-waves .event-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px 5px var(--accent-color);
+    animation: energy-pulse 2s infinite;
+}
+@keyframes energy-pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(50); opacity: 0; }
+}
+
+/*=============================================
+=           Style 25: Digital Rain            =
+=============================================*/
+/* Similar to Matrix, but with different colors and fonts */
+.academic-calendar-digital-rain {
+    background: #000;
+    color: var(--primary-color);
+}
+.academic-calendar-digital-rain .event-card {
+    background: rgba(0,0,0,0.8);
+    border: 1px solid var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/*=============================================
+=          Style 26: Mosaic Layout            =
+=============================================*/
+.academic-calendar-mosaic-layout .events-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 150px;
+    gap: 1rem;
+}
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+1) { grid-column: span 3; grid-row: span 2; }
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+2) { grid-column: span 3; }
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+3) { grid-column: span 2; }
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+4) { grid-column: span 1; }
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+5) { grid-column: span 2; }
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+6) { grid-column: span 2; }
+.academic-calendar-mosaic-layout .event-card:nth-child(7n+7) { grid-column: span 2; }
