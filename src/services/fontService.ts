@@ -31,4 +31,182 @@ export const fontService = {
 
   // Create new font
   createFont: async (font: Omit<Font, 'id' | 'createdAt' | 'updatedAt'>): Promise<Font> => {
-   n    try {\n      const response = await fetch('/api/fonts', {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify(font),\n      });\n      if (!response.ok) {\n        throw new Error('Failed to create font');\n      }\n      return await response.json();\n    } catch (error) {\n      console.error('Error creating font:', error);\n      throw error;\n    }\n  },\n\n  // Update font\n  updateFont: async (id: string, font: Partial<Font>): Promise<Font> => {\n    try {\n      const response = await fetch(`/api/fonts/${id}`, {\n        method: 'PUT',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify(font),\n      });\n      if (!response.ok) {\n        throw new Error('Failed to update font');\n      }\n      return await response.json();\n    } catch (error) {\n      console.error('Error updating font:', error);\n      throw error;\n    }\n  },\n\n  // Delete font\n  deleteFont: async (id: string): Promise<void> => {\n    try {\n      const response = await fetch(`/api/fonts/${id}`, {\n        method: 'DELETE',\n      });\n      if (!response.ok) {\n        throw new Error('Failed to delete font');\n      }\n    } catch (error) {\n      console.error('Error deleting font:', error);\n      throw error;\n    }\n  },\n\n  // Get default fonts\n  getDefaultFonts: (): Font[] => {\n    return [\n      {\n        id: 'inter',\n        name: 'Inter',\n        family: 'Inter, system-ui, sans-serif',\n        category: 'sans-serif',\n        variants: ['regular', 'medium', 'semibold', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'roboto',\n        name: 'Roboto',\n        family: 'Roboto, sans-serif',\n        category: 'sans-serif',\n        variants: ['regular', 'medium', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'open-sans',\n        name: 'Open Sans',\n        family: '\\'Open Sans\\', sans-serif',\n        category: 'sans-serif',\n        variants: ['regular', 'semibold', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'lato',\n        name: 'Lato',\n        family: 'Lato, sans-serif',\n        category: 'sans-serif',\n        variants: ['regular', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'montserrat',\n        name: 'Montserrat',\n        family: 'Montserrat, sans-serif',\n        category: 'sans-serif',\n        variants: ['regular', 'medium', 'semibold', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'poppins',\n        name: 'Poppins',\n        family: 'Poppins, sans-serif',\n        category: 'sans-serif',\n        variants: ['regular', 'medium', 'semibold', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'playfair-display',\n        name: 'Playfair Display',\n        family: '\\'Playfair Display\\', serif',\n        category: 'serif',\n        variants: ['regular', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'merriweather',\n        name: 'Merriweather',\n        family: 'Merriweather, serif',\n        category: 'serif',\n        variants: ['regular', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'source-serif-pro',\n        name: 'Source Serif Pro',\n        family: '\\'Source Serif Pro\\', serif',\n        category: 'serif',\n        variants: ['regular', 'semibold', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      },\n      {\n        id: 'roboto-slab',\n        name: 'Roboto Slab',\n        family: '\\'Roboto Slab\\', serif',\n        category: 'serif',\n        variants: ['regular', 'bold'],\n        url: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap',\n        isActive: true,\n        isDefault: true,\n        createdAt: new Date().toISOString(),\n        updatedAt: new Date().toISOString()\n      }\n    ];\n  }\n};
+    try {
+      const response = await fetch('/api/fonts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(font),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create font');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error creating font:', error);
+      throw error;
+    }
+  },
+
+  // Update font
+  updateFont: async (id: string, font: Partial<Font>): Promise<Font> => {
+    try {
+      const response = await fetch(`/api/fonts/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(font),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update font');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error updating font:', error);
+      throw error;
+    }
+  },
+
+  // Delete font
+  deleteFont: async (id: string): Promise<void> => {
+    try {
+      const response = await fetch(`/api/fonts/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete font');
+      }
+    } catch (error) {
+      console.error('Error deleting font:', error);
+      throw error;
+    }
+  },
+
+  // Get default fonts
+  getDefaultFonts: (): Font[] => {
+    return [
+      {
+        id: 'inter',
+        name: 'Inter',
+        family: 'Inter, system-ui, sans-serif',
+        category: 'sans-serif',
+        variants: ['regular', 'medium', 'semibold', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'roboto',
+        name: 'Roboto',
+        family: 'Roboto, sans-serif',
+        category: 'sans-serif',
+        variants: ['regular', 'medium', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'open-sans',
+        name: 'Open Sans',
+        family: '"Open Sans", sans-serif',
+        category: 'sans-serif',
+        variants: ['regular', 'semibold', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'lato',
+        name: 'Lato',
+        family: 'Lato, sans-serif',
+        category: 'sans-serif',
+        variants: ['regular', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'montserrat',
+        name: 'Montserrat',
+        family: 'Montserrat, sans-serif',
+        category: 'sans-serif',
+        variants: ['regular', 'medium', 'semibold', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'poppins',
+        name: 'Poppins',
+        family: 'Poppins, sans-serif',
+        category: 'sans-serif',
+        variants: ['regular', 'medium', 'semibold', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'playfair-display',
+        name: 'Playfair Display',
+        family: '"Playfair Display", serif',
+        category: 'serif',
+        variants: ['regular', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'merriweather',
+        name: 'Merriweather',
+        family: 'Merriweather, serif',
+        category: 'serif',
+        variants: ['regular', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'source-serif-pro',
+        name: 'Source Serif Pro',
+        family: '"Source Serif Pro", serif',
+        category: 'serif',
+        variants: ['regular', 'semibold', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 'roboto-slab',
+        name: 'Roboto Slab',
+        family: '"Roboto Slab", serif',
+        category: 'serif',
+        variants: ['regular', 'bold'],
+        url: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap',
+        isActive: true,
+        isDefault: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+    ];
+  }
+};

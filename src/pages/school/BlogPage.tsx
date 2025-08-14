@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 
 
 
-import themeIntegrationService from '@/services/themeIntegrationService';
+
 import { usePages } from '@/hooks/usePages';
 import { Calendar, Clock, User, Search, Filter, ArrowRight, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BlogPost } from '@/types';
@@ -78,8 +78,8 @@ const BlogPage = () => {
     return styleMap[styleId] || 'blog-modern-grid';
   };
 
-  const blogArchiveStyle = school?.blogArchiveStyle || 'blog-archive-style-1';
-  const templateStyle = getTemplateStyle(blogArchiveStyle);
+  const blogArchiveStyle = school?.branding?.blogArchiveStyle || 'blog-archive-style-1';
+  const templateStyle = getBlogArchiveStyle(blogArchiveStyle);
   const postsPerPage = 12;
 
   useEffect(() => {

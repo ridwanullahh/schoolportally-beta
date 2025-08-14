@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section } from '@/types';
 import { Button } from '@/components/ui/button';
-import { themeIntegrationService } from '@/services/themeIntegrationService';
-
-
-
 import { ArrowRight, Play, Check, Star, Users, Award } from 'lucide-react';
 
 interface CtaSectionProps {
@@ -14,8 +10,8 @@ interface CtaSectionProps {
 const CtaSection: React.FC<CtaSectionProps> = ({ section }) => {
   const { title, description, buttonText, buttonLink, backgroundImage } = section.content;
 
-  // Get the proper CSS class from theme integration service
-  const styleClass = themeIntegrationService.getSectionStyleClass('cta', section.styleId || '1');
+  // Get the proper CSS class from the new theme system
+  const styleClass = `cta-style-${section.styleId?.split('-').pop() || '1'}`;
 
   // Extract style type for conditional rendering
   const getStyleType = (className: string): string => {
