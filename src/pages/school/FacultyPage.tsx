@@ -6,9 +6,9 @@ import sdk from '@/lib/sdk-config';
 import { Calendar, Clock, Users, BookOpen, Search, Filter, ArrowRight, ChevronLeft, ChevronRight, Award, Mail, Phone, GraduationCap } from 'lucide-react';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
-import '@/themes/styles/pages/archive-modern.css';
-import '@/themes/styles/pages/archive-templates-ultra-modern.css';
-import '@/themes/styles/pages/modern-ui-templates.css';
+
+
+
 
 interface Faculty {
   id: string;

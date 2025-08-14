@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useKnowledgebase } from '@/hooks/useKnowledgebase';
-import '@/themes/styles/sections/knowledgebase-modern.css';
-import '@/themes/styles/sections/all-remaining-ultra-modern.css';
+
+
 import { HelpCircle } from 'lucide-react';
 
 interface KnowledgebaseSectionProps {

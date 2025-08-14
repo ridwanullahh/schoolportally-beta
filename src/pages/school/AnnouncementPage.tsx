@@ -5,7 +5,7 @@ import sdk from '@/lib/sdk-config';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
 import { usePages } from '@/hooks/usePages';
-import '@/themes/styles/pages/announcement-post.css';
+
 
 const AnnouncementPage = () => {
   const { announcementSlug } = useParams();

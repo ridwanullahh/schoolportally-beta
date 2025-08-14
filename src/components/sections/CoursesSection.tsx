@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useCourses } from '@/hooks/useCourses';
-import '@/themes/styles/sections/courses-modern.css';
-import '@/themes/styles/sections/courses-ultra-modern.css';
-import '@/themes/styles/sections/courses-section-styles.css';
+
+
+
 import { BookOpen, Clock, Users, Star, Search, Filter, ArrowRight, User } from 'lucide-react';
 
 interface CoursesSectionProps {

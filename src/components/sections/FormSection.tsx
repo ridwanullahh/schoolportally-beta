@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Section, SectionProps } from '@/types';
 import sdk from '@/lib/sdk-config';
-import '@/themes/styles/sections/form-modern.css';
-import '@/themes/styles/sections/all-remaining-ultra-modern.css';
-import '@/themes/styles/sections/form-section-styles.css';
+
+
+
 import { Send, User, Mail, Phone, Check, MapPin, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { Input } from '@/components/ui/input';
@@ -14,8 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'; // Added this import
 import { FormField } from '@/types';
-import '@/themes/styles/sections/form-modern.css';
-import '@/themes/styles/sections/all-remaining-ultra-modern.css';
+
+
 import { useToast } from '@/hooks/use-toast';
 
 const FormSection: React.FC<SectionProps> = ({ content, settings }) => {

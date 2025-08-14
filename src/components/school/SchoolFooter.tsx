@@ -4,8 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { School, Page } from '@/types';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { usePages } from '@/hooks/usePages';
-import '@/themes/styles/footers.css';
-import '@/themes/styles/footers-modern.css';
+
+
 
 interface SchoolFooterProps {
   school: School;

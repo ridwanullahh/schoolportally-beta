@@ -1,17 +1,28 @@
-export interface Theme {
-  name: string;
-  label: string;
-}
-
-export const themes: Theme[] = [
-  { name: 'default', label: 'Default Theme' },
-  { name: 'corporate', label: 'Corporate' },
-  { name: 'creative', label: 'Creative' },
-  { name: 'modern', label: 'Modern' },
-  { name: 'elegant', label: 'Elegant' },
-  { name: 'playful', label: 'Playful' },
-  { name: 'minimalist', label: 'Minimalist' },
-  { name: 'bold', label: 'Bold & Impactful' },
-  { name: 'academic', label: 'Academic' },
-  { name: 'technical', label: 'Technical' },
+export const themes = [
+  { name: 'theme-1', label: 'Modern Professional' },
+  { name: 'theme-2', label: 'Modern Vibrant' },
+  { name: 'theme-3', label: 'Modern Elegant' },
+  { name: 'theme-4', label: 'Modern Corporate' },
+  { name: 'theme-5', label: 'Modern Creative' },
+  { name: 'theme-6', label: 'Modern Tech' },
+  { name: 'theme-7', label: 'Modern Warm' },
+  { name: 'theme-8', label: 'Modern Cool' },
+  { name: 'theme-9', label: 'Modern Bold' },
+  { name: 'theme-10', label: 'Modern Nature' },
+  { name: 'theme-11', label: 'Modern Minimal' },
+  { name: 'theme-12', label: 'Ultra-Modern Glass' },
+  { name: 'theme-13', label: 'Ultra-Modern Neon' },
+  { name: 'theme-14', label: 'Ultra-Modern Geometric' },
+  { name: 'theme-15', label: 'Ultra-Modern Minimal' },
+  { name: 'theme-16', label: 'Ultra-Modern Hexagon' },
+  { name: 'theme-17', label: 'Ultra-Modern Sliding' },
+  { name: 'theme-18', label: 'Ultra-Modern Isometric' },
+  { name: 'theme-19', label: 'Ultra-Modern Liquid' },
+  { name: 'theme-20', label: 'Ultra-Modern Gradient' },
+  { name: 'theme-21', label: 'Ultra-Modern Paper' },
+  { name: 'theme-22', label: 'Ultra-Modern Outline' },
+  { name: 'theme-23', label: 'Ultra-Modern Mosaic' },
+  { name: 'theme-24', label: 'Ultra-Modern Holographic' },
+  { name: 'theme-25', label: 'Ultra-Modern Progress' },
+  { name: 'theme-26', label: 'Ultra-Modern Circular' },
 ];

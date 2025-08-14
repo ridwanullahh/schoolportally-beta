@@ -6,8 +6,8 @@ import sdk from '@/lib/sdk-config';
 import { Calendar, Clock, Eye, Heart, Download, Share2, Facebook, Twitter, Linkedin, Play, Image as ImageIcon } from 'lucide-react';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
-import '@/themes/styles/pages/single-post-modern.css';
-import '@/themes/styles/pages/single-post-templates-ultra-modern.css';
+
+
 
 interface GalleryItem {
   id: string;

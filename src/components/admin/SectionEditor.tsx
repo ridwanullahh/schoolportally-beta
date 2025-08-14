@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Plus, Trash2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { sectionStyles } from '@/data/section-styles';
+import { themeService } from '@/services/themeService';
 import FormSectionEditor from './editors/FormSectionEditor';
 
 interface SectionEditorProps {
@@ -480,24 +480,128 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
         );
       case 'blog_posts':
         const blogStyle = section.styleId || '';
+        const availableStyles = themeService.getSectionStyles('blog_posts');
         return (
           <div className="space-y-4">
+            <div>
+              <Label>Section Style</Label>
+              <Select value={blogStyle} onValueChange={handleStyleChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a style" />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableStyles.map((style) => (
+                    <SelectItem key={style.id} value={style.cssClass}>
+                      {style.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             <div>
               <Label>Section Title</Label>
               <Input className="blog_title" value={section.content.title || ''} onChange={(e) => handleContentChange('title', e.target.value)} />
             </div>
-            {blogStyle === 'blog_posts-pinned-post' && (
+            <div>
+              <Label>Number of Posts to Display</Label>
+              <Input
+                type="number"
+                min="1"
+                max="20"
+                value={section.content.postsLimit || 3}
+                onChange={(e) => handleContentChange('postsLimit', parseInt(e.target.value, 10))}
+              />
+            </div>
+            <div>
+              <Label>Post Category Filter</Label>
+              <Input 
+                placeholder="Enter category slug (optional)" 
+                value={section.content.categoryFilter || ''} 
+                onChange={(e) => handleContentChange('categoryFilter', e.target.value)} 
+              />
+            </div>
+            <div>
+              <Label>Enable Load More</Label>
+              <Select value={section.content.enableLoadMore ? 'true' : 'false'} onValueChange={(value) => handleContentChange('enableLoadMore', value === 'true')}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="false">No</SelectItem>
+                  <SelectItem value="true">Yes</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {section.content.enableLoadMore && (
               <div>
-                <Label>Pinned Post ID</Label>
-                <Input className="blog_pinned_post_id" value={section.content.pinnedPostId || ''} onChange={(e) => handleContentChange('pinnedPostId', e.target.value)} />
+                <Label>Load More Type</Label>
+                <Select value={section.content.loadMoreType || 'button'} onValueChange={(value) => handleContentChange('loadMoreType', value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="button">Load More Button</SelectItem>
+                    <SelectItem value="infinite">Infinite Scroll</SelectItem>
+                    <SelectItem value="pagination">Pagination</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             )}
-             <Label>Number of Posts to Display</Label>
-            <Input
-              type="number"
-              value={section.content.postsLimit || 3}
-              onChange={(e) => handleContentChange('postsLimit', parseInt(e.target.value, 10))}
-            />
+            <div>
+              <Label>Enable Search</Label>
+              <Select value={section.content.enableSearch ? 'true' : 'false'} onValueChange={(value) => handleContentChange('enableSearch', value === 'true')}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="false">No</SelectItem>
+                  <SelectItem value="true">Yes</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Enable Sorting</Label>
+              <Select value={section.content.enableSorting ? 'true' : 'false'} onValueChange={(value) => handleContentChange('enableSorting', value === 'true')}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="false">No</SelectItem>
+                  <SelectItem value="true">Yes</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {section.content.enableSorting && (
+              <div>
+                <Label>Default Sort Order</Label>
+                <Select value={section.content.sortOrder || 'desc'} onValueChange={(value) => handleContentChange('sortOrder', value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="desc">Newest First</SelectItem>
+                    <SelectItem value="asc">Oldest First</SelectItem>
+                    <SelectItem value="title">By Title</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            <div>
+              <Label>Button Text</Label>
+              <Input 
+                placeholder="View All Posts" 
+                value={section.content.buttonText || 'View All Posts'} 
+                onChange={(e) => handleContentChange('buttonText', e.target.value)} 
+              />
+            </div>
+            <div>
+              <Label>Button Link</Label>
+              <Input 
+                placeholder="/blog" 
+                value={section.content.buttonLink || '/blog'} 
+                onChange={(e) => handleContentChange('buttonLink', e.target.value)} 
+              />
+            </div>
           </div>
         );
       case 'partners':

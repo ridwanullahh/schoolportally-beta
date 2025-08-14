@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { usePrograms } from '@/hooks/usePrograms';
 import { Search, Filter, Calendar, User, ArrowRight, ChevronDown, Clock, Users } from 'lucide-react';
-import '@/themes/styles/sections/programs-modern.css';
-import '@/themes/styles/sections/programs-ultra-modern.css';
-import '@/themes/styles/sections/programs-section-styles.css';
+
+
+
 import { Button } from '@/components/ui/button';
 
 interface ProgramsSectionProps {

@@ -5,9 +5,9 @@ import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Calendar, User, ArrowRight, ChevronDown } from 'lucide-react';
 import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
-import '@/themes/styles/sections/blog-posts-modern.css';
-import '@/themes/styles/sections/blog-posts-ultra-modern.css';
-import '@/themes/styles/sections/blog-section-styles.css';
+
+
+
 
 interface BlogPostsSectionProps {
   section: Section;

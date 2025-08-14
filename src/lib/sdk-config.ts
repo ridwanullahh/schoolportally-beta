@@ -106,20 +106,11 @@ const dbSchema = {
       galleryPostStyle: 'string',
       jobPostStyle: 'string',
       productPostStyle: 'string',
-      knowledgebasePostStyle: 'string',
       libraryPostStyle: 'string',
-      coursePostStyle: 'string',
-      courseArchiveStyle: 'string',
-      galleryPostStyle: 'string',
-      galleryArchiveStyle: 'string',
       elibraryBookPostStyle: 'string',
       elibraryBookArchiveStyle: 'string',
-      knowledgebasePostStyle: 'string',
-      knowledgebaseArchiveStyle: 'string',
       faqPostStyle: 'string',
-      faqArchiveStyle: 'string',
-      jobPostStyle: 'string',
-      jobArchiveStyle: 'string'
+      faqArchiveStyle: 'string'
     },
     defaults: {
       branding: {

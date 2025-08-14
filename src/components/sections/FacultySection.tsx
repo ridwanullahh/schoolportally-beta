@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useFaculty } from '@/hooks/useFaculty';
 import { Search, Filter, Mail, Phone, ArrowRight, ChevronDown, User, Award } from 'lucide-react';
-import '@/themes/styles/sections/faculty-modern.css';
-import '@/themes/styles/sections/faculty-ultra-modern.css';
-import '@/themes/styles/sections/faculty-section-styles.css';
+
+
+
 
 interface FacultySectionProps {
   section: Section;

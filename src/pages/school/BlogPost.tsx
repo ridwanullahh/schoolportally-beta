@@ -4,9 +4,9 @@ import { useSchool } from '@/contexts/SchoolContext';
 import sdk from '@/lib/sdk-config';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
-import '@/themes/styles/pages/blog-post.css';
-import '@/themes/styles/pages/single-post-modern.css';
-import '@/themes/styles/pages/single-post-templates-ultra-modern.css';
+
+
+
 import { usePages } from '@/hooks/usePages';
 import { Calendar, Clock, User, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BlogPost } from '@/types';

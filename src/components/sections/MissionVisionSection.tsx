@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/mission-vision-modern.css';
-import '@/themes/styles/sections/mission-vision-ultra-modern.css';
-import '@/themes/styles/sections/mission-vision-section-styles.css';
+
+
+
 import { Target, Eye, Heart, Play, Star, Award, Users } from 'lucide-react';
 
 interface MissionVisionSectionProps {

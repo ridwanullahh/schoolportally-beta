@@ -1,0 +1,215 @@
+/* Modern Theme System Styles Import */
+
+/* Base Variables and Utilities */
+@import url('./base/variables.css');
+
+/* Component Styles */
+@import url('./components/header-styles.css');
+@import url('./components/footer-styles.css');
+@import url('./components/breadcrumb-styles.css');
+
+/* Section Styles */
+@import url('./sections/blog-posts-styles.css');
+
+/* Global Theme Application */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--school-font-family);
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  line-height: var(--school-line-height-normal);
+}
+
+/* Theme Classes Application */
+.theme-1 {
+  --school-brand-primary: #2563eb;
+  --school-brand-secondary: #3b82f6;
+  --school-brand-accent: #60a5fa;
+  --school-font-family: 'Inter', sans-serif;
+}
+
+.theme-2 {
+  --school-brand-primary: #7c3aed;
+  --school-brand-secondary: #8b5cf6;
+  --school-brand-accent: #a78bfa;
+  --school-font-family: 'Poppins', sans-serif;
+}
+
+.theme-3 {
+  --school-brand-primary: #059669;
+  --school-brand-secondary: #10b981;
+  --school-brand-accent: #34d399;
+  --school-font-family: 'Playfair Display', serif;
+}
+
+.theme-4 {
+  --school-brand-primary: #dc2626;
+  --school-brand-secondary: #ef4444;
+  --school-brand-accent: #f87171;
+  --school-font-family: 'Roboto', sans-serif;
+}
+
+.theme-5 {
+  --school-brand-primary: #ea580c;
+  --school-brand-secondary: #fb923c;
+  --school-brand-accent: #fed7aa;
+  --school-font-family: 'Montserrat', sans-serif;
+}
+
+.theme-6 {
+  --school-brand-primary: #0891b2;
+  --school-brand-secondary: #06b6d4;
+  --school-brand-accent: #67e8f9;
+  --school-font-family: 'Source Sans Pro', sans-serif;
+}
+
+.theme-7 {
+  --school-brand-primary: #c2410c;
+  --school-brand-secondary: #ea580c;
+  --school-brand-accent: #fb923c;
+  --school-font-family: 'Nunito', sans-serif;
+}
+
+.theme-8 {
+  --school-brand-primary: #1e40af;
+  --school-brand-secondary: #3b82f6;
+  --school-brand-accent: #93c5fd;
+  --school-font-family: 'Lato', sans-serif;
+}
+
+.theme-9 {
+  --school-brand-primary: #be123c;
+  --school-brand-secondary: #e11d48;
+  --school-brand-accent: #fb7185;
+  --school-font-family: 'Raleway', sans-serif;
+}
+
+.theme-10 {
+  --school-brand-primary: #166534;
+  --school-brand-secondary: #16a34a;
+  --school-brand-accent: #4ade80;
+  --school-font-family: 'Lora', serif;
+}
+
+.theme-11 {
+  --school-brand-primary: #374151;
+  --school-brand-secondary: #4b5563;
+  --school-brand-accent: #6b7280;
+  --school-font-family: 'Inter', sans-serif;
+}
+
+.theme-12 {
+  --school-brand-primary: #6366f1;
+  --school-brand-secondary: #8b5cf6;
+  --school-brand-accent: #a855f7;
+  --school-font-family: 'Inter', sans-serif;
+}
+
+.theme-13 {
+  --school-brand-primary: #ec4899;
+  --school-brand-secondary: #f472b6;
+  --school-brand-accent: #f9a8d4;
+  --school-brand-bg-primary: #0f0f23;
+  --school-brand-bg-secondary: #1a1a2e;
+  --school-brand-text-primary: #ffffff;
+  --school-brand-text-secondary: #e2e8f0;
+  --school-font-family: 'Poppins', sans-serif;
+}
+
+.theme-14 {
+  --school-brand-primary: #f59e0b;
+  --school-brand-secondary: #fbbf24;
+  --school-brand-accent: #fcd34d;
+  --school-font-family: 'Montserrat', sans-serif;
+}
+
+.theme-15 {
+  --school-brand-primary: #64748b;
+  --school-brand-secondary: #94a3b8;
+  --school-brand-accent: #cbd5e1;
+  --school-font-family: 'Roboto', sans-serif;
+}
+
+.theme-16 {
+  --school-brand-primary: #7c2d12;
+  --school-brand-secondary: #ea580c;
+  --school-brand-accent: #fb923c;
+  --school-font-family: 'Source Sans Pro', sans-serif;
+}
+
+.theme-17 {
+  --school-brand-primary: #1e3a8a;
+  --school-brand-secondary: #3b82f6;
+  --school-brand-accent: #60a5fa;
+  --school-font-family: 'Nunito', sans-serif;
+}
+
+.theme-18 {
+  --school-brand-primary: #7e22ce;
+  --school-brand-secondary: #a855f7;
+  --school-brand-accent: #c084fc;
+  --school-font-family: 'Lato', sans-serif;
+}
+
+.theme-19 {
+  --school-brand-primary: #0d9488;
+  --school-brand-secondary: #14b8a6;
+  --school-brand-accent: #5eead4;
+  --school-font-family: 'Raleway', sans-serif;
+}
+
+.theme-20 {
+  --school-brand-primary: #be185d;
+  --school-brand-secondary: #ec4899;
+  --school-brand-accent: #f472b6;
+  --school-font-family: 'Playfair Display', serif;
+}
+
+.theme-21 {
+  --school-brand-primary: #92400e;
+  --school-brand-secondary: #d97706;
+  --school-brand-accent: #fbbf24;
+  --school-brand-bg-primary: #fefdf8;
+  --school-brand-bg-secondary: #fffbeb;
+  --school-font-family: 'Crimson Text', serif;
+}
+
+.theme-22 {
+  --school-brand-primary: #1e40af;
+  --school-brand-secondary: #3b82f6;
+  --school-brand-accent: #93c5fd;
+  --school-brand-bg-primary: #0f172a;
+  --school-brand-bg-secondary: #1e293b;
+  --school-brand-text-primary: #ffffff;
+  --school-brand-text-secondary: #e2e8f0;
+  --school-font-family: 'Inter', sans-serif;
+}
+
+.theme-23 {
+  --school-brand-primary: #dc2626;
+  --school-brand-secondary: #ef4444;
+  --school-brand-accent: #fca5a5;
+  --school-font-family: 'Poppins', sans-serif;
+}
+
+.theme-24 {
+  --school-brand-primary: #7c3aed;
+  --school-brand-secondary: #8b5cf6;
+  --school-brand-accent: #c4b5fd;
+  --school-font-family: 'Montserrat', sans-serif;
+}
+
+.theme-25 {
+  --school-brand-primary: #059669;
+  --school-brand-secondary: #10b981;
+  --school-brand-accent: #6ee7b7;
+  --school-font-family: 'Roboto', sans-serif;
+}
+
+.theme-26 {
+  --school-brand-primary: #ea580c;
+  --school-brand-secondary: #fb923c;
+  --school-brand-accent: #fed7aa;
+  --school-font-family: 'Source Sans Pro', sans-serif;
+}

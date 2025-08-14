@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useEvents, Event } from '@/hooks/useEvents';
-import '@/themes/styles/sections/events-snapshot-modern.css';
-import '@/themes/styles/sections/events-snapshot-ultra-modern.css';
+
+
 import { Calendar, Clock, MapPin } from 'lucide-react';
 
 interface EventsSnapshotSectionProps {

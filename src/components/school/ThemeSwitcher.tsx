@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Branding } from '@/types';
-import themeIntegrationService from '@/services/themeIntegrationService';
+import { themeService } from '@/services/themeService';
 // Load comprehensive theme and section styles once
-import '@/themes/styles/comprehensive-themes.css';
-import '@/themes/styles/sections/hero-styles-complete.css';
-import '@/themes/styles/sections/hero-styles-extended.css';
-import '@/themes/styles/sections/blog-section-styles.css';
-import '@/themes/styles/sections/classes-section-styles.css';
+
+
+
+
+
 
 interface ThemeSwitcherProps {
   themeName: string;
@@ -131,9 +131,9 @@ const ThemeSwitcher = ({ themeName }: ThemeSwitcherProps): null => {
   useEffect(() => {
     const applyTheme = async () => {
       try {
-        // Apply theme via integration service (handles CSS and colors)
+        // Apply theme via theme service
         if (school) {
-          await themeIntegrationService.applyTheme(themeName, school);
+          themeService.applyTheme(themeName, school.branding);
         }
         document.body.setAttribute('data-theme', themeName);
       } catch (error) {

@@ -1,470 +1,720 @@
-/* School Header Styles - All 26 Styles Implementation */
+/* Modern Header Styles - 26 Comprehensive, Responsive, Beautiful Styles */
 
-.school-header {
-  /* Use brand colors directly from ThemeSwitcher */
-  --brand-primary: var(--school-brand-primary, #2563eb);
-  --brand-secondary: var(--school-brand-secondary, #3b82f6);
-  --brand-accent: var(--school-brand-accent, #60a5fa);
-  --brand-text-primary: var(--school-brand-text-primary, #1f2937);
-  --brand-text-secondary: var(--school-brand-text-secondary, #6b7280);
-  --brand-text-light: var(--school-brand-text-light, #ffffff);
-  --brand-bg-primary: var(--school-brand-bg-light, #ffffff);
-  --brand-bg-secondary: var(--school-brand-bg-primary, #f8fafc);
-  --brand-bg-tertiary: var(--school-brand-bg-secondary, #f1f5f9);
+/* Base Header Styles */
+.header-base {
   position: relative;
-  z-index: 1000;
+  z-index: var(--school-z-sticky);
+  width: 100%;
+  font-family: var(--school-font-family);
+  transition: all var(--school-transition-normal);
 }
 
-/* Common Header Elements */
-.school-header .header-container {
-  max-width: 1200px;
+.header-container {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 0 var(--school-spacing-lg);
 }
 
-.school-header .school-logo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.header-logo {
+  font-size: var(--school-font-size-xl);
+  font-weight: var(--school-font-weight-bold);
+  color: var(--school-brand-text-primary);
   text-decoration: none;
+  transition: color var(--school-transition-fast);
 }
 
-.school-header .logo-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  object-fit: cover;
+.header-logo:hover {
+  color: var(--school-brand-primary);
 }
 
-.school-header .school-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--brand-text-primary);
-  margin: 0;
-}
-
-.school-header .main-nav {
+.header-nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: var(--school-spacing-lg);
 }
 
-.school-header .nav-menu {
+.header-nav-list {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: var(--school-spacing-lg);
 }
 
-.school-header .nav-item {
+.header-nav-link {
+  color: var(--school-brand-text-primary);
+  text-decoration: none;
+  font-weight: var(--school-font-weight-medium);
+  padding: var(--school-spacing-sm) var(--school-spacing-md);
+  border-radius: var(--school-radius-md);
+  transition: all var(--school-transition-fast);
   position: relative;
 }
 
-.school-header .nav-link {
-  color: var(--brand-text-primary);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+.header-nav-link:hover {
+  color: var(--school-brand-primary);
+  background: rgba(37, 99, 235, 0.1);
 }
 
-.school-header .nav-link:hover {
-  color: var(--brand-primary);
-  background: var(--brand-bg-secondary);
+.header-nav-link.active {
+  color: var(--school-brand-primary);
+  font-weight: var(--school-font-weight-semibold);
 }
 
-.school-header .nav-link.active {
-  color: var(--brand-primary);
-  background: var(--brand-bg-secondary);
-}
-
-.school-header .header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.school-header .search-toggle {
-  background: none;
-  border: none;
-  color: var(--brand-text-primary);
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.school-header .search-toggle:hover {
-  background: var(--brand-bg-secondary);
-  color: var(--brand-primary);
-}
-
-.school-header .mobile-menu-toggle {
+.header-mobile-toggle {
   display: none;
   background: none;
   border: none;
-  color: var(--brand-text-primary);
+  color: var(--school-brand-text-primary);
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  padding: var(--school-spacing-sm);
 }
 
-.school-header .mobile-menu-toggle:hover {
-  background: var(--brand-bg-secondary);
-  color: var(--brand-primary);
+/* Style 1: Modern Minimal */
+.header-style-1 {
+  background: var(--school-brand-bg-primary);
+  border-bottom: 1px solid var(--school-brand-border-primary);
+  padding: var(--school-spacing-md) 0;
 }
 
-/* Style 1: Modern Clean Header */
-.header-modern-clean {
-  background: var(--brand-bg-primary);
-  border-bottom: 1px solid var(--brand-bg-tertiary);
-  padding: 1rem 0;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+.header-style-1 .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header-modern-clean .school-name {
-  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+.header-style-1 .header-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--school-brand-primary);
+  transition: width var(--school-transition-fast);
+}
+
+.header-style-1 .header-nav-link:hover::after {
+  width: 80%;
+}
+
+/* Style 2: Gradient Modern */
+.header-style-2 {
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-lg) 0;
+  box-shadow: var(--school-brand-shadow-md);
+}
+
+.header-style-2 .header-logo {
+  color: var(--school-brand-text-light);
+}
+
+.header-style-2 .header-nav-link {
+  color: var(--school-brand-text-light);
+}
+
+.header-style-2 .header-nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--school-brand-text-light);
+}
+
+/* Style 3: Glass Modern */
+.header-style-3 {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: var(--school-spacing-lg) 0;
+  position: sticky;
+  top: 0;
+}
+
+.header-style-3 .header-nav-link:hover {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+/* Style 4: Centered Modern */
+.header-style-4 {
+  background: var(--school-brand-bg-primary);
+  border-bottom: 3px solid var(--school-brand-primary);
+  padding: var(--school-spacing-2xl) 0;
+  text-align: center;
+}
+
+.header-style-4 .header-container {
+  flex-direction: column;
+  gap: var(--school-spacing-lg);
+}
+
+.header-style-4 .header-logo {
+  font-size: var(--school-font-size-3xl);
+  margin-bottom: var(--school-spacing-md);
+}
+
+/* Style 5: Floating Modern */
+.header-style-5 {
+  background: transparent;
+  padding: var(--school-spacing-lg) 0;
+  position: sticky;
+  top: var(--school-spacing-lg);
+}
+
+.header-style-5 .header-container {
+  background: var(--school-brand-bg-primary);
+  border-radius: var(--school-radius-3xl);
+  padding: var(--school-spacing-lg) var(--school-spacing-2xl);
+  box-shadow: var(--school-brand-shadow-xl);
+  border: 1px solid var(--school-brand-border-primary);
+}
+
+/* Style 6: Sidebar Modern */
+.header-style-6 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--school-brand-bg-primary);
+  border-right: 1px solid var(--school-brand-border-primary);
+  padding: var(--school-spacing-2xl) var(--school-spacing-lg);
+  box-shadow: var(--school-brand-shadow-lg);
+  z-index: var(--school-z-modal);
+}
+
+.header-style-6 .header-container {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--school-spacing-2xl);
+}
+
+.header-style-6 .header-nav {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--school-spacing-md);
+}
+
+.header-style-6 .header-nav-list {
+  flex-direction: column;
+  gap: var(--school-spacing-sm);
+}
+
+.header-style-6 .header-nav-link {
+  width: 100%;
+  justify-content: flex-start;
+  padding: var(--school-spacing-md);
+  border-radius: var(--school-radius-lg);
+}
+
+.header-style-6 .header-nav-link:hover {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+/* Style 7: Split Modern */
+.header-style-7 {
+  background: var(--school-brand-bg-primary);
+}
+
+.header-style-7 .header-top {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-sm) 0;
+  font-size: var(--school-font-size-sm);
+}
+
+.header-style-7 .header-main {
+  padding: var(--school-spacing-lg) 0;
+  border-bottom: 1px solid var(--school-brand-border-primary);
+}
+
+/* Style 8: Mega Menu Modern */
+.header-style-8 {
+  background: var(--school-brand-bg-primary);
+  border-bottom: 1px solid var(--school-brand-border-primary);
+  padding: var(--school-spacing-lg) 0;
+  box-shadow: var(--school-brand-shadow-sm);
+}
+
+.header-style-8 .header-nav-link {
+  font-weight: var(--school-font-weight-semibold);
+  font-size: var(--school-font-size-lg);
+}
+
+/* Style 9: Sticky Animated */
+.header-style-9 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-2xl) 0;
+  position: sticky;
+  top: 0;
+  transition: all var(--school-transition-normal);
+}
+
+.header-style-9.scrolled {
+  padding: var(--school-spacing-lg) 0;
+  box-shadow: var(--school-brand-shadow-lg);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+/* Style 10: Card Modern */
+.header-style-10 {
+  background: transparent;
+  padding: var(--school-spacing-lg) 0;
+}
+
+.header-style-10 .header-container {
+  background: var(--school-brand-bg-primary);
+  border-radius: var(--school-radius-2xl);
+  padding: var(--school-spacing-lg) var(--school-spacing-2xl);
+  box-shadow: var(--school-brand-shadow-xl);
+  border: 1px solid var(--school-brand-border-primary);
+}
+
+/* Style 11: Bordered Modern */
+.header-style-11 {
+  background: var(--school-brand-bg-primary);
+  border-top: 4px solid var(--school-brand-primary);
+  border-bottom: 1px solid var(--school-brand-border-primary);
+  padding: var(--school-spacing-lg) 0;
+}
+
+.header-style-11 .header-nav-list {
+  gap: 0;
+}
+
+.header-style-11 .header-nav-item {
+  border-right: 1px solid var(--school-brand-border-primary);
+}
+
+.header-style-11 .header-nav-item:last-child {
+  border-right: none;
+}
+
+.header-style-11 .header-nav-link {
+  padding: var(--school-spacing-md) var(--school-spacing-lg);
+}
+
+/* Style 12: Gradient Border */
+.header-style-12 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-lg) 0;
+  position: relative;
+}
+
+.header-style-12::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+}
+
+/* Style 13: Boxed Modern */
+.header-style-13 {
+  background: var(--school-brand-bg-secondary);
+  padding: var(--school-spacing-lg) 0;
+}
+
+.header-style-13 .header-container {
+  background: var(--school-brand-bg-primary);
+  border: 2px solid var(--school-brand-primary);
+  border-radius: var(--school-radius-xl);
+  padding: var(--school-spacing-lg) var(--school-spacing-2xl);
+}
+
+/* Style 14: Underline Modern */
+.header-style-14 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-lg) 0;
+  border-bottom: 1px solid var(--school-brand-border-primary);
+}
+
+.header-style-14 .header-nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--school-brand-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--school-transition-fast);
+}
+
+.header-style-14 .header-nav-link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Style 15: Pill Modern */
+.header-style-15 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-lg) 0;
+  border-bottom: 1px solid var(--school-brand-border-primary);
+}
+
+.header-style-15 .header-nav-list {
+  background: var(--school-brand-bg-secondary);
+  padding: var(--school-spacing-sm);
+  border-radius: var(--school-radius-full);
+  gap: var(--school-spacing-sm);
+}
+
+.header-style-15 .header-nav-link {
+  padding: var(--school-spacing-sm) var(--school-spacing-lg);
+  border-radius: var(--school-radius-full);
+}
+
+.header-style-15 .header-nav-link:hover {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+/* Style 16: Icon Modern */
+.header-style-16 {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-lg) 0;
+}
+
+.header-style-16 .header-logo {
+  color: var(--school-brand-text-light);
+}
+
+.header-style-16 .header-nav-link {
+  color: var(--school-brand-text-light);
+  display: flex;
+  align-items: center;
+  gap: var(--school-spacing-sm);
+}
+
+.header-style-16 .header-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Style 17: Stacked Modern */
+.header-style-17 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-2xl) 0;
+  text-align: center;
+  border-bottom: 1px solid var(--school-brand-border-primary);
+}
+
+.header-style-17 .header-container {
+  flex-direction: column;
+  gap: var(--school-spacing-xl);
+}
+
+.header-style-17 .header-logo {
+  font-size: var(--school-font-size-4xl);
+  font-weight: var(--school-font-weight-black);
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.header-modern-clean .nav-link {
+/* Style 18: Diagonal Modern */
+.header-style-18 {
+  background: linear-gradient(135deg, var(--school-brand-primary) 0%, var(--school-brand-secondary) 100%);
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-lg) 0;
   position: relative;
   overflow: hidden;
 }
 
-.header-modern-clean .nav-link::before {
+.header-style-18::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--brand-primary);
-  transition: width 0.3s ease;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
 }
 
-.header-modern-clean .nav-link:hover::before,
-.header-modern-clean .nav-link.active::before {
-  width: 100%;
+.header-style-18 .header-logo {
+  color: var(--school-brand-text-light);
 }
 
-/* Style 2: Modern Gradient Header */
-.header-modern-gradient {
-  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
-  padding: 1.5rem 0;
-  position: relative;
-  overflow: hidden;
+.header-style-18 .header-nav-link {
+  color: var(--school-brand-text-light);
 }
 
-.header-modern-gradient::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+/* Style 19: Neumorphism Modern */
+.header-style-19 {
+  background: var(--school-brand-bg-secondary);
+  padding: var(--school-spacing-lg) 0;
 }
 
-.header-modern-gradient .header-container {
-  position: relative;
-  z-index: 1;
+.header-style-19 .header-container {
+  background: var(--school-brand-bg-secondary);
+  border-radius: var(--school-radius-2xl);
+  padding: var(--school-spacing-lg) var(--school-spacing-2xl);
+  box-shadow: 
+    inset 5px 5px 10px #d1d5db,
+    inset -5px -5px 10px #ffffff;
 }
 
-.header-modern-gradient .school-name,
-.header-modern-gradient .nav-link {
-  color: var(--brand-text-light);
-}
-
-.header-modern-gradient .nav-link:hover {
-  background: rgba(255,255,255,0.1);
-  color: var(--brand-text-light);
-}
-
-.header-modern-gradient .search-toggle,
-.header-modern-gradient .mobile-menu-toggle {
-  color: var(--brand-text-light);
-}
-
-.header-modern-gradient .search-toggle:hover,
-.header-modern-gradient .mobile-menu-toggle:hover {
-  background: rgba(255,255,255,0.1);
-  color: var(--brand-text-light);
-}
-
-/* Style 3: Modern Transparent Header */
-.header-modern-transparent {
-  background: rgba(255,255,255,0.95);
+/* Style 20: Glassmorphism Modern */
+.header-style-20 {
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding: 1rem 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-.header-modern-transparent .nav-link {
-  background: rgba(255,255,255,0.8);
-  border: 1px solid rgba(0,0,0,0.1);
-  margin: 0 0.25rem;
-}
-
-.header-modern-transparent .nav-link:hover {
-  background: var(--brand-primary);
-  color: var(--brand-text-light);
-  border-color: var(--brand-primary);
-}
-
-/* Style 4: Modern Minimal Header */
-.header-modern-minimal {
-  background: var(--brand-bg-primary);
-  padding: 2rem 0;
-  border-bottom: none;
-}
-
-.header-modern-minimal .school-name {
-  font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-}
-
-.header-modern-minimal .nav-link {
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.875rem;
-  padding: 1rem 1.5rem;
-}
-
-.header-modern-minimal .nav-link:hover {
-  background: none;
-  color: var(--brand-primary);
-  transform: translateY(-2px);
-}
-
-/* Style 5: Modern Centered Header */
-.header-modern-centered {
-  background: var(--brand-bg-primary);
-  padding: 2rem 0;
-  text-align: center;
-  border-bottom: 1px solid var(--brand-bg-tertiary);
-}
-
-.header-modern-centered .header-container {
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.header-modern-centered .school-logo {
-  justify-content: center;
-}
-
-.header-modern-centered .main-nav {
-  justify-content: center;
-}
-
-.header-modern-centered .header-actions {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
-}
-
-/* Style 6: Modern Split Header */
-.header-modern-split {
-  background: var(--brand-bg-primary);
-  padding: 0;
-}
-
-.header-modern-split .header-top {
-  background: var(--brand-bg-secondary);
-  padding: 0.5rem 0;
-  font-size: 0.875rem;
-  color: var(--brand-text-secondary);
-  text-align: center;
-}
-
-.header-modern-split .header-main {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--brand-bg-tertiary);
-}
-
-/* Style 7: Modern Floating Header */
-.header-modern-floating {
-  background: var(--brand-bg-primary);
-  margin: 1rem 2rem;
-  border-radius: 16px;
-  padding: 1rem 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border: 1px solid var(--brand-bg-tertiary);
-}
-
-.header-modern-floating .nav-link {
-  border-radius: 12px;
-}
-
-/* Style 8: Modern Sidebar Header */
-.header-modern-sidebar {
-  background: var(--brand-bg-primary);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--brand-bg-tertiary);
-  position: relative;
-}
-
-.header-modern-sidebar .header-container {
-  position: relative;
-}
-
-.header-modern-sidebar .sidebar-toggle {
-  background: var(--brand-primary);
-  color: var(--brand-text-light);
-  border: none;
-  padding: 0.75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-right: 1rem;
-}
-
-/* Style 9: Modern Mega Menu Header */
-.header-modern-mega {
-  background: var(--brand-bg-primary);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--brand-bg-tertiary);
-}
-
-.header-modern-mega .nav-item:hover .mega-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.header-modern-mega .mega-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--brand-bg-primary);
-  border: 1px solid var(--brand-bg-tertiary);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-/* Style 10: Modern Sticky Header */
-.header-modern-sticky {
-  background: var(--brand-bg-primary);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--brand-bg-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: var(--school-spacing-lg) 0;
   position: sticky;
   top: 0;
-  z-index: 1000;
-  transition: all 0.3s ease;
 }
 
-.header-modern-sticky.scrolled {
-  padding: 0.5rem 0;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-  backdrop-filter: blur(10px);
+.header-style-20 .header-nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.header-modern-sticky.scrolled .school-name {
-  font-size: 1.25rem;
+/* Style 21: Neon Modern */
+.header-style-21 {
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-lg) 0;
+  border-bottom: 2px solid var(--school-brand-primary);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
 }
 
-.header-modern-sticky.scrolled .logo-image {
-  width: 40px;
-  height: 40px;
+.header-style-21 .header-logo {
+  color: var(--school-brand-text-light);
+  text-shadow: 0 0 10px var(--school-brand-primary);
 }
 
-/* Style 11: Modern Search Header */
-.header-modern-search {
-  background: var(--brand-bg-primary);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--brand-bg-tertiary);
+.header-style-21 .header-nav-link {
+  color: var(--school-brand-text-light);
 }
 
-.header-modern-search .search-bar {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 2rem;
+.header-style-21 .header-nav-link:hover {
+  color: var(--school-brand-accent);
+  text-shadow: 0 0 5px var(--school-brand-accent);
+}
+
+/* Style 22: Retro Wave Modern */
+.header-style-22 {
+  background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-lg) 0;
   position: relative;
 }
 
-.header-modern-search .search-input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 3rem;
-  border: 2px solid var(--brand-bg-tertiary);
-  border-radius: 25px;
-  background: var(--brand-bg-secondary);
-  font-size: 0.875rem;
-  transition: all 0.3s ease;
-}
-
-.header-modern-search .search-input:focus {
-  outline: none;
-  border-color: var(--brand-primary);
-  background: var(--brand-bg-primary);
-}
-
-.header-modern-search .search-icon {
+.header-style-22::before {
+  content: '';
   position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--brand-text-secondary);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #3a86ff);
 }
 
-/* Responsive Design */
+.header-style-22 .header-logo {
+  color: var(--school-brand-text-light);
+}
+
+.header-style-22 .header-nav-link {
+  color: var(--school-brand-text-light);
+  font-weight: var(--school-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Style 23: Minimal Line Modern */
+.header-style-23 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-lg) 0;
+  border-bottom: 2px solid var(--school-brand-border-primary);
+}
+
+.header-style-23 .header-nav-link {
+  color: var(--school-brand-text-secondary);
+  font-weight: var(--school-font-weight-normal);
+}
+
+.header-style-23 .header-nav-link:hover {
+  color: var(--school-brand-primary);
+}
+
+/* Style 24: Geometric Modern */
+.header-style-24 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-lg) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-style-24::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 30%, var(--school-brand-primary) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, var(--school-brand-secondary) 50%, transparent 70%);
+  opacity: 0.1;
+  animation: geometricShift 10s ease-in-out infinite;
+}
+
+@keyframes geometricShift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -20px) rotate(180deg); }
+}
+
+/* Style 25: Futuristic Modern */
+.header-style-25 {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: var(--school-brand-text-light);
+  padding: var(--school-spacing-lg) 0;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+}
+
+.header-style-25::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--school-brand-primary), transparent);
+  animation: futuristicScan 3s linear infinite;
+}
+
+@keyframes futuristicScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.header-style-25 .header-logo {
+  color: var(--school-brand-text-light);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+}
+
+.header-style-25 .header-nav-link {
+  color: var(--school-brand-text-light);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* Style 26: Liquid Modern */
+.header-style-26 {
+  background: var(--school-brand-bg-primary);
+  padding: var(--school-spacing-lg) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-style-26::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-  .school-header .main-nav {
+  .header-nav-list {
     display: none;
   }
-  
-  .school-header .mobile-menu-toggle {
+
+  .header-mobile-toggle {
     display: block;
   }
-  
-  .header-modern-centered .header-actions {
-    position: static;
-    margin-top: 1rem;
+
+  .header-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--school-brand-bg-primary);
+    z-index: var(--school-z-modal);
+    padding: var(--school-spacing-2xl);
+    transform: translateX(-100%);
+    transition: transform var(--school-transition-normal);
   }
-  
-  .header-modern-floating {
-    margin: 1rem;
+
+  .header-mobile-menu.active {
+    transform: translateX(0);
   }
-  
-  .header-modern-search .search-bar {
-    max-width: 200px;
-    margin: 0 1rem;
-  }
-  
-  .school-header .nav-menu.mobile-open {
+
+  .header-mobile-menu .header-nav-list {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--brand-bg-primary);
-    border: 1px solid var(--brand-bg-tertiary);
-    border-radius: 0 0 12px 12px;
-    padding: 1rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    gap: var(--school-spacing-lg);
+  }
+
+  .header-mobile-menu .header-nav-link {
+    width: 100%;
+    text-align: center;
+    padding: var(--school-spacing-lg);
+    border-radius: var(--school-radius-lg);
+    border: 1px solid var(--school-brand-border-primary);
+  }
+
+  /* Adjust specific header styles for mobile */
+  .header-style-4 .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header-style-4 .header-logo {
+    font-size: var(--school-font-size-xl);
+    margin-bottom: 0;
+  }
+
+  .header-style-6 {
+    transform: translateX(-100%);
+    transition: transform var(--school-transition-normal);
+  }
+
+  .header-style-6.active {
+    transform: translateX(0);
+  }
+
+  .header-style-17 .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header-style-17 .header-logo {
+    font-size: var(--school-font-size-xl);
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (max-width: 1024px) {
+  .header-nav-list {
+    gap: var(--school-spacing-md);
+  }
+
+  .header-nav-link {
+    padding: var(--school-spacing-sm) var(--school-spacing-md);
+    font-size: var(--school-font-size-sm);
+  }
+
+  .header-container {
+    padding: 0 var(--school-spacing-md);
   }
 }

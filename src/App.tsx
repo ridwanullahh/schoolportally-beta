@@ -3,8 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import FloatingAIChat from "@/components/shared/FloatingAIChat";
 import { AIContextProvider } from "@/contexts/AIContext";
-import './themes/styles/breadcrumbs.css';
-import './themes/styles/comprehensive-themes.css';
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";

@@ -5,8 +5,7 @@ import { School, Page } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 import { usePages } from '@/hooks/usePages';
-import '@/themes/styles/headers.css';
-import '@/themes/styles/headers-modern.css';
+
 
 interface SchoolHeaderProps {
   school: School;
