@@ -85,7 +85,7 @@ const ThemeStyler = () => {
                             <SelectValue placeholder="Select a blog post style" />
                         </SelectTrigger>
                         <SelectContent>
-                            {styleOptions(7, 'blog-post').map(style => (
+                            {styleOptions(26, 'blog-post').map(style => (
                                 <SelectItem key={style.id} value={style.id}>
                                     {style.name}
                                 </SelectItem>
@@ -93,61 +93,6 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-                 <div>
-                    <Label>Blog Archive Style</Label>
-                    <Select
-                        value={school?.branding?.blogArchiveStyle || 'blog-archive-style-1'}
-                        onValueChange={(value) => handleStyleChange('blogArchiveStyle', value)}
-                    >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select a blog archive style" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {styleOptions(7, 'blog-archive').map(style => (
-                                <SelectItem key={style.id} value={style.id}>
-                                    {style.name}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div>
-                    <Label>Announcement Post Style</Label>
-                    <Select
-                        value={school?.branding?.announcementPostStyle || 'announcement-post-style-1'}
-                        onValueChange={(value) => handleStyleChange('announcementPostStyle', value)}
-                    >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select an announcement post style" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {styleOptions(7, 'announcement-post').map(style => (
-                                <SelectItem key={style.id} value={style.id}>
-                                    {style.name}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-                 <div>
-                    <Label>Announcement Archive Style</Label>
-                    <Select
-                        value={school?.branding?.announcementArchiveStyle || 'announcement-archive-style-1'}
-                        onValueChange={(value) => handleStyleChange('announcementArchiveStyle', value)}
-                    >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select an announcement archive style" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {styleOptions(26, 'announcement-archive').map(style => (
-                                <SelectItem key={style.id} value={style.id}>
-                                    {style.name}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-
                 <div>
                     <Label>Blog Archive Style</Label>
                     <Select
@@ -166,18 +111,17 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
                 <div>
-                    <Label>Blog Post Style</Label>
+                    <Label>Announcement Post Style</Label>
                     <Select
-                        value={school?.branding?.blogPostStyle || 'blog-post-style-1'}
-                        onValueChange={(value) => handleStyleChange('blogPostStyle', value)}
+                        value={school?.branding?.announcementPostStyle || 'announcement-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('announcementPostStyle', value)}
                     >
                         <SelectTrigger>
-                            <SelectValue placeholder="Select a blog post style" />
+                            <SelectValue placeholder="Select an announcement post style" />
                         </SelectTrigger>
                         <SelectContent>
-                            {styleOptions(26, 'blog-post').map(style => (
+                            {styleOptions(26, 'announcement-post').map(style => (
                                 <SelectItem key={style.id} value={style.id}>
                                     {style.name}
                                 </SelectItem>
@@ -185,18 +129,17 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
                 <div>
-                    <Label>Events Archive Style</Label>
+                    <Label>Announcement Archive Style</Label>
                     <Select
-                        value={school?.branding?.eventArchiveStyle || 'event-archive-style-1'}
-                        onValueChange={(value) => handleStyleChange('eventArchiveStyle', value)}
+                        value={school?.branding?.announcementArchiveStyle || 'announcement-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('announcementArchiveStyle', value)}
                     >
                         <SelectTrigger>
-                            <SelectValue placeholder="Select an events archive style" />
+                            <SelectValue placeholder="Select an announcement archive style" />
                         </SelectTrigger>
                         <SelectContent>
-                            {styleOptions(26, 'event-archive').map(style => (
+                            {styleOptions(26, 'announcement-archive').map(style => (
                                 <SelectItem key={style.id} value={style.id}>
                                     {style.name}
                                 </SelectItem>
@@ -204,7 +147,6 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
                 <div>
                     <Label>Event Post Style</Label>
                     <Select
@@ -223,18 +165,17 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
                 <div>
-                    <Label>Gallery Archive Style</Label>
+                    <Label>Events Archive Style</Label>
                     <Select
-                        value={school?.branding?.galleryArchiveStyle || 'gallery-archive-style-1'}
-                        onValueChange={(value) => handleStyleChange('galleryArchiveStyle', value)}
+                        value={school?.branding?.eventArchiveStyle || 'event-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('eventArchiveStyle', value)}
                     >
                         <SelectTrigger>
-                            <SelectValue placeholder="Select a gallery archive style" />
+                            <SelectValue placeholder="Select an events archive style" />
                         </SelectTrigger>
                         <SelectContent>
-                            {styleOptions(26, 'gallery-archive').map(style => (
+                            {styleOptions(26, 'event-archive').map(style => (
                                 <SelectItem key={style.id} value={style.id}>
                                     {style.name}
                                 </SelectItem>
@@ -242,18 +183,17 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
                 <div>
-                    <Label>Gallery Post Style</Label>
+                    <Label>Program Post Style</Label>
                     <Select
-                        value={school?.branding?.galleryPostStyle || 'gallery-post-style-1'}
-                        onValueChange={(value) => handleStyleChange('galleryPostStyle', value)}
+                        value={school?.branding?.programPostStyle || 'program-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('programPostStyle', value)}
                     >
                         <SelectTrigger>
-                            <SelectValue placeholder="Select a gallery post style" />
+                            <SelectValue placeholder="Select a program post style" />
                         </SelectTrigger>
                         <SelectContent>
-                            {styleOptions(26, 'gallery-post').map(style => (
+                            {styleOptions(26, 'program-post').map(style => (
                                 <SelectItem key={style.id} value={style.id}>
                                     {style.name}
                                 </SelectItem>
@@ -261,26 +201,6 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
-                <div>
-                    <Label>Classes Archive Style</Label>
-                    <Select
-                        value={school?.branding?.classArchiveStyle || 'class-archive-style-1'}
-                        onValueChange={(value) => handleStyleChange('classArchiveStyle', value)}
-                    >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select a classes archive style" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {styleOptions(26, 'class-archive').map(style => (
-                                <SelectItem key={style.id} value={style.id}>
-                                    {style.name}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-
                 <div>
                     <Label>Programs Archive Style</Label>
                     <Select
@@ -299,7 +219,60 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
+                <div>
+                    <Label>Class Post Style</Label>
+                    <Select
+                        value={school?.branding?.classPostStyle || 'class-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('classPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a class post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'class-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Classes Archive Style</Label>
+                    <Select
+                        value={school?.branding?.classArchiveStyle || 'class-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('classArchiveStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a classes archive style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'class-archive').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Course Post Style</Label>
+                    <Select
+                        value={school?.branding?.coursePostStyle || 'course-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('coursePostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a course post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'course-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
                 <div>
                     <Label>Courses Archive Style</Label>
                     <Select
@@ -318,7 +291,24 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
+                <div>
+                    <Label>Faculty Post Style</Label>
+                    <Select
+                        value={school?.branding?.facultyPostStyle || 'faculty-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('facultyPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a faculty post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'faculty-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
                 <div>
                     <Label>Faculty Archive Style</Label>
                     <Select
@@ -337,7 +327,60 @@ const ThemeStyler = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
+                <div>
+                    <Label>Gallery Post Style</Label>
+                    <Select
+                        value={school?.branding?.galleryPostStyle || 'gallery-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('galleryPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a gallery post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'gallery-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Gallery Archive Style</Label>
+                    <Select
+                        value={school?.branding?.galleryArchiveStyle || 'gallery-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('galleryArchiveStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a gallery archive style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'gallery-archive').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Job Post Style</Label>
+                    <Select
+                        value={school?.branding?.jobPostStyle || 'job-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('jobPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a job post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'job-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
                 <div>
                     <Label>Jobs Archive Style</Label>
                     <Select
@@ -349,6 +392,150 @@ const ThemeStyler = () => {
                         </SelectTrigger>
                         <SelectContent>
                             {styleOptions(26, 'job-archive').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Product Post Style</Label>
+                    <Select
+                        value={school?.branding?.productPostStyle || 'product-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('productPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a product post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'product-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Products Archive Style</Label>
+                    <Select
+                        value={school?.branding?.productArchiveStyle || 'product-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('productArchiveStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a products archive style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'product-archive').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>eLibrary Book Post Style</Label>
+                    <Select
+                        value={school?.branding?.elibraryBookPostStyle || 'elibrary-book-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('elibraryBookPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select an elibrary book post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'elibrary-book-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>eLibrary Book Archive Style</Label>
+                    <Select
+                        value={school?.branding?.elibraryBookArchiveStyle || 'elibrary-book-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('elibraryBookArchiveStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select an elibrary book archive style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'elibrary-book-archive').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Knowledgebase Post Style</Label>
+                    <Select
+                        value={school?.branding?.knowledgebasePostStyle || 'knowledgebase-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('knowledgebasePostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a knowledgebase post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'knowledgebase-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>Knowledgebase Archive Style</Label>
+                    <Select
+                        value={school?.branding?.knowledgebaseArchiveStyle || 'knowledgebase-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('knowledgebaseArchiveStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a knowledgebase archive style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'knowledgebase-archive').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>FAQ Post Style</Label>
+                    <Select
+                        value={school?.branding?.faqPostStyle || 'faq-post-style-1'}
+                        onValueChange={(value) => handleStyleChange('faqPostStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a FAQ post style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'faq-post').map(style => (
+                                <SelectItem key={style.id} value={style.id}>
+                                    {style.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label>FAQ Archive Style</Label>
+                    <Select
+                        value={school?.branding?.faqArchiveStyle || 'faq-archive-style-1'}
+                        onValueChange={(value) => handleStyleChange('faqArchiveStyle', value)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a FAQ archive style" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {styleOptions(26, 'faq-archive').map(style => (
                                 <SelectItem key={style.id} value={style.id}>
                                     {style.name}
                                 </SelectItem>
