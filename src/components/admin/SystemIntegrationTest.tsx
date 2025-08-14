@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useSchool } from '@/contexts/SchoolContext';
 import { useAuth } from '@/contexts/AuthContext';
-import themeService from '@/services/themeService';
+import { themeService } from '@/services/themeService';
 import lmsService from '@/services/lmsService';
 import sdk from '@/lib/sdk-config';
 

@@ -9,8 +9,8 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useSchool } from '@/contexts/SchoolContext';
-import themeService from '@/services/themeService';
-import fontService from '@/services/fontService';
+import { themeService } from '@/services/themeService';
+import { fontService } from '@/services/fontService';
 import { aiService } from '@/services/aiService';
 
 export const ComponentTest: React.FC = () => {

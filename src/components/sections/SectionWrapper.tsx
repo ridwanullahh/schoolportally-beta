@@ -1,11 +1,28 @@
 import React from 'react';
 import { Section } from '@/types';
-import { 
-  applySectionStyle, 
-  getSectionContainerClasses, 
-  getSectionContentClasses,
-  normalizeStyleId 
-} from '@/utils/sectionStyleUtils';
+
+// Helper functions for section styling
+const normalizeStyleId = (styleId?: string): string => {
+  if (!styleId) return '1';
+  return styleId.split('-').pop() || '1';
+};
+
+const applySectionStyle = (sectionType: string, styleId: string, additionalClasses: string[] = []): string => {
+  const baseClass = `${sectionType}-style-${styleId}`;
+  return [baseClass, ...additionalClasses].filter(Boolean).join(' ');
+};
+
+const getSectionContainerClasses = (styleId: string): string => {
+  return `container container-style-${styleId}`;
+};
+
+const getSectionContentClasses = (styleId: string, itemCount?: number): string => {
+  const baseClass = `content content-style-${styleId}`;
+  if (itemCount) {
+    return `${baseClass} content-items-${itemCount}`;
+  }
+  return baseClass;
+};
 
 
 interface SectionWrapperProps {
