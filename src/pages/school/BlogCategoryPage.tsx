@@ -8,9 +8,7 @@ import { Calendar, Clock, User, Search, Filter, ArrowRight, Eye, ChevronLeft, Ch
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
 import { Link } from 'react-router-dom';
-import '@/themes/styles/pages/blog-archive.css';
-import '@/themes/styles/pages/archive-modern.css';
-import '@/themes/styles/pages/archive-templates-ultra-modern.css';
+
 
 const BlogCategoryPage = () => {
   const { school } = useSchool();

@@ -5,8 +5,8 @@ import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
-import '@/themes/styles/sections/events-modern.css';
-import '@/themes/styles/sections/events-section-styles.css';
+
+
 
 interface EventsSectionProps {
   section: Section;

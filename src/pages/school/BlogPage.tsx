@@ -5,14 +5,14 @@ import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import '@/themes/styles/pages/blog-archive.css';
-import '@/themes/styles/pages/archive-modern.css';
-import '@/themes/styles/pages/archive-templates-ultra-modern.css';
-import '@/themes/styles/pages/modern-ui-templates.css';
-import '@/themes/styles/sections/blog-section-styles.css';
-import '@/themes/styles/components/header-styles.css';
-import '@/themes/styles/components/footer-styles.css';
-import '@/themes/styles/components/breadcrumb-styles.css';
+
+
+
+
+
+
+
+
 import themeIntegrationService from '@/services/themeIntegrationService';
 import { usePages } from '@/hooks/usePages';
 import { Calendar, Clock, User, Search, Filter, ArrowRight, Eye, ChevronLeft, ChevronRight } from 'lucide-react';

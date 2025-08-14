@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useAcademicCalendar } from '@/hooks/useAcademicCalendar';
-import '@/themes/styles/sections/academic-calendar.css';
+
 import { Calendar, Clock, MapPin, Users, ChevronLeft, ChevronRight, Filter, X, CalendarDays } from 'lucide-react';
 
 interface AcademicCalendarSectionProps {

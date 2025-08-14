@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/partners-modern.css';
-import '@/themes/styles/sections/partners-ultra-modern.css';
-import '@/themes/styles/sections/partners-section-styles.css';
+
+
+
 import { ExternalLink, Search, Filter, ArrowRight, Users, Award, Star } from 'lucide-react';
 
 interface PartnersSectionProps {

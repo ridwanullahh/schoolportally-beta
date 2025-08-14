@@ -2,7 +2,7 @@ import React from 'react';
 import { Section } from '@/types';
 import { ArrowRight, Play } from 'lucide-react';
 import { normalizeStyleId } from '@/utils/sectionStyleUtils';
-import '@/themes/styles/sections/hero-section-styles.css';
+
 
 interface HeroSectionProps {
   section: Section;

@@ -5,9 +5,9 @@ import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Users, Calendar, BookOpen, ArrowRight, ChevronDown } from 'lucide-react';
 import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
-import '@/themes/styles/sections/classes-modern.css';
-import '@/themes/styles/sections/classes-ultra-modern.css';
-import '@/themes/styles/sections/classes-section-styles.css';
+
+
+
 import sdk from '@/lib/sdk-config';
 
 interface ClassesSectionProps {

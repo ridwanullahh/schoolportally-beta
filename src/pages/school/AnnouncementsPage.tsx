@@ -6,10 +6,10 @@ import sdk from '@/lib/sdk-config';
 import { Calendar, Clock, AlertTriangle, Info, CheckCircle, Megaphone, Search, Filter, ArrowRight, Eye, ChevronLeft, ChevronRight, Pin } from 'lucide-react';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
-import '@/themes/styles/pages/announcement-archive.css';
-import '@/themes/styles/pages/archive-modern.css';
-import '@/themes/styles/pages/archive-templates-ultra-modern.css';
-import '@/themes/styles/pages/modern-ui-templates.css';
+
+
+
+
 
 interface Announcement {
   id: string;

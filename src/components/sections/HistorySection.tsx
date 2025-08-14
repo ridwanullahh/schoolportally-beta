@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
-import '@/themes/styles/sections/history-modern.css';
-import '@/themes/styles/sections/history-ultra-modern.css';
-import '@/themes/styles/sections/history-section-styles.css';
+
+
+
 import { Calendar, Award, Users, BookOpen, Clock, Star, TrendingUp } from 'lucide-react';
 
 interface HistorySectionProps {

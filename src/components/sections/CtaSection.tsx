@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Section } from '@/types';
 import { Button } from '@/components/ui/button';
 import { themeIntegrationService } from '@/services/themeIntegrationService';
-import '@/themes/styles/sections/cta-modern.css';
-import '@/themes/styles/sections/cta-ultra-modern.css';
-import '@/themes/styles/sections/cta-section-styles.css';
+
+
+
 import { ArrowRight, Play, Check, Star, Users, Award } from 'lucide-react';
 
 interface CtaSectionProps {

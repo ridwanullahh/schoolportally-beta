@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Section, QuickFact } from '@/types';
 import * as Icons from 'lucide-react';
-import '@/themes/styles/sections/quick-facts-modern.css';
-import '@/themes/styles/sections/quick-facts-ultra-modern.css';
-import '@/themes/styles/sections/quick-facts-section-styles.css';
+
+
+
 import { TrendingUp, Users, Award, BookOpen, TrendingDown, Minus, BarChart } from 'lucide-react';
 
 interface QuickFactsSectionProps {

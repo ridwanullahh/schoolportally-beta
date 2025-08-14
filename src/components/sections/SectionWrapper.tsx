@@ -6,7 +6,7 @@ import {
   getSectionContentClasses,
   normalizeStyleId 
 } from '@/utils/sectionStyleUtils';
-import '@/themes/styles/sections/unified-section-styles.css';
+
 
 interface SectionWrapperProps {
   section: Section;

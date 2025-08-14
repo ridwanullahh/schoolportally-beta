@@ -6,8 +6,8 @@ import sdk from '@/lib/sdk-config';
 import { Calendar, Clock, MapPin, Search, Filter, ArrowRight, Eye, ChevronLeft, ChevronRight, Users } from 'lucide-react';
 import SchoolHeader from '@/components/school/SchoolHeader';
 import SchoolFooter from '@/components/school/SchoolFooter';
-import '@/themes/styles/pages/archive-modern.css';
-import '@/themes/styles/pages/archive-templates-ultra-modern.css';
+
+
 
 interface Event {
   id: string;

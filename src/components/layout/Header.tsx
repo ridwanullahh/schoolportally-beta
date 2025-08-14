@@ -3,7 +3,7 @@ import { usePages } from '@/hooks/usePages';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import '@/themes/styles/headers.css';
+
 
 export const Header = () => {
     const { school } = useSchool();

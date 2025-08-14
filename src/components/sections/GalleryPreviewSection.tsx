@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useGallery, GalleryImage } from '@/hooks/useGallery';
-import '@/themes/styles/sections/gallery-preview-modern.css';
-import '@/themes/styles/sections/gallery-preview-ultra-modern.css';
+
+
 
 interface GalleryPreviewSectionProps {
   section: Section;

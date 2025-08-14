@@ -2,7 +2,7 @@ import React from 'react';
 import { Section } from '@/types';
 import * as Icons from 'lucide-react';
 import { normalizeStyleId } from '@/utils/sectionStyleUtils';
-import '@/themes/styles/sections/features-comprehensive.css';
+
 
 interface Feature {
   icon: string;

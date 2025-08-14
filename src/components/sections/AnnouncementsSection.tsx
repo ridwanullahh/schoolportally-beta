@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useAnnouncements } from '@/hooks/useAnnouncements';
-import '@/themes/styles/sections/announcements-modern.css';
-import '@/themes/styles/sections/announcements-ultra-modern.css';
-import '@/themes/styles/sections/announcements-section-styles.css';
+
+
+
 import { Megaphone, Info, AlertTriangle, CheckCircle, Search, Filter, ArrowRight, Calendar } from 'lucide-react';
 import sdk from '@/lib/sdk-config';
 import { useSchool } from '@/contexts/SchoolContext';

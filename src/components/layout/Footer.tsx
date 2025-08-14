@@ -3,7 +3,7 @@ import { usePages } from '@/hooks/usePages';
 import { useSchool } from '@/contexts/SchoolContext';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import '@/themes/styles/footers.css';
+
 
 export const Footer = () => {
     const { school } = useSchool();

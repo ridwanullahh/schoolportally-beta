@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Section } from '@/types';
 import { useLeadership } from '@/hooks/useLeadership';
-import '@/themes/styles/sections/leadership-modern.css';
-import '@/themes/styles/sections/leadership-ultra-modern.css';
+
+
 
 interface LeadershipSectionProps {
   section: Section;

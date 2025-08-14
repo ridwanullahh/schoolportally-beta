@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import { BreadcrumbItem } from '@/types';
 import { themeService } from '@/services/themeService';
-import '@/themes/styles/breadcrumbs.css';
+
 
 interface BreadcrumbProps {
   items?: BreadcrumbItem[];

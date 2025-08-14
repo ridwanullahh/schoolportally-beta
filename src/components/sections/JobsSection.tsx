@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Section } from '@/types';
 import { useJobs } from '@/hooks/useJobs';
-import '@/themes/styles/sections/jobs-modern.css';
-import '@/themes/styles/sections/all-remaining-ultra-modern.css';
-import '@/themes/styles/sections/jobs-section-styles.css';
+
+
+
 import { Button } from '@/components/ui/button';
 import { Briefcase, MapPin, Clock, DollarSign, Search, Filter, ArrowRight, Bookmark, X } from 'lucide-react';
 
