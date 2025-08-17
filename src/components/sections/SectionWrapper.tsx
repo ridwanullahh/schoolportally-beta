@@ -9,7 +9,9 @@ const normalizeStyleId = (styleId?: string): string => {
 
 const applySectionStyle = (sectionType: string, styleId: string, additionalClasses: string[] = []): string => {
   const baseClass = `${sectionType}-style-${styleId}`;
-  return [baseClass, ...additionalClasses].filter(Boolean).join(' ');
+  // Also include a generic section-style-N class for shared rules
+  const genericClass = `section-style-${styleId}`;
+  return [baseClass, genericClass, ...additionalClasses].filter(Boolean).join(' ');
 };
 
 const getSectionContainerClasses = (styleId: string): string => {
