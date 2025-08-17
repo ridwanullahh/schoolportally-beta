@@ -45,7 +45,7 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
   const renderFields = () => {
     switch (section.type) {
       case 'hero':
-        const heroStyle = section.styleId || '';
+        const heroStyle = section.styleId || 'hero-style-1';
         return (
           <div className="space-y-4">
             <div>
