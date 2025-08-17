@@ -1,7 +1,7 @@
 import React from 'react';
 import { Section } from '@/types';
 import * as Icons from 'lucide-react';
-import { normalizeStyleId } from '@/utils/sectionStyleUtils';
+import { getStyleNumber } from '@/utils/sectionStyleUtils';
 
 
 interface Feature {
@@ -18,9 +18,9 @@ interface FeaturesSectionProps {
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
   const { title, features } = section.content;
 
-  // Get the normalized style ID and create CSS class
-  const styleId = normalizeStyleId(section.styleId);
-  const sectionClass = `features-section features-style-${styleId}`;
+  // Get numeric style number and create CSS class
+  const styleNumber = String(getStyleNumber(section.styleId));
+  const sectionClass = `features-section features-style-${styleNumber}`;
 
   const defaultFeatures: Feature[] = [
     { icon: 'Check', title: 'Expert Faculty', description: 'Learn from experienced educators with advanced degrees.' },

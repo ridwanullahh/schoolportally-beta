@@ -33,42 +33,10 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   const [displayedPosts, setDisplayedPosts] = useState(postsToShow);
   const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
 
-  // Map numbered styles to actual style IDs
-  const getStyleId = (styleNumber: string) => {
-    const styleMap: { [key: string]: string } = {
-      // New modern styles (1-11)
-      '1': 'blog-modern-grid',
-      '2': 'blog-modern-cards',
-      '3': 'blog-modern-display',
-      '4': 'blog-modern-gallery',
-      '5': 'blog-modern-showcase',
-      '6': 'blog-modern-timeline',
-      '7': 'blog-modern-masonry',
-      '8': 'blog-modern-featured',
-      '9': 'blog-modern-compact',
-      '10': 'blog-modern-magazine',
-      '11': 'blog-modern-slider',
-      // Existing ultra-modern styles (12+)
-      '12': 'blog-floating-glass',
-      '13': 'blog-holographic-cards',
-      '14': 'blog-neon-grid',
-      '15': 'blog-particle-bg',
-      '16': 'blog-morphing-cards',
-      '17': 'blog-cyber-grid',
-      '18': 'blog-liquid-metal',
-      '19': 'blog-aurora-bg',
-      '20': 'blog-matrix-rain',
-      '21': 'blog-quantum-field',
-      '22': 'blog-neural-network',
-      '23': 'blog-hologram-effect',
-      '24': 'blog-energy-waves',
-      '25': 'blog-digital-rain',
-      '26': 'blog-mosaic-layout'
-    };
-    return styleMap[styleNumber] || 'blog-modern-grid';
-  };
-
-  const styleId = getStyleId(section.styleId || '1');
+  // Determine numeric style number from section.styleId
+  const styleNumber = String(
+    Number((section.styleId || '1').toString().split('-').pop() || '1') || 1
+  );
 
   // Get unique categories for filtering
   const getCategories = (postList: any[]) => {
@@ -295,8 +263,8 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
     }
 
     // Render based on style
-    switch (styleId) {
-      case 'blog-modern-display':
+    switch (styleNumber) {
+      case '3':
         const featuredPost = postsToDisplay.find(post => post.featured) || postsToDisplay[0];
         const otherPosts = postsToDisplay.filter(post => post.id !== featuredPost?.id);
 
@@ -330,14 +298,14 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
           </>
         );
 
-      case 'blog-modern-gallery':
+      case '4':
         return (
           <div className="blog-masonry">
             {postsToDisplay.map(renderPost)}
           </div>
         );
 
-      case 'blog-modern-showcase':
+      case '5':
         return (
           <div className="blog-slider">
             {postsToDisplay.map(renderPost)}
@@ -356,7 +324,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   return (
     <SectionWrapper
       section={section}
-      className={`blog-section ${styleId}`}
+      className={`blog-posts-style-${styleNumber}`}
       itemCount={postsToDisplay.length}
       customLayout={true}
     >
