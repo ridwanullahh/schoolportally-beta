@@ -1,0 +1,31 @@
+# Running TODO Log (Subtasks & Commits)
+
+- [x] Prepare environment
+  - [x] Ensure Vite server config has { build.outDir=build, server: {port:3000, host:'0.0.0.0', allowedHosts:true} }
+  - [x] Add start script in frontend/package.json
+  - [x] Update .emergent/emergent.yml with source: lovable
+  - [x] Build frontend to confirm no regressions
+- [x] Dynamic brand theming integration
+  - [x] Implement base brand-driven CSS variables with green fallbacks (school-theme.css)
+  - [x] Wire ThemeSwitcher to apply school.branding into CSS variables
+  - [x] Import stylesheet in src/main.tsx
+- [x] Apply styling across core surface areas
+  - [x] Header: Apply class-based layout/styles honoring brand palette
+  - [x] Footer: Apply class-based layout/styles honoring brand palette
+  - [x] Breadcrumb: Implement wrapper + multiple style variants + base styling
+  - [x] Sections (initial wave): Hero (styles 1–11 mapped), Features, Quick Facts, Blog Posts, Events Snapshot, CTA
+  - [x] Archives + Single templates: Base CSS for posts grid/list, pagination, and single post containers
+- [x] GitHub sync & CI steps
+  - [x] Fetch latest main & rebase
+  - [x] Resolve merge conflicts (vite.config.ts, src/main.tsx)
+  - [x] Commit and push to origin/main
+- [ ] Remaining tasks (next commits)
+  - [ ] Implement styles 12–26 mappings across all affected sections (Hero + others)
+  - [ ] Expand breadcrumb styles to cover 1–26 explicitly
+  - [ ] Flesh out archive templates variants (blog/events/gallery 1–26)
+  - [ ] Flesh out single-post page variants (blog/event/gallery 1–26)
+  - [ ] Add per-style conditional fields in editors (SectionEditor.tsx) where applicable
+  - [ ] Update docs for editors: mapping between styleId and CSS class names
+  - [ ] Accessibility & responsive polish across breakpoints
+
+Commit cadence: Commit after completion of each bullet and push to origin/main.
