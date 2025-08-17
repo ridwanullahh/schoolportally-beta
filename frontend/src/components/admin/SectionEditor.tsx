@@ -1062,7 +1062,7 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
         <div className="space-y-4">
           <div>
             <Label>Section Style</Label>
-            <Select value={section.styleId} onValueChange={handleStyleChange}>
+            <Select value={section.styleId || 'hero-style-1'} onValueChange={handleStyleChange}>
               <SelectTrigger>
                 <SelectValue placeholder="Select a style" />
               </SelectTrigger>
