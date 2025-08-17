@@ -75,13 +75,91 @@
 .breadcrumb { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .breadcrumb a { color: var(--brand-primary); }
 .breadcrumb-current { color: var(--brand-text-secondary); }
+
+/* 1 Default roomy spacing */
 .breadcrumb-style-1 .breadcrumb { gap: .75rem; }
-.breadcrumb-style-2 .breadcrumb { gap: .5rem; }
+
+/* 2 Compact spacing */
+.breadcrumb-style-2 .breadcrumb { gap: .35rem; }
+
+/* 3 Pill container */
 .breadcrumb-style-3 .breadcrumb { background: var(--brand-bg-secondary); padding: .5rem .75rem; border-radius: 999px; }
+
+/* 4 Gradient stripe background */
 .breadcrumb-style-4 { background: linear-gradient(90deg, var(--brand-bg-secondary), #fff); padding: .5rem 0; }
+
+/* 5 Underline current */
+.breadcrumb-style-5 .breadcrumb-current { border-bottom: 2px solid var(--brand-secondary); padding-bottom: 2px; }
+
+/* 6 Boxed items */
+.breadcrumb-style-6 .breadcrumb a, .breadcrumb-style-6 .breadcrumb-current { background: #fff; border: 1px solid var(--brand-bg-secondary); padding: .25rem .5rem; border-radius: 8px; }
+
+/* 7 Shadowed bar */
+.breadcrumb-style-7 .container { background: #fff; border: 1px solid var(--brand-bg-secondary); border-radius: 10px; padding: .5rem 1rem; box-shadow: 0 10px 30px rgba(var(--brand-primary-rgb), .08); }
+
+/* 8 Separator dots */
+.breadcrumb-style-8 .breadcrumb { gap: .75rem; }
+.breadcrumb-style-8 .breadcrumb li + li::before { content: '•'; color: var(--brand-text-secondary); margin: 0 .25rem; }
+
+/* 9 Chevrons background */
+.breadcrumb-style-9 .breadcrumb li { position: relative; padding-right: .65rem; }
+.breadcrumb-style-9 .breadcrumb li + li::before { content: '›'; color: var(--brand-text-secondary); margin: 0 .25rem; }
+
+/* 10 Capsule links */
+.breadcrumb-style-10 .breadcrumb a { background: var(--brand-bg-secondary); padding: .25rem .6rem; border-radius: 999px; }
+
+/* 11 Elevated stack */
+.breadcrumb-style-11 { padding: .5rem 0; }
+.breadcrumb-style-11 .breadcrumb { background: #fff; border: 2px solid var(--brand-bg-secondary); border-radius: 12px; padding: .5rem .75rem; box-shadow: 0 8px 20px rgba(var(--brand-primary-rgb), .06); }
+
+/* 12 Gradient text links */
+.breadcrumb-style-12 .breadcrumb a { background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700; }
+
+/* 13 Uppercase minimal */
+.breadcrumb-style-13 .breadcrumb a, .breadcrumb-style-13 .breadcrumb-current { text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
+
+/* 14 Divider bar */
+.breadcrumb-style-14 .container { border-bottom: 2px solid var(--brand-bg-secondary); padding-bottom: .5rem; }
+
+/* 15 Contrast strip */
+.breadcrumb-style-15 { background: var(--brand-bg-primary); border-top: 1px solid var(--brand-bg-secondary); border-bottom: 1px solid var(--brand-bg-secondary); }
+
+/* 16 Dark glass (auto) */
 @media (prefers-color-scheme: dark) {
   .breadcrumb-style-16 .breadcrumb { background: rgba(255,255,255,.06); padding: .5rem .75rem; border-radius: 10px; }
 }
+
+/* 17 Accent left bar */
+.breadcrumb-style-17 .container { position: relative; padding-left: 12px; }
+.breadcrumb-style-17 .container::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 4px; background: var(--brand-secondary); border-radius: 4px; }
+
+/* 18 Bordered pills */
+.breadcrumb-style-18 .breadcrumb a { border: 1px solid var(--brand-secondary); padding: .25rem .5rem; border-radius: 999px; }
+
+/* 19 Soft shadows per item */
+.breadcrumb-style-19 .breadcrumb a, .breadcrumb-style-19 .breadcrumb-current { background:#fff; padding: .25rem .5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(var(--brand-primary-rgb), .06); }
+
+/* 20 Tight + bold */
+.breadcrumb-style-20 .breadcrumb a { font-weight: 700; }
+.breadcrumb-style-20 .breadcrumb { gap: .4rem; }
+
+/* 21 Tag style categories */
+.breadcrumb-style-21 .breadcrumb a { background: color-mix(in oklab, var(--brand-accent) 20%, white); color: var(--brand-primary); padding: .2rem .45rem; border-radius: 6px; }
+
+/* 22 Outlined container */
+.breadcrumb-style-22 .container { border: 1px dashed var(--brand-bg-secondary); border-radius: 10px; padding: .5rem 1rem; }
+
+/* 23 Gradient chip current */
+.breadcrumb-style-23 .breadcrumb-current { background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary)); color:#fff; padding: .25rem .5rem; border-radius: 6px; }
+
+/* 24 Minimal hairline */
+.breadcrumb-style-24 .container { border-bottom: 1px solid rgba(var(--brand-primary-rgb), .15); }
+
+/* 25 Bar with shadow */
+.breadcrumb-style-25 { background: #fff; box-shadow: 0 6px 14px rgba(var(--brand-primary-rgb), .06); }
+
+/* 26 Inline separators slash */
+.breadcrumb-style-26 .breadcrumb li + li::before { content: '/'; color: var(--brand-text-secondary); margin: 0 .35rem; }
 
 /* Page Template (Archive & Single) */
 .page-template { background: #fff; }
