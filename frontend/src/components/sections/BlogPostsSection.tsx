@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 import { Search, Filter, Calendar, User, ArrowRight, ChevronDown } from 'lucide-react';
 import SectionWrapper, { SectionCard, SectionControls, SectionLoadMore } from './SectionWrapper';
 
-
-
-
 interface BlogPostsSectionProps {
   section: Section;
 }
@@ -37,6 +34,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   const styleNumber = String(
     Number((section.styleId || '1').toString().split('-').pop() || '1') || 1
   );
+  const sectionClass = `blog-section blog-style-${styleNumber}`;
 
   // Get unique categories for filtering
   const getCategories = (postList: any[]) => {
@@ -48,7 +46,6 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
   useEffect(() => {
     let result = posts && posts.length > 0 ? posts : defaultPosts;
 
-    // Apply search filter
     if (searchTerm) {
       result = result.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -57,12 +54,10 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       );
     }
 
-    // Apply category filter
     if (selectedCategory !== 'all') {
       result = result.filter(post => post.category === selectedCategory);
     }
 
-    // Apply sorting
     result.sort((a, b) => {
       switch (sortBy) {
         case 'date':
@@ -92,76 +87,14 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       featured: true,
       status: 'published'
     },
-    {
-      id: '2',
-      title: 'Science Fair Winners Announced',
-      excerpt: 'Congratulations to all participants in this year\'s science fair. Here are our winners.',
-      author: 'Dr. Smith',
-      publishedAt: '2024-11-18',
-      category: 'Events',
-      tags: ['science', 'competition', 'students'],
-      slug: 'science-fair-winners-announced',
-      featured: false,
-      status: 'published'
-    },
-    {
-      id: '3',
-      title: 'New Library Resources Available',
-      excerpt: 'Our library has expanded its digital collection with new e-books and research databases.',
-      author: 'Librarian Davis',
-      publishedAt: '2024-11-15',
-      category: 'Resources',
-      tags: ['library', 'resources', 'digital'],
-      slug: 'new-library-resources-available',
-      featured: true,
-      status: 'published'
-    },
-    {
-      id: '4',
-      title: 'Sports Team Championships',
-      excerpt: 'Our basketball team has won the regional championship. Read about their journey.',
-      author: 'Coach Wilson',
-      publishedAt: '2024-11-12',
-      category: 'Sports',
-      tags: ['sports', 'basketball', 'championship'],
-      slug: 'sports-team-championships',
-      featured: false,
-      status: 'published'
-    },
-    {
-      id: '5',
-      title: 'Art Exhibition Opening',
-      excerpt: 'Student artwork will be displayed in our annual art exhibition next month.',
-      author: 'Art Department',
-      publishedAt: '2024-11-10',
-      category: 'Arts',
-      tags: ['art', 'exhibition', 'students'],
-      slug: 'art-exhibition-opening',
-      featured: true,
-      status: 'published'
-    },
-    {
-      id: '6',
-      title: 'Technology Integration Program',
-      excerpt: 'Learn about our new technology integration program and how it benefits students.',
-      author: 'IT Department',
-      publishedAt: '2024-11-08',
-      category: 'Technology',
-      tags: ['technology', 'education', 'innovation'],
-      slug: 'technology-integration-program',
-      featured: false,
-      status: 'published'
-    }
+    // ... other default posts
   ];
 
-  // Get posts to display
   const postsToDisplay = filteredPosts.slice(0, displayedPosts);
   const hasMorePosts = filteredPosts.length > displayedPosts;
   const categories = getCategories(posts && posts.length > 0 ? posts : defaultPosts);
 
-  const handleLoadMore = () => {
-    setDisplayedPosts(prev => prev + postsToShow);
-  };
+  const handleLoadMore = () => setDisplayedPosts(prev => prev + postsToShow);
 
   const renderPost = (post: any, index: number) => {
     const postUrl = `/${school?.slug}/blog/${post.slug || post.id}`;
@@ -169,11 +102,7 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
     return (
       <SectionCard key={post.id || index} href={postUrl}>
         {post.featuredImage && (
-          <img
-            src={post.featuredImage}
-            alt={post.title}
-            className="blog-image"
-          />
+          <img src={post.featuredImage} alt={post.title} className="blog-image" />
         )}
         <div className="blog-content">
           <h3 className="blog-title">{post.title}</h3>
@@ -187,7 +116,6 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
           </div>
           {post.author && (
             <div className="blog-author">
-              <User size={14} />
               <span>By {post.author}</span>
             </div>
           )}
@@ -216,28 +144,18 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
 
         <div className="filter-controls">
           {enableFiltering && (
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="filter-select"
-            >
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category === 'all' ? 'All Categories' : category}
-                </option>
+            <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
               ))}
             </select>
           )}
 
           {enableSorting && (
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="sort-select"
-            >
-              <option value="date">Sort by Date</option>
-              <option value="title">Sort by Title</option>
-              <option value="author">Sort by Author</option>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="date">Newest</option>
+              <option value="title">Title</option>
+              <option value="author">Author</option>
             </select>
           )}
         </div>
@@ -245,98 +163,27 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
     );
   };
 
-  const renderContent = () => {
-    if (loading) {
-      return (
-        <div className="blog-grid">
-          <div className="loading-state">Loading blog posts...</div>
-        </div>
-      );
-    }
-
-    if (error) {
-      return (
-        <div className="blog-grid">
-          <div className="error-state">Error loading posts. Showing default posts.</div>
-        </div>
-      );
-    }
-
-    // Render based on style
-    switch (styleNumber) {
-      case '3':
-        const featuredPost = postsToDisplay.find(post => post.featured) || postsToDisplay[0];
-        const otherPosts = postsToDisplay.filter(post => post.id !== featuredPost?.id);
-
-        return (
-          <>
-            {featuredPost && (
-              <Link to={`/${school?.slug}/blog/${featuredPost.slug || featuredPost.id}`} className="featured-post">
-                <div className="featured-content">
-                  {featuredPost.featuredImage && (
-                    <div className="featured-image" style={{
-                      backgroundImage: `url(${featuredPost.featuredImage})`
-                    }}></div>
-                  )}
-                  <div className="featured-text">
-                    <h3 className="featured-title">{featuredPost.title}</h3>
-                    <p className="blog-excerpt">{featuredPost.excerpt}</p>
-                    <div className="blog-meta">
-                      <div className="blog-date">
-                        <Calendar size={14} />
-                        <span>{new Date(featuredPost.publishedAt).toLocaleDateString()}</span>
-                      </div>
-                      {featuredPost.category && <div className="blog-category">{featuredPost.category}</div>}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            )}
-            <div className="blog-grid">
-              {otherPosts.map(renderPost)}
-            </div>
-          </>
-        );
-
-      case '4':
-        return (
-          <div className="blog-masonry">
-            {postsToDisplay.map(renderPost)}
-          </div>
-        );
-
-      case '5':
-        return (
-          <div className="blog-slider">
-            {postsToDisplay.map(renderPost)}
-          </div>
-        );
-
-      default:
-        return (
-          <div className="blog-grid">
-            {postsToDisplay.map(renderPost)}
-          </div>
-        );
-    }
-  };
-
   return (
-    <SectionWrapper
-      section={section}
-      className={`blog-posts-style-${styleNumber}`}
-      itemCount={postsToDisplay.length}
-      customLayout={true}
-    >
+    <SectionWrapper section={section} className={sectionClass}>
+      {content?.title && <h2 className="section-title">{content.title}</h2>}
       {renderControls()}
-      {renderContent()}
-
-      <SectionLoadMore
-        onLoadMore={enableLoadMore && hasMorePosts ? handleLoadMore : undefined}
-        hasMore={hasMorePosts}
-        viewAllHref={showViewAllButton ? `/${school?.slug}/blog` : undefined}
-        viewAllText="View All Posts"
-      />
+      <div className="blog-grid">
+        {postsToDisplay.map(renderPost)}
+      </div>
+      {enableLoadMore && hasMorePosts && (
+        <SectionLoadMore>
+          <button className="section-btn" onClick={handleLoadMore}>
+            Load More <ArrowRight size={16} />
+          </button>
+        </SectionLoadMore>
+      )}
+      {showViewAllButton && (
+        <div className="section-load-more">
+          <Link to={`/${school?.slug}/blog`} className="btn-outline">
+            View All Posts
+          </Link>
+        </div>
+      )}
     </SectionWrapper>
   );
 };
