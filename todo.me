@@ -13,19 +13,22 @@
   - [x] Header: Apply class-based layout/styles honoring brand palette
   - [x] Footer: Apply class-based layout/styles honoring brand palette
   - [x] Breadcrumb: Implement wrapper + multiple style variants + base styling
-  - [x] Sections (initial wave): Hero (styles 1–11 mapped), Features, Quick Facts, Blog Posts, Events Snapshot, CTA
+  - [x] Sections (initial wave): Hero (styles 1–11 mapping, structure), Features, Quick Facts, Blog, Events, CTA
   - [x] Archives + Single templates: Base CSS for posts grid/list, pagination, and single post containers
 - [x] GitHub sync & CI steps
   - [x] Fetch latest main & rebase
   - [x] Resolve merge conflicts (vite.config.ts, src/main.tsx)
   - [x] Commit and push to origin/main
+- [x] Hero extended styles
+  - [x] Implement Hero styles 12–26 with semantic class mapping and structure
+  - [x] Ensure all hero styles consume brand variables with green fallback
+  - [x] Add sticky scroll behavior for style 8
 - [ ] Remaining tasks (next commits)
-  - [ ] Implement styles 12–26 mappings across all affected sections (Hero + others)
-  - [ ] Expand breadcrumb styles to cover 1–26 explicitly
+  - [ ] Implement breadcrumb styles 1–26 explicitly beyond base
+  - [ ] Implement 26 variant mappings for remaining 28 sections (features, testimonials, etc.)
   - [ ] Flesh out archive templates variants (blog/events/gallery 1–26)
   - [ ] Flesh out single-post page variants (blog/event/gallery 1–26)
-  - [ ] Add per-style conditional fields in editors (SectionEditor.tsx) where applicable
-  - [ ] Update docs for editors: mapping between styleId and CSS class names
+  - [ ] Update SectionEditor to add conditional fields per style for each section, starting with Hero
   - [ ] Accessibility & responsive polish across breakpoints
 
 Commit cadence: Commit after completion of each bullet and push to origin/main.
