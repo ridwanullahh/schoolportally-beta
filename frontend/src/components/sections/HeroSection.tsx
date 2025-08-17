@@ -1,7 +1,7 @@
 import React from 'react';
 import { Section } from '@/types';
 import { ArrowRight, Play } from 'lucide-react';
-import { normalizeStyleId } from '@/utils/sectionStyleUtils';
+import { getStyleNumber } from '@/utils/sectionStyleUtils';
 
 
 interface HeroSectionProps {
@@ -20,13 +20,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section }) => {
     backgroundImage
   } = section.content;
 
-  // Get the normalized style ID and create CSS class
-  const styleId = normalizeStyleId(section.styleId);
-  const styleClass = `hero-style-${styleId}`;
+  // Get numeric style number and CSS class
+  const styleNumber = String(getStyleNumber(section.styleId));
+  const styleClass = `hero-style-${styleNumber}`;
 
   // Determine if this is a split layout style
-  const isSplitLayout = ['2', '7', '10'].includes(styleId);
-  const isVideoBackground = ['4'].includes(styleId);
+  const isSplitLayout = ['2', '7', '10'].includes(styleNumber);
+  const isVideoBackground = ['4'].includes(styleNumber);
 
   const renderHeroContent = () => {
     const commonActions = (
