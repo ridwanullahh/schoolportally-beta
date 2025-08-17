@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '@/types';
 import { useTestimonials, Testimonial } from '@/hooks/useTestimonials';
-import { normalizeStyleId } from '@/utils/sectionStyleUtils';
+import { getStyleNumber } from '@/utils/sectionStyleUtils';
 
 import { Star, Quote, Play, Filter, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 

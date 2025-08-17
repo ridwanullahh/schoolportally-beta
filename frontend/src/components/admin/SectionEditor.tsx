@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { themeService } from '@/services/themeService';
 import FormSectionEditor from './editors/FormSectionEditor';
+import { normalizeStyleId } from '@/utils/sectionStyleUtils';
 
 interface SectionEditorProps {
   section: Section;
@@ -491,7 +492,7 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
                 </SelectTrigger>
                 <SelectContent>
                   {availableStyles.map((style) => (
-                    <SelectItem key={style.id} value={style.cssClass}>
+                    <SelectItem key={style.id} value={style.id}>
                       {style.name}
                     </SelectItem>
                   ))}
@@ -1066,7 +1067,7 @@ const SectionEditor: React.FC<SectionEditorProps> = ({ section, onUpdate, onDele
                 <SelectValue placeholder="Select a style" />
               </SelectTrigger>
               <SelectContent>
-                {(sectionStyles[section.type] || []).map(style => (
+                {(themeService.getSectionStyles(section.type) || []).map((style) => (
                   <SelectItem key={style.id} value={style.id}>
                     {style.name}
                   </SelectItem>
