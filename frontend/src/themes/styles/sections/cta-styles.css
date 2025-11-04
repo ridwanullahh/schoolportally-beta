@@ -328,9 +328,7 @@
   background: white;
   border-top: 4px solid var(--school-brand-primary);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
- text-align: center;
+  text-align: center;
 }
 
 .cta-style-5 .container {
@@ -824,6 +822,1337 @@
   color: white;
   border-color: var(--school-brand-primary);
   box-shadow: 0 0 25px rgba(var(--school-brand-primary-rgb), 0.5);
+}
+
+/* CTA Style 11: Modern Glassmorphism - Frosted glass */
+.cta-style-11 {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  color: var(--school-brand-light-text);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-11::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="glass" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23glass)"/></svg>');
+}
+
+.cta-style-11 .glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.cta-style-11 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-11 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-11 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-11 .btn-primary {
+  background: white;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-11 .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.cta-style-11 .btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: 2px solid white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-11 .btn-secondary:hover {
+  background: white;
+  color: var(--school-brand-primary);
+}
+
+/* CTA Style 12: Ultra-Modern Liquid - Animated liquid effect */
+.cta-style-12 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-12::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+.cta-style-12 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-12 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-12 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-12 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-12 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-12 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+}
+
+.cta-style-12 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--school-brand-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-12 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 13: Ultra-Modern Geometric - Pattern overlay */
+.cta-style-13 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-13::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    linear-gradient(45deg, transparent 30%, var(--school-brand-primary) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, var(--school-brand-secondary) 50%, transparent 70%);
+  opacity: 0.05;
+  animation: geometricShift 10s ease-in-out infinite;
+}
+
+@keyframes geometricShift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -20px) rotate(180deg); }
+}
+
+.cta-style-13 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-13 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-13 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-13 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-13 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-13 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-13 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--school-brand-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-13 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 14: Ultra-Modern Minimalist - Clean and simple */
+.cta-style-14 {
+  padding: 4rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  border-top: 2px solid var(--school-brand-primary);
+  border-bottom: 2px solid var(--school-brand-primary);
+}
+
+.cta-style-14 .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-14 h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.cta-style-14 .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.cta-style-14 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-14 .btn {
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-14 .btn-primary {
+  color: var(--school-brand-primary);
+  border-bottom: 3px solid var(--school-brand-primary);
+}
+
+.cta-style-14 .btn-primary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-14 .btn-secondary {
+  color: var(--school-brand-secondary);
+  border-bottom: 3px solid var(--school-brand-secondary);
+}
+
+.cta-style-14 .btn-secondary:hover {
+  background: var(--school-brand-secondary);
+  color: white;
+}
+
+/* CTA Style 15: Ultra-Modern Gradient Border - Colored border */
+.cta-style-15 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+}
+
+.cta-style-15::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+}
+
+.cta-style-15 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-15 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-15 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-15 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-15 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-15 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-15 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--school-brand-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-15 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 16: Ultra-Modern Hexagon - Geometric shape */
+.cta-style-16 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-secondary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+}
+
+.cta-style-16 .hexagon {
+  background: white;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+  padding: 4rem 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.cta-style-16 h2 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta-style-16 .subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.cta-style-16 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-16 .btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-16 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-16 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border: 1px solid var(--school-brand-primary);
+}
+
+/* CTA Style 17: Ultra-Modern Sliding - Animated background */
+.cta-style-17 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-17::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--school-brand-primary), transparent);
+  transition: left var(--school-transition-slow);
+}
+
+.cta-style-17:hover::before {
+  left: 100%;
+}
+
+.cta-style-17 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-17 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-17 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-17 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-17 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-17 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-17 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--school-brand-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-17 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 18: Ultra-Modern Isometric - 3D perspective */
+.cta-style-18 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  perspective: 1000px;
+}
+
+.cta-style-18 .iso-card {
+  background: white;
+  transform: rotateX(15deg) rotateY(-15deg);
+  padding: 4rem 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.cta-style-18 .iso-card:hover {
+  transform: rotateX(10deg) rotateY(-10deg) scale(1.02);
+}
+
+.cta-style-18 h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-18 .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta-style-18 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-18 .btn {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-18 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-18 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-18 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border: 2px solid var(--school-brand-primary);
+}
+
+.cta-style-18 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 19: Ultra-Modern Liquid - Morphing cards */
+.cta-style-19 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-19::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+.cta-style-19 .liquid-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  transition: all var(--school-transition-normal);
+}
+
+.cta-style-19 .liquid-card:hover {
+  transform: perspective(1000px) rotateX(5deg) translateY(-8px);
+  box-shadow: 0 30px 60px rgba(37, 99, 235, 0.3);
+}
+
+.cta-style-19 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-19 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-19 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-19 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-19 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-19 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--school-brand-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-19 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 20: Ultra-Modern Gradient - Animated gradient */
+.cta-style-20 {
+  padding: 5rem 2rem;
+  background: linear-gradient(-45deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent), var(--school-brand-primary));
+  background-size: 400% 400%;
+  color: var(--school-brand-text-light);
+  text-align: center;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.cta-style-20 .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-20 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-20 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-20 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-20 .btn-primary {
+  background: white;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-20 .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.cta-style-20 .btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: 2px solid white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-20 .btn-secondary:hover {
+  background: white;
+  color: var(--school-brand-primary);
+}
+
+/* CTA Style 21: Ultra-Modern Paper - Paper stack effect */
+.cta-style-21 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+}
+
+.cta-style-21 .paper-stack {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-style-21 .paper {
+  background: white;
+  border-radius: 2px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 3rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cta-style-21 .paper:nth-child(2) {
+  margin-top: -2px;
+  transform: translateX(10px);
+}
+
+.cta-style-21 .paper:nth-child(3) {
+  margin-top: -2px;
+  transform: translateX(20px);
+}
+
+.cta-style-21 .paper:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.cta-style-21 h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-21 .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta-style-21 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-21 .btn {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-21 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-21 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-21 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border: 2px solid var(--school-brand-primary);
+}
+
+.cta-style-21 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 22: Ultra-Modern Outline - Border only */
+.cta-style-22 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+}
+
+.cta-style-22 .outline-card {
+  background: transparent;
+  border: 3px solid var(--school-brand-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-22 .outline-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--school-brand-primary);
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.cta-style-22 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-style-22 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-style-22 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-style-22 .btn {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.cta-style-22 .btn-primary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border: 2px solid var(--school-brand-primary);
+}
+
+.cta-style-22 .btn-primary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-22 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-secondary);
+  border: 2px solid var(--school-brand-secondary);
+}
+
+.cta-style-22 .btn-secondary:hover {
+  background: var(--school-brand-secondary);
+  color: white;
+}
+
+/* CTA Style 23: Ultra-Modern Mosaic - Grid pattern */
+.cta-style-23 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+}
+
+.cta-style-23::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, var(--school-brand-primary) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--school-brand-primary) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--school-brand-primary) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--school-brand-primary) 75%);
+  background-size: 40px 40px;
+  opacity: 0.03;
+}
+
+.cta-style-23 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-23 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-23 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-23 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-23 .btn {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-23 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-23 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-23 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border: 2px solid var(--school-brand-primary);
+}
+
+.cta-style-23 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 24: Ultra-Modern Holographic - Rainbow effect */
+.cta-style-24 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-24::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    var(--school-brand-primary), 
+    var(--school-brand-secondary), 
+    var(--school-brand-accent), 
+    var(--school-brand-primary));
+  background-size: 400% 400%;
+  animation: holographicShift 10s ease infinite;
+  opacity: 0.1;
+}
+
+@keyframes holographicShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.cta-style-24 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-24 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-style-24 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-24 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-24 .btn-primary {
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-24 .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+}
+
+.cta-style-24 .btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: 2px solid white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-24 .btn-secondary:hover {
+  background: white;
+  color: var(--school-brand-primary);
+}
+
+/* CTA Style 25: Ultra-Modern Progress - Loading bar */
+.cta-style-25 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-25::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--school-brand-primary), var(--school-brand-secondary));
+  animation: progressMove 2s ease-in-out infinite;
+}
+
+@keyframes progressMove {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.cta-style-25 .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-style-25 h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-25 .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-style-25 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-25 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-25 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-25 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--school-brand-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-25 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+/* CTA Style 26: Ultra-Modern Circular - Curved design */
+.cta-style-26 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  color: var(--school-brand-text-primary);
+  text-align: center;
+  position: relative;
+}
+
+.cta-style-26 .circular-card {
+  background: white;
+  border-radius: 50% / 20%;
+  padding: 4rem 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-style-26 .circular-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+}
+
+.cta-style-26 h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cta-style-26 .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta-style-26 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-style-26 .btn {
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-style-26 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+}
+
+.cta-style-26 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  transform: translateY(-2px);
+}
+
+.cta-style-26 .btn-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border: 2px solid var(--school-brand-primary);
+}
+
+.cta-style-26 .btn-secondary:hover {
+  background: var(--school-brand-primary);
+  color: white;
 }
 
 /* Animations */
