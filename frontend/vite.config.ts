@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
 
   // Server configuration
   server: {
-    port: 3000,
+    port: 5173,
     host: '0.0.0.0', // Explicitly bind to all interfaces
     allowedHosts: true
   },
