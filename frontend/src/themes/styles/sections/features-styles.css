@@ -827,12 +827,1455 @@
   }
 }
 
+/* Features Style 11: Modern Glassmorphism - Frosted glass */
+.features-style-11 {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  color: white;
+}
+
+.features-style-11 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-11 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-11 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.features-style-11 .subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-11 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-11 .feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-11 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.features-style-11 .icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-11 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-11 .feature-description {
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Features Style 12: Neon Glow - Vibrant colors */
+.features-style-12 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-dark-background);
+  color: var(--school-brand-text-light);
+}
+
+.features-style-12 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-12 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-12 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(var(--school-brand-primary-rgb), 0.5);
+}
+
+.features-style-12 .subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-12 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-12 .feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--school-brand-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(var(--school-brand-primary-rgb), 0.3);
+}
+
+.features-style-12 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(var(--school-brand-secondary-rgb), 0.5);
+}
+
+.features-style-12 .icon {
+  width: 50px;
+  height: 50px;
+  background: var(--school-brand-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-12 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-12 .feature-description {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Features Style 13: Retro Wave - 80s aesthetic */
+.features-style-13 {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+  color: white;
+}
+
+.features-style-13 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-13 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-13 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.features-style-13 .subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.features-style-13 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-13 .feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.features-style-13 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.features-style-13 .icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-13 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-13 .feature-description {
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Features Style 14: Geometric Pattern - Modern shapes */
+.features-style-14 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-14::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    linear-gradient(45deg, transparent 30%, var(--school-brand-primary) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, var(--school-brand-secondary) 50%, transparent 70%);
+  opacity: 0.05;
+  animation: geometricShift 10s ease-in-out infinite;
+}
+
+.features-style-14 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-14 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-14 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.features-style-14 .subtitle {
+  font-size: 1.2rem;
+  color: var(--school-brand-secondary-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-14 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-14 .feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--school-brand-border-primary);
+}
+
+.features-style-14 .feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.features-style-14 .icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-14 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-14 .feature-description {
+  color: var(--school-brand-secondary-text);
+  line-height: 1.6;
+}
+
+/* Features Style 15: Liquid Animation - Flowing effect */
+.features-style-15 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-15::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+.features-style-15 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-15 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-15 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.features-style-15 .subtitle {
+  font-size: 1.2rem;
+  color: var(--school-brand-secondary-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-15 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-15 .feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--school-brand-border-primary);
+}
+
+.features-style-15 .feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.features-style-15 .icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-15 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-15 .feature-description {
+  color: var(--school-brand-secondary-text);
+  line-height: 1.6;
+}
+
+/* Features Style 16: Particle Background - Animated dots */
+.features-style-16 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-16::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, var(--school-brand-primary) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--school-brand-secondary) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--school-brand-accent) 0%, transparent 50%);
+  opacity: 0.3;
+  animation: particleFloat 20s ease-in-out infinite;
+}
+
+.features-style-16 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-16 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-16 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.features-style-16 .subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-16 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-16 .feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-16 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.features-style-16 .icon {
+  width: 50px;
+  height: 50px;
+  background: var(--school-brand-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-16 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-16 .feature-description {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Features Style 17: Minimal Line - Clean borders */
+.features-style-17 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  border-top: 2px solid var(--school-brand-primary);
+  border-bottom: 2px solid var(--school-brand-secondary);
+}
+
+.features-style-17 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-17 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-17 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.features-style-17 .subtitle {
+  font-size: 1.1rem;
+  color: var(--school-brand-secondary-text);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.features-style-17 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.features-style-17 .feature-item {
+  padding: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.features-style-17 .feature-item:hover {
+  border-bottom-color: var(--school-brand-primary);
+}
+
+.features-style-17 .feature-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+  color: var(--school-brand-primary);
+}
+
+.features-style-17 .feature-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--school-brand-primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.features-style-17 .feature-description {
+  font-size: 0.9rem;
+  color: var(--school-brand-secondary-text);
+  line-height: 1.5;
+}
+
+/* Features Style 18: Bold Statement - Strong colors */
+.features-style-18 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+.features-style-18 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-18 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-18 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.features-style-18 .subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-18 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-18 .feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-18 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.features-style-18 .icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-18 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-18 .feature-description {
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Features Style 19: Creative Flow - Dynamic motion */
+.features-style-19 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-19::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transform: translateX(-100%);
+  animation: creativeFlow 3s ease-in-out infinite;
+}
+
+.features-style-19 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-19 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-19 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.features-style-19 .subtitle {
+  font-size: 1.2rem;
+  color: var(--school-brand-secondary-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-19 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-19 .feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--school-brand-border-primary);
+}
+
+.features-style-19 .feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.features-style-19 .icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-19 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-19 .feature-description {
+  color: var(--school-brand-secondary-text);
+  line-height: 1.6;
+}
+
+/* Features Style 20: Elegant Serif - Typography focus */
+.features-style-20 {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--school-brand-bg-secondary), var(--school-brand-bg-primary));
+}
+
+.features-style-20 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-20 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-20 .title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.features-style-20 .subtitle {
+  font-size: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--school-brand-secondary-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-20 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-20 .feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--school-brand-border-primary);
+}
+
+.features-style-20 .feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.features-style-20 .icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-20 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-20 .feature-description {
+  color: var(--school-brand-secondary-text);
+  line-height: 1.6;
+}
+
+/* Features Style 21: Tech Modern - Monospace font */
+.features-style-21 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+}
+
+.features-style-21 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-21 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-21 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(var(--school-brand-primary-rgb), 0.5);
+}
+
+.features-style-21 .subtitle {
+  font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-21 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-21 .feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-21 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.features-style-21 .icon {
+  width: 50px;
+  height: 50px;
+  background: var(--school-brand-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-21 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-21 .feature-description {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Features Style 22: Ultra-Modern Glass - Transparent */
+.features-style-22 {
+  padding: 5rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.features-style-22 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-style-22 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-22 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.features-style-22 .subtitle {
+  font-size: 1.2rem;
+  color: var(--school-brand-secondary-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-22 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-22 .feature-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.features-style-22 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-5px);
+}
+
+.features-style-22 .icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-22 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-22 .feature-description {
+  color: var(--school-brand-secondary-text);
+  line-height: 1.6;
+}
+
+/* Features Style 23: Futuristic Scan - Line animation */
+.features-style-23 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-23::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--school-brand-primary), transparent);
+  animation: futuristicScan 3s linear infinite;
+}
+
+.features-style-23 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-23 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-23 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(var(--school-brand-primary-rgb), 0.5);
+}
+
+.features-style-23 .subtitle {
+  font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-23 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-23 .feature-card {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(var(--school-brand-primary-rgb), 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-23 .feature-card:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--school-brand-primary);
+  transform: translateY(-5px);
+}
+
+.features-style-23 .icon {
+  width: 50px;
+  height: 50px;
+  background: var(--school-brand-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-23 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-23 .feature-description {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Features Style 24: Holographic - Rainbow effect */
+.features-style-24 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-24::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    var(--school-brand-primary), 
+    var(--school-brand-secondary), 
+    var(--school-brand-accent), 
+    var(--school-brand-primary));
+  background-size: 400% 400%;
+  animation: holographicShift 10s ease infinite;
+  opacity: 0.1;
+}
+
+.features-style-24 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-24 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-24 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.features-style-24 .subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-24 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-24 .feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-24 .feature-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.features-style-24 .icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-24 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-24 .feature-description {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Features Style 25: Matrix Rain - Digital effect */
+.features-style-25 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-style-25::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(37, 99, 235, 0.03) 2px,
+    rgba(37, 99, 235, 0.03) 4px
+  );
+  animation: matrixScroll 10s linear infinite;
+}
+
+.features-style-25 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-25 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-25 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
+}
+
+.features-style-25 .subtitle {
+  font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-25 .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.features-style-25 .feature-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--school-brand-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.features-style-25 .feature-card:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-5px);
+}
+
+.features-style-25 .icon {
+  width: 50px;
+  height: 50px;
+  background: var(--school-brand-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.features-style-25 .feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.features-style-25 .feature-description {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Features Style 26: Ultra-Modern Circular - Curved design */
+.features-style-26 {
+  padding: 5rem 2rem;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+}
+
+.features-style-26 .circular-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.features-style-26 .header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-style-26 .title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.features-style-26 .subtitle {
+  font-size: 1.2rem;
+  color: var(--school-brand-secondary-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-style-26 .circular-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.features-style-26 .feature-card {
+  width: 200px;
+  height: 200px;
+  background: white;
+  border-radius: 50% / 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.features-style-26 .feature-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.features-style-26 .feature-content {
+  position: relative;
+  z-index: 2;
+}
+
+.features-style-26 .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.features-style-26 .feature-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.features-style-26 .feature-description {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--school-brand-secondary-text);
+}
+
+/* Additional Animations */
+@keyframes geometricShift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -20px) rotate(180deg); }
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes creativeFlow {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes holographicShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes futuristicScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes matrixScroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .features-style-2 .feature-item,
+  .features-style-2 .feature-item:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-style-2 .feature-item:nth-child(even) .feature-content {
+    order: 1;
+  }
+  
+  .features-style-5::before {
+    left: 20px;
+  }
+  
+  .features-style-5 .feature-item,
+  .features-style-5 .feature-item:nth-child(even) {
+    grid-template-columns: 1fr;
+    padding-left: 40px;
+  }
+  
+  .features-style-5 .feature-item:nth-child(even) .feature-content {
+    order: 1;
+  }
+  
+  .features-style-10 .circular-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .features-style-10 .feature-card {
+    width: 150px;
+    height: 150px;
+    padding: 1rem;
+  }
+  
+  .features-style-26 .circular-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .features-style-26 .feature-card {
+    width: 150px;
+    height: 150px;
+  }
+}
+
 @media (max-width: 480px) {
   .features-style-1 .grid,
   .features-style-4 .cards,
   .features-style-7 .features-grid,
   .features-style-8 .features-grid,
-  .features-style-9 .features-grid {
+  .features-style-9 .features-grid,
+  .features-style-11 .features-grid,
+  .features-style-12 .features-grid,
+  .features-style-13 .features-grid,
+  .features-style-14 .features-grid,
+  .features-style-15 .features-grid,
+  .features-style-16 .features-grid,
+  .features-style-17 .features-grid,
+  .features-style-18 .features-grid,
+  .features-style-19 .features-grid,
+  .features-style-20 .features-grid,
+  .features-style-21 .features-grid,
+  .features-style-22 .features-grid,
+  .features-style-23 .features-grid,
+  .features-style-24 .features-grid,
+  .features-style-25 .features-grid,
+  .features-style-26 .features-grid {
     grid-template-columns: 1fr;
   }
   
