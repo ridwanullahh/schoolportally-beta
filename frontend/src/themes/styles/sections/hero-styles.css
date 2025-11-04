@@ -752,6 +752,858 @@
   }
 }
 
+/* Hero Style 11: Glassmorphism - Frosted glass effect */
+.hero-style-11 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-11::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="glass" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23glass)"/></svg>');
+}
+
+.hero-style-11 .glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 4rem;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-style-11 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.hero-style-11 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-style-11 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-style-11 .btn-primary {
+  background: white;
+  color: var(--school-brand-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero-style-11 .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Hero Style 12: Neon Glow - Vibrant colors */
+.hero-style-12 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--school-brand-dark-background);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-12::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(var(--school-brand-primary-rgb), 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(var(--school-brand-secondary-rgb), 0.3) 0%, transparent 50%);
+}
+
+.hero-style-12 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-12 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 30px rgba(var(--school-brand-primary-rgb), 0.8);
+}
+
+.hero-style-12 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-12 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-style-12 .btn-primary {
+  background: var(--school-brand-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(var(--school-brand-primary-rgb), 0.5);
+}
+
+.hero-style-12 .btn-primary:hover {
+  background: var(--school-brand-secondary);
+  box-shadow: 0 0 30px rgba(var(--school-brand-secondary-rgb), 0.7);
+}
+
+/* Hero Style 13: Retro Wave - 80s aesthetic */
+.hero-style-13 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-13::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #3a86ff);
+}
+
+.hero-style-13 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-13 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero-style-13 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero-style-13 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 14: Geometric Pattern - Modern shapes */
+.hero-style-14 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-14::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    linear-gradient(45deg, transparent 30%, var(--school-brand-primary) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, var(--school-brand-secondary) 50%, transparent 70%);
+  opacity: 0.05;
+  animation: geometricShift 10s ease-in-out infinite;
+}
+
+.hero-style-14 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-14 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.hero-style-14 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-14 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 15: Liquid Animation - Flowing effect */
+.hero-style-15 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-15::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+.hero-style-15 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-15 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.hero-style-15 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-15 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 16: Particle Background - Animated dots */
+.hero-style-16 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-16::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, var(--school-brand-primary) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--school-brand-secondary) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--school-brand-accent) 0%, transparent 50%);
+  opacity: 0.3;
+  animation: particleFloat 20s ease-in-out infinite;
+}
+
+.hero-style-16 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-16 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.hero-style-16 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-16 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 17: Minimal Line - Clean borders */
+.hero-style-17 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-primary);
+  border-top: 4px solid var(--school-brand-primary);
+  border-bottom: 4px solid var(--school-brand-secondary);
+}
+
+.hero-style-17 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.hero-style-17 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-style-17 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.hero-style-17 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 18: Bold Statement - Strong colors */
+.hero-style-18 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+.hero-style-18 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.hero-style-18 h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+}
+
+.hero-style-18 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-18 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-style-18 .btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+/* Hero Style 19: Creative Flow - Dynamic motion */
+.hero-style-19 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-19::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transform: translateX(-100%);
+  animation: creativeFlow 3s ease-in-out infinite;
+}
+
+.hero-style-19 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-19 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-style-19 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-19 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 20: Elegant Serif - Typography focus */
+.hero-style-20 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--school-brand-bg-secondary), var(--school-brand-bg-primary));
+}
+
+.hero-style-20 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.hero-style-20 h1 {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-style-20 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.hero-style-20 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 21: Tech Modern - Monospace font */
+.hero-style-21 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+}
+
+.hero-style-21 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.hero-style-21 h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(var(--school-brand-primary-rgb), 0.5);
+}
+
+.hero-style-21 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  margin-bottom: 2rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.hero-style-21 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 22: Ultra-Modern Glass - Transparent */
+.hero-style-22 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.hero-style-22 .container {
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-22 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.hero-style-22 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-22 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 23: Futuristic Scan - Line animation */
+.hero-style-23 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-23::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--school-brand-primary), transparent);
+  animation: futuristicScan 3s linear infinite;
+}
+
+.hero-style-23 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-23 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+}
+
+.hero-style-23 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.hero-style-23 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 24: Holographic - Rainbow effect */
+.hero-style-24 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-24::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    var(--school-brand-primary), 
+    var(--school-brand-secondary), 
+    var(--school-brand-accent), 
+    var(--school-brand-primary));
+  background-size: 400% 400%;
+  animation: holographicShift 10s ease infinite;
+  opacity: 0.1;
+}
+
+.hero-style-24 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-24 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-style-24 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-style-24 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 25: Matrix Rain - Digital effect */
+.hero-style-25 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-25::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(37, 99, 235, 0.03) 2px,
+    rgba(37, 99, 235, 0.03) 4px
+  );
+  animation: matrixScroll 10s linear infinite;
+}
+
+.hero-style-25 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.hero-style-25 h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
+}
+
+.hero-style-25 .subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.hero-style-25 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hero Style 26: Ultra-Modern Circular - Curved design */
+.hero-style-26 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--school-brand-bg-primary);
+  position: relative;
+}
+
+.hero-style-26 .circular-container {
+  background: white;
+  border-radius: 50% / 20%;
+  padding: 4rem 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-style-26 .circular-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+}
+
+.hero-style-26 h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero-style-26 .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-style-26 .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Additional Animations */
+@keyframes geometricShift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -20px) rotate(180deg); }
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes creativeFlow {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes holographicShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes futuristicScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes matrixScroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-style-2 {
@@ -783,6 +1635,11 @@
     margin-left: 0;
     margin-right: auto;
   }
+  
+  .hero-style-26 .circular-container {
+    border-radius: 20px;
+    padding: 3rem 2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -793,7 +1650,25 @@
   .hero-style-5 .buttons,
   .hero-style-6 .buttons,
   .hero-style-7 .buttons,
-  .hero-style-10 .buttons {
+  .hero-style-8 .buttons,
+  .hero-style-9 .buttons,
+  .hero-style-10 .buttons,
+  .hero-style-11 .buttons,
+  .hero-style-12 .buttons,
+  .hero-style-13 .buttons,
+  .hero-style-14 .buttons,
+  .hero-style-15 .buttons,
+  .hero-style-16 .buttons,
+  .hero-style-17 .buttons,
+  .hero-style-18 .buttons,
+  .hero-style-19 .buttons,
+  .hero-style-20 .buttons,
+  .hero-style-21 .buttons,
+  .hero-style-22 .buttons,
+  .hero-style-23 .buttons,
+  .hero-style-24 .buttons,
+  .hero-style-25 .buttons,
+  .hero-style-26 .buttons {
     flex-direction: column;
     align-items: center;
   }
@@ -806,7 +1681,26 @@
   .hero-style-5 .btn,
   .hero-style-6 .btn,
   .hero-style-7 .btn,
-  .hero-style-10 .btn {
+  .hero-style-8 .btn,
+  .hero-style-9 .btn,
+  .hero-style-10 .btn,
+  .hero-style-11 .btn-primary,
+  .hero-style-12 .btn-primary,
+  .hero-style-13 .btn,
+  .hero-style-14 .btn,
+  .hero-style-15 .btn,
+  .hero-style-16 .btn,
+  .hero-style-17 .btn,
+  .hero-style-18 .btn-primary,
+  .hero-style-18 .btn-secondary,
+  .hero-style-19 .btn,
+  .hero-style-20 .btn,
+  .hero-style-21 .btn,
+  .hero-style-22 .btn,
+  .hero-style-23 .btn,
+  .hero-style-24 .btn,
+  .hero-style-25 .btn,
+  .hero-style-26 .btn {
     width: 100%;
     max-width: 300px;
   }
