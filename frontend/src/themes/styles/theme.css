@@ -11,6 +11,9 @@
 /* Section Styles */
 @import url('./sections/blog-posts-styles.css');
 
+/* Page Styles */
+@import url('./pages/blog-archive-styles.css');
+
 /* Global Theme Application */
 body {
   margin: 0;
