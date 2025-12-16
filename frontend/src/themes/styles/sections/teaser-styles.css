@@ -1,0 +1,620 @@
+/* Modern Teaser Section Styles - 26 Comprehensive, Responsive, Beautiful Styles */
+
+/* Base Teaser Section Styles */
+.teaser-base {
+  width: 100%;
+  font-family: var(--school-font-family);
+  padding: var(--school-spacing-4xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.teaser-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--school-spacing-lg);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.teaser-header h2 {
+  font-size: var(--school-font-size-4xl);
+  font-weight: var(--school-font-weight-bold);
+  color: var(--school-brand-text-primary);
+  margin-bottom: var(--school-spacing-md);
+  line-height: var(--school-line-height-tight);
+}
+
+.teaser-header p {
+  font-size: var(--school-font-size-xl);
+  color: var(--school-brand-text-secondary);
+  margin-bottom: var(--school-spacing-2xl);
+  line-height: var(--school-line-height-relaxed);
+}
+
+.teaser-actions {
+  display: flex;
+  gap: var(--school-spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.teaser-button {
+  padding: var(--school-spacing-lg) var(--school-spacing-2xl);
+  border-radius: var(--school-radius-lg);
+  font-weight: var(--school-font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--school-transition-normal);
+  border: 2px solid transparent;
+  display: inline-block;
+}
+
+.teaser-button-primary {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--school-brand-shadow-lg);
+}
+
+.teaser-button-secondary {
+  background: transparent;
+  color: var(--school-brand-primary);
+  border-color: var(--school-brand-primary);
+}
+
+.teaser-button-secondary:hover {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+/* Style 1: Modern Gradient */
+.teaser-style-1 {
+  background: linear-gradient(135deg, var(--school-brand-primary) 0%, var(--school-brand-secondary) 100%);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-1 .teaser-header h2,
+.teaser-style-1 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-1 .teaser-button-secondary {
+  color: var(--school-brand-text-light);
+  border-color: var(--school-brand-text-light);
+}
+
+.teaser-style-1 .teaser-button-secondary:hover {
+  background: var(--school-brand-text-light);
+  color: var(--school-brand-primary);
+}
+
+/* Style 2: Dark with Pattern */
+.teaser-style-2 {
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 80%, var(--school-brand-primary) 0%, transparent 50%);
+  opacity: 0.1;
+}
+
+.teaser-style-2 .teaser-header h2,
+.teaser-style-2 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-2 .teaser-button-secondary {
+  color: var(--school-brand-text-light);
+  border-color: var(--school-brand-text-light);
+}
+
+/* Style 3: Minimalist */
+.teaser-style-3 {
+  background: var(--school-brand-bg-primary);
+  border-top: 1px solid var(--school-brand-border-primary);
+  border-bottom: 1px solid var(--school-brand-border-primary);
+}
+
+.teaser-style-3 .teaser-header h2 {
+  font-size: var(--school-font-size-3xl);
+}
+
+.teaser-style-3 .teaser-header p {
+  font-size: var(--school-font-size-lg);
+}
+
+/* Style 4: Glassmorphism */
+.teaser-style-4 {
+  background: linear-gradient(135deg, var(--school-brand-primary) 0%, var(--school-brand-secondary) 100%);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-4::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.teaser-style-4 .teaser-header h2,
+.teaser-style-4 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-4 .teaser-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-4 .teaser-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Style 5: Animated Gradient */
+.teaser-style-5 {
+  background: linear-gradient(-45deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent), var(--school-brand-primary));
+  background-size: 400% 400%;
+  color: var(--school-brand-text-light);
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.teaser-style-5 .teaser-header h2,
+.teaser-style-5 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+/* Style 6: Neon Glow */
+.teaser-style-6 {
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-6::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.2;
+}
+
+.teaser-style-6 .teaser-header h2 {
+  text-shadow: 0 0 20px var(--school-brand-primary);
+}
+
+.teaser-style-6 .teaser-header h2,
+.teaser-style-6 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-6 .teaser-button-primary {
+  box-shadow: 0 0 20px var(--school-brand-primary);
+}
+
+/* Style 7: Split Background */
+.teaser-style-7 {
+  background: linear-gradient(to right, var(--school-brand-bg-primary) 50%, var(--school-brand-bg-secondary) 50%);
+}
+
+/* Style 8: Geometric Pattern */
+.teaser-style-8 {
+  background: var(--school-brand-bg-primary);
+  position: relative;
+}
+
+.teaser-style-8::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, var(--school-brand-primary) 50%, transparent 70%);
+  opacity: 0.05;
+}
+
+/* Style 9: Floating Particles */
+.teaser-style-9 {
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-9::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, var(--school-brand-primary) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--school-brand-secondary) 0%, transparent 50%);
+  opacity: 0.2;
+  animation: particleFloat 20s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+.teaser-style-9 .teaser-header h2,
+.teaser-style-9 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+/* Style 10: Bold Typography */
+.teaser-style-10 {
+  background: var(--school-brand-primary);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-10 .teaser-header h2 {
+  font-size: var(--school-font-size-5xl);
+  font-weight: var(--school-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.teaser-style-10 .teaser-header h2,
+.teaser-style-10 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+/* Style 11: Minimal Line */
+.teaser-style-11 {
+  background: var(--school-brand-bg-primary);
+  border-top: 3px solid var(--school-brand-primary);
+  border-bottom: 3px solid var(--school-brand-primary);
+}
+
+/* Style 12: Curved Background */
+.teaser-style-12 {
+  background: var(--school-brand-bg-primary);
+  position: relative;
+}
+
+.teaser-style-12::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, var(--school-brand-bg-secondary) 0%, var(--school-brand-bg-primary) 100%);
+  clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+.teaser-style-12 .teaser-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Style 13: Diagonal Split */
+.teaser-style-13 {
+  background: linear-gradient(135deg, var(--school-brand-bg-primary) 0%, var(--school-brand-bg-secondary) 100%);
+}
+
+/* Style 14: Tech Style */
+.teaser-style-14 {
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-14::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--school-brand-primary), transparent);
+  animation: futuristicScan 3s linear infinite;
+}
+
+@keyframes futuristicScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.teaser-style-14 .teaser-header h2,
+.teaser-style-14 .teaser-header p {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  color: var(--school-brand-text-light);
+}
+
+/* Style 15: Elegant Serif */
+.teaser-style-15 {
+  background: linear-gradient(135deg, var(--school-brand-bg-secondary), var(--school-brand-bg-primary));
+}
+
+.teaser-style-15 .teaser-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--school-font-size-5xl);
+}
+
+/* Style 16: Retro Wave */
+.teaser-style-16 {
+  background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+  color: var(--school-brand-text-light);
+}
+
+.teaser-style-16::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1));
+}
+
+.teaser-style-16 .teaser-header h2,
+.teaser-style-16 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+/* Style 17: Morphing Background */
+.teaser-style-17 {
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.teaser-style-17::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 80%, var(--school-brand-primary) 0%, transparent 50%);
+  opacity: 0.1;
+  animation: morphingShapes 15s ease-in-out infinite;
+}
+
+@keyframes morphingShapes {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* Style 18: Gradient Text */
+.teaser-style-18 {
+  background: var(--school-brand-bg-primary);
+}
+
+.teaser-style-18 .teaser-header h2 {
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Style 19: Floating Cards */
+.teaser-style-19 {
+  background: var(--school-brand-bg-primary);
+}
+
+.teaser-style-19 .teaser-button {
+  box-shadow: var(--school-brand-shadow-lg);
+}
+
+/* Style 20: Staggered Buttons */
+.teaser-style-20 {
+  background: var(--school-brand-bg-secondary);
+}
+
+.teaser-style-20 .teaser-button:nth-child(2) {
+  transform: translateY(10px);
+}
+
+/* Style 21: Circular CTA */
+.teaser-style-21 {
+  background: var(--school-brand-bg-primary);
+}
+
+.teaser-style-21 .teaser-button {
+  border-radius: 50px;
+  padding: var(--school-spacing-lg) var(--school-spacing-3xl);
+}
+
+/* Style 22: Full Width Gradient */
+.teaser-style-22 {
+  background: linear-gradient(90deg, var(--school-brand-primary) 0%, var(--school-brand-secondary) 50%, var(--school-brand-primary) 100%);
+  background-size: 200% 100%;
+  color: var(--school-brand-text-light);
+  animation: gradientPan 8s linear infinite;
+}
+
+@keyframes gradientPan {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.teaser-style-22 .teaser-header h2,
+.teaser-style-22 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+/* Style 23: Neumorphism */
+.teaser-style-23 {
+  background: var(--school-brand-bg-secondary);
+}
+
+.teaser-style-23 .teaser-button {
+  box-shadow: 
+    5px 5px 10px #d1d5db,
+    -5px -5px 10px #ffffff;
+}
+
+.teaser-style-23 .teaser-button:hover {
+  box-shadow: 
+    inset 3px 3px 6px #d1d5db,
+    inset -3px -3px 6px #ffffff;
+}
+
+/* Style 24: 3D Effect */
+.teaser-style-24 {
+  background: var(--school-brand-bg-dark);
+  color: var(--school-brand-text-light);
+  perspective: 1000px;
+}
+
+.teaser-style-24 .teaser-button {
+  transform-style: preserve-3d;
+}
+
+.teaser-style-24 .teaser-button:hover {
+  transform: rotateX(10deg) rotateY(-10deg);
+}
+
+.teaser-style-24 .teaser-header h2,
+.teaser-style-24 .teaser-header p {
+  color: var(--school-brand-text-light);
+}
+
+/* Style 25: Liquid Background */
+.teaser-style-25 {
+  background: var(--school-brand-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.teaser-style-25::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--school-brand-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+@keyframes liquidFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* Style 26: Unique Custom */
+.teaser-style-26 {
+  background: var(--school-brand-bg-primary);
+  position: relative;
+}
+
+.teaser-style-26::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--school-brand-primary), var(--school-brand-secondary), var(--school-brand-accent));
+}
+
+.teaser-style-26::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--school-brand-accent), var(--school-brand-secondary), var(--school-brand-primary));
+}
+
+.teaser-style-26 .teaser-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .teaser-base {
+    padding: var(--school-spacing-3xl) 0;
+  }
+
+  .teaser-container {
+    padding: 0 var(--school-spacing-md);
+  }
+
+  .teaser-header h2 {
+    font-size: var(--school-font-size-2xl);
+  }
+
+  .teaser-header p {
+    font-size: var(--school-font-size-base);
+  }
+
+  .teaser-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teaser-button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Adjust specific styles for mobile */
+  .teaser-style-7 {
+    background: var(--school-brand-bg-primary);
+  }
+
+  .teaser-style-10 .teaser-header h2 {
+    font-size: var(--school-font-size-3xl);
+  }
+
+  .teaser-style-15 .teaser-header h2 {
+    font-size: var(--school-font-size-3xl);
+  }
+
+  .teaser-style-20 .teaser-button:nth-child(2) {
+    transform: none;
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (max-width: 1024px) {
+  .teaser-container {
+    padding: 0 var(--school-spacing-md);
+  }
+
+  .teaser-header h2 {
+    font-size: var(--school-font-size-3xl);
+  }
+
+  .teaser-header p {
+    font-size: var(--school-font-size-lg);
+  }
+
+  .teaser-style-7 {
+    background: var(--school-brand-bg-primary);
+  }
+}
