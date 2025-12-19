@@ -1,4 +1,9 @@
 
+/* Import School Portal Style System */
+@import './styles/headerStyles.css';
+@import './styles/footerStyles.css';
+@import './styles/breadcrumbStyles.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
