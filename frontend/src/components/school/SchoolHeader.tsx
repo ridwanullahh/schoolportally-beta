@@ -26,7 +26,20 @@ const SchoolHeader: React.FC<SchoolHeaderProps> = ({ school, pages: initialPages
   }, [dynamicPages]);
 
   const navigationPages = allPages.filter(page => page.showOnHeader && page.status === 'published');
-  const headerStyle = school?.branding?.headerStyle || 'header-style-1';
+  
+  // Get header style from school branding or theme, default to style 1
+  const getHeaderStyle = () => {
+    const styleFromBranding = school?.branding?.headerStyle;
+    if (styleFromBranding) {
+      // Ensure it's in the format header-style-X
+      return styleFromBranding.startsWith('header-style-') 
+        ? styleFromBranding 
+        : `header-style-${styleFromBranding}`;
+    }
+    return 'header-style-1';
+  };
+  
+  const headerStyle = getHeaderStyle();
   
   const getPageUrl = (page: Page) => {
     if (page.type === 'homepage') return `/${schoolSlug}`;

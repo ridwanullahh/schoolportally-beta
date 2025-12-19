@@ -16,7 +16,20 @@ const SchoolFooter: React.FC<SchoolFooterProps> = ({ school }) => {
   const { pages } = usePages();
 
   const footerPages = pages.filter(page => page.showOnFooter && page.status === 'published');
-  const footerStyle = school?.branding?.footerStyle || 'footer-style-1';
+  
+  // Get footer style from school branding or theme, default to style 1
+  const getFooterStyle = () => {
+    const styleFromBranding = school?.branding?.footerStyle;
+    if (styleFromBranding) {
+      // Ensure it's in the format footer-style-X
+      return styleFromBranding.startsWith('footer-style-') 
+        ? styleFromBranding 
+        : `footer-style-${styleFromBranding}`;
+    }
+    return 'footer-style-1';
+  };
+  
+  const footerStyle = getFooterStyle();
 
   const getPageUrl = (page: Page) => {
     if (page.type === 'homepage') return `/${schoolSlug}`;
