@@ -44,9 +44,9 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
 
   // Filter and search logic
   useEffect(() => {
-    let result = posts && posts.length > 0 ? posts : defaultPosts;
+    let result = posts && posts.length > 0 ? [...posts] : [];
 
-    if (searchTerm) {
+    if (searchTerm && result.length > 0) {
       result = result.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.excerpt?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -54,45 +54,31 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
       );
     }
 
-    if (selectedCategory !== 'all') {
+    if (selectedCategory !== 'all' && result.length > 0) {
       result = result.filter(post => post.category === selectedCategory);
     }
 
-    result.sort((a, b) => {
-      switch (sortBy) {
-        case 'date':
-          return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-        case 'title':
-          return a.title.localeCompare(b.title);
-        case 'author':
-          return a.author.localeCompare(b.author);
-        default:
-          return 0;
-      }
-    });
+    if (result.length > 0) {
+      result.sort((a, b) => {
+        switch (sortBy) {
+          case 'date':
+            return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          case 'title':
+            return a.title.localeCompare(b.title);
+          case 'author':
+            return a.author.localeCompare(b.author);
+          default:
+            return 0;
+        }
+      });
+    }
 
     setFilteredPosts(result);
   }, [posts, searchTerm, selectedCategory, sortBy]);
 
-  const defaultPosts = [
-    {
-      id: '1',
-      title: 'Welcome to Our New Academic Year',
-      excerpt: 'We are excited to welcome all students back for another year of learning and growth.',
-      author: 'Principal Johnson',
-      publishedAt: '2024-11-20',
-      category: 'News',
-      tags: ['academic', 'welcome', 'students'],
-      slug: 'welcome-to-our-new-academic-year',
-      featured: true,
-      status: 'published'
-    },
-    // ... other default posts
-  ];
-
   const postsToDisplay = filteredPosts.slice(0, displayedPosts);
   const hasMorePosts = filteredPosts.length > displayedPosts;
-  const categories = getCategories(posts && posts.length > 0 ? posts : defaultPosts);
+  const categories = getCategories(posts && posts.length > 0 ? posts : []);
 
   const handleLoadMore = () => setDisplayedPosts(prev => prev + postsToShow);
 
@@ -171,11 +157,11 @@ const BlogPostsSection: React.FC<BlogPostsSectionProps> = ({ section }) => {
         {postsToDisplay.map(renderPost)}
       </div>
       {enableLoadMore && hasMorePosts && (
-        <SectionLoadMore>
-          <button className="section-btn" onClick={handleLoadMore}>
-            Load More <ArrowRight size={16} />
-          </button>
-        </SectionLoadMore>
+        <SectionLoadMore
+          onLoadMore={handleLoadMore}
+          hasMore={hasMorePosts}
+          loading={loading}
+        />
       )}
       {showViewAllButton && (
         <div className="section-load-more">
