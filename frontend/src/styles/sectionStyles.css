@@ -1,0 +1,1101 @@
+/* Modern Section Styles - 26 Comprehensive, Responsive, Beautiful Styles for All Sections */
+
+/* Base Section Styles */
+.section-base {
+  padding: var(--section-padding, 4rem 0);
+  position: relative;
+}
+
+.section-base .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-base .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-base .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--school-brand-text-primary);
+}
+
+.section-base .section-subtitle {
+  font-size: 1.125rem;
+  color: var(--school-brand-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-base .content {
+  display: grid;
+  gap: 2rem;
+}
+
+/* ========================================
+   STYLE 1: Classic Minimal
+   Clean, timeless design with subtle borders
+   ======================================== */
+.section-style-1 {
+  background: var(--school-brand-bg-primary);
+  padding: 4rem 0;
+}
+
+.section-style-1 .section-title {
+  color: var(--school-brand-text-primary);
+  border-bottom: 3px solid var(--school-brand-primary);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section-style-1 .section-card {
+  background: white;
+  border: 1px solid var(--school-brand-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.section-style-1 .section-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   STYLE 2: Modern Gradient
+   Contemporary gradient backgrounds
+   ======================================== */
+.section-style-2 {
+  background: linear-gradient(135deg, var(--school-brand-primary) 0%, var(--school-brand-secondary) 100%);
+  padding: 5rem 0;
+  color: white;
+}
+
+.section-style-2 .section-title {
+  color: white;
+}
+
+.section-style-2 .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-style-2 .section-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   STYLE 3: Card Grid
+   Grid-based card layout with shadows
+   ======================================== */
+.section-style-3 {
+  background: var(--school-brand-bg-secondary);
+  padding: 4rem 0;
+}
+
+.section-style-3 .section-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.section-style-3 .section-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.section-style-3 .section-card h3 {
+  color: var(--school-brand-primary);
+  margin-bottom: 1rem;
+}
+
+/* ========================================
+   STYLE 4: Floating Cards
+   Elevated cards with modern shadows
+   ======================================== */
+.section-style-4 {
+  background: linear-gradient(180deg, var(--school-brand-bg-primary) 0%, var(--school-brand-bg-secondary) 100%);
+  padding: 5rem 0;
+}
+
+.section-style-4 .section-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.section-style-4 .section-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+.section-style-4 .section-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* ========================================
+   STYLE 5: Glassmorphism
+   Frosted glass effect with blur
+   ======================================== */
+.section-style-5 {
+  background: linear-gradient(135deg, var(--school-brand-primary) 0%, var(--school-brand-accent) 100%);
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-style-5::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+  background-size: 100px 100px;
+  opacity: 0.3;
+}
+
+.section-style-5 .section-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  color: white;
+}
+
+.section-style-5 .section-card h3 {
+  color: white;
+}
+
+/* ========================================
+   STYLE 6: Neumorphism
+   Soft extruded neumorphic design
+   ======================================== */
+.section-style-6 {
+  background: #e0e5ec;
+  padding: 4rem 0;
+}
+
+.section-style-6 .section-card {
+  background: #e0e5ec;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 
+    8px 8px 16px #b8bec7,
+    -8px -8px 16px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.section-style-6 .section-card:hover {
+  box-shadow: 
+    12px 12px 24px #b8bec7,
+    -12px -12px 24px #ffffff;
+}
+
+.section-style-6 .section-btn {
+  background: #e0e5ec;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 
+    4px 4px 8px #b8bec7,
+    -4px -4px 8px #ffffff;
+}
+
+/* ========================================
+   STYLE 7: Bold Typography
+   Large, impactful typography
+   ======================================== */
+.section-style-7 {
+  background: var(--school-brand-bg-primary);
+  padding: 5rem 0;
+}
+
+.section-style-7 .section-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--school-brand-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-style-7 .section-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--school-brand-text-secondary);
+}
+
+.section-style-7 .section-card {
+  border-left: 5px solid var(--school-brand-primary);
+  padding-left: 1.5rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 0 12px 12px 0;
+}
+
+/* ========================================
+   STYLE 8: Split Layout
+   Alternating image/text layout
+   ======================================== */
+.section-style-8 {
+  background: var(--school-brand-bg-primary);
+  padding: 4rem 0;
+}
+
+.section-style-8 .content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.section-style-8 .section-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-style-8 .section-card:nth-child(even) {
+  order: 2;
+}
+
+.section-style-8 img {
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   STYLE 9: Masonry Grid
+   Pinterest-style masonry layout
+   ======================================== */
+.section-style-9 {
+  background: var(--school-brand-bg-secondary);
+  padding: 4rem 0;
+}
+
+.section-style-9 .content {
+  column-count: 3;
+  column-gap: 2rem;
+}
+
+.section-style-9 .section-card {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-style-9 .section-card img {
+  width: 100%;
+  height: auto;
+}
+
+/* ========================================
+   STYLE 10: Dark Mode
+   Modern dark theme design
+   ======================================== */
+.section-style-10 {
+  background: #0f0f23;
+  padding: 5rem 0;
+  color: white;
+}
+
+.section-style-10 .section-title {
+  color: #60a5fa;
+}
+
+.section-style-10 .section-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section-style-10 .section-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  color: white;
+}
+
+.section-style-10 .section-card h3 {
+  color: #60a5fa;
+}
+
+.section-style-10 .section-btn {
+  background: #60a5fa;
+  color: #0f0f23;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+}
+
+/* ========================================
+   STYLE 11: Circular Cards
+   Round card design
+   ======================================== */
+.section-style-11 {
+  background: linear-gradient(135deg, var(--school-brand-bg-secondary) 0%, var(--school-brand-bg-primary) 100%);
+  padding: 5rem 0;
+}
+
+.section-style-11 .content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.section-style-11 .section-card {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.section-style-11 .section-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   STYLE 12: Timeline Style
+   Vertical timeline layout
+   ======================================== */
+.section-style-12 {
+  background: var(--school-brand-bg-primary);
+  padding: 4rem 0;
+}
+
+.section-style-12 .content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-style-12 .content::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--school-brand-primary);
+  transform: translateX(-50%);
+}
+
+.section-style-12 .section-card {
+  position: relative;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: calc(50% - 2rem);
+}
+
+.section-style-12 .section-card:nth-child(odd) {
+  margin-left: auto;
+}
+
+.section-style-12 .section-card::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--school-brand-primary);
+  border-radius: 50%;
+  top: 2rem;
+}
+
+.section-style-12 .section-card:nth-child(odd)::before {
+  left: -2.5rem;
+}
+
+.section-style-12 .section-card:nth-child(even)::before {
+  right: -2.5rem;
+}
+
+/* ========================================
+   STYLE 13: Accordion Cards
+   Expandable card design
+   ======================================== */
+.section-style-13 {
+  background: var(--school-brand-bg-secondary);
+  padding: 4rem 0;
+}
+
+.section-style-13 .section-card {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.section-style-13 .section-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.section-style-13 .section-card-header {
+  padding: 1.5rem;
+  background: var(--school-brand-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.section-style-13 .section-card-body {
+  padding: 1.5rem;
+}
+
+/* ========================================
+   STYLE 14: Parallax Background
+   Parallax scrolling effect
+   ======================================== */
+.section-style-14 {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23667eea" width="100" height="100"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 6rem 0;
+  color: white;
+}
+
+.section-style-14 .section-title {
+  color: white;
+  font-size: 3.5rem;
+}
+
+.section-style-14 .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-style-14 .section-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  color: var(--school-brand-text-primary);
+}
+
+/* ========================================
+   STYLE 15: Minimalist Clean
+   Ultra-clean minimalist design
+   ======================================== */
+.section-style-15 {
+  background: white;
+  padding: 5rem 0;
+}
+
+.section-style-15 .section-title {
+  font-weight: 300;
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--school-brand-text-primary);
+}
+
+.section-style-15 .section-card {
+  border: none;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--school-brand-border);
+}
+
+.section-style-15 .section-card:last-child {
+  border-bottom: none;
+}
+
+.section-style-15 .section-card h3 {
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--school-brand-text-primary);
+}
+
+/* ========================================
+   STYLE 16: Geometric Patterns
+   Geometric background patterns
+   ======================================== */
+.section-style-16 {
+  background: var(--school-brand-bg-primary);
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-style-16::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(30deg, var(--school-brand-primary) 12%, transparent 12.5%, transparent 87%, var(--school-brand-primary) 87.5%, var(--school-brand-primary)),
+    linear-gradient(150deg, var(--school-brand-primary) 12%, transparent 12.5%, transparent 87%, var(--school-brand-primary) 87.5%, var(--school-brand-primary)),
+    linear-gradient(30deg, var(--school-brand-primary) 12%, transparent 12.5%, transparent 87%, var(--school-brand-primary) 87.5%, var(--school-brand-primary)),
+    linear-gradient(150deg, var(--school-brand-primary) 12%, transparent 12.5%, transparent 87%, var(--school-brand-primary) 87.5%, var(--school-brand-primary));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+  opacity: 0.05;
+}
+
+.section-style-16 .section-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   STYLE 17: Hover Effects
+   Advanced hover animations
+   ======================================== */
+.section-style-17 {
+  background: var(--school-brand-bg-secondary);
+  padding: 4rem 0;
+}
+
+.section-style-17 .section-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-style-17 .section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--school-brand-primary), var(--school-brand-secondary));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+
+.section-style-17 .section-card:hover::before {
+  opacity: 0.95;
+}
+
+.section-style-17 .section-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-style-17 .section-card:hover h3,
+.section-style-17 .section-card:hover p {
+  color: white;
+}
+
+/* ========================================
+   STYLE 18: Stacked Cards
+   Layered stack effect
+   ======================================== */
+.section-style-18 {
+  background: var(--school-brand-bg-primary);
+  padding: 5rem 0;
+}
+
+.section-style-18 .section-card {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-style-18 .section-card::before,
+.section-style-18 .section-card::after {
+  content: '';
+  position: absolute;
+  background: white;
+  border-radius: 16px;
+  z-index: -1;
+}
+
+.section-style-18 .section-card::before {
+  width: 100%;
+  height: 100%;
+  top: 8px;
+  left: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-style-18 .section-card::after {
+  width: 100%;
+  height: 100%;
+  top: 16px;
+  left: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================
+   STYLE 19: Neon Glow
+   Vibrant neon glow effects
+   ======================================== */
+.section-style-19 {
+  background: #0a0a0a;
+  padding: 5rem 0;
+}
+
+.section-style-19 .section-title {
+  color: #00ff88;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+  font-size: 3.5rem;
+}
+
+.section-style-19 .section-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #00ff88;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  transition: all 0.3s ease;
+}
+
+.section-style-19 .section-card:hover {
+  box-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+  transform: translateY(-5px);
+}
+
+.section-style-19 .section-card h3 {
+  color: #00ff88;
+}
+
+/* ========================================
+   STYLE 20: Retro Wave
+   80s retro aesthetic
+   ======================================== */
+.section-style-20 {
+  background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-style-20::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: 
+    linear-gradient(90deg, #fbbf24 25%, transparent 25%),
+    linear-gradient(90deg, transparent 75%, #fbbf24 75%);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  transform: perspective(500px) rotateX(60deg);
+  transform-origin: bottom;
+}
+
+.section-style-20 .section-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.section-style-20 .section-card h3 {
+  color: #1e3a8a;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   STYLE 21: Brutalist
+   Bold brutalist design
+   ======================================== */
+.section-style-21 {
+  background: #fff;
+  padding: 5rem 0;
+  border: 8px solid #000;
+}
+
+.section-style-21 .section-title {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+
+.section-style-21 .section-card {
+  background: #000;
+  color: #fff;
+  padding: 2rem;
+  border: 4px solid #000;
+  transition: all 0.2s ease;
+}
+
+.section-style-21 .section-card:hover {
+  background: #ff0;
+  color: #000;
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 #000;
+}
+
+.section-style-21 .section-card h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   STYLE 22: Soft Pastels
+   Gentle pastel color scheme
+   ======================================== */
+.section-style-22 {
+  background: #fef3f2;
+  padding: 5rem 0;
+}
+
+.section-style-22 .section-title {
+  color: #be123c;
+  font-weight: 600;
+}
+
+.section-style-22 .section-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(190, 18, 60, 0.08);
+  border: 2px solid #fecdd3;
+}
+
+.section-style-22 .section-card h3 {
+  color: #be123c;
+}
+
+.section-style-22 .section-btn {
+  background: #fecdd3;
+  color: #be123c;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   STYLE 23: Animated Gradient
+   Moving gradient background
+   ======================================== */
+.section-style-23 {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  padding: 5rem 0;
+  color: white;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.section-style-23 .section-title {
+  color: white;
+  font-size: 3.5rem;
+}
+
+.section-style-23 .section-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  color: var(--school-brand-text-primary);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   STYLE 24: Magazine Layout
+   Editorial magazine style
+   ======================================== */
+.section-style-24 {
+  background: #fff;
+  padding: 4rem 0;
+}
+
+.section-style-24 .section-header {
+  border-top: 4px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 2rem 0;
+  margin-bottom: 3rem;
+}
+
+.section-style-24 .section-title {
+  font-family: 'Georgia', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #000;
+  line-height: 1;
+}
+
+.section-style-24 .content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.section-style-24 .section-card {
+  border: 1px solid #000;
+  padding: 0;
+}
+
+.section-style-24 .section-card:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.section-style-24 .section-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================
+   STYLE 25: 3D Perspective
+   3D perspective transforms
+   ======================================== */
+.section-style-25 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 6rem 0;
+  perspective: 1000px;
+}
+
+.section-style-25 .section-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.section-style-25 .section-card:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+.section-style-25 .section-card img {
+  transform: translateZ(30px);
+  border-radius: 12px;
+}
+
+/* ========================================
+   STYLE 26: Ultra Modern
+   Cutting-edge modern design
+   ======================================== */
+.section-style-26 {
+  background: #0f0f23;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-style-26::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, #00f5ff, transparent 30%);
+  animation: rotate 10s linear infinite;
+  opacity: 0.1;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+.section-style-26 .section-title {
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00f5ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-style-26 .section-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.section-style-26 .section-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #00f5ff;
+  box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+}
+
+.section-style-26 .section-card h3 {
+  background: linear-gradient(135deg, #00f5ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   Grid Layout Helpers
+   ======================================== */
+.section-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.section-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.section-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 1024px) {
+  .section-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .section-style-8 .content {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-style-9 .content {
+    column-count: 2;
+  }
+  
+  .section-style-24 .section-card:first-child {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-base {
+    padding: 3rem 0;
+  }
+  
+  .section-base .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-grid-2,
+  .section-grid-3,
+  .section-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-style-7 .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-style-9 .content {
+    column-count: 1;
+  }
+  
+  .section-style-12 .content::before {
+    left: 20px;
+  }
+  
+  .section-style-12 .section-card {
+    width: calc(100% - 3rem);
+    margin-left: 3rem !important;
+  }
+  
+  .section-style-12 .section-card::before {
+    left: -2.5rem !important;
+    right: auto !important;
+  }
+  
+  .section-style-11 .section-card {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .section-style-21 .section-title {
+    font-size: 3rem;
+  }
+  
+  .section-style-24 .content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-base {
+    padding: 2rem 0;
+  }
+  
+  .section-base .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-style-7 .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-style-14 .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-style-19 .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-style-21 .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-style-24 .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-style-26 .section-title {
+    font-size: 2.5rem;
+  }
+}

@@ -3,6 +3,7 @@
 @import './styles/headerStyles.css';
 @import './styles/footerStyles.css';
 @import './styles/breadcrumbStyles.css';
+@import './styles/sectionStyles.css';
 
 @tailwind base;
 @tailwind components;
