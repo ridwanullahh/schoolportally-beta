@@ -176,18 +176,44 @@ class ThemeService {
       { id: '26', name: 'Ultra Modern', category: 'modern', cssClass: 'blog-posts-style-26', description: 'Futuristic ultra-modern design', preview: 'Ultra-modern layout' }
     ];
 
-    // Initialize other section styles with similar structure
+    // Initialize other section styles with all 26 styles
     const otherSections = ['hero', 'quick_facts', 'value_prop', 'teaser', 'features', 'testimonials', 'events_snapshot', 'gallery_preview', 'cta', 'partners', 'mission_vision', 'history', 'leadership', 'faculty', 'classes', 'programs', 'courses', 'announcements', 'library', 'gallery', 'knowledgebase', 'jobs', 'faq', 'academic_calendar', 'result_checker', 'form', 'products'];
     
+    const allStyles = [
+      { id: '1', name: 'Classic Minimal', category: 'classic', description: 'Clean, timeless design with subtle borders' },
+      { id: '2', name: 'Modern Gradient', category: 'modern', description: 'Contemporary gradient backgrounds' },
+      { id: '3', name: 'Card Grid', category: 'modern', description: 'Grid-based card layout with shadows' },
+      { id: '4', name: 'Floating Cards', category: 'modern', description: 'Elevated cards with modern shadows' },
+      { id: '5', name: 'Glassmorphism', category: 'modern', description: 'Frosted glass effect with blur' },
+      { id: '6', name: 'Neumorphism', category: 'modern', description: 'Soft extruded neumorphic design' },
+      { id: '7', name: 'Bold Typography', category: 'bold', description: 'Large, impactful typography' },
+      { id: '8', name: 'Split Layout', category: 'modern', description: 'Alternating image/text layout' },
+      { id: '9', name: 'Masonry Grid', category: 'modern', description: 'Pinterest-style masonry layout' },
+      { id: '10', name: 'Dark Mode', category: 'dark', description: 'Modern dark theme design' },
+      { id: '11', name: 'Circular Cards', category: 'creative', description: 'Round card design' },
+      { id: '12', name: 'Timeline Style', category: 'modern', description: 'Vertical timeline layout' },
+      { id: '13', name: 'Accordion Cards', category: 'modern', description: 'Expandable card design' },
+      { id: '14', name: 'Parallax Background', category: 'modern', description: 'Parallax scrolling effect' },
+      { id: '15', name: 'Minimalist Clean', category: 'minimal', description: 'Ultra-clean minimalist design' },
+      { id: '16', name: 'Geometric Patterns', category: 'creative', description: 'Geometric background patterns' },
+      { id: '17', name: 'Hover Effects', category: 'modern', description: 'Advanced hover animations' },
+      { id: '18', name: 'Stacked Cards', category: 'modern', description: 'Layered stack effect' },
+      { id: '19', name: 'Neon Glow', category: 'creative', description: 'Vibrant neon glow effects' },
+      { id: '20', name: 'Retro Wave', category: 'retro', description: '80s retro aesthetic' },
+      { id: '21', name: 'Brutalist', category: 'bold', description: 'Bold brutalist design' },
+      { id: '22', name: 'Soft Pastels', category: 'elegant', description: 'Gentle pastel color scheme' },
+      { id: '23', name: 'Animated Gradient', category: 'modern', description: 'Moving gradient background' },
+      { id: '24', name: 'Magazine Layout', category: 'editorial', description: 'Editorial magazine style' },
+      { id: '25', name: '3D Perspective', category: 'modern', description: '3D perspective transforms' },
+      { id: '26', name: 'Ultra Modern', category: 'modern', description: 'Cutting-edge modern design' }
+    ];
+    
     otherSections.forEach(section => {
-      this.sectionStyles[section] = [
-        { id: '1', name: 'Modern Grid', category: 'modern', cssClass: `${section}-style-1`, description: 'Clean grid layout', preview: 'Grid layout' },
-        { id: '2', name: 'Modern Card', category: 'modern', cssClass: `${section}-style-2`, description: 'Card-based design', preview: 'Card layout' },
-        { id: '3', name: 'Modern Minimal', category: 'minimal', cssClass: `${section}-style-3`, description: 'Minimal design', preview: 'Minimal layout' },
-        { id: '4', name: 'Modern Gradient', category: 'modern', cssClass: `${section}-style-4`, description: 'Gradient design', preview: 'Gradient layout' },
-        { id: '5', name: 'Modern Bold', category: 'bold', cssClass: `${section}-style-5`, description: 'Bold design', preview: 'Bold layout' },
-        // Add more styles as needed...
-      ];
+      this.sectionStyles[section] = allStyles.map(style => ({
+        ...style,
+        cssClass: `section-style-${style.id}`,
+        preview: `${style.name} layout`
+      }));
     });
   }
 
